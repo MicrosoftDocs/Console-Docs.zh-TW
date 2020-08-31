@@ -25,6 +25,7 @@
     "miniksa@microsoft.com"
   ],
   "branches_to_filter": [
+    "live",
     "live-sxs",
     "master-sxs"
   ],
