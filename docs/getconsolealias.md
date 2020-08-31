@@ -1,0 +1,149 @@
+---
+title: GetConsoleAlias 函式
+description: 抓取指定之主控台別名的文字和可執行檔的名稱。
+author: miniksa
+ms.author: miniksa
+ms.topic: article
+keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+f1_keywords:
+- consoleapi3/GetConsoleAlias
+- wincon/GetConsoleAlias
+- GetConsoleAlias
+- consoleapi3/GetConsoleAliasA
+- wincon/GetConsoleAliasA
+- GetConsoleAliasA
+- consoleapi3/GetConsoleAliasW
+- wincon/GetConsoleAliasW
+- GetConsoleAliasW
+MS-HAID:
+- base.getconsolealias
+- consoles.getconsolealias
+MSHAttr:
+- PreferredSiteName:MSDN
+- PreferredLib:/library/windows/desktop
+ms.assetid: e8514f24-8121-4fad-94bb-c9eedf7a700d
+topic_type:
+- apiref
+api_name:
+- GetConsoleAlias
+- GetConsoleAliasA
+- GetConsoleAliasW
+api_location:
+- Kernel32.dll
+api_type:
+- DllExport
+ms.openlocfilehash: 3a7797db4b559e66c1ec30f72e148ff00e79e7aa
+ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 08/24/2020
+ms.locfileid: "89059182"
+---
+# <a name="getconsolealias-function"></a><span data-ttu-id="6c4a7-104">GetConsoleAlias 函式</span><span class="sxs-lookup"><span data-stu-id="6c4a7-104">GetConsoleAlias function</span></span>
+
+
+<span data-ttu-id="6c4a7-105">抓取指定的主控台別名和可執行檔的文字。</span><span class="sxs-lookup"><span data-stu-id="6c4a7-105">Retrieves the text for the specified console alias and executable.</span></span>
+
+<a name="syntax"></a><span data-ttu-id="6c4a7-106">語法</span><span class="sxs-lookup"><span data-stu-id="6c4a7-106">Syntax</span></span>
+------
+
+```C
+DWORD WINAPI GetConsoleAlias(
+  _In_  LPTSTR lpSource,
+  _Out_ LPTSTR lpTargetBuffer,
+  _In_  DWORD  TargetBufferLength,
+  _In_  LPTSTR lpExeName
+);
+```
+
+<a name="parameters"></a><span data-ttu-id="6c4a7-107">參數</span><span class="sxs-lookup"><span data-stu-id="6c4a7-107">Parameters</span></span>
+----------
+
+<span data-ttu-id="6c4a7-108">*lpSource* \[在\]</span><span class="sxs-lookup"><span data-stu-id="6c4a7-108">*lpSource* \[in\]</span></span>  
+<span data-ttu-id="6c4a7-109">要取出其文字的主控台別名。</span><span class="sxs-lookup"><span data-stu-id="6c4a7-109">The console alias whose text is to be retrieved.</span></span>
+
+<span data-ttu-id="6c4a7-110">*lpTargetBuffer* \[擴展\]</span><span class="sxs-lookup"><span data-stu-id="6c4a7-110">*lpTargetBuffer* \[out\]</span></span>  
+<span data-ttu-id="6c4a7-111">接收與主控台別名相關聯之文字的緩衝區指標。</span><span class="sxs-lookup"><span data-stu-id="6c4a7-111">A pointer to a buffer that receives the text associated with the console alias.</span></span>
+
+<span data-ttu-id="6c4a7-112">*TargetBufferLength* \[在\]</span><span class="sxs-lookup"><span data-stu-id="6c4a7-112">*TargetBufferLength* \[in\]</span></span>  
+<span data-ttu-id="6c4a7-113">*LpTargetBuffer*所指向的緩衝區大小（以位元組為單位）。</span><span class="sxs-lookup"><span data-stu-id="6c4a7-113">The size of the buffer pointed to by *lpTargetBuffer*, in bytes.</span></span>
+
+<span data-ttu-id="6c4a7-114">*lpExeName* \[在\]</span><span class="sxs-lookup"><span data-stu-id="6c4a7-114">*lpExeName* \[in\]</span></span>  
+<span data-ttu-id="6c4a7-115">可執行檔的名稱。</span><span class="sxs-lookup"><span data-stu-id="6c4a7-115">The name of the executable file.</span></span>
+
+<a name="return-value"></a><span data-ttu-id="6c4a7-116">傳回值</span><span class="sxs-lookup"><span data-stu-id="6c4a7-116">Return value</span></span>
+------------
+
+<span data-ttu-id="6c4a7-117">如果函式成功，則傳回值為非零。</span><span class="sxs-lookup"><span data-stu-id="6c4a7-117">If the function succeeds, the return value is nonzero.</span></span>
+
+<span data-ttu-id="6c4a7-118">如果此函式失敗，則傳回值為零。</span><span class="sxs-lookup"><span data-stu-id="6c4a7-118">If the function fails, the return value is zero.</span></span> <span data-ttu-id="6c4a7-119">若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。</span><span class="sxs-lookup"><span data-stu-id="6c4a7-119">To get extended error information, call [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360).</span></span>
+
+<a name="remarks"></a><span data-ttu-id="6c4a7-120">備註</span><span class="sxs-lookup"><span data-stu-id="6c4a7-120">Remarks</span></span>
+-------
+
+<span data-ttu-id="6c4a7-121">若要編譯使用此函數的應用程式，請將\*\* \_ WIN32 \_ WINNT\*\*定義為0x0501 或更新版本。</span><span class="sxs-lookup"><span data-stu-id="6c4a7-121">To compile an application that uses this function, define **\_WIN32\_WINNT** as 0x0501 or later.</span></span> <span data-ttu-id="6c4a7-122">如需詳細資訊，請參閱 [使用 Windows 標頭](https://msdn.microsoft.com/library/windows/desktop/aa383745)。</span><span class="sxs-lookup"><span data-stu-id="6c4a7-122">For more information, see [Using the Windows Headers](https://msdn.microsoft.com/library/windows/desktop/aa383745).</span></span>
+
+<a name="requirements"></a><span data-ttu-id="6c4a7-123">規格需求</span><span class="sxs-lookup"><span data-stu-id="6c4a7-123">Requirements</span></span>
+------------
+
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p><span data-ttu-id="6c4a7-124">最低支援的用戶端</span><span class="sxs-lookup"><span data-stu-id="6c4a7-124">Minimum supported client</span></span></p></td>
+<td><p><span data-ttu-id="6c4a7-125">Windows 2000 Professional [僅限桌面應用程式]</span><span class="sxs-lookup"><span data-stu-id="6c4a7-125">Windows 2000 Professional [desktop apps only]</span></span></p></td>
+</tr>
+<tr class="even">
+<td><p><span data-ttu-id="6c4a7-126">最低支援的伺服器</span><span class="sxs-lookup"><span data-stu-id="6c4a7-126">Minimum supported server</span></span></p></td>
+<td><p><span data-ttu-id="6c4a7-127">Windows 2000 伺服器 [僅限桌面應用程式]</span><span class="sxs-lookup"><span data-stu-id="6c4a7-127">Windows 2000 Server [desktop apps only]</span></span></p></td>
+</tr>
+<tr class="odd">
+<td><p><span data-ttu-id="6c4a7-128">標頭</span><span class="sxs-lookup"><span data-stu-id="6c4a7-128">Header</span></span></p></td>
+<td><span data-ttu-id="6c4a7-129">ConsoleApi2 .h (via Wincon，包括 Windows .h) </span><span class="sxs-lookup"><span data-stu-id="6c4a7-129">ConsoleApi2.h (via Wincon.h, include Windows.h)</span></span></td>
+</tr>
+<tr class="even">
+<td><p><span data-ttu-id="6c4a7-130">程式庫</span><span class="sxs-lookup"><span data-stu-id="6c4a7-130">Library</span></span></p></td>
+<td><span data-ttu-id="6c4a7-131">Kernel32.dll .lib</span><span class="sxs-lookup"><span data-stu-id="6c4a7-131">Kernel32.lib</span></span></td>
+</tr>
+<tr class="odd">
+<td><p><span data-ttu-id="6c4a7-132">DLL</span><span class="sxs-lookup"><span data-stu-id="6c4a7-132">DLL</span></span></p></td>
+<td><span data-ttu-id="6c4a7-133">Kernel32.dll</span><span class="sxs-lookup"><span data-stu-id="6c4a7-133">Kernel32.dll</span></span></td>
+</tr>
+<tr class="even">
+<td><p><span data-ttu-id="6c4a7-134">Unicode 和 ANSI 名稱</span><span class="sxs-lookup"><span data-stu-id="6c4a7-134">Unicode and ANSI names</span></span></p></td>
+<td><p><span data-ttu-id="6c4a7-135"><strong>GetConsoleAliasW</strong> (Unicode) 和 <strong>GetConsoleAliasA</strong> (ANSI) </span><span class="sxs-lookup"><span data-stu-id="6c4a7-135"><strong>GetConsoleAliasW</strong> (Unicode) and <strong>GetConsoleAliasA</strong> (ANSI)</span></span></p></td>
+</tr>
+<tr class="odd">
+</tr>
+<tr class="even">
+</tr>
+<tr class="odd">
+</tr>
+<tr class="even">
+</tr>
+</tbody>
+</table>
+
+## <a name="span-idsee_alsospansee-also"></a><span data-ttu-id="6c4a7-136"><span id="see_also"></span>另請參閱</span><span class="sxs-lookup"><span data-stu-id="6c4a7-136"><span id="see_also"></span>See also</span></span>
+
+
+[<span data-ttu-id="6c4a7-137">主控台別名</span><span class="sxs-lookup"><span data-stu-id="6c4a7-137">Console Aliases</span></span>](console-aliases.md)
+
+[<span data-ttu-id="6c4a7-138">主控台功能</span><span class="sxs-lookup"><span data-stu-id="6c4a7-138">Console Functions</span></span>](console-functions.md)
+
+[<span data-ttu-id="6c4a7-139">**AddConsoleAlias**</span><span class="sxs-lookup"><span data-stu-id="6c4a7-139">**AddConsoleAlias**</span></span>](addconsolealias.md)
+
+[<span data-ttu-id="6c4a7-140">**GetConsoleAliases**</span><span class="sxs-lookup"><span data-stu-id="6c4a7-140">**GetConsoleAliases**</span></span>](getconsolealiases.md)
+
+[<span data-ttu-id="6c4a7-141">**GetConsoleAliasExes**</span><span class="sxs-lookup"><span data-stu-id="6c4a7-141">**GetConsoleAliasExes**</span></span>](getconsolealiasexes.md)
+
+ 
+
+ 
+
+
+
+
