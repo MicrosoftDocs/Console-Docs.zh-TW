@@ -4,7 +4,7 @@ description: 請參閱 WriteConsoleInput 函式的參考資訊，此函式會將
 author: miniksa
 ms.author: miniksa
 ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 f1_keywords:
 - consoleapi2/WriteConsoleInput
 - wincon/WriteConsoleInput
@@ -36,32 +36,31 @@ api_location:
 - API-MS-Win-DownLevel-Kernel32-l1-1-0.dll
 api_type:
 - DllExport
-ms.openlocfilehash: 784bed6c1a7b7f7ed9ed204b8483d30371e510a3
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: dc2c7930ab76587edc9ae1991d4493c858b0ec30
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059551"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93039286"
 ---
 # <a name="writeconsoleinput-function"></a>WriteConsoleInput 函式
 
+[!INCLUDE [not-recommended-banner](./includes/not-recommended-banner.md)]
 
 將資料直接寫入主控台輸入緩衝區。
 
-<a name="syntax"></a>語法
-------
+## <a name="syntax"></a>語法
 
 ```C
 BOOL WINAPI WriteConsoleInput(
-  _In_        HANDLE       hConsoleInput,
-  _In_  const INPUT_RECORD *lpBuffer,
-  _In_        DWORD        nLength,
-  _Out_       LPDWORD      lpNumberOfEventsWritten
+  _In_        HANDLE       hConsoleInput,
+  _In_  const INPUT_RECORD *lpBuffer,
+  _In_        DWORD        nLength,
+  _Out_       LPDWORD      lpNumberOfEventsWritten
 );
 ```
 
-<a name="parameters"></a>參數
-----------
+## <a name="parameters"></a>參數
 
 *hConsoleInput* \[在\]  
 主控台輸入緩衝區的控制碼。 控制碼必須有 **一般 \_ 寫入** 存取權限。 如需詳細資訊，請參閱 [主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
@@ -75,66 +74,33 @@ BOOL WINAPI WriteConsoleInput(
 *lpNumberOfEventsWritten* \[擴展\]  
 變數的指標，此變數會接收實際寫入之輸入記錄的數目。
 
-<a name="return-value"></a>傳回值
-------------
+## <a name="return-value"></a>傳回值
 
 如果函式成功，則傳回值為非零。
 
 如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
 
-<a name="remarks"></a>備註
--------
+## <a name="remarks"></a>備註
 
 **WriteConsoleInput** 會將輸入記錄放入緩衝區中任何暫止事件後方的輸入緩衝區。 視需要，輸入緩衝區會動態成長，以保存所寫入的事件數目。
 
-此函式會從主控台的目前字碼頁使用 Unicode 字元或8位字元。 主控台的字碼頁一開始預設為系統的 OEM 字碼頁。 若要變更控制台的字碼頁，請使用 [**SetConsoleCP**](setconsolecp.md) 或 [**SetConsoleOutputCP**](setconsoleoutputcp.md) 函式，或使用 **chcp** 或 **mode con cp select =** 命令。
+[!INCLUDE [setting-codepage-mode-remarks](./includes/setting-codepage-mode-remarks.md)]
 
-<a name="requirements"></a>規格需求
-------------
+> [!TIP]
+> 不建議使用此 API，也不會有對等的 **[虛擬終端](console-virtual-terminal-sequences.md)** 機。 這種決策刻意將 Windows 平臺與其他作業系統對齊。 這項作業會被視為這個緩衝區的 **[錯誤方式動詞](console-buffer-security-and-access-rights.md#wrong-way-verbs)** 。 使用此 API 時，透過跨平臺公用程式和傳輸（如 SSH）的應用程式遠端執行可能無法如預期般運作。
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>最低支援的用戶端</p></td>
-<td><p>Windows 2000 Professional [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="even">
-<td><p>最低支援的伺服器</p></td>
-<td><p>Windows 2000 伺服器 [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="odd">
-<td><p>標頭</p></td>
-<td>ConsoleApi2 .h (via Wincon，包括 Windows .h) </td>
-</tr>
-<tr class="even">
-<td><p>程式庫</p></td>
-<td>Kernel32.dll .lib</td>
-</tr>
-<tr class="odd">
-<td><p>DLL</p></td>
-<td>Kernel32.dll</td>
-</tr>
-<tr class="even">
-<td><p>Unicode 和 ANSI 名稱</p></td>
-<td><p><strong>WriteConsoleInputW</strong> (Unicode) 和 <strong>WriteConsoleInputA</strong> (ANSI) </p></td>
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-</tbody>
-</table>
+## <a name="requirements"></a>規格需求
 
-## <a name="span-idsee_alsospansee-also"></a><span id="see_also"></span>另請參閱
+| &nbsp; | &nbsp; |
+|-|-|
+| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
+| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
+| 程式庫 | Kernel32.dll .lib |
+| DLL | Kernel32.dll |
+| Unicode 和 ANSI 名稱 | **WriteConsoleInputW** (Unicode) 和 **WriteConsoleInputA** (ANSI)  |
 
+## <a name="see-also"></a>請參閱
 
 [主控台功能](console-functions.md)
 
@@ -153,11 +119,3 @@ BOOL WINAPI WriteConsoleInput(
 [**SetConsoleOutputCP**](setconsoleoutputcp.md)
 
 [**VkKeyScan**](https://msdn.microsoft.com/library/windows/desktop/ms646329)
-
- 
-
- 
-
-
-
-

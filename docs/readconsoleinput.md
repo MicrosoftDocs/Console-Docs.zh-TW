@@ -4,7 +4,7 @@ description: 從主控台輸入緩衝區讀取資料，並將其從緩衝區中�
 author: miniksa
 ms.author: miniksa
 ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 f1_keywords:
 - consoleapi/ReadConsoleInput
 - wincon/ReadConsoleInput
@@ -37,32 +37,29 @@ api_location:
 - MinKernelBase.dll
 api_type:
 - DllExport
-ms.openlocfilehash: 38a5ee0d1572d6e40ab103cfc402d616a99d2ca5
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: 38778931522dff8d1d000bb6f0ce13c2849d76db
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059470"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93039486"
 ---
 # <a name="readconsoleinput-function"></a>ReadConsoleInput 函式
 
-
 從主控台輸入緩衝區讀取資料，並將其從緩衝區中移除。
 
-<a name="syntax"></a>語法
-------
+## <a name="syntax"></a>語法
 
 ```C
 BOOL WINAPI ReadConsoleInput(
-  _In_  HANDLE        hConsoleInput,
-  _Out_ PINPUT_RECORD lpBuffer,
-  _In_  DWORD         nLength,
-  _Out_ LPDWORD       lpNumberOfEventsRead
+  _In_  HANDLE        hConsoleInput,
+  _Out_ PINPUT_RECORD lpBuffer,
+  _In_  DWORD         nLength,
+  _Out_ LPDWORD       lpNumberOfEventsRead
 );
 ```
 
-<a name="parameters"></a>參數
-----------
+## <a name="parameters"></a>參數
 
 *hConsoleInput* \[在\]  
 主控台輸入緩衝區的控制碼。 控制碼必須具有 **一般 \_ 讀取** 許可權。 如需詳細資訊，請參閱 [主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
@@ -76,15 +73,13 @@ BOOL WINAPI ReadConsoleInput(
 *lpNumberOfEventsRead* \[擴展\]  
 變數的指標，此變數會接收讀取的輸入記錄數目。
 
-<a name="return-value"></a>傳回值
-------------
+## <a name="return-value"></a>傳回值
 
 如果函式成功，則傳回值為非零。
 
 如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
 
-<a name="remarks"></a>備註
--------
+## <a name="remarks"></a>備註
 
 如果 *nLength* 參數中要求的記錄數目超過緩衝區中的可用記錄數目，則會讀取可用的數目。 在至少讀取一個輸入記錄之前，函式不會傳回。
 
@@ -92,59 +87,24 @@ BOOL WINAPI ReadConsoleInput(
 
 若要判斷主控台輸入緩衝區中未讀取的輸入記錄數目，請使用 [**GetNumberOfConsoleInputEvents**](getnumberofconsoleinputevents.md) 函數。 若要從主控台輸入緩衝區讀取輸入記錄，而不會影響未讀取的記錄數目，請使用 [**PeekConsoleInput**](peekconsoleinput.md) 函數。 若要捨棄主控台輸入緩衝區中的所有未讀取記錄，請使用 [**FlushConsoleInputBuffer**](flushconsoleinputbuffer.md) 函式。
 
-此函式會從主控台的目前字碼頁使用 Unicode 字元或8位字元。 主控台的字碼頁一開始預設為系統的 OEM 字碼頁。 若要變更控制台的字碼頁，請使用 [**SetConsoleCP**](setconsolecp.md) 或 [**SetConsoleOutputCP**](setconsoleoutputcp.md) 函式，或使用 **chcp** 或 **mode con cp select =** 命令。
+[!INCLUDE [setting-codepage-mode-remarks](./includes/setting-codepage-mode-remarks.md)]
 
-<a name="examples"></a>範例
---------
+## <a name="examples"></a>範例
 
 如需範例，請參閱 [讀取輸入緩衝區事件](reading-input-buffer-events.md)。
 
-<a name="requirements"></a>規格需求
-------------
+## <a name="requirements"></a>規格需求
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>最低支援的用戶端</p></td>
-<td><p>Windows 2000 Professional [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="even">
-<td><p>最低支援的伺服器</p></td>
-<td><p>Windows 2000 伺服器 [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="odd">
-<td><p>標頭</p></td>
-<td>ConsoleApi3 .h (via Wincon，包括 Windows .h) </td>
-</tr>
-<tr class="even">
-<td><p>程式庫</p></td>
-<td>Kernel32.dll .lib</td>
-</tr>
-<tr class="odd">
-<td><p>DLL</p></td>
-<td>Kernel32.dll</td>
-</tr>
-<tr class="even">
-<td><p>Unicode 和 ANSI 名稱</p></td>
-<td><p><strong>ReadConsoleInputW</strong> (Unicode) 和 <strong>ReadConsoleInputA</strong> (ANSI) </p></td>
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-</tbody>
-</table>
+| &nbsp; | &nbsp; |
+|-|-|
+| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
+| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 標頭 | ConsoleApi .h (via WinCon，包括 Windows .h)  |
+| 程式庫 | Kernel32.dll .lib |
+| DLL | Kernel32.dll |
+| Unicode 和 ANSI 名稱 | **ReadConsoleInputW** (Unicode) 和 **ReadConsoleInputA** (ANSI)  |
 
-## <a name="span-idsee_alsospansee-also"></a><span id="see_also"></span>另請參閱
-
+## <a name="see-also"></a>請參閱
 
 [主控台功能](console-functions.md)
 
@@ -167,11 +127,3 @@ BOOL WINAPI ReadConsoleInput(
 [**SetConsoleOutputCP**](setconsoleoutputcp.md)
 
 [**WriteConsoleInput**](writeconsoleinput.md)
-
- 
-
- 
-
-
-
-

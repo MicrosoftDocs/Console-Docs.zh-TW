@@ -4,7 +4,7 @@ description: 請參閱 SetConsoleCursorPosition 函式的參考資訊，此函�
 author: miniksa
 ms.author: miniksa
 ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 f1_keywords:
 - consoleapi2/SetConsoleCursorPosition
 - wincon/SetConsoleCursorPosition
@@ -28,30 +28,29 @@ api_location:
 - API-MS-Win-DownLevel-Kernel32-l1-1-0.dll
 api_type:
 - DllExport
-ms.openlocfilehash: eaa50df16248597f1054f0741113ecc9be1f3264
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: c93fbf4b619b522a95af2b03a49d60ff6f880e7d
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059406"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93039366"
 ---
 # <a name="setconsolecursorposition-function"></a>SetConsoleCursorPosition 函式
 
+[!INCLUDE [not-recommended-banner](./includes/not-recommended-banner.md)]
 
 設定指定的主控台螢幕緩衝區中的游標位置。
 
-<a name="syntax"></a>語法
-------
+## <a name="syntax"></a>語法
 
 ```C
 BOOL WINAPI SetConsoleCursorPosition(
-  _In_ HANDLE hConsoleOutput,
-  _In_ COORD  dwCursorPosition
+  _In_ HANDLE hConsoleOutput,
+  _In_ COORD  dwCursorPosition
 );
 ```
 
-<a name="parameters"></a>參數
-----------
+## <a name="parameters"></a>參數
 
 *hConsoleOutput* \[在\]  
 主控台螢幕緩衝區的控制碼。 控制碼必須具有 **一般 \_ 讀取** 許可權。 如需詳細資訊，請參閱 [主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
@@ -59,65 +58,36 @@ BOOL WINAPI SetConsoleCursorPosition(
 *dwCursorPosition* \[在\]  
 指定新資料指標位置的 [**COORD**](coord-str.md) 結構（以字元為單位）。 座標是螢幕緩衝區字元資料格的資料行和資料列。 座標必須在主控台畫面緩衝區的界限內。
 
-<a name="return-value"></a>傳回值
-------------
+## <a name="return-value"></a>傳回值
 
 如果函式成功，則傳回值為非零。
 
 如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
 
-<a name="remarks"></a>備註
--------
+## <a name="remarks"></a>備註
 
 資料指標位置會決定 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) 或 [**WriteConsole**](writeconsole.md) 函數所寫入的字元，或由 [**ReadFile**](https://msdn.microsoft.com/library/windows/desktop/aa365467) 或 [**ReadConsole**](readconsole.md) 函式所回應的位置。 若要判斷資料指標目前的位置，請使用 [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md) 函數。
 
 如果新的資料指標位置不在主控台畫面緩衝區視窗的界限內，則視窗來源會變更，使游標變成可見。
 
-<a name="examples"></a>範例
---------
+> [!TIP]
+> 此 API 在 **[簡單資料指標定位](console-virtual-terminal-sequences.md#simple-cursor-positioning)** 和資料 **[指標定位](console-virtual-terminal-sequences.md#cursor-positioning)** 區段中，有相當的 **[虛擬終端](console-virtual-terminal-sequences.md)** 機。 使用「換行」、「換行」、「倒退鍵」和「索引標籤控制項」序列也可以協助資料指標的定位。
 
-如需範例，請參閱 [使用高階輸入和輸出函數](using-the-high-level-input-and-output-functions.md)。
+## <a name="examples"></a>範例
 
-<a name="requirements"></a>規格需求
-------------
+如需範例，請參閱 [使用 High-Level 輸入和輸出函數](using-the-high-level-input-and-output-functions.md)。
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>最低支援的用戶端</p></td>
-<td><p>Windows 2000 Professional [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="even">
-<td><p>最低支援的伺服器</p></td>
-<td><p>Windows 2000 伺服器 [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="odd">
-<td><p>標頭</p></td>
-<td>ConsoleApi2 .h (via Wincon，包括 Windows .h) </td>
-</tr>
-<tr class="even">
-<td><p>程式庫</p></td>
-<td>Kernel32.dll .lib</td>
-</tr>
-<tr class="odd">
-<td><p>DLL</p></td>
-<td>Kernel32.dll</td>
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-</tbody>
-</table>
+## <a name="requirements"></a>規格需求
 
-## <a name="span-idsee_alsospansee-also"></a><span id="see_also"></span>另請參閱
+| &nbsp; | &nbsp; |
+|-|-|
+| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
+| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
+| 程式庫 | Kernel32.dll .lib |
+| DLL | Kernel32.dll |
 
+## <a name="see-also"></a>請參閱
 
 [主控台功能](console-functions.md)
 
@@ -136,11 +106,3 @@ BOOL WINAPI SetConsoleCursorPosition(
 [**WriteConsole**](writeconsole.md)
 
 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747)
-
- 
-
- 
-
-
-
-

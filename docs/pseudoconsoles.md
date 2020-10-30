@@ -3,19 +3,19 @@ title: Pseudoconsoles – Windows 桌面
 description: Pseudoconsole 是一種概念，用來提供字元模式應用程式的裝載或服務層面。
 author: miniksa
 ms.author: miniksa
-ms.topic: article
+ms.topic: conceptual
 ms.prod: console
 keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api，conpty，pseudoconsole
-ms.openlocfilehash: ce2dfb14371e35a738e9c42ba2be8d2bb2758946
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: 2b2d28065ec4f0e4121decb906e76b34ac1871fc
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059054"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93039476"
 ---
 # <a name="pseudoconsoles"></a>Pseudoconsoles
 
-*Pseudoconsole*是一種裝置類型，可讓應用程式成為字元模式應用程式的主機。 
+*Pseudoconsole* 是一種裝置類型，可讓應用程式成為字元模式應用程式的主機。
 
 相較于一般的主控台會話，作業系統會代表字元模式應用程式建立裝載視窗，以處理圖形化輸出和使用者輸入。
 

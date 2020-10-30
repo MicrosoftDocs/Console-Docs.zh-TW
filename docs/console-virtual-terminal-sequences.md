@@ -3,18 +3,18 @@ title: 主控台虛擬終端機序列
 description: 虛擬終端機序列是控制字元序列，可以控制資料指標移動、色彩/字型模式，以及寫入輸出資料流程時的其他作業。
 author: miniksa
 ms.author: miniksa
-ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+ms.topic: conceptual
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 MSHAttr:
 - PreferredSiteName:MSDN
 - PreferredLib:/library/windows/desktop
 ms.assetid: A5C553A5-FD84-4D16-A814-EDB3B8699B91
-ms.openlocfilehash: d05aa6f44cc97478d4eb2aba25587b2506e84a98
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: 45ee5518ec8ea2da840d2a4442efd9e0d4346526
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059254"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93039146"
 ---
 # <a name="console-virtual-terminal-sequences"></a>主控台虛擬終端機序列
 
@@ -28,7 +28,7 @@ ms.locfileid: "89059254"
 ## <a name="span-idoutput_sequencesspanspan-idoutput_sequencesspanspan-idoutput_sequencesspanoutput-sequences"></a><span id="Output_Sequences"></span><span id="output_sequences"></span><span id="OUTPUT_SEQUENCES"></span>輸出序列
 
 
-如果使用 SetConsoleMode 函式在 \_ \_ \_ 螢幕緩衝區控制碼上設定[**SetConsoleMode**](setconsolemode.md)了 [啟用虛擬終端處理] 旗標，則在寫入輸出資料流程時，主控台主機會攔截下列終端機序列。 請注意，「停 \_ 用分行符號自動傳回」旗標在 \_ \_ 模擬其他終端機模擬器的資料指標定位和滾動行為時，可能也很有用，因為這些字元是寫入任何資料列中的最後一個資料行。
+如果使用 SetConsoleMode 函式在 \_ \_ \_ 螢幕緩衝區控制碼上設定 [**SetConsoleMode**](setconsolemode.md)了 [啟用虛擬終端處理] 旗標，則在寫入輸出資料流程時，主控台主機會攔截下列終端機序列。 請注意，「停 \_ 用分行符號自動傳回」旗標在 \_ \_ 模擬其他終端機模擬器的資料指標定位和滾動行為時，可能也很有用，因為這些字元是寫入任何資料列中的最後一個資料行。
 
 ## <a name="span-idsimple_cursor_positioningspanspan-idsimple_cursor_positioningspanspan-idsimple_cursor_positioningspansimple-cursor-positioning"></a><span id="Simple_Cursor_Positioning"></span><span id="simple_cursor_positioning"></span><span id="SIMPLE_CURSOR_POSITIONING"></span>簡單的資料指標定位
 
@@ -42,24 +42,22 @@ ms.locfileid: "89059254"
 資料指標移動會由目前的資料區系結到緩衝區。 如果沒有可用的) ， (滾動。
 
 
-| 順序 | 速記 | 行為                                                                                                                                      |
+| 順序 | 速記 | 行為 |
 |----------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| ESC A    | CUU       | 游標向上1                                                                                                                                |
-| ESC B    | 反芻       | 資料指標向下1                                                                                                                              |
-| ESC C    | CUF       | 向前 (右) 的向前快轉資料指標1                                                                                                                   |
-| ESC D    | 幼 崽       | 將游標向左 (左) 1                                                                                                                   |
-| ESC M    | RI        | 反向索引–執行 n 的反向運算 \\ 、將游標向上移動一行、維持水準位置、視需要滾動緩衝區\* |
-| ESC 7    | DECSC     | 將游標位置儲存在記憶體中\*\*                                                                                                            |
-| ESC 8    | DECSR     | 從記憶體還原資料指標位置\*\*                                                                                                       |
+| ESC A | CUU | 游標向上1 |
+| ESC B | 反芻 | 資料指標向下1 |
+| ESC C | CUF | 向前 (右) 的向前快轉資料指標1 |
+| ESC D | 幼 崽 | 將游標向左 (左) 1 |
+| ESC M | RI | 反向索引–執行 n 的反向運算 \\ 、將游標向上移動一行、維持水準位置、視需要滾動緩衝區\* |
+| ESC 7 | DECSC | 將游標位置儲存在記憶體中\*\* |
+| ESC 8 | DECSR | 從記憶體還原資料指標位置\*\* |
 
 
 
-**注意**  
-\* 如果有設定捲軸邊界，則邊界內的 RI 只會滾動邊界的內容，並讓此區保持不變。  (請參閱滾動邊界) 
-
-\*\*在第一次使用 save 命令之前，記憶體中不會儲存任何值。 存取儲存值的唯一方法是使用 restore 命令。
-
-
+> [!NOTE]
+>\* 如果有設定捲軸邊界，則邊界內的 RI 只會滾動邊界的內容，並讓此區保持不變。  (請參閱滾動邊界) 
+>
+>\*\*在第一次使用 save 命令之前，記憶體中不會儲存任何值。 存取儲存值的唯一方法是使用 restore 命令。
 
 ## <a name="span-idcursor_positioningspanspan-idcursor_positioningspanspan-idcursor_positioningspancursor-positioning"></a><span id="Cursor_Positioning"></span><span id="cursor_positioning"></span><span id="CURSOR_POSITIONING"></span>資料指標定位
 
@@ -78,27 +76,27 @@ ms.locfileid: "89059254"
 資料指標移動會由目前的資料區系結到緩衝區。 如果沒有可用的) ， (滾動。
 
 
-| 順序                       | 程式碼      | 描述                         | 行為                                                                                                                   |
+| 順序 | 程式碼 | 描述 | 行為 |
 |--------------------------------|-----------|-------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| ESC \[ &lt; n &gt; A             | CUU       | Cursor Up                           | 依 n 的游標 &lt;&gt;                                                                                                     |
-| ESC \[ &lt; n &gt; B             | 反芻       | 游標向下                         | 向下游標向下 &lt; n&gt;                                                                                                   |
-| ESC \[ &lt; n &gt; C             | CUF       | 向前資料指標                      | 向前 (右) 的向前快轉資料指標 &lt; n&gt;                                                                                        |
-| ESC \[ &lt; n &gt; D             | 幼 崽       | 游標向後                     | 將游標向左 (左) &lt; n&gt;                                                                                        |
-| ESC \[ &lt; n &gt; E             | CNL       | 游標下一行                    | 資料指標向下移 &lt; 至 &gt; 區中 n 行的開頭                                                               |
-| ESC \[ &lt; n &gt; F             | Cpl       | 資料指標上一行                | 資料指標最多可 &lt; &gt; 在資料區的第 n 行開頭                                                                 |
-| ESC \[ &lt; n &gt; G             | CHA       | 資料指標水準絕對          | 資料指標會 &lt; &gt; 在目前的行中水準移至 n 個位置                                                      |
-| ESC \[ &lt; n &gt; d             | VPA       | 垂直行位置絕對     | 游標移至 &lt; 目前資料 &gt; 行中的第 n 個位置                                                  |
-| ESC \[ &lt; y &gt; ; &lt;x &gt; H | 杯       | 游標位置                     | \*游標移至 &lt; x &gt; ; &lt;在 &gt; 視口內的 y 座標，其中 &lt; x &gt; 是 &lt; y &gt; 行的資料行 |
-| ESC \[ &lt; y &gt; ; &lt;x &gt; f | HVP       | 水準垂直位置        | \*游標移至 &lt; x &gt; ; &lt;在 &gt; 視口內的 y 座標，其中 &lt; x &gt; 是 &lt; y &gt; 行的資料行 |
-| ESC \[ s                       | ANSISYSSC | 儲存資料指標– Ansi.sys 模擬    | \*\*如果沒有參數，會執行儲存資料指標作業，例如 DECSC                                                        |
-| ESC \[ u                       | ANSISYSSC | 還原資料指標– Ansi.sys 模擬 | \*\*如果沒有參數，則會執行還原資料指標作業，例如 DECRC                                                     |
+| ESC \[ &lt; n &gt; A | CUU | Cursor Up | 依 n 的游標 &lt;&gt; |
+| ESC \[ &lt; n &gt; B | 反芻 | 游標向下 | 向下游標向下 &lt; n&gt; |
+| ESC \[ &lt; n &gt; C | CUF | 向前資料指標 | 向前 (右) 的向前快轉資料指標 &lt; n&gt; |
+| ESC \[ &lt; n &gt; D | 幼 崽 | 游標向後 | 將游標向左 (左) &lt; n&gt; |
+| ESC \[ &lt; n &gt; E | CNL | 游標下一行 | &lt;從目前位置將游標向下移 n &gt; 行 |
+| ESC \[ &lt; n &gt; F | Cpl | 資料指標上一行 | &lt; &gt; 從目前的位置將游標向上移 n 行 |
+| ESC \[ &lt; n &gt; G | CHA | 資料指標水準絕對 | 資料指標會 &lt; &gt; 在目前的行中水準移至 n 個位置 |
+| ESC \[ &lt; n &gt; d | VPA | 垂直行位置絕對 | 游標移至 &lt; 目前資料 &gt; 行中的第 n 個位置 |
+| ESC \[ &lt; y &gt; ; &lt;x &gt; H | 杯 | 游標位置 | \*游標移至 &lt; x &gt; ; &lt;在 &gt; 視口內的 y 座標，其中 &lt; x &gt; 是 &lt; y &gt; 行的資料行 |
+| ESC \[ &lt; y &gt; ; &lt;x &gt; f | HVP | 水準垂直位置 | \*游標移至 &lt; x &gt; ; &lt;在 &gt; 視口內的 y 座標，其中 &lt; x &gt; 是 &lt; y &gt; 行的資料行 |
+| ESC \[ s | ANSISYSSC | 儲存資料指標– Ansi.sys 模擬 | \*\*如果沒有參數，會執行儲存資料指標作業，例如 DECSC |
+| ESC \[ u | ANSISYSSC | 還原資料指標– Ansi.sys 模擬 | \*\*如果沒有參數，則會執行還原資料指標作業，例如 DECRC |
 
 
 
-**注意**  
-\*&lt;x &gt; 和 &lt; y &gt; 參數的限制與上述的 &lt; 相同 &gt; 。 如果 &lt; &gt; 省略 x 和 &lt; y，則 &gt; 會設為 1; 1。
-
-\*\* 您可以在中找到ANSI.sys 的歷程記錄檔 <https://msdn.microsoft.com/library/cc722862.aspx> ，並且為了方便/相容性而實行。
+> [!NOTE]
+>\*&lt;x &gt; 和 &lt; y &gt; 參數的限制與上述的 &lt; 相同 &gt; 。 如果 &lt; &gt; 省略 x 和 &lt; y，則 &gt; 會設為 1; 1。
+>
+>\*\* 您可以在中找到ANSI.sys 的歷程記錄檔 <https://msdn.microsoft.com/library/cc722862.aspx> ，並且為了方便/相容性而實行。
 
 
 
@@ -108,29 +106,30 @@ ms.locfileid: "89059254"
 下列命令控制資料指標的可見度和其閃爍狀態。 DECTCEM 序列通常等同于呼叫 [**SetConsoleCursorInfo**](setconsolecursorinfo.md) 主控台 API 來切換資料指標可見度。
 
 
-| 順序      | 程式碼    | 描述                  | 行為                  |
+| 順序 | 程式碼 | 描述 | 行為 |
 |---------------|---------|------------------------------|---------------------------|
-| ESC \[ ？ 12小時 | ATT160  | 文字游標啟用閃爍  | 開始游標閃爍 |
-| ESC \[ ？ 12 l | ATT160  | 文字游標停用閃爍  | 停止閃爍游標  |
-| ESC \[ ？ 25 h | DECTCEM | 文字游標啟用模式顯示 | 顯示資料指標           |
-| ESC \[ ？ 25 l | DECTCEM | 文字游標啟用模式隱藏 | 隱藏游標           |
+| ESC \[ ？ 12小時 | ATT160 | 文字游標啟用閃爍 | 開始游標閃爍 |
+| ESC \[ ？ 12 l | ATT160 | 文字游標停用閃爍 | 停止閃爍游標 |
+| ESC \[ ？ 25 h | DECTCEM | 文字游標啟用模式顯示 | 顯示資料指標 |
+| ESC \[ ？ 25 l | DECTCEM | 文字游標啟用模式隱藏 | 隱藏游標 |
 
-
+> [!TIP]
+> 啟用序列以小寫 H 字元結尾 (`h`) ，而停用序列則以小寫 L 字元結尾 (`l`) 。
 
 ## <a name="span-idviewport_positioningspanspan-idviewport_positioningspanspan-idviewport_positioningspanviewport-positioning"></a><span id="Viewport_Positioning"></span><span id="viewport_positioning"></span><span id="VIEWPORT_POSITIONING"></span>視口定位
 
 
 此區段中的所有命令通常等同于呼叫 [**ScrollConsoleScreenBuffer**](scrollconsolescreenbuffer.md) 主控台 API 來移動主控台緩衝區的內容。
 
-**注意**  命令名稱會誤導。 「滾動」指的是文字在作業期間移動的方向，而不是「表面」移動的方式。
+**注意** 命令名稱會誤導。 「滾動」指的是文字在作業期間移動的方向，而不是「表面」移動的方式。
 
 
 
 
-| 順序           | 程式碼 | 描述 | 行為                                                                                             |
+| 順序 | 程式碼 | 描述 | 行為 |
 |--------------------|------|-------------|------------------------------------------------------------------------------------------------------|
-| ESC \[ &lt; n &gt; S | SU   | 向上捲動   | 將文字向上滾動 &lt; n &gt; 。 也稱為「下移線」，新行會從畫面底部填滿 |
-| ESC \[ &lt; n &gt; T | SD   | 向下捲動 | 向下移動 &lt; n &gt; 。 也稱為「向上移動」，從畫面頂端填滿新行         |
+| ESC \[ &lt; n &gt; S | SU | 向上捲動 | 將文字向上滾動 &lt; n &gt; 。 也稱為「下移線」，新行會從畫面底部填滿 |
+| ESC \[ &lt; n &gt; T | SD | 向下捲動 | 向下移動 &lt; n &gt; 。 也稱為「向上移動」，從畫面頂端填滿新行 |
 
 
 
@@ -146,18 +145,18 @@ N 的預設值 &lt; &gt; 為1，而且可以選擇性地省略值。
 本節中的所有命令通常等同于呼叫 [**FillConsoleOutputCharacter**](fillconsoleoutputcharacter.md)、 [**FillConsoleOutputAttribute**](fillconsoleoutputattribute.md)和 [**ScrollConsoleScreenBuffer**](scrollconsolescreenbuffer.md) 主控台 api 來修改文字緩衝區內容。
 
 
-| 順序           | 程式碼 | 描述      | 行為                                                                                                                                          |
+| 順序 | 程式碼 | 描述 | 行為 |
 |--------------------|------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| ESC \[ &lt; n&gt; @ | Ich  | 插入字元 | &lt; &gt; 在目前游標位置插入 n 個空格，並將所有現有的文字移至右邊。 已移除將畫面離開右邊的文字。 |
-| ESC \[ &lt; n &gt; P | DCH  | 刪除字元 | 在 &lt; &gt; 目前游標位置刪除 n 個字元，從畫面的右邊緣將空白字元移位。                       |
-| ESC \[ &lt; n &gt; X | ECH  | 清除字元  | &lt; &gt; 使用空白字元覆寫，以清除目前游標位置的 n 個字元。                                           |
-| ESC \[ &lt; n &gt; L | IL   | 插入行      | 將 &lt; n &gt; 行插入緩衝區的游標位置。 游標所在的線條和其下的行，將會向下移動。         |
-| ESC \[ &lt; n &gt; M | DL   | 刪除行      | &lt; &gt; 從緩衝區刪除 n 行，從資料指標所在的資料列開始。                                                                  |
+| ESC \[ &lt; n&gt; @ | Ich | 插入字元 | &lt; &gt; 在目前游標位置插入 n 個空格，並將所有現有的文字移至右邊。 已移除將畫面離開右邊的文字。 |
+| ESC \[ &lt; n &gt; P | DCH | 刪除字元 | 在 &lt; &gt; 目前游標位置刪除 n 個字元，從畫面的右邊緣將空白字元移位。 |
+| ESC \[ &lt; n &gt; X | ECH | 清除字元 | &lt; &gt; 使用空白字元覆寫，以清除目前游標位置的 n 個字元。 |
+| ESC \[ &lt; n &gt; L | IL | 插入行 | 將 &lt; n &gt; 行插入緩衝區的游標位置。 游標所在的線條和其下的行，將會向下移動。 |
+| ESC \[ &lt; n &gt; M | DL | 刪除行 | &lt; &gt; 從緩衝區刪除 n 行，從資料指標所在的資料列開始。 |
 
 
 
-**注意**  
-針對 IL 和 DL，只有滾動邊界中的線條 (看到滾動邊界) 會受到影響。 如果未設定邊界，則預設邊界框線為目前的區。 如果線條會在邊界下方移位，則會捨棄它們。 當刪除線條時，會在邊界底部插入空白行，而不會影響來自區外的行。
+> [!NOTE]
+>針對 IL 和 DL，只有滾動邊界中的線條 (看到滾動邊界) 會受到影響。 如果未設定邊界，則預設邊界框線為目前的區。 如果線條會在邊界下方移位，則會捨棄它們。 當刪除線條時，會在邊界底部插入空白行，而不會影響來自區外的行。
 
 針對每個序列，如果省略，則預設值為 n，預設值為 &lt; &gt; 0。
 
@@ -170,10 +169,10 @@ N 的預設值 &lt; &gt; 為1，而且可以選擇性地省略值。
 - 2清除整行/顯示
 
 
-| 順序           | 程式碼 | 描述      | 行為                                                                                     |
+| 順序 | 程式碼 | 描述 | 行為 |
 |--------------------|------|------------------|----------------------------------------------------------------------------------------------|
-| ESC \[ &lt; n &gt; J | ED   | 顯示中的清除 | &lt;以空白字元取代由 n 指定的目前視口/screen 中的所有文字 &gt; |
-| ESC \[ &lt; n &gt; K | 音   | 行清除    | 將行上的所有文字取代為 &lt; n &gt; 以空白字元指定的游標    |
+| ESC \[ &lt; n &gt; J | ED | 顯示中的清除 | &lt;以空白字元取代由 n 指定的目前視口/screen 中的所有文字 &gt; |
+| ESC \[ &lt; n &gt; K | 音 | 行清除 | 將行上的所有文字取代為 &lt; n &gt; 以空白字元指定的游標 |
 
 
 
@@ -187,9 +186,9 @@ N 的預設值 &lt; &gt; 為1，而且可以選擇性地省略值。
 如果未指定任何參數，則會將它視為與單一0參數相同。
 
 
-| 順序           | 程式碼 | 描述            | 行為                                                        |
+| 順序 | 程式碼 | 描述 | 行為 |
 |--------------------|------|------------------------|-----------------------------------------------------------------|
-| ESC \[ &lt; n &gt; m | SGR  | 設定圖形轉譯 | 設定螢幕和文字的格式，如 n 所指定 &lt;&gt; |
+| ESC \[ &lt; n &gt; m | SGR | 設定圖形轉譯 | 設定螢幕和文字的格式，如 n 所指定 &lt;&gt; |
 
 
 
@@ -200,50 +199,50 @@ N 的預設值 &lt; &gt; 為1，而且可以選擇性地省略值。
 針對指定色彩的選項，將會使用可使用 [**SetConsoleScreenBufferInfoEx**](setconsolescreenbufferinfoex.md) API 修改的主控台色彩表中定義的色彩。 如果資料表已修改為讓資料表中的「藍色」位置顯示 RGB 的紅色陰影，則 **前景藍色** 的所有呼叫都會顯示紅色色彩，直到另有變更為止。
 
 
-| 值 | 描述               | 行為                                                           |
+| 值 | 描述 | 行為 |
 |-------|---------------------------|--------------------------------------------------------------------|
-| 0     | 預設                   | 在修改之前，將所有屬性都傳回預設狀態  |
-| 1     | 粗體/亮色               | 將亮度/濃度旗標套用至前景色彩              |
-| 4     | Underline                 | 加底線                                                     |
-| 24    | 無底線              | 移除底線                                                  |
-| 7     | 負                  | 交換前景和背景色彩                             |
-| 27    | 正面 (沒有負)     | 傳回法線的前景/背景                            |
-| 30    | 前景黑色          | 將非粗體/亮黑色套用至前景                        |
-| 31    | 前景紅色            | 將非粗體/亮紅色套用至前景                          |
-| 32    | 前景綠色          | 將非粗體/亮綠套用至前景                        |
-| 33    | 前景黃色         | 將非粗體/亮黃色套用至前景                       |
-| 34    | 前景藍色           | 將非粗體/亮藍套用至前景                         |
-| 35    | 前景洋紅        | 將非粗體/亮洋紅色套用至前景                      |
-| 36    | 前景青色           | 將非粗體/亮青套用至前景                         |
-| 37    | 前景白色          | 將非粗體/亮色套用至前景                        |
-| 38    | 延伸前景       | 將擴充的色彩值套用到前景 (請參閱以下詳細資料)  |
-| 39    | 前景預設值        | 只套用預設值的前景部分 (請參閱 0)         |
-| 40    | 黑色背景          | 將非粗體/亮黑色套用至背景                        |
-| 41    | 背景紅色            | 將非粗體/亮紅色套用至背景                          |
-| 42    | 背景綠色          | 在背景中套用非粗體/亮綠                        |
-| 43    | 背景黃色         | 將非粗體/亮黃色套用至背景                       |
-| 44    | 背景藍色           | 將非粗體/亮藍套用至背景                         |
-| 45    | 背景洋紅        | 將非粗體/明亮的洋紅色套用至背景                      |
-| 46    | 背景青色           | 將非粗體/亮青套用至背景                         |
-| 47    | 背景白色          | 將非粗體/亮色套用至背景                        |
-| 48    | 背景擴充       | 將擴充的色彩值套用至背景 (請參閱以下詳細資料)  |
-| 49    | 背景預設值        | 只套用預設值的背景部分 (請參閱 0)         |
-| 90    | 亮黑色前景黑色   | 將粗體字/亮黑色套用至前景                            |
-| 91    | 亮紅色前景紅色     | 將粗體/亮紅色套用至前景                              |
-| 92    | 亮綠前景綠色   | 將粗體/亮綠套用至前景                            |
-| 93    | 亮黃色前景  | 將粗體/亮黃色套用至前景                           |
-| 94    | 亮藍色前景    | 將粗體/亮藍色套用至前景                             |
-| 95    | 亮鮮前景洋紅 | 將粗體/亮洋紅色套用至前景                          |
-| 96    | 明亮的前景青色    | 將粗體/亮青套用至前景                             |
-| 97    | 亮亮前景白色   | 將粗體字/亮色套用至前景                            |
-| 100   | 亮黑色背景   | 將粗體字/亮黑色套用至背景                            |
-| 101   | 亮紅色背景紅色     | 將粗體/亮紅色套用至背景                              |
-| 102   | 亮綠背景綠色   | 將粗體/亮綠套用至背景                            |
-| 103   | 亮黃背景黃色  | 將粗體/亮黃色套用至背景                           |
-| 104   | 明亮的背景藍色    | 將粗體/亮藍色套用至背景                             |
-| 105   | 鮮鮮深的洋紅 | 將粗體字/亮紅色套用至背景                          |
-| 106   | 鮮鮮色青色    | 將粗體/亮青套用至背景                             |
-| 107   | 亮色背景白色   | 將粗體字/亮色套用至背景                            |
+| 0 | 預設 | 在修改之前，將所有屬性都傳回預設狀態 |
+| 1 | 粗體/亮色 | 將亮度/濃度旗標套用至前景色彩 |
+| 4 | Underline | 加底線 |
+| 24 | 無底線 | 移除底線 |
+| 7 | 負 | 交換前景和背景色彩 |
+| 27 | 正面 (沒有負)  | 傳回法線的前景/背景 |
+| 30 | 前景黑色 | 將非粗體/亮黑色套用至前景 |
+| 31 | 前景紅色 | 將非粗體/亮紅色套用至前景 |
+| 32 | 前景綠色 | 將非粗體/亮綠套用至前景 |
+| 33 | 前景黃色 | 將非粗體/亮黃色套用至前景 |
+| 34 | 前景藍色 | 將非粗體/亮藍套用至前景 |
+| 35 | 前景洋紅 | 將非粗體/亮洋紅色套用至前景 |
+| 36 | 前景青色 | 將非粗體/亮青套用至前景 |
+| 37 | 前景白色 | 將非粗體/亮色套用至前景 |
+| 38 | 延伸前景 | 將擴充的色彩值套用到前景 (請參閱以下詳細資料)  |
+| 39 | 前景預設值 | 只套用預設值的前景部分 (請參閱 0)  |
+| 40 | 黑色背景 | 將非粗體/亮黑色套用至背景 |
+| 41 | 背景紅色 | 將非粗體/亮紅色套用至背景 |
+| 42 | 背景綠色 | 在背景中套用非粗體/亮綠 |
+| 43 | 背景黃色 | 將非粗體/亮黃色套用至背景 |
+| 44 | 背景藍色 | 將非粗體/亮藍套用至背景 |
+| 45 | 背景洋紅 | 將非粗體/明亮的洋紅色套用至背景 |
+| 46 | 背景青色 | 將非粗體/亮青套用至背景 |
+| 47 | 背景白色 | 將非粗體/亮色套用至背景 |
+| 48 | 背景擴充 | 將擴充的色彩值套用至背景 (請參閱以下詳細資料)  |
+| 49 | 背景預設值 | 只套用預設值的背景部分 (請參閱 0)  |
+| 90 | 亮黑色前景黑色 | 將粗體字/亮黑色套用至前景 |
+| 91 | 亮紅色前景紅色 | 將粗體/亮紅色套用至前景 |
+| 92 | 亮綠前景綠色 | 將粗體/亮綠套用至前景 |
+| 93 | 亮黃色前景 | 將粗體/亮黃色套用至前景 |
+| 94 | 亮藍色前景 | 將粗體/亮藍色套用至前景 |
+| 95 | 亮鮮前景洋紅 | 將粗體/亮洋紅色套用至前景 |
+| 96 | 明亮的前景青色 | 將粗體/亮青套用至前景 |
+| 97 | 亮亮前景白色 | 將粗體字/亮色套用至前景 |
+| 100 | 亮黑色背景 | 將粗體字/亮黑色套用至背景 |
+| 101 | 亮紅色背景紅色 | 將粗體/亮紅色套用至背景 |
+| 102 | 亮綠背景綠色 | 將粗體/亮綠套用至背景 |
+| 103 | 亮黃背景黃色 | 將粗體/亮黃色套用至背景 |
+| 104 | 明亮的背景藍色 | 將粗體/亮藍色套用至背景 |
+| 105 | 鮮鮮深的洋紅 | 將粗體字/亮紅色套用至背景 |
+| 106 | 鮮鮮色青色 | 將粗體/亮青套用至背景 |
+| 107 | 亮色背景白色 | 將粗體字/亮色套用至背景 |
 
 
 
@@ -252,12 +251,12 @@ N 的預設值 &lt; &gt; 為1，而且可以選擇性地省略值。
 某些虛擬終端模擬器支援的色彩調色板，大於 Windows 主控台所提供的16種色彩。 針對這些擴充的色彩，Windows 主控台將會從現有的16色資料表選擇最接近的適當色彩來顯示。 不同于上述的一般 SGR 值，擴充值會根據下表，在初始指標之後取用額外的參數。
 
 
-| SGR 子序列                            | 描述                                                                                 |
+| SGR 子序列 | 描述 |
 |--------------------------------------------|---------------------------------------------------------------------------------------------|
 | 38;二級 &lt;r &gt; ; &lt;g &gt; ; &lt;b&gt; | 將前景色彩設定為 &lt; r &gt; 、 &lt; g &gt; 、 &lt; b &gt; 參數中指定的 RGB 值\* |
 | 48;二級 &lt;r &gt; ; &lt;g &gt; ; &lt;b&gt; | 將背景色彩設定為 &lt; r &gt; 、 &lt; g &gt; 、 &lt; b &gt; 參數中指定的 RGB 值\* |
-| 38;.5 &lt;s&gt;                         | &lt; &gt; 在88或256色彩表中將前景色彩設定為 s 索引\*                          |
-| 48;.5 &lt;s&gt;                         | 將背景色彩設定 &lt; 為 &gt; 88 或256色彩表中的 s 索引\*                          |
+| 38;.5 &lt;s&gt; | &lt; &gt; 在88或256色彩表中將前景色彩設定為 s 索引\* |
+| 48;.5 &lt;s&gt; | 將背景色彩設定 &lt; 為 &gt; 88 或256色彩表中的 s 索引\* |
 
 
 
@@ -274,7 +273,7 @@ RGB 值應該是和之間的十六進位 `0` 值 `ff` ，並以正斜線字元�
 請注意，此順序是一種 .OSC 「作業系統命令」順序，而不是類似許多其他序列的 CSI，因此以 "x1b" 為開頭 \\ \] ，而不是 " \\ x1b \[ "。
 
 
-| 順序                                                           | 描述          | 行為                                                                                                     |
+| 順序 | 描述 | 行為 |
 |--------------------------------------------------------------------|----------------------|--------------------------------------------------------------------------------------------------------------|
 | ESC \] 4; &lt;i &gt; ; rgb： &lt; r &gt;  /  &lt; g &gt;  /  &lt; b &gt; ESC | 修改螢幕色彩 | 將螢幕色彩調色板索引 &lt; i 設定 &gt; 為 &lt; r &gt; 、 &lt; g &gt; 、 &lt; b 中指定的 RGB 值&gt; |
 
@@ -290,12 +289,12 @@ RGB 值應該是和之間的十六進位 `0` 值 `ff` ，並以正斜線字元�
 請參閱資料指標索引鍵和 Numpad & 函式金鑰區段，以瞭解這些模式發出的順序。
 
 
-| 順序     | 程式碼    | 描述                                            | 行為                                                |
+| 順序 | 程式碼 | 描述 | 行為 |
 |--------------|---------|--------------------------------------------------------|---------------------------------------------------------|
-| ESC =        | DECKPAM | 啟用鍵台應用程式模式                         | 鍵盤按鍵會發出其應用程式模式序列。 |
-| Esc &gt;     | DECKPNM | 啟用數位鍵數位模式                             | 鍵盤按鍵會發出其數值模式序列。     |
-| ESC \[ ？ 1 小時 | DECCKM  | 啟用資料指標索引鍵應用程式模式                    | 鍵盤按鍵會發出其應用程式模式序列。 |
-| ESC \[ ？ 1 l | DECCKM  | 停用資料指標索引鍵應用程式模式 (使用正常模式)  | 鍵盤按鍵會發出其數值模式序列。     |
+| ESC = | DECKPAM | 啟用鍵台應用程式模式 | 鍵盤按鍵會發出其應用程式模式序列。 |
+| Esc &gt; | DECKPNM | 啟用數位鍵數位模式 | 鍵盤按鍵會發出其數值模式序列。 |
+| ESC \[ ？ 1 小時 | DECCKM | 啟用資料指標索引鍵應用程式模式 | 鍵盤按鍵會發出其應用程式模式序列。 |
+| ESC \[ ？ 1 l | DECCKM | 停用資料指標索引鍵應用程式模式 (使用正常模式)  | 鍵盤按鍵會發出其數值模式序列。 |
 
 
 
@@ -304,15 +303,16 @@ RGB 值應該是和之間的十六進位 `0` 值 `ff` ，並以正斜線字元�
 
 此區段中的所有命令通常等同于呼叫 Get \* 主控台 api，以取得目前主控台緩衝區狀態的狀態資訊。
 
-**注意**  這些查詢會在輸出資料流程上辨識時，立即將回應發出至主控台輸入資料流程，同時 \_ 設定啟用虛擬 \_ 終端 \_ 處理。 「啟用 \_ 虛擬 \_ 終端機輸入」旗標不適 \_ 用於查詢命令，因為它會假設讓查詢的應用程式一律要接收回複。
+> [!NOTE]
+>這些查詢會在輸出資料流程上辨識時，立即將回應發出至主控台輸入資料流程，同時 \_ 設定啟用虛擬 \_ 終端 \_ 處理。 「啟用 \_ 虛擬 \_ 終端機輸入」旗標不適 \_ 用於查詢命令，因為它會假設讓查詢的應用程式一律要接收回複。
 
 
 
 
-| 順序   | 程式碼    | 描述            | 行為                                                                                                               |
+| 順序 | 程式碼 | 描述 | 行為 |
 |------------|---------|------------------------|------------------------------------------------------------------------------------------------------------------------|
 | ESC \[ 6 n | DECXCPR | 報表資料指標位置 | 將游標位置發出為： ESC \[ &lt; r &gt; ; &lt;&gt; &lt; r = 資料指標資料 &gt; &lt; 列和 c = 資料指標資料行 &gt; 的 c r |
-| ESC \[ 0 c | 大      | 裝置屬性      | 報告終端機身分識別。 將發出 " \\ x1b \[ ？ 1; 0c"，指出「沒有選項的 VT101」。                            |
+| ESC \[ 0 c | 大 | 裝置屬性 | 報告終端機身分識別。 將發出 " \\ x1b \[ ？ 1; 0c"，指出「沒有選項的 VT101」。 |
 
 
 
@@ -324,13 +324,13 @@ RGB 值應該是和之間的十六進位 `0` 值 `ff` ，並以正斜線字元�
 下列順序可讓應用程式設定主控台視窗內的索引標籤停用位置、移除它們，並在其間進行導覽。
 
 
-| 順序           | 程式碼 | 描述                     | 行為                                                                                                                                                                                                                    |
+| 順序 | 程式碼 | 描述 | 行為 |
 |--------------------|------|---------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ESC H              | 高溫 超導  | 水準索引標籤集合              | 在資料指標所在的目前資料行中設定制表位。                                                                                                                                                                     |
-| ESC \[ &lt; n &gt; I | CHT  | 資料指標水準 (向前) 索引標籤 | 將資料指標前進到相同資料列中的下一個資料行 () ，並使用 tab 鍵停止。 如果沒有其他索引標籤停止，請移至資料列中的最後一個資料行。 如果資料指標位於最後一個資料行中，請移至下一個資料列的第一個資料行。 |
-| ESC \[ &lt; n &gt; Z | Cbt  | 游標向後索引標籤            | 將資料指標移到相同資料列中的上一個資料行 () ，並使用 tab 鍵停止。 如果沒有其他索引標籤停止，請將游標移至第一個資料行。 如果資料指標在第一個資料行中，則不會移動資料指標。              |
-| ESC \[ 0 g         | Tbc  | Tab 鍵清除 (目前的資料行)       | 清除目前資料行中的定位停駐點（如果有的話）。 否則不會執行任何動作。                                                                                                                                         |
-| ESC \[ 3 g         | Tbc  | Tab 清除 (所有資料行)          | 清除目前設定的所有制表位。                                                                                                                                                                                         |
+| ESC H | 高溫 超導 | 水準索引標籤集合 | 在資料指標所在的目前資料行中設定制表位。 |
+| ESC \[ &lt; n &gt; I | CHT | 資料指標水準 (向前) 索引標籤 | 將資料指標前進到相同資料列中的下一個資料行 () ，並使用 tab 鍵停止。 如果沒有其他索引標籤停止，請移至資料列中的最後一個資料行。 如果資料指標位於最後一個資料行中，請移至下一個資料列的第一個資料行。 |
+| ESC \[ &lt; n &gt; Z | Cbt | 游標向後索引標籤 | 將資料指標移到相同資料列中的上一個資料行 () ，並使用 tab 鍵停止。 如果沒有其他索引標籤停止，請將游標移至第一個資料行。 如果資料指標在第一個資料行中，則不會移動資料指標。 |
+| ESC \[ 0 g | Tbc | Tab 鍵清除 (目前的資料行)  | 清除目前資料行中的定位停駐點（如果有的話）。 否則不會執行任何動作。 |
+| ESC \[ 3 g | Tbc | Tab 清除 (所有資料行)  | 清除目前設定的所有制表位。 |
 
 
 
@@ -344,29 +344,29 @@ RGB 值應該是和之間的十六進位 `0` 值 `ff` ，並以正斜線字元�
 下列順序可讓程式變更現用字元集對應。 這可讓程式發出7位 ASCII 字元，但會在終端機畫面本身將它們顯示為其他圖像。 目前，只有兩個支援的字元集是 ASCII (預設) 和 DEC 特殊圖形字元集。 請參閱 <http://vt100.net/docs/vt220-rm/table2-4.html> ，以取得 DEC 特殊圖形字元集所表示的所有字元清單。
 
 
-| 順序 | 描述                                | 行為                      |
+| 順序 | 描述 | 行為 |
 |----------|--------------------------------------------|-------------------------------|
-| ESC ( 0  | 指定字元集– DEC 線條繪圖 | 啟用 DEC 折線圖繪製模式 |
-| ESC ( B  | 指定字元集– US ASCII         | 啟用 ASCII 模式 (預設值)   |
+| ESC ( 0 | 指定字元集– DEC 線條繪圖 | 啟用 DEC 折線圖繪製模式 |
+| ESC ( B | 指定字元集– US ASCII | 啟用 ASCII 模式 (預設值)  |
 
 
 
 值得注意的是，DEC 線條繪圖模式用於在主控台應用程式中繪製框線。 下表顯示哪些 ASCII 字元對應到哪些線條繪圖字元。
 
 
-| Hex  | ASCII | DEC 線條繪圖 |
+| Hex | ASCII | DEC 線條繪圖 |
 |------|-------|------------------|
-| 0x6a | j     | ┘                |
-| 0x6b | K     | ┐                |
-| 0x6c | l     | ┌                |
-| 0x6d | m     | └                |
-| 0x6e | n     | ┼                |
-| 0x71 | q     | ─                |
-| 0x74 | t     | ├                |
-| 0x75 | u     | ┤                |
-| 0x76 | v     | ┴                |
-| 0x77 | w     | ┬                |
-| 0x78 | x     | │                |
+| 0x6a | j | ┘ |
+| 0x6b | k | ┐ |
+| 0x6c | l | ┌ |
+| 0x6d | m | └ |
+| 0x6e | n | ┼ |
+| 0x71 | q | ─ |
+| 0x74 | t | ├ |
+| 0x75 | u | ┤ |
+| 0x76 | v | ┴ |
+| 0x77 | w | ┬ |
+| 0x78 | x | │ |
 
 
 
@@ -383,7 +383,7 @@ RGB 值應該是和之間的十六進位 `0` 值 `ff` ，並以正斜線字元�
 滾動邊界是每個緩衝區，因此重要的是，替代緩衝區和主要緩衝區會維護個別的滾動邊界設定 (因此，替代緩衝區中的全螢幕應用程式將不會損害主要緩衝區的邊界) 。
 
 
-| 順序                       | 程式碼    | 描述          | 行為                                       |
+| 順序 | 程式碼 | 描述 | 行為 |
 |--------------------------------|---------|----------------------|------------------------------------------------|
 | ESC \[ &lt; t &gt; ; &lt;b &gt; r | DECSTBM | 設定捲動區域 | 設定區的 VT 滾動邊界。 |
 
@@ -397,10 +397,10 @@ RGB 值應該是和之間的十六進位 `0` 值 `ff` ，並以正斜線字元�
 請注意，這些順序是「作業系統命令」順序，而不是類似許多其他序列的 CSI，因此其開頭為 " \\ x1b \] "，而不是 " \\ x1b \[ "。
 
 
-| 順序                      | 描述               | 行為                                           |
+| 順序 | 描述 | 行為 |
 |-------------------------------|---------------------------|----------------------------------------------------|
 | ESC \] 0; &lt;字串 &gt; below | 設定圖示和視窗標題 | 將主控台視窗的標題設定為 &lt; 字串 &gt; 。 |
-| ESC \] 2; &lt;字串 &gt; below | 設定視窗標題          | 將主控台視窗的標題設定為 &lt; 字串 &gt; 。 |
+| ESC \] 2; &lt;字串 &gt; below | 設定視窗標題 | 將主控台視窗的標題設定為 &lt; 字串 &gt; 。 |
 
 
 
@@ -414,10 +414,10 @@ RGB 值應該是和之間的十六進位 `0` 值 `ff` ，並以正斜線字元�
 如需此行為的範例，請考慮從 bash 啟動 vim 的時機。 Vim 會使用整個畫面來編輯檔案，然後返回 bash 將原始緩衝區保持不變。
 
 
-| 順序           | 描述                 | 行為                                   |
+| 順序 | 描述 | 行為 |
 |--------------------|-----------------------------|--------------------------------------------|
 | ESC \[ ？ 1 0 4 9 h | 使用替代螢幕緩衝區 | 切換至新的替代螢幕緩衝區。 |
-| ESC \[ ？ 1 0 4 9 l | 使用主畫面緩衝區      | 切換至主要緩衝區。               |
+| ESC \[ ？ 1 0 4 9 l | 使用主畫面緩衝區 | 切換至主要緩衝區。 |
 
 
 
@@ -427,10 +427,10 @@ RGB 值應該是和之間的十六進位 `0` 值 `ff` ，並以正斜線字元�
 下列順序可以用來控制主控台視窗的寬度。 它們大致上等同于呼叫 SetConsoleScreenBufferInfoEx 主控台 API 來設定視窗寬度。
 
 
-| 順序     | 程式碼    | 描述                  | 行為                                    |
+| 順序 | 程式碼 | 描述 | 行為 |
 |--------------|---------|------------------------------|---------------------------------------------|
 | ESC \[ ？ 3小時 | DECCOLM | 將資料行數目設定為132 | 將主控台寬度設定為132的資料行寬。 |
-| ESC \[ ？ 3 l | DECCOLM | 將資料行數目設定為80  | 將主控台寬度設定為80的資料行寬。  |
+| ESC \[ ？ 3 l | DECCOLM | 將資料行數目設定為80 | 將主控台寬度設定為80的資料行寬。 |
 
 
 
@@ -448,9 +448,9 @@ RGB 值應該是和之間的十六進位 `0` 值 `ff` ，並以正斜線字元�
 - 儲存資料指標狀態： Home position (0，0)  (DECSC) 
 
 
-| 順序   | 程式碼   | 描述 | 行為                                           |
+| 順序 | 程式碼 | 描述 | 行為 |
 |------------|--------|-------------|----------------------------------------------------|
-| ESC \[ ！ p | DECSTR | 軟重設  | 將某些終端機設定重設為預設值。 |
+| ESC \[ ！ p | DECSTR | 軟重設 | 將某些終端機設定重設為預設值。 |
 
 
 
@@ -464,53 +464,53 @@ RGB 值應該是和之間的十六進位 `0` 值 `ff` ，並以正斜線字元�
 ### <a name="span-idcursor_keys__spanspan-idcursor_keys__spanspan-idcursor_keys__spancursor-keys"></a><span id="Cursor_Keys__"></span><span id="cursor_keys__"></span><span id="CURSOR_KEYS__"></span>資料指標索引鍵
 
 
-| 答案         | 標準模式 | 應用程式模式 |
+| 答案 | 標準模式 | 應用程式模式 |
 |-------------|-------------|------------------|
-| 向上箭號    | ESC \[ A    | ESC O A          |
-| 向下箭號  | ESC \[ B    | ESC O B          |
-| 向右鍵 | ESC \[ C    | ESC O C          |
-| 向左鍵  | ESC \[ D    | ESC O D          |
-| 首頁        | ESC \[ H    | ESC O H          |
-| 結束         | ESC \[ F    | ESC O F          |
+| 向上箭號 | ESC \[ A | ESC O A |
+| 向下箭號 | ESC \[ B | ESC O B |
+| 向右鍵 | ESC \[ C | ESC O C |
+| 向左鍵 | ESC \[ D | ESC O D |
+| 首頁 | ESC \[ H | ESC O H |
+| 結束 | ESC \[ F | ESC O F |
 
 
 
 此外，如果按下任何鍵的 Ctrl 鍵，則會改為發出下列順序，而不論資料指標索引鍵模式為何：
 
 
-| 答案                | 任何模式       |
+| 答案 | 任何模式 |
 |--------------------|----------------|
-| Ctrl + 向上鍵    | ESC \[ 1; 5 A |
-| Ctrl + 向下鍵  | ESC \[ 1; 5 B |
+| Ctrl + 向上鍵 | ESC \[ 1; 5 A |
+| Ctrl + 向下鍵 | ESC \[ 1; 5 B |
 | Ctrl + 向右鍵 | ESC \[ 1; 5 C |
-| Ctrl + 向左鍵  | ESC \[ 1; 5 D |
+| Ctrl + 向左鍵 | ESC \[ 1; 5 D |
 
 
 
 ### <a name="span-idnumpad___function_keys__spanspan-idnumpad___function_keys__spanspan-idnumpad___function_keys__spannumpad--function-keys"></a><span id="Numpad___Function_Keys__"></span><span id="numpad___function_keys__"></span><span id="NUMPAD___FUNCTION_KEYS__"></span>Numpad & 功能金鑰
 
 
-| 答案       | 順序     |
+| 答案 | 順序 |
 |-----------|--------------|
-| 退格鍵 | 0x7f (DEL)    |
-| 暫停     | 0x1a (子)    |
-| 逸出    | 0x1b (ESC)    |
-| 插入    | ESC \[ 2 ~   |
-| 刪除    | ESC \[ 3 ~   |
-| Page Up   | ESC \[ 5 ~   |
-| Page Down | ESC \[ 6 ~   |
-| F1        | ESC O P      |
-| F2        | ESC O Q      |
-| F3        | ESC O R      |
-| F4        | ESC O S      |
-| F5        | ESC \[ 1 5 ~ |
-| F6        | ESC \[ 1 7 ~ |
-| F7        | ESC \[ 1 8 ~ |
-| F8        | ESC \[ 1 9 ~ |
-| F9        | ESC \[ 2 0 ~ |
-| F10       | ESC \[ 2 1 ~ |
-| F11       | ESC \[ 2 3 ~ |
-| F12       | ESC \[ 2 4 ~ |
+| 退格鍵 | 0x7f (DEL)  |
+| 暫停 | 0x1a (子)  |
+| 逸出 | 0x1b (ESC)  |
+| 插入 | ESC \[ 2 ~ |
+| 刪除 | ESC \[ 3 ~ |
+| Page Up | ESC \[ 5 ~ |
+| Page Down | ESC \[ 6 ~ |
+| F1 | ESC O P |
+| F2 | ESC O Q |
+| F3 | ESC O R |
+| F4 | ESC O S |
+| F5 | ESC \[ 1 5 ~ |
+| F6 | ESC \[ 1 7 ~ |
+| F7 | ESC \[ 1 8 ~ |
+| F8 | ESC \[ 1 9 ~ |
+| F9 | ESC \[ 2 0 ~ |
+| F10 | ESC \[ 2 1 ~ |
+| F11 | ESC \[ 2 3 ~ |
+| F12 | ESC \[ 2 4 ~ |
 
 
 
@@ -521,17 +521,18 @@ Alt 的處理方式是在序列前面加上 escape： ESC &lt; c， &gt; 其中 
 Ctrl 通常會與系統所收到的完全一樣傳遞。 這通常是將單一字元向下移動到控制字元保留空間 (0x0-0x1f) 。 例如，Ctrl + @ (0x40) 變成 NUL (0x00) 、Ctrl + \[ (0x5b) 會變成 ESC (0x1b) 等等。系統會根據下表，特別處理一些 Ctrl 鍵組合：
 
 
-| 答案                | 順序       |
+| 答案 | 順序 |
 |--------------------|----------------|
-| Ctrl + 空格鍵       | 0x00 (NUL)      |
-| Ctrl + 向上鍵    | ESC \[ 1; 5 A |
-| Ctrl + 向下鍵  | ESC \[ 1; 5 B |
+| Ctrl + 空格鍵 | 0x00 (NUL)  |
+| Ctrl + 向上鍵 | ESC \[ 1; 5 A |
+| Ctrl + 向下鍵 | ESC \[ 1; 5 B |
 | Ctrl + 向右鍵 | ESC \[ 1; 5 C |
-| Ctrl + 向左鍵  | ESC \[ 1; 5 D |
+| Ctrl + 向左鍵 | ESC \[ 1; 5 D |
 
 
 
-**注意**  左 Ctrl + 右 Alt 會視為 AltGr。 當兩者同時出現時，它們將會被移除，而系統所呈現字元的 Unicode 值將會傳遞至目標。 系統會根據目前的系統輸入設定，預先轉譯 AltGr 值。
+> [!NOTE]
+>左 <kbd>Ctrl</kbd> + 右 <kbd>Alt</kbd> 會視為 AltGr。 當兩者同時出現時，它們將會被移除，而系統所呈現字元的 Unicode 值將會傳遞至目標。 系統會根據目前的系統輸入設定，預先轉譯 AltGr 值。
 
 
 
@@ -549,40 +550,41 @@ Ctrl 通常會與系統所收到的完全一樣傳遞。 這通常是將單一�
 
 int main()
 {
-    // Set output mode to handle virtual terminal sequences
-    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (hOut == INVALID_HANDLE_VALUE)
-    {
-        return GetLastError();
-    }
+ // Set output mode to handle virtual terminal sequences
+ HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+ if (hOut == INVALID_HANDLE_VALUE)
+ {
+ return GetLastError();
+ }
 
-    DWORD dwMode = 0;
-    if (!GetConsoleMode(hOut, &dwMode))
-    {
-        return GetLastError();
-    }
+ DWORD dwMode = 0;
+ if (!GetConsoleMode(hOut, &dwMode))
+ {
+ return GetLastError();
+ }
 
-    dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-    if (!SetConsoleMode(hOut, dwMode))
-    {
-        return GetLastError();
-    }
+ dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+ if (!SetConsoleMode(hOut, dwMode))
+ {
+ return GetLastError();
+ }
 
-    // Try some Set Graphics Rendition (SGR) terminal escape sequences
-    wprintf(L"\x1b[31mThis text has a red foreground using SGR.31.\r\n");
-    wprintf(L"\x1b[1mThis text has a bright (bold) red foreground using SGR.1 to affect the previous color setting.\r\n");
-    wprintf(L"\x1b[mThis text has returned to default colors using SGR.0 implicitly.\r\n");
-    wprintf(L"\x1b[34;46mThis text shows the foreground and background change at the same time.\r\n");
-    wprintf(L"\x1b[0mThis text has returned to default colors using SGR.0 explicitly.\r\n");
-    wprintf(L"\x1b[31;32;33;34;35;36;101;102;103;104;105;106;107mThis text attempts to apply many colors in the same command. Note the colors are applied from left to right so only the right-most option of foreground cyan (SGR.36) and background bright white (SGR.107) is effective.\r\n");
-    wprintf(L"\x1b[39mThis text has restored the foreground color only.\r\n");
-    wprintf(L"\x1b[49mThis text has restored the background color only.\r\n");
+ // Try some Set Graphics Rendition (SGR) terminal escape sequences
+ wprintf(L"\x1b[31mThis text has a red foreground using SGR.31.\r\n");
+ wprintf(L"\x1b[1mThis text has a bright (bold) red foreground using SGR.1 to affect the previous color setting.\r\n");
+ wprintf(L"\x1b[mThis text has returned to default colors using SGR.0 implicitly.\r\n");
+ wprintf(L"\x1b[34;46mThis text shows the foreground and background change at the same time.\r\n");
+ wprintf(L"\x1b[0mThis text has returned to default colors using SGR.0 explicitly.\r\n");
+ wprintf(L"\x1b[31;32;33;34;35;36;101;102;103;104;105;106;107mThis text attempts to apply many colors in the same command. Note the colors are applied from left to right so only the right-most option of foreground cyan (SGR.36) and background bright white (SGR.107) is effective.\r\n");
+ wprintf(L"\x1b[39mThis text has restored the foreground color only.\r\n");
+ wprintf(L"\x1b[49mThis text has restored the background color only.\r\n");
 
-    return 0;
+ return 0;
 }
 ```
 
-**注意**  在上述範例中，字串 ' `\x1b[31m` ' 是以 n 到31的方式執行 **ESC \[ &lt; n &gt; m** &lt; &gt; 。
+> [!NOTE]
+>在上述範例中，字串 ' `\x1b[31m` ' 是以 n 到31的方式執行 **ESC \[ &lt; n &gt; m** &lt; &gt; 。
 
 
 
@@ -605,53 +607,53 @@ int main()
 
 int main()
 {
-    // Set output mode to handle virtual terminal sequences
-    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (hOut == INVALID_HANDLE_VALUE)
-    {
-        return false;
-    }
-    HANDLE hIn = GetStdHandle(STD_INPUT_HANDLE);
-    if (hIn == INVALID_HANDLE_VALUE)
-    {
-        return false;
-    }
+ // Set output mode to handle virtual terminal sequences
+ HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+ if (hOut == INVALID_HANDLE_VALUE)
+ {
+ return false;
+ }
+ HANDLE hIn = GetStdHandle(STD_INPUT_HANDLE);
+ if (hIn == INVALID_HANDLE_VALUE)
+ {
+ return false;
+ }
 
-    DWORD dwOriginalOutMode = 0;
-    DWORD dwOriginalInMode = 0;
-    if (!GetConsoleMode(hOut, &dwOriginalOutMode))
-    {
-        return false;
-    }
-    if (!GetConsoleMode(hIn, &dwOriginalInMode))
-    {
-        return false;
-    }
+ DWORD dwOriginalOutMode = 0;
+ DWORD dwOriginalInMode = 0;
+ if (!GetConsoleMode(hOut, &dwOriginalOutMode))
+ {
+ return false;
+ }
+ if (!GetConsoleMode(hIn, &dwOriginalInMode))
+ {
+ return false;
+ }
 
-    DWORD dwRequestedOutModes = ENABLE_VIRTUAL_TERMINAL_PROCESSING | DISABLE_NEWLINE_AUTO_RETURN;
-    DWORD dwRequestedInModes = ENABLE_VIRTUAL_TERMINAL_INPUT;
+ DWORD dwRequestedOutModes = ENABLE_VIRTUAL_TERMINAL_PROCESSING | DISABLE_NEWLINE_AUTO_RETURN;
+ DWORD dwRequestedInModes = ENABLE_VIRTUAL_TERMINAL_INPUT;
 
-    DWORD dwOutMode = dwOriginalOutMode | dwRequestedOutModes;
-    if (!SetConsoleMode(hOut, dwOutMode))
-    {
-        // we failed to set both modes, try to step down mode gracefully.
-        dwRequestedOutModes = ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-        dwOutMode = dwOriginalOutMode | dwRequestedOutModes;
-        if (!SetConsoleMode(hOut, dwOutMode))
-        {
-            // Failed to set any VT mode, can't do anything here.
-            return -1;
-        }
-    }
+ DWORD dwOutMode = dwOriginalOutMode | dwRequestedOutModes;
+ if (!SetConsoleMode(hOut, dwOutMode))
+ {
+ // we failed to set both modes, try to step down mode gracefully.
+ dwRequestedOutModes = ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+ dwOutMode = dwOriginalOutMode | dwRequestedOutModes;
+ if (!SetConsoleMode(hOut, dwOutMode))
+ {
+ // Failed to set any VT mode, can't do anything here.
+ return -1;
+ }
+ }
 
-    DWORD dwInMode = dwOriginalInMode | ENABLE_VIRTUAL_TERMINAL_INPUT;
-    if (!SetConsoleMode(hIn, dwInMode))
-    {
-        // Failed to set VT input mode, can't do anything here.
-        return -1;
-    }
+ DWORD dwInMode = dwOriginalInMode | ENABLE_VIRTUAL_TERMINAL_INPUT;
+ if (!SetConsoleMode(hIn, dwInMode))
+ {
+ // Failed to set VT input mode, can't do anything here.
+ return -1;
+ }
 
-    return 0;
+ return 0;
 }
 ```
 
@@ -663,7 +665,7 @@ int main()
 
 ```C
 //
-//    Copyright (C) Microsoft.  All rights reserved.
+// Copyright (C) Microsoft. All rights reserved.
 //
 #define DEFINE_CONSOLEV2_PROPERTIES
 
@@ -680,172 +682,172 @@ int main()
 
 bool EnableVTMode()
 {
-    // Set output mode to handle virtual terminal sequences
-    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (hOut == INVALID_HANDLE_VALUE)
-    {
-        return false;
-    }
+ // Set output mode to handle virtual terminal sequences
+ HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+ if (hOut == INVALID_HANDLE_VALUE)
+ {
+ return false;
+ }
 
-    DWORD dwMode = 0;
-    if (!GetConsoleMode(hOut, &dwMode))
-    {
-        return false;
-    }
+ DWORD dwMode = 0;
+ if (!GetConsoleMode(hOut, &dwMode))
+ {
+ return false;
+ }
 
-    dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-    if (!SetConsoleMode(hOut, dwMode))
-    {
-        return false;
-    }
-    return true;
+ dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+ if (!SetConsoleMode(hOut, dwMode))
+ {
+ return false;
+ }
+ return true;
 }
 
 void PrintVerticalBorder()
 {
-    printf(ESC "(0");       // Enter Line drawing mode
-    printf(CSI "104;93m");   // bright yellow on bright blue
-    printf("x");            // in line drawing mode, \x78 -> \u2502 "Vertical Bar"
-    printf(CSI "0m");       // restore color
-    printf(ESC "(B");       // exit line drawing mode
+ printf(ESC "(0"); // Enter Line drawing mode
+ printf(CSI "104;93m"); // bright yellow on bright blue
+ printf("x"); // in line drawing mode, \x78 -> \u2502 "Vertical Bar"
+ printf(CSI "0m"); // restore color
+ printf(ESC "(B"); // exit line drawing mode
 }
 
 void PrintHorizontalBorder(COORD const Size, bool fIsTop)
 {
-    printf(ESC "(0");       // Enter Line drawing mode
-    printf(CSI "104;93m");  // Make the border bright yellow on bright blue
-    printf(fIsTop? "l" : "m"); // print left corner 
+ printf(ESC "(0"); // Enter Line drawing mode
+ printf(CSI "104;93m"); // Make the border bright yellow on bright blue
+ printf(fIsTop? "l" : "m"); // print left corner 
 
-    for (int i = 1; i < Size.X - 1; i++) 
-        printf("q"); // in line drawing mode, \x71 -> \u2500 "HORIZONTAL SCAN LINE-5"
+ for (int i = 1; i < Size.X - 1; i++) 
+ printf("q"); // in line drawing mode, \x71 -> \u2500 "HORIZONTAL SCAN LINE-5"
 
-    printf(fIsTop? "k" : "j"); // print right corner
-    printf(CSI "0m");
-    printf(ESC "(B");       // exit line drawing mode
+ printf(fIsTop? "k" : "j"); // print right corner
+ printf(CSI "0m");
+ printf(ESC "(B"); // exit line drawing mode
 }
 
 void PrintStatusLine(char* const pszMessage, COORD const Size)
 {
-    printf(CSI "%d;1H", Size.Y);
-    printf(CSI "K"); // clear the line
-    printf(pszMessage);  
+ printf(CSI "%d;1H", Size.Y);
+ printf(CSI "K"); // clear the line
+ printf(pszMessage); 
 }
 
 int __cdecl wmain(int argc, WCHAR* argv[])
-{   
-    argc; // unused
-    argv; // unused
-    //First, enable VT mode
-    bool fSuccess = EnableVTMode();
-    if (!fSuccess)
-    {
-        printf("Unable to enter VT processing mode. Quitting.\n");
-        return -1;
-    }
-    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (hOut == INVALID_HANDLE_VALUE)
-    {
-        printf("Couldn't get the console handle. Quitting.\n");
-        return -1;
-    }
+{ 
+ argc; // unused
+ argv; // unused
+ //First, enable VT mode
+ bool fSuccess = EnableVTMode();
+ if (!fSuccess)
+ {
+ printf("Unable to enter VT processing mode. Quitting.\n");
+ return -1;
+ }
+ HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+ if (hOut == INVALID_HANDLE_VALUE)
+ {
+ printf("Couldn't get the console handle. Quitting.\n");
+ return -1;
+ }
 
-    CONSOLE_SCREEN_BUFFER_INFO ScreenBufferInfo;
-    GetConsoleScreenBufferInfo(hOut, &ScreenBufferInfo);
-    COORD Size;
-    Size.X = ScreenBufferInfo.srWindow.Right - ScreenBufferInfo.srWindow.Left + 1;
-    Size.Y = ScreenBufferInfo.srWindow.Bottom -  ScreenBufferInfo.srWindow.Top + 1;
+ CONSOLE_SCREEN_BUFFER_INFO ScreenBufferInfo;
+ GetConsoleScreenBufferInfo(hOut, &ScreenBufferInfo);
+ COORD Size;
+ Size.X = ScreenBufferInfo.srWindow.Right - ScreenBufferInfo.srWindow.Left + 1;
+ Size.Y = ScreenBufferInfo.srWindow.Bottom - ScreenBufferInfo.srWindow.Top + 1;
 
-    // Enter the alternate buffer
-    printf(CSI "?1049h");
+ // Enter the alternate buffer
+ printf(CSI "?1049h");
 
-    // Clear screen, tab stops, set, stop at columns 16, 32
-    printf(CSI "1;1H");
-    printf(CSI "2J"); // Clear screen
+ // Clear screen, tab stops, set, stop at columns 16, 32
+ printf(CSI "1;1H");
+ printf(CSI "2J"); // Clear screen
 
-    int iNumTabStops = 4; // (0, 20, 40, width)
-    printf(CSI "3g"); // clear all tab stops
-    printf(CSI "1;20H"); // Move to column 20
-    printf(ESC "H"); // set a tab stop
+ int iNumTabStops = 4; // (0, 20, 40, width)
+ printf(CSI "3g"); // clear all tab stops
+ printf(CSI "1;20H"); // Move to column 20
+ printf(ESC "H"); // set a tab stop
 
-    printf(CSI "1;40H"); // Move to column 40
-    printf(ESC "H"); // set a tab stop
+ printf(CSI "1;40H"); // Move to column 40
+ printf(ESC "H"); // set a tab stop
 
-    // Set scrolling margins to 3, h-2
-    printf(CSI "3;%dr", Size.Y-2);
-    int iNumLines = Size.Y - 4;
+ // Set scrolling margins to 3, h-2
+ printf(CSI "3;%dr", Size.Y-2);
+ int iNumLines = Size.Y - 4;
 
-    printf(CSI "1;1H");
-    printf(CSI "102;30m");
-    printf("Windows 10 Anniversary Update - VT Example"); 
-    printf(CSI "0m");
+ printf(CSI "1;1H");
+ printf(CSI "102;30m");
+ printf("Windows 10 Anniversary Update - VT Example"); 
+ printf(CSI "0m");
 
-    // Print a top border - Yellow
-    printf(CSI "2;1H");
-    PrintHorizontalBorder(Size, true);
+ // Print a top border - Yellow
+ printf(CSI "2;1H");
+ PrintHorizontalBorder(Size, true);
 
-    // // Print a bottom border
-    printf(CSI "%d;1H", Size.Y-1);
-    PrintHorizontalBorder(Size, false);
+ // // Print a bottom border
+ printf(CSI "%d;1H", Size.Y-1);
+ PrintHorizontalBorder(Size, false);
 
-    wchar_t wch;
+ wchar_t wch;
 
-    // draw columns
-    printf(CSI "3;1H"); 
-    int line = 0;
-    for (line = 0; line < iNumLines * iNumTabStops; line++)
-    {
-        PrintVerticalBorder();
-        if (line + 1 != iNumLines * iNumTabStops) // don't advance to next line if this is the last line
-            printf("\t"); // advance to next tab stop
+ // draw columns
+ printf(CSI "3;1H"); 
+ int line = 0;
+ for (line = 0; line < iNumLines * iNumTabStops; line++)
+ {
+ PrintVerticalBorder();
+ if (line + 1 != iNumLines * iNumTabStops) // don't advance to next line if this is the last line
+ printf("\t"); // advance to next tab stop
 
-    }
+ }
 
-    PrintStatusLine("Press any key to see text printed between tab stops.", Size);
-    wch = _getwch();
+ PrintStatusLine("Press any key to see text printed between tab stops.", Size);
+ wch = _getwch();
 
-    // Fill columns with output
-    printf(CSI "3;1H"); 
-    for (line = 0; line < iNumLines; line++)
-    {
-        int tab = 0;
-        for (tab = 0; tab < iNumTabStops-1; tab++)
-        {
-            PrintVerticalBorder();
-            printf("line=%d", line);
-            printf("\t"); // advance to next tab stop
-        }
-        PrintVerticalBorder();// print border at right side
-        if (line+1 != iNumLines)
-            printf("\t"); // advance to next tab stop, (on the next line)
-    }
+ // Fill columns with output
+ printf(CSI "3;1H"); 
+ for (line = 0; line < iNumLines; line++)
+ {
+ int tab = 0;
+ for (tab = 0; tab < iNumTabStops-1; tab++)
+ {
+ PrintVerticalBorder();
+ printf("line=%d", line);
+ printf("\t"); // advance to next tab stop
+ }
+ PrintVerticalBorder();// print border at right side
+ if (line+1 != iNumLines)
+ printf("\t"); // advance to next tab stop, (on the next line)
+ }
 
-    PrintStatusLine("Press any key to demonstrate scroll margins", Size);
-    wch = _getwch();
+ PrintStatusLine("Press any key to demonstrate scroll margins", Size);
+ wch = _getwch();
 
-    printf(CSI "3;1H"); 
-    for (line = 0; line < iNumLines * 2; line++)
-    {
-        printf(CSI "K"); // clear the line
-        int tab = 0;
-        for (tab = 0; tab < iNumTabStops-1; tab++)
-        {
-            PrintVerticalBorder();
-            printf("line=%d", line);
-            printf("\t"); // advance to next tab stop
-        }
-        PrintVerticalBorder(); // print border at right side
-        if (line+1 != iNumLines * 2)
-        {
-            printf("\n"); //Advance to next line. If we're at the bottom of the margins, the text will scroll.
-            printf("\r"); //return to first col in buffer
-        }
-    }
+ printf(CSI "3;1H"); 
+ for (line = 0; line < iNumLines * 2; line++)
+ {
+ printf(CSI "K"); // clear the line
+ int tab = 0;
+ for (tab = 0; tab < iNumTabStops-1; tab++)
+ {
+ PrintVerticalBorder();
+ printf("line=%d", line);
+ printf("\t"); // advance to next tab stop
+ }
+ PrintVerticalBorder(); // print border at right side
+ if (line+1 != iNumLines * 2)
+ {
+ printf("\n"); //Advance to next line. If we're at the bottom of the margins, the text will scroll.
+ printf("\r"); //return to first col in buffer
+ }
+ }
 
-    PrintStatusLine("Press any key to exit", Size);
-    wch = _getwch();
+ PrintStatusLine("Press any key to exit", Size);
+ wch = _getwch();
 
-    // Exit the alternate buffer
-    printf(CSI "?1049l");
+ // Exit the alternate buffer
+ printf(CSI "?1049l");
 
 }
 ```

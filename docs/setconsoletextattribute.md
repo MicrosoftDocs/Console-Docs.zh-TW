@@ -4,7 +4,7 @@ description: 設定 WriteFile 或 WriteConsole 函式寫入主控台螢幕緩衝
 author: miniksa
 ms.author: miniksa
 ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 f1_keywords:
 - consoleapi2/SetConsoleTextAttribute
 - wincon/SetConsoleTextAttribute
@@ -28,94 +28,64 @@ api_location:
 - API-MS-Win-DownLevel-Kernel32-l1-1-0.dll
 api_type:
 - DllExport
-ms.openlocfilehash: 2242466e4255b0d92c9bb1d1eac5431b59346e7b
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: 03925af2668774a36de33bfe6ea5fcdc1b475d5b
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059530"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93039316"
 ---
 # <a name="setconsoletextattribute-function"></a>SetConsoleTextAttribute 函式
 
+[!INCLUDE [not-recommended-banner](./includes/not-recommended-banner.md)]
 
 設定 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) 或 [**WriteConsole**](writeconsole.md) 函式寫入主控台螢幕緩衝區的字元屬性，或由 [**ReadFile**](https://msdn.microsoft.com/library/windows/desktop/aa365467) 或 [**ReadConsole**](readconsole.md) 函式回顯的字元屬性。 此函式會影響在函式呼叫後寫入的文字。
 
-<a name="syntax"></a>語法
-------
+## <a name="syntax"></a>語法
 
 ```C
 BOOL WINAPI SetConsoleTextAttribute(
-  _In_ HANDLE hConsoleOutput,
-  _In_ WORD   wAttributes
+  _In_ HANDLE hConsoleOutput,
+  _In_ WORD   wAttributes
 );
 ```
 
-<a name="parameters"></a>參數
-----------
+## <a name="parameters"></a>參數
 
 *hConsoleOutput* \[在\]  
 主控台螢幕緩衝區的控制碼。 控制碼必須具有 **一般 \_ 讀取** 許可權。 如需詳細資訊，請參閱 [主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
 
 *wAttributes* \[在\]  
-[字元屬性](console-screen-buffers.md#_win32_font_attributes)。
+[字元屬性](console-screen-buffers.md#character-attributes)。
 
-<a name="return-value"></a>傳回值
-------------
+## <a name="return-value"></a>傳回值
 
 如果函式成功，則傳回值為非零。
 
 如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
 
-<a name="remarks"></a>備註
--------
+## <a name="remarks"></a>備註
 
 若要判斷螢幕緩衝區目前的色彩屬性，請呼叫 [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md) 函數。
 
-<a name="examples"></a>範例
---------
+> [!TIP]
+> 此 API 具有等同于 **[文字格式設定](console-virtual-terminal-sequences.md#text-formatting)** 順序的 **[虛擬終端](console-virtual-terminal-sequences.md)** 機。 建議您針對所有新的和進行中的開發，使用 _虛擬終端機序列_ 。
 
-如需範例，請參閱 [使用高階輸入和輸出函數](using-the-high-level-input-and-output-functions.md)。
+## <a name="examples"></a>範例
 
-<a name="requirements"></a>規格需求
-------------
+如需範例，請參閱 [使用 High-Level 輸入和輸出函數](using-the-high-level-input-and-output-functions.md)。
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>最低支援的用戶端</p></td>
-<td><p>Windows 2000 Professional [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="even">
-<td><p>最低支援的伺服器</p></td>
-<td><p>Windows 2000 伺服器 [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="odd">
-<td><p>標頭</p></td>
-<td>ConsoleApi2 .h (via Wincon，包括 Windows .h) </td>
-</tr>
-<tr class="even">
-<td><p>程式庫</p></td>
-<td>Kernel32.dll .lib</td>
-</tr>
-<tr class="odd">
-<td><p>DLL</p></td>
-<td>Kernel32.dll</td>
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-</tbody>
-</table>
+## <a name="requirements"></a>規格需求
 
-## <a name="span-idsee_alsospansee-also"></a><span id="see_also"></span>另請參閱
+| &nbsp; | &nbsp; |
+|-|-|
+| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
+| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
+| 程式庫 | Kernel32.dll .lib |
+| DLL | Kernel32.dll |
 
+## <a name="see-also"></a>請參閱
 
 [主控台功能](console-functions.md)
 
@@ -130,11 +100,3 @@ BOOL WINAPI SetConsoleTextAttribute(
 [**WriteConsole**](writeconsole.md)
 
 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747)
-
- 
-
- 
-
-
-
-

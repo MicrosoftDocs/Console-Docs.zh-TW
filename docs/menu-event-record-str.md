@@ -4,7 +4,7 @@ description: 描述主控台輸入記錄結構中的功能表事件 \_ 。 這�
 author: miniksa
 ms.author: miniksa
 ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 f1_keywords:
 - wincontypes/MENU_EVENT_RECORD
 - wincon/MENU_EVENT_RECORD
@@ -25,23 +25,23 @@ topic_type:
 api_name:
 - MENU_EVENT_RECORD
 api_location:
-- Wincon.h
+- WinCon.h
 api_type:
 - HeaderDef
-ms.openlocfilehash: 8bbfbf6ad8bd885d69ce08e94dfced93b0bd3257
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: dfca825c03dbf0e63041e68adc5e43f2ca0ef669
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059078"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93039516"
 ---
 # <a name="menu_event_record-structure"></a>功能表 \_ 事件 \_ 記錄結構
 
+[!INCLUDE [not-recommended-banner](./includes/not-recommended-banner.md)]
 
 描述主控台 [**輸入 \_ 記錄**](input-record-str.md) 結構中的功能表事件。 這些事件會在內部使用，應該予以忽略。
 
-<a name="syntax"></a>Syntax
-------
+## <a name="syntax"></a>語法
 
 ```C
 typedef struct _MENU_EVENT_RECORD {
@@ -49,45 +49,19 @@ typedef struct _MENU_EVENT_RECORD {
 } MENU_EVENT_RECORD, *PMENU_EVENT_RECORD;
 ```
 
-<a name="members"></a>成員
--------
+## <a name="members"></a>成員
 
 **dwCommandId**  
 保留的。
 
-<a name="requirements"></a>規格需求
-------------
+## <a name="requirements"></a>規格需求
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>最低支援的用戶端</p></td>
-<td><p>Windows 2000 Professional [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="even">
-<td><p>最低支援的伺服器</p></td>
-<td><p>Windows 2000 伺服器 [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="odd">
-<td><p>標頭</p></td>
-<td>WinConTypes .h (via Wincon，包括 Windows .h) </td>
-</tr>
-</tbody>
-</table>
+| &nbsp; | &nbsp; |
+|-|-|
+| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
+| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 標頭 | WinConTypes .h (via WinCon，包括 Windows .h)  |
 
-## <a name="span-idsee_alsospansee-also"></a><span id="see_also"></span>另請參閱
-
+## <a name="see-also"></a>請參閱
 
 [**輸入 \_ 記錄**](input-record-str.md)
-
- 
-
- 
-
-
-
-

@@ -4,7 +4,7 @@ description: 為呼叫進程的 Windows 主控台設定歷程記錄設定。
 author: miniksa
 ms.author: miniksa
 ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 f1_keywords:
 - consoleapi3/SetConsoleHistoryInfo
 - wincon/SetConsoleHistoryInfo
@@ -24,96 +24,58 @@ api_location:
 - Kernel32.dll
 api_type:
 - DllExport
-ms.openlocfilehash: bf194e154a06efc32510fe811ab89877e283e142
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: 618661b8c59506e2ba5e1f2b2b283ccf823b831a
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059099"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93039376"
 ---
 # <a name="setconsolehistoryinfo-function"></a>SetConsoleHistoryInfo 函式
 
+[!INCLUDE [not-recommended-banner](./includes/not-recommended-banner.md)]
 
 設定呼叫進程主控台的歷程記錄設定。
 
-<a name="syntax"></a>語法
-------
+## <a name="syntax"></a>語法
 
 ```C
 BOOL WINAPI SetConsoleHistoryInfo(
-  _In_ PCONSOLE_HISTORY_INFO lpConsoleHistoryInfo
+  _In_ PCONSOLE_HISTORY_INFO lpConsoleHistoryInfo
 );
 ```
 
-<a name="parameters"></a>參數
-----------
+## <a name="parameters"></a>參數
 
 *lpConsoleHistoryInfo* \[在\]  
 [**主控台歷程 \_ 記錄 \_ 資訊**](console-history-info.md)結構的指標，其中包含進程主控台的歷程記錄設定。
 
-<a name="return-value"></a>傳回值
-------------
+## <a name="return-value"></a>傳回值
 
 如果函式成功，則傳回值為非零。
 
 如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
 
-<a name="remarks"></a>備註
--------
+## <a name="remarks"></a>備註
 
-如果呼叫進程不是主控台進程，此函式會失敗，並將最後一個錯誤碼設定 **為 \_ \_ 拒絕存取錯誤**。
+如果呼叫進程不是主控台進程，此函式會失敗，並將最後一個錯誤碼設定 **為 \_ \_ 拒絕存取錯誤** 。
 
-<a name="requirements"></a>規格需求
-------------
+[!INCLUDE [no-vt-equiv-shell-banner](./includes/no-vt-equiv-shell-banner.md)]
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>最低支援的用戶端</p></td>
-<td><p>Windows Vista [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="even">
-<td><p>最低支援的伺服器</p></td>
-<td><p>Windows Server 2008 [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="odd">
-<td><p>標頭</p></td>
-<td>ConsoleApi3 .h (via Wincon，包括 Windows .h) </td>
-</tr>
-<tr class="even">
-<td><p>程式庫</p></td>
-<td>Kernel32.dll .lib</td>
-</tr>
-<tr class="odd">
-<td><p>DLL</p></td>
-<td>Kernel32.dll</td>
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-</tbody>
-</table>
+## <a name="requirements"></a>規格需求
 
-## <a name="span-idsee_alsospansee-also"></a><span id="see_also"></span>另請參閱
+| &nbsp; | &nbsp; |
+|-|-|
+| 最低支援的用戶端 | \[僅限 Windows Vista 桌面應用程式\] |
+| 最低支援的伺服器 | 僅限 Windows Server 2008 \[ desktop 應用程式\] |
+| 標頭 | ConsoleApi3 .h (via WinCon，包括 Windows .h)  |
+| 程式庫 | Kernel32.dll .lib |
+| DLL | Kernel32.dll |
 
+## <a name="see-also"></a>請參閱
 
 [主控台功能](console-functions.md)
 
 [**主控台歷程 \_ 記錄 \_ 資訊**](console-history-info.md)
 
 [**GetConsoleHistoryInfo**](getconsolehistoryinfo.md)
-
- 
-
- 
-
-
-
-

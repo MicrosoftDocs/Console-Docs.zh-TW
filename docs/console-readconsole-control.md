@@ -4,7 +4,7 @@ description: 請參閱 CONSOLE_READCONSOLE_CONTROL 結構的參考資訊，其�
 author: miniksa
 ms.author: miniksa
 ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 f1_keywords:
 - consoleapi/CONSOLE_READCONSOLE_CONTROL
 - wincon/CONSOLE_READCONSOLE_CONTROL
@@ -24,23 +24,21 @@ topic_type:
 api_name:
 - CONSOLE_READCONSOLE_CONTROL
 api_location:
-- Wincon.h
+- WinCon.h
 api_type:
 - HeaderDef
-ms.openlocfilehash: 4fc6af26cd540a7af207af252963c21ba216cdee
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: 8a703a1eaa370e16095e1b10eb146a0718f332e9
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059307"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93039186"
 ---
 # <a name="console_readconsole_control-structure"></a>主控台 \_ READCONSOLE \_ 控制結構
 
-
 包含主控台讀取操作的資訊。
 
-<a name="syntax"></a>Syntax
-------
+## <a name="syntax"></a>語法
 
 ```C
 typedef struct _CONSOLE_READCONSOLE_CONTROL {
@@ -51,130 +49,40 @@ typedef struct _CONSOLE_READCONSOLE_CONTROL {
 } CONSOLE_READCONSOLE_CONTROL, *PCONSOLE_READCONSOLE_CONTROL;
 ```
 
-<a name="members"></a>成員
--------
+## <a name="members"></a>成員
 
 **nLength**  
 結構的大小。 將這個成員設定為 `sizeof(CONSOLE_READCONSOLE_CONTROL)` 。
 
 **nInitialChars**  
-要略過的字元數 (，因此在傳遞至 [**ReadConsole**](readconsole.md) 函式的緩衝區中寫入新的讀取輸入之前，會保留) 。 這個值必須小於**ReadConsole**函數的*nNumberOfCharsToRead*參數。
+要略過的字元數 (，因此在傳遞至 [**ReadConsole**](readconsole.md) 函式的緩衝區中寫入新的讀取輸入之前，會保留) 。 這個值必須小於 **ReadConsole** 函數的 *nNumberOfCharsToRead* 參數。
 
 **dwCtrlWakeupMask**  
-使用者定義的控制字元，用來表示讀取已完成。
+遮罩，指定應該使用和之間的控制字元 `0x00` `0x1F` 來表示讀取已完成。 每個位都對應到一個字元，且該字元的最小位對應于或 `0x00` `NUL` 以及與或相對應的最高有效位 `0x1F` `US` 。 您可以指定多個位 (控制字元) 。
 
 **dwControlKeyState**  
 控制項索引鍵的狀態。 這個成員可以是下列一或多個值。
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>值</th>
-<th>意義</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span id="CAPSLOCK_ON"></span><span id="capslock_on"></span>
-<strong>CAPSLOCK_ON</strong> 0x0080</td>
-<td><p>CAPS LOCK 燈開啟。</p></td>
-</tr>
-<tr class="even">
-<td><span id="ENHANCED_KEY"></span><span id="enhanced_key"></span>
-<strong>ENHANCED_KEY</strong> 0x0100</td>
-<td><p>金鑰已增強。</p></td>
-</tr>
-<tr class="odd">
-<td><span id="LEFT_ALT_PRESSED"></span><span id="left_alt_pressed"></span>
-<strong>LEFT_ALT_PRESSED</strong> 0x0002</td>
-<td><p>左 ALT 鍵已按下。</p></td>
-</tr>
-<tr class="even">
-<td><span id="LEFT_CTRL_PRESSED"></span><span id="left_ctrl_pressed"></span>
-<strong>LEFT_CTRL_PRESSED</strong> 0x0008</td>
-<td><p>按下 CTRL 鍵。</p></td>
-</tr>
-<tr class="odd">
-<td><span id="NUMLOCK_ON"></span><span id="numlock_on"></span>
-<strong>NUMLOCK_ON</strong> 0x0020</td>
-<td><p>NUM LOCK 燈開啟。</p></td>
-</tr>
-<tr class="even">
-<td><span id="RIGHT_ALT_PRESSED"></span><span id="right_alt_pressed"></span>
-<strong>RIGHT_ALT_PRESSED</strong> 0x0001</td>
-<td><p>按下右邊的 ALT 鍵。</p></td>
-</tr>
-<tr class="odd">
-<td><span id="RIGHT_CTRL_PRESSED"></span><span id="right_ctrl_pressed"></span>
-<strong>RIGHT_CTRL_PRESSED</strong> 0x0004</td>
-<td><p>按下 CTRL 鍵。</p></td>
-</tr>
-<tr class="even">
-<td><span id="SCROLLLOCK_ON"></span><span id="scrolllock_on"></span>
-<strong>SCROLLLOCK_ON</strong> 0x0040</td>
-<td><p>捲軸鎖定燈開啟。</p></td>
-</tr>
-<tr class="odd">
-<td><span id="SHIFT_PRESSED"></span><span id="shift_pressed"></span>
-<strong>SHIFT_PRESSED</strong> 0x0010</td>
-<td><p>按下 SHIFT 鍵。</p></td>
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-</tbody>
-</table>
+| 值 | 意義 |
+|-|-|
+| **CAPSLOCK_ON** 0x0080 | CAPS LOCK 燈開啟。 |
+| **ENHANCED_KEY** 0x0100 | 金鑰已增強。 請參閱 [備註](key-event-record-str.md#remarks)。 |
+| **LEFT_ALT_PRESSED** 0x0002 | 左 ALT 鍵已按下。 |
+| **LEFT_CTRL_PRESSED** 0x0008 | 按下 CTRL 鍵。 |
+| **NUMLOCK_ON** 0x0020 | NUM LOCK 燈開啟。 |
+| **RIGHT_ALT_PRESSED** 0x0001 | 按下右邊的 ALT 鍵。 |
+| **RIGHT_CTRL_PRESSED** 0x0004 | 按下 CTRL 鍵。 |
+| **SCROLLLOCK_ON** 0x0040 | 捲軸鎖定燈開啟。 |
+| **SHIFT_PRESSED** 0x0010 | 按下 SHIFT 鍵。 |
 
- 
+## <a name="requirements"></a>規格需求
 
-<a name="requirements"></a>規格需求
-------------
+| &nbsp; | &nbsp; |
+|-|-|
+| 最低支援的用戶端 | \[僅限 Windows Vista 桌面應用程式\] |
+| 最低支援的伺服器 | 僅限 Windows Server 2008 \[ desktop 應用程式\] |
+| 標頭 | ConsoleApi .h (via WinCon，包括 Windows .h)  |
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>最低支援的用戶端</p></td>
-<td><p>Windows Vista [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="even">
-<td><p>最低支援的伺服器</p></td>
-<td><p>Windows Server 2008 [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="odd">
-<td><p>標頭</p></td>
-<td>ConsoleApi .h (via Wincon，包括 Windows .h) </td>
-</tr>
-</tbody>
-</table>
-
-## <a name="span-idsee_alsospansee-also"></a><span id="see_also"></span>另請參閱
-
+## <a name="see-also"></a>請參閱
 
 [**ReadConsole**](readconsole.md)
-
- 
-
- 
-
-
-
-

@@ -1,10 +1,10 @@
 ---
-title: 低層級主控台 i/o
+title: Low-Level 主控台 i/o
 description: 低層級主控台 i/o 函數可讓您直接存取主控台的輸入和螢幕緩衝區，藉以擴充應用程式對主控台 i/o 的控制。
 author: miniksa
 ms.author: miniksa
-ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+ms.topic: conceptual
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 MS-HAID:
 - '\_win32\_low\_level\_console\_i\_o'
 - base.low\_level\_console\_i\_o
@@ -13,15 +13,16 @@ MSHAttr:
 - PreferredSiteName:MSDN
 - PreferredLib:/library/windows/desktop
 ms.assetid: c874aff4-6129-4dbc-8949-24d46382d81c
-ms.openlocfilehash: b548a188189b597a270faac1cfbc83a2af699fab
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: b4ec834e44f7ff291466cfe1714442bc17ca7aca
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059471"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93039546"
 ---
-# <a name="low-level-console-io"></a>低層級主控台 i/o
+# <a name="low-level-console-io"></a>Low-Level 主控台 i/o
 
+[!INCLUDE [not-recommended-banner](./includes/not-recommended-banner.md)]
 
 低層級主控台 i/o 函數可讓您直接存取主控台的輸入和螢幕緩衝區，藉以擴充應用程式對主控台 i/o 的控制。 這些函數可讓應用程式執行下列工作：
 
@@ -42,11 +43,3 @@ ms.locfileid: "89059471"
 - [低層級主控台模式](low-level-console-modes.md)
 - [低層級主控台輸入函式](low-level-console-input-functions.md)
 - [低層級主控台輸出功能](low-level-console-output-functions.md)
-
- 
-
- 
-
-
-
-
