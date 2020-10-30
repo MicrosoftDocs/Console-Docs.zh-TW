@@ -1,4 +1,9 @@
 # [首頁](index.md) 
+
+## [生態系統藍圖](ecosystem-roadmap.md)
+## [定義](definitions.md)
+## [主控台 API 與虛擬終端機](classic-vs-vt.md)
+
 # [關於字元模式應用程式](about-character-mode-applications.md) 
 ## [輸入和輸出方法](input-and-output-methods.md) 
 ## [主控台字碼頁](console-code-pages.md)
@@ -14,6 +19,7 @@
 ## [主控台控制代碼](console-handles.md) 
 ## [主控台輸入緩衝區](console-input-buffer.md)
 ## [主控台畫面緩衝區](console-screen-buffers.md) 
+## [主控台模式](console-modes.md)
 ## [視窗和畫面緩衝區大小](window-and-screen-buffer-size.md) 
 ## [主控台選取](console-selection.md)
 ## [關於舊版主控台模式](legacymode.md)
@@ -56,7 +62,7 @@
 ### [GenerateConsoleCtrlEvent](generateconsolectrlevent.md) 
 ### [GetConsoleAlias](getconsolealias.md) 
 ### [GetConsoleAliases](getconsolealiases.md) 
-### [GetConsoleAliaseslength](getconsolealiaseslength.md) 
+### [GetConsoleAliasesLength](getconsolealiaseslength.md) 
 ### [GetConsoleAliasExes](getconsolealiasexes.md) 
 ### [GetConsoleAliasExesLength](getconsolealiasexeslength.md) 
 ### [GetConsoleCP](getconsolecp.md) 
