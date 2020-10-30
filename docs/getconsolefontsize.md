@@ -4,7 +4,7 @@ description: 抓取指定的主控台螢幕緩衝區所使用的字型大小。
 author: miniksa
 ms.author: miniksa
 ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 f1_keywords:
 - consoleapi3/GetConsoleFontSize
 - wincon/GetConsoleFontSize
@@ -25,99 +25,64 @@ api_location:
 - Kernel32.dll
 api_type:
 - DllExport
-ms.openlocfilehash: b992ddaab35cb5af25479426dca83ef6381e73dd
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: 39a27f2bd2c4578296ee5699503ce86487060db3
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059167"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93038896"
 ---
-# <a name="getconsolefontsize-function"></a><span data-ttu-id="230e9-104">GetConsoleFontSize 函式</span><span class="sxs-lookup"><span data-stu-id="230e9-104">GetConsoleFontSize function</span></span>
+# <a name="getconsolefontsize-function"></a><span data-ttu-id="54537-104">GetConsoleFontSize 函式</span><span class="sxs-lookup"><span data-stu-id="54537-104">GetConsoleFontSize function</span></span>
 
+[!INCLUDE [not-recommended-banner](./includes/not-recommended-banner.md)]
 
-<span data-ttu-id="230e9-105">抓取指定的主控台螢幕緩衝區所使用的字型大小。</span><span class="sxs-lookup"><span data-stu-id="230e9-105">Retrieves the size of the font used by the specified console screen buffer.</span></span>
+<span data-ttu-id="54537-105">抓取指定的主控台螢幕緩衝區所使用的字型大小。</span><span class="sxs-lookup"><span data-stu-id="54537-105">Retrieves the size of the font used by the specified console screen buffer.</span></span>
 
-<a name="syntax"></a><span data-ttu-id="230e9-106">語法</span><span class="sxs-lookup"><span data-stu-id="230e9-106">Syntax</span></span>
-------
+## <a name="syntax"></a><span data-ttu-id="54537-106">語法</span><span class="sxs-lookup"><span data-stu-id="54537-106">Syntax</span></span>
 
 ```C
 COORD WINAPI GetConsoleFontSize(
-  _In_ HANDLE hConsoleOutput,
-  _In_ DWORD  nFont
+  _In_ HANDLE hConsoleOutput,
+  _In_ DWORD  nFont
 );
 ```
 
-<a name="parameters"></a><span data-ttu-id="230e9-107">參數</span><span class="sxs-lookup"><span data-stu-id="230e9-107">Parameters</span></span>
-----------
+## <a name="parameters"></a><span data-ttu-id="54537-107">參數</span><span class="sxs-lookup"><span data-stu-id="54537-107">Parameters</span></span>
 
-<span data-ttu-id="230e9-108">*hConsoleOutput* \[在\]</span><span class="sxs-lookup"><span data-stu-id="230e9-108">*hConsoleOutput* \[in\]</span></span>  
-<span data-ttu-id="230e9-109">主控台螢幕緩衝區的控制碼。</span><span class="sxs-lookup"><span data-stu-id="230e9-109">A handle to the console screen buffer.</span></span> <span data-ttu-id="230e9-110">控制碼必須具有 **一般 \_ 讀取** 許可權。</span><span class="sxs-lookup"><span data-stu-id="230e9-110">The handle must have the **GENERIC\_READ** access right.</span></span> <span data-ttu-id="230e9-111">如需詳細資訊，請參閱 [主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。</span><span class="sxs-lookup"><span data-stu-id="230e9-111">For more information, see [Console Buffer Security and Access Rights](console-buffer-security-and-access-rights.md).</span></span>
+<span data-ttu-id="54537-108">*hConsoleOutput* \[在\]</span><span class="sxs-lookup"><span data-stu-id="54537-108">*hConsoleOutput* \[in\]</span></span>  
+<span data-ttu-id="54537-109">主控台螢幕緩衝區的控制碼。</span><span class="sxs-lookup"><span data-stu-id="54537-109">A handle to the console screen buffer.</span></span> <span data-ttu-id="54537-110">控制碼必須具有 **一般 \_ 讀取** 許可權。</span><span class="sxs-lookup"><span data-stu-id="54537-110">The handle must have the **GENERIC\_READ** access right.</span></span> <span data-ttu-id="54537-111">如需詳細資訊，請參閱 [主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。</span><span class="sxs-lookup"><span data-stu-id="54537-111">For more information, see [Console Buffer Security and Access Rights](console-buffer-security-and-access-rights.md).</span></span>
 
-<span data-ttu-id="230e9-112">*nFont* \[在\]</span><span class="sxs-lookup"><span data-stu-id="230e9-112">*nFont* \[in\]</span></span>  
-<span data-ttu-id="230e9-113">要取出其大小的字型索引。</span><span class="sxs-lookup"><span data-stu-id="230e9-113">The index of the font whose size is to be retrieved.</span></span> <span data-ttu-id="230e9-114">藉由呼叫 [**GetCurrentConsoleFont**](getcurrentconsolefont.md) 函數來取得此索引。</span><span class="sxs-lookup"><span data-stu-id="230e9-114">This index is obtained by calling the [**GetCurrentConsoleFont**](getcurrentconsolefont.md) function.</span></span>
+<span data-ttu-id="54537-112">*nFont* \[在\]</span><span class="sxs-lookup"><span data-stu-id="54537-112">*nFont* \[in\]</span></span>  
+<span data-ttu-id="54537-113">要取出其大小的字型索引。</span><span class="sxs-lookup"><span data-stu-id="54537-113">The index of the font whose size is to be retrieved.</span></span> <span data-ttu-id="54537-114">藉由呼叫 [**GetCurrentConsoleFont**](getcurrentconsolefont.md) 函數來取得此索引。</span><span class="sxs-lookup"><span data-stu-id="54537-114">This index is obtained by calling the [**GetCurrentConsoleFont**](getcurrentconsolefont.md) function.</span></span>
 
-<a name="return-value"></a><span data-ttu-id="230e9-115">傳回值</span><span class="sxs-lookup"><span data-stu-id="230e9-115">Return value</span></span>
-------------
+## <a name="return-value"></a><span data-ttu-id="54537-115">傳回值</span><span class="sxs-lookup"><span data-stu-id="54537-115">Return value</span></span>
 
-<span data-ttu-id="230e9-116">如果函式成功，則傳回值是 [**COORD**](coord-str.md) 結構，其中包含字型中每個字元的寬度和高度（以邏輯單位表示）。</span><span class="sxs-lookup"><span data-stu-id="230e9-116">If the function succeeds, the return value is a [**COORD**](coord-str.md) structure that contains the width and height of each character in the font, in logical units.</span></span> <span data-ttu-id="230e9-117">**X**成員包含寬度，而**Y**成員包含高度。</span><span class="sxs-lookup"><span data-stu-id="230e9-117">The **X** member contains the width, while the **Y** member contains the height.</span></span>
+<span data-ttu-id="54537-116">如果函式成功，則傳回值是 [**COORD**](coord-str.md) 結構，其中包含字型中每個字元的寬度和高度（以邏輯單位表示）。</span><span class="sxs-lookup"><span data-stu-id="54537-116">If the function succeeds, the return value is a [**COORD**](coord-str.md) structure that contains the width and height of each character in the font, in logical units.</span></span> <span data-ttu-id="54537-117">**X** 成員包含寬度，而 **Y** 成員包含高度。</span><span class="sxs-lookup"><span data-stu-id="54537-117">The **X** member contains the width, while the **Y** member contains the height.</span></span>
 
-<span data-ttu-id="230e9-118">如果函式失敗，則寬度和高度為零。</span><span class="sxs-lookup"><span data-stu-id="230e9-118">If the function fails, the width and the height are zero.</span></span> <span data-ttu-id="230e9-119">若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。</span><span class="sxs-lookup"><span data-stu-id="230e9-119">To get extended error information, call [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360).</span></span>
+<span data-ttu-id="54537-118">如果函式失敗，則寬度和高度為零。</span><span class="sxs-lookup"><span data-stu-id="54537-118">If the function fails, the width and the height are zero.</span></span> <span data-ttu-id="54537-119">若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。</span><span class="sxs-lookup"><span data-stu-id="54537-119">To get extended error information, call [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360).</span></span>
 
-<span data-ttu-id="230e9-120">若要編譯使用此函數的應用程式，請將\*\* \_ WIN32 \_ WINNT\*\*定義為0x0500 或更新版本。</span><span class="sxs-lookup"><span data-stu-id="230e9-120">To compile an application that uses this function, define **\_WIN32\_WINNT** as 0x0500 or later.</span></span> <span data-ttu-id="230e9-121">如需詳細資訊，請參閱 [使用 Windows 標頭](https://msdn.microsoft.com/library/windows/desktop/aa383745)。</span><span class="sxs-lookup"><span data-stu-id="230e9-121">For more information, see [Using the Windows Headers](https://msdn.microsoft.com/library/windows/desktop/aa383745).</span></span>
+## <a name="remarks"></a><span data-ttu-id="54537-120">備註</span><span class="sxs-lookup"><span data-stu-id="54537-120">Remarks</span></span>
 
-<a name="requirements"></a><span data-ttu-id="230e9-122">規格需求</span><span class="sxs-lookup"><span data-stu-id="230e9-122">Requirements</span></span>
-------------
+<span data-ttu-id="54537-121">若要編譯使用此函數的應用程式，請將 **\_ WIN32 \_ WINNT** 定義為0x0500 或更新版本。</span><span class="sxs-lookup"><span data-stu-id="54537-121">To compile an application that uses this function, define **\_WIN32\_WINNT** as 0x0500 or later.</span></span> <span data-ttu-id="54537-122">如需詳細資訊，請參閱 [使用 Windows 標頭](https://msdn.microsoft.com/library/windows/desktop/aa383745)。</span><span class="sxs-lookup"><span data-stu-id="54537-122">For more information, see [Using the Windows Headers](https://msdn.microsoft.com/library/windows/desktop/aa383745).</span></span>
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p><span data-ttu-id="230e9-123">最低支援的用戶端</span><span class="sxs-lookup"><span data-stu-id="230e9-123">Minimum supported client</span></span></p></td>
-<td><p><span data-ttu-id="230e9-124">Windows XP [僅限桌面應用程式]</span><span class="sxs-lookup"><span data-stu-id="230e9-124">Windows XP [desktop apps only]</span></span></p></td>
-</tr>
-<tr class="even">
-<td><p><span data-ttu-id="230e9-125">最低支援的伺服器</span><span class="sxs-lookup"><span data-stu-id="230e9-125">Minimum supported server</span></span></p></td>
-<td><p><span data-ttu-id="230e9-126">Windows Server 2003 [僅限桌面應用程式]</span><span class="sxs-lookup"><span data-stu-id="230e9-126">Windows Server 2003 [desktop apps only]</span></span></p></td>
-</tr>
-<tr class="odd">
-<td><p><span data-ttu-id="230e9-127">標頭</span><span class="sxs-lookup"><span data-stu-id="230e9-127">Header</span></span></p></td>
-<td><span data-ttu-id="230e9-128">ConsoleApi3 .h (via Wincon，包括 Windows .h) </span><span class="sxs-lookup"><span data-stu-id="230e9-128">ConsoleApi3.h (via Wincon.h, include Windows.h)</span></span></td>
-</tr>
-<tr class="even">
-<td><p><span data-ttu-id="230e9-129">程式庫</span><span class="sxs-lookup"><span data-stu-id="230e9-129">Library</span></span></p></td>
-<td><span data-ttu-id="230e9-130">Kernel32.dll .lib</span><span class="sxs-lookup"><span data-stu-id="230e9-130">Kernel32.lib</span></span></td>
-</tr>
-<tr class="odd">
-<td><p><span data-ttu-id="230e9-131">DLL</span><span class="sxs-lookup"><span data-stu-id="230e9-131">DLL</span></span></p></td>
-<td><span data-ttu-id="230e9-132">Kernel32.dll</span><span class="sxs-lookup"><span data-stu-id="230e9-132">Kernel32.dll</span></span></td>
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-</tbody>
-</table>
+[!INCLUDE [no-vt-equiv-user-priv](./includes/no-vt-equiv-user-priv.md)]
 
-## <a name="span-idsee_alsospansee-also"></a><span data-ttu-id="230e9-133"><span id="see_also"></span>另請參閱</span><span class="sxs-lookup"><span data-stu-id="230e9-133"><span id="see_also"></span>See also</span></span>
+## <a name="requirements"></a><span data-ttu-id="54537-123">規格需求</span><span class="sxs-lookup"><span data-stu-id="54537-123">Requirements</span></span>
 
+| &nbsp; | &nbsp; |
+|-|-|
+| <span data-ttu-id="54537-124">最低支援的用戶端</span><span class="sxs-lookup"><span data-stu-id="54537-124">Minimum supported client</span></span> | <span data-ttu-id="54537-125">\[僅限 WINDOWS XP desktop 應用程式\]</span><span class="sxs-lookup"><span data-stu-id="54537-125">Windows XP \[desktop apps only\]</span></span> |
+| <span data-ttu-id="54537-126">最低支援的伺服器</span><span class="sxs-lookup"><span data-stu-id="54537-126">Minimum supported server</span></span> | <span data-ttu-id="54537-127">僅限 Windows Server 2003 \[ desktop 應用程式\]</span><span class="sxs-lookup"><span data-stu-id="54537-127">Windows Server 2003 \[desktop apps only\]</span></span> |
+| <span data-ttu-id="54537-128">標頭</span><span class="sxs-lookup"><span data-stu-id="54537-128">Header</span></span> | <span data-ttu-id="54537-129">ConsoleApi3 .h (via WinCon，包括 Windows .h) </span><span class="sxs-lookup"><span data-stu-id="54537-129">ConsoleApi3.h (via WinCon.h, include Windows.h)</span></span> |
+| <span data-ttu-id="54537-130">程式庫</span><span class="sxs-lookup"><span data-stu-id="54537-130">Library</span></span> | <span data-ttu-id="54537-131">Kernel32.dll .lib</span><span class="sxs-lookup"><span data-stu-id="54537-131">Kernel32.lib</span></span> |
+| <span data-ttu-id="54537-132">DLL</span><span class="sxs-lookup"><span data-stu-id="54537-132">DLL</span></span> | <span data-ttu-id="54537-133">Kernel32.dll</span><span class="sxs-lookup"><span data-stu-id="54537-133">Kernel32.dll</span></span> |
 
-[<span data-ttu-id="230e9-134">主控台功能</span><span class="sxs-lookup"><span data-stu-id="230e9-134">Console Functions</span></span>](console-functions.md)
+## <a name="see-also"></a><span data-ttu-id="54537-134">請參閱</span><span class="sxs-lookup"><span data-stu-id="54537-134">See also</span></span>
 
-[<span data-ttu-id="230e9-135">主控台畫面緩衝區</span><span class="sxs-lookup"><span data-stu-id="230e9-135">Console Screen Buffers</span></span>](console-screen-buffers.md)
+[<span data-ttu-id="54537-135">主控台功能</span><span class="sxs-lookup"><span data-stu-id="54537-135">Console Functions</span></span>](console-functions.md)
 
-[<span data-ttu-id="230e9-136">**COORD**</span><span class="sxs-lookup"><span data-stu-id="230e9-136">**COORD**</span></span>](coord-str.md)
+[<span data-ttu-id="54537-136">主控台畫面緩衝區</span><span class="sxs-lookup"><span data-stu-id="54537-136">Console Screen Buffers</span></span>](console-screen-buffers.md)
 
-[<span data-ttu-id="230e9-137">**GetCurrentConsoleFont**</span><span class="sxs-lookup"><span data-stu-id="230e9-137">**GetCurrentConsoleFont**</span></span>](getcurrentconsolefont.md)
+[<span data-ttu-id="54537-137">**COORD**</span><span class="sxs-lookup"><span data-stu-id="54537-137">**COORD**</span></span>](coord-str.md)
 
- 
-
- 
-
-
-
-
+[<span data-ttu-id="54537-138">**GetCurrentConsoleFont**</span><span class="sxs-lookup"><span data-stu-id="54537-138">**GetCurrentConsoleFont**</span></span>](getcurrentconsolefont.md)

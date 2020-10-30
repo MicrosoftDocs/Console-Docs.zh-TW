@@ -4,7 +4,7 @@ description: " (標準輸入、標準輸出或標準錯誤) ，抓取指定標�
 author: miniksa
 ms.author: miniksa
 ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 f1_keywords:
 - processenv/GetStdHandle
 - winbase/GetStdHandle
@@ -30,160 +30,97 @@ api_location:
 - MinKernelBase.dll
 api_type:
 - DllExport
-ms.openlocfilehash: 613aacf4052e8e3b38c0a3e254ac4dd2b55ced5d
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: e1cac9a8b2636f5272c6d1ecc358eb59f33295b5
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059082"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93038696"
 ---
-# <a name="getstdhandle-function"></a><span data-ttu-id="e1342-104">GetStdHandle 函式</span><span class="sxs-lookup"><span data-stu-id="e1342-104">GetStdHandle function</span></span>
+# <a name="getstdhandle-function"></a><span data-ttu-id="53a7c-104">GetStdHandle 函式</span><span class="sxs-lookup"><span data-stu-id="53a7c-104">GetStdHandle function</span></span>
 
+<span data-ttu-id="53a7c-105"> (標準輸入、標準輸出或標準錯誤) ，抓取指定標準裝置的控制碼。</span><span class="sxs-lookup"><span data-stu-id="53a7c-105">Retrieves a handle to the specified standard device (standard input, standard output, or standard error).</span></span>
 
-<span data-ttu-id="e1342-105"> (標準輸入、標準輸出或標準錯誤) ，抓取指定標準裝置的控制碼。</span><span class="sxs-lookup"><span data-stu-id="e1342-105">Retrieves a handle to the specified standard device (standard input, standard output, or standard error).</span></span>
-
-<a name="syntax"></a><span data-ttu-id="e1342-106">語法</span><span class="sxs-lookup"><span data-stu-id="e1342-106">Syntax</span></span>
-------
+## <a name="syntax"></a><span data-ttu-id="53a7c-106">語法</span><span class="sxs-lookup"><span data-stu-id="53a7c-106">Syntax</span></span>
 
 ```C
 HANDLE WINAPI GetStdHandle(
-  _In_ DWORD nStdHandle
+  _In_ DWORD nStdHandle
 );
 ```
 
-<a name="parameters"></a><span data-ttu-id="e1342-107">參數</span><span class="sxs-lookup"><span data-stu-id="e1342-107">Parameters</span></span>
-----------
+## <a name="parameters"></a><span data-ttu-id="53a7c-107">參數</span><span class="sxs-lookup"><span data-stu-id="53a7c-107">Parameters</span></span>
 
-<span data-ttu-id="e1342-108">*nStdHandle* \[在\]</span><span class="sxs-lookup"><span data-stu-id="e1342-108">*nStdHandle* \[in\]</span></span>  
-<span data-ttu-id="e1342-109">標準裝置。</span><span class="sxs-lookup"><span data-stu-id="e1342-109">The standard device.</span></span> <span data-ttu-id="e1342-110">這個參數可以是下列其中一個值。</span><span class="sxs-lookup"><span data-stu-id="e1342-110">This parameter can be one of the following values.</span></span>
+<span data-ttu-id="53a7c-108">*nStdHandle* \[在\]</span><span class="sxs-lookup"><span data-stu-id="53a7c-108">*nStdHandle* \[in\]</span></span>  
+<span data-ttu-id="53a7c-109">標準裝置。</span><span class="sxs-lookup"><span data-stu-id="53a7c-109">The standard device.</span></span> <span data-ttu-id="53a7c-110">這個參數可以是下列其中一個值。</span><span class="sxs-lookup"><span data-stu-id="53a7c-110">This parameter can be one of the following values.</span></span>
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><span data-ttu-id="e1342-111">值</span><span class="sxs-lookup"><span data-stu-id="e1342-111">Value</span></span></th>
-<th><span data-ttu-id="e1342-112">意義</span><span class="sxs-lookup"><span data-stu-id="e1342-112">Meaning</span></span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span data-ttu-id="e1342-113"><span id="STD_INPUT_HANDLE"></span><span id="std_input_handle"></span>
-<strong>STD_INPUT_HANDLE</strong> (DWORD) -10</span><span class="sxs-lookup"><span data-stu-id="e1342-113"><span id="STD_INPUT_HANDLE"></span><span id="std_input_handle"></span>
-<strong>STD_INPUT_HANDLE</strong> (DWORD) -10</span></span></td>
-<td><p><span data-ttu-id="e1342-114">標準輸入設備。</span><span class="sxs-lookup"><span data-stu-id="e1342-114">The standard input device.</span></span> <span data-ttu-id="e1342-115">一開始，這是主控台輸入緩衝區 CONIN $。</span><span class="sxs-lookup"><span data-stu-id="e1342-115">Initially, this is the console input buffer, CONIN$.</span></span></p></td>
-</tr>
-<tr class="even">
-<td><span data-ttu-id="e1342-116"><span id="STD_OUTPUT_HANDLE"></span><span id="std_output_handle"></span>
-<strong>STD_OUTPUT_HANDLE</strong> (DWORD) -11</span><span class="sxs-lookup"><span data-stu-id="e1342-116"><span id="STD_OUTPUT_HANDLE"></span><span id="std_output_handle"></span>
-<strong>STD_OUTPUT_HANDLE</strong> (DWORD) -11</span></span></td>
-<td><p><span data-ttu-id="e1342-117">標準輸出裝置。</span><span class="sxs-lookup"><span data-stu-id="e1342-117">The standard output device.</span></span> <span data-ttu-id="e1342-118">一開始，這是使用中的主控台畫面緩衝區 CONOUT $。</span><span class="sxs-lookup"><span data-stu-id="e1342-118">Initially, this is the active console screen buffer, CONOUT$.</span></span></p></td>
-</tr>
-<tr class="odd">
-<td><span data-ttu-id="e1342-119"><span id="STD_ERROR_HANDLE"></span><span id="std_error_handle"></span>
-<strong>STD_ERROR_HANDLE</strong> (DWORD) -12</span><span class="sxs-lookup"><span data-stu-id="e1342-119"><span id="STD_ERROR_HANDLE"></span><span id="std_error_handle"></span>
-<strong>STD_ERROR_HANDLE</strong> (DWORD) -12</span></span></td>
-<td><p><span data-ttu-id="e1342-120">標準錯誤裝置。</span><span class="sxs-lookup"><span data-stu-id="e1342-120">The standard error device.</span></span> <span data-ttu-id="e1342-121">一開始，這是使用中的主控台畫面緩衝區 CONOUT $。</span><span class="sxs-lookup"><span data-stu-id="e1342-121">Initially, this is the active console screen buffer, CONOUT$.</span></span></p></td>
-</tr>
-</tbody>
-</table>
+| <span data-ttu-id="53a7c-111">值</span><span class="sxs-lookup"><span data-stu-id="53a7c-111">Value</span></span> | <span data-ttu-id="53a7c-112">意義</span><span class="sxs-lookup"><span data-stu-id="53a7c-112">Meaning</span></span> |
+|-|-|
+| <span data-ttu-id="53a7c-113">**STD_INPUT_HANDLE** (DWORD) -10</span><span class="sxs-lookup"><span data-stu-id="53a7c-113">**STD_INPUT_HANDLE** (DWORD) -10</span></span> | <span data-ttu-id="53a7c-114">標準輸入設備。</span><span class="sxs-lookup"><span data-stu-id="53a7c-114">The standard input device.</span></span> <span data-ttu-id="53a7c-115">一開始，這是主控台輸入緩衝區 `CONIN$` 。</span><span class="sxs-lookup"><span data-stu-id="53a7c-115">Initially, this is the console input buffer, `CONIN$`.</span></span> |
+| <span data-ttu-id="53a7c-116">**STD_OUTPUT_HANDLE** (DWORD) -11</span><span class="sxs-lookup"><span data-stu-id="53a7c-116">**STD_OUTPUT_HANDLE** (DWORD) -11</span></span> | <span data-ttu-id="53a7c-117">標準輸出裝置。</span><span class="sxs-lookup"><span data-stu-id="53a7c-117">The standard output device.</span></span> <span data-ttu-id="53a7c-118">這一開始是使用中的主控台畫面緩衝區 `CONOUT$` 。</span><span class="sxs-lookup"><span data-stu-id="53a7c-118">Initially, this is the active console screen buffer, `CONOUT$`.</span></span> |
+| <span data-ttu-id="53a7c-119">**STD_ERROR_HANDLE** (DWORD) -12</span><span class="sxs-lookup"><span data-stu-id="53a7c-119">**STD_ERROR_HANDLE** (DWORD) -12</span></span> | <span data-ttu-id="53a7c-120">標準錯誤裝置。</span><span class="sxs-lookup"><span data-stu-id="53a7c-120">The standard error device.</span></span> <span data-ttu-id="53a7c-121">這一開始是使用中的主控台畫面緩衝區 `CONOUT$` 。</span><span class="sxs-lookup"><span data-stu-id="53a7c-121">Initially, this is the active console screen buffer, `CONOUT$`.</span></span> |
 
- 
+## <a name="return-value"></a><span data-ttu-id="53a7c-122">傳回值</span><span class="sxs-lookup"><span data-stu-id="53a7c-122">Return value</span></span>
 
-<a name="return-value"></a><span data-ttu-id="e1342-122">傳回值</span><span class="sxs-lookup"><span data-stu-id="e1342-122">Return value</span></span>
-------------
+<span data-ttu-id="53a7c-123">如果函式成功，則傳回值是指定之裝置的控制碼，或先前呼叫 [**SetStdHandle**](setstdhandle.md)所設定的重新導向控制碼。</span><span class="sxs-lookup"><span data-stu-id="53a7c-123">If the function succeeds, the return value is a handle to the specified device, or a redirected handle set by a previous call to [**SetStdHandle**](setstdhandle.md).</span></span> <span data-ttu-id="53a7c-124">控制碼具有 **一般 \_ 讀取** 和 **一般 \_ 寫入** 存取權限，除非應用程式已使用 **SetStdHandle** 來設定較少存取的標準控制碼。</span><span class="sxs-lookup"><span data-stu-id="53a7c-124">The handle has **GENERIC\_READ** and **GENERIC\_WRITE** access rights, unless the application has used **SetStdHandle** to set a standard handle with lesser access.</span></span>
 
-<span data-ttu-id="e1342-123">如果函式成功，則傳回值是指定之裝置的控制碼，或先前呼叫 [**SetStdHandle**](setstdhandle.md)所設定的重新導向控制碼。</span><span class="sxs-lookup"><span data-stu-id="e1342-123">If the function succeeds, the return value is a handle to the specified device, or a redirected handle set by a previous call to [**SetStdHandle**](setstdhandle.md).</span></span> <span data-ttu-id="e1342-124">控制碼具有 **一般 \_ 讀取** 和 **一般 \_ 寫入** 存取權限，除非應用程式已使用 **SetStdHandle** 來設定較少存取的標準控制碼。</span><span class="sxs-lookup"><span data-stu-id="e1342-124">The handle has **GENERIC\_READ** and **GENERIC\_WRITE** access rights, unless the application has used **SetStdHandle** to set a standard handle with lesser access.</span></span>
+<span data-ttu-id="53a7c-125">如果函式失敗，則傳回值是 **不正確 \_ 控制碼 \_ 值** 。</span><span class="sxs-lookup"><span data-stu-id="53a7c-125">If the function fails, the return value is **INVALID\_HANDLE\_VALUE** .</span></span> <span data-ttu-id="53a7c-126">若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。</span><span class="sxs-lookup"><span data-stu-id="53a7c-126">To get extended error information, call [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360).</span></span>
 
-<span data-ttu-id="e1342-125">如果函式失敗，則傳回值是 **不正確 \_ 控制碼 \_ 值**。</span><span class="sxs-lookup"><span data-stu-id="e1342-125">If the function fails, the return value is **INVALID\_HANDLE\_VALUE**.</span></span> <span data-ttu-id="e1342-126">若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。</span><span class="sxs-lookup"><span data-stu-id="e1342-126">To get extended error information, call [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360).</span></span>
+<span data-ttu-id="53a7c-127">如果應用程式沒有相關聯的標準控制碼（例如在互動式桌面上執行的服務），而且尚未將它們重新導向，則傳回值為 **Null** 。</span><span class="sxs-lookup"><span data-stu-id="53a7c-127">If an application does not have associated standard handles, such as a service running on an interactive desktop, and has not redirected them, the return value is **NULL** .</span></span>
 
-<span data-ttu-id="e1342-127">如果應用程式沒有相關聯的標準控制碼（例如在互動式桌面上執行的服務），而且尚未將它們重新導向，則傳回值為 **Null**。</span><span class="sxs-lookup"><span data-stu-id="e1342-127">If an application does not have associated standard handles, such as a service running on an interactive desktop, and has not redirected them, the return value is **NULL**.</span></span>
+## <a name="remarks"></a><span data-ttu-id="53a7c-128">備註</span><span class="sxs-lookup"><span data-stu-id="53a7c-128">Remarks</span></span>
 
-<a name="remarks"></a><span data-ttu-id="e1342-128">備註</span><span class="sxs-lookup"><span data-stu-id="e1342-128">Remarks</span></span>
--------
+<span data-ttu-id="53a7c-129">**GetStdHandle** 所傳回的控制碼可供需要讀取或寫入主控台的應用程式使用。</span><span class="sxs-lookup"><span data-stu-id="53a7c-129">Handles returned by **GetStdHandle** can be used by applications that need to read from or write to the console.</span></span> <span data-ttu-id="53a7c-130">建立主控台時，標準輸入控制碼是主控台輸入緩衝區的控制碼，而標準輸出和標準錯誤控制碼則是主控台的作用中螢幕緩衝區的控制碼。</span><span class="sxs-lookup"><span data-stu-id="53a7c-130">When a console is created, the standard input handle is a handle to the console's input buffer, and the standard output and standard error handles are handles of the console's active screen buffer.</span></span> <span data-ttu-id="53a7c-131">這些控制碼可供 [**ReadFile**](https://msdn.microsoft.com/library/windows/desktop/aa365467) 和 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) 函式使用，或由任何可存取主控台輸入緩衝區或螢幕緩衝區的主控台函式使用 (例如， [**ReadConsoleInput**](readconsoleinput.md)、 [**WriteConsole**](writeconsole.md)或 [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md) 函數) 。</span><span class="sxs-lookup"><span data-stu-id="53a7c-131">These handles can be used by the [**ReadFile**](https://msdn.microsoft.com/library/windows/desktop/aa365467) and [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) functions, or by any of the console functions that access the console input buffer or a screen buffer (for example, the [**ReadConsoleInput**](readconsoleinput.md), [**WriteConsole**](writeconsole.md), or [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md) functions).</span></span>
 
-<span data-ttu-id="e1342-129">**GetStdHandle**所傳回的控制碼可供需要讀取或寫入主控台的應用程式使用。</span><span class="sxs-lookup"><span data-stu-id="e1342-129">Handles returned by **GetStdHandle** can be used by applications that need to read from or write to the console.</span></span> <span data-ttu-id="e1342-130">建立主控台時，標準輸入控制碼是主控台輸入緩衝區的控制碼，而標準輸出和標準錯誤控制碼則是主控台的作用中螢幕緩衝區的控制碼。</span><span class="sxs-lookup"><span data-stu-id="e1342-130">When a console is created, the standard input handle is a handle to the console's input buffer, and the standard output and standard error handles are handles of the console's active screen buffer.</span></span> <span data-ttu-id="e1342-131">這些控制碼可供 [**ReadFile**](https://msdn.microsoft.com/library/windows/desktop/aa365467) 和 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) 函式使用，或由任何可存取主控台輸入緩衝區或螢幕緩衝區的主控台函式使用 (例如， [**ReadConsoleInput**](readconsoleinput.md)、 [**WriteConsole**](writeconsole.md)或 [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md) 函數) 。</span><span class="sxs-lookup"><span data-stu-id="e1342-131">These handles can be used by the [**ReadFile**](https://msdn.microsoft.com/library/windows/desktop/aa365467) and [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) functions, or by any of the console functions that access the console input buffer or a screen buffer (for example, the [**ReadConsoleInput**](readconsoleinput.md), [**WriteConsole**](writeconsole.md), or [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md) functions).</span></span>
+<span data-ttu-id="53a7c-132">呼叫 [**SetStdHandle**](setstdhandle.md)可能會重新導向進程的標準控制碼，在這種情況下， **GetStdHandle** 會傳回重新導向的控制碼。</span><span class="sxs-lookup"><span data-stu-id="53a7c-132">The standard handles of a process may be redirected by a call to [**SetStdHandle**](setstdhandle.md), in which case **GetStdHandle** returns the redirected handle.</span></span> <span data-ttu-id="53a7c-133">如果已重新導向標準控制碼，您可以在對 CreateFile 函式的 `CONIN$` 呼叫中 [**CreateFile**](https://msdn.microsoft.com/library/windows/desktop/aa363858)指定值，以取得主控台輸入緩衝區的控制碼。</span><span class="sxs-lookup"><span data-stu-id="53a7c-133">If the standard handles have been redirected, you can specify the `CONIN$` value in a call to the [**CreateFile**](https://msdn.microsoft.com/library/windows/desktop/aa363858) function to get a handle to a console's input buffer.</span></span> <span data-ttu-id="53a7c-134">同樣地，您可以指定 `CONOUT$` 值以取得主控台的作用中螢幕緩衝區的控制碼。</span><span class="sxs-lookup"><span data-stu-id="53a7c-134">Similarly, you can specify the `CONOUT$` value to get a handle to a console's active screen buffer.</span></span>
 
-<span data-ttu-id="e1342-132">呼叫 [**SetStdHandle**](setstdhandle.md)可能會重新導向進程的標準控制碼，在這種情況下， **GetStdHandle** 會傳回重新導向的控制碼。</span><span class="sxs-lookup"><span data-stu-id="e1342-132">The standard handles of a process may be redirected by a call to [**SetStdHandle**](setstdhandle.md), in which case **GetStdHandle** returns the redirected handle.</span></span> <span data-ttu-id="e1342-133">如果已重新導向標準控制碼，您可以在 [**CreateFile**](https://msdn.microsoft.com/library/windows/desktop/aa363858) 函式的呼叫中指定 CONIN $ 值，以取得主控台輸入緩衝區的控制碼。</span><span class="sxs-lookup"><span data-stu-id="e1342-133">If the standard handles have been redirected, you can specify the CONIN$ value in a call to the [**CreateFile**](https://msdn.microsoft.com/library/windows/desktop/aa363858) function to get a handle to a console's input buffer.</span></span> <span data-ttu-id="e1342-134">同樣地，您可以指定 CONOUT $ 值，以取得主控台的作用中螢幕緩衝區的控制碼。</span><span class="sxs-lookup"><span data-stu-id="e1342-134">Similarly, you can specify the CONOUT$ value to get a handle to a console's active screen buffer.</span></span>
+<span data-ttu-id="53a7c-135">當建立應用程式時，將傳遞給連結器的 [**/SUBSYSTEM**](https://docs.microsoft.com/cpp/build/reference/subsystem-specify-subsystem) 旗標設定，會決定如何在 main 方法的專案上設定標準處理常式。</span><span class="sxs-lookup"><span data-stu-id="53a7c-135">The standard handles of a process on entry of the main method are dictated by the configuration of the [**/SUBSYSTEM**](https://docs.microsoft.com/cpp/build/reference/subsystem-specify-subsystem) flag passed to the linker when the application was built.</span></span> <span data-ttu-id="53a7c-136">指定 **/SUBSYSTEM：主控台** 要求作業系統在啟動時以主控台會話填滿控制碼，如果父系尚未依繼承填滿標準控制碼表格。</span><span class="sxs-lookup"><span data-stu-id="53a7c-136">Specifying **/SUBSYSTEM:CONSOLE** requests that the operating system fill the handles with a console session on startup, if the parent didn't already fill the standard handle table by inheritance.</span></span> <span data-ttu-id="53a7c-137">相反地， **/SUBSYSTEM： WINDOWS** 表示應用程式不需要主控台，而且可能不會使用標準控點。</span><span class="sxs-lookup"><span data-stu-id="53a7c-137">On the contrary, **/SUBSYSTEM:WINDOWS** implies that the application does not need a console and will likely not be making use of the standard handles.</span></span> <span data-ttu-id="53a7c-138">如需有關控制碼繼承的詳細資訊，請參閱 [**STARTF \_ USESTDHANDLES**](https://docs.microsoft.com/windows/win32/api/processthreadsapi/ns-processthreadsapi-startupinfoa)的檔。</span><span class="sxs-lookup"><span data-stu-id="53a7c-138">More information on handle inheritance can be found in the documentation for [**STARTF\_USESTDHANDLES**](https://docs.microsoft.com/windows/win32/api/processthreadsapi/ns-processthreadsapi-startupinfoa).</span></span>
 
-### <a name="span-idattach_detach_behaviorspanspan-idattach_detach_behaviorspanspan-idattach_detach_behaviorspanattachdetach-behavior"></a><span data-ttu-id="e1342-135"><span id="Attach_detach_behavior"></span><span id="attach_detach_behavior"></span><span id="ATTACH_DETACH_BEHAVIOR"></span>附加/卸離行為</span><span class="sxs-lookup"><span data-stu-id="e1342-135"><span id="Attach_detach_behavior"></span><span id="attach_detach_behavior"></span><span id="ATTACH_DETACH_BEHAVIOR"></span>Attach/detach behavior</span></span>
+<span data-ttu-id="53a7c-139">有些應用程式會在其宣告的子系統界限之外運作;比方說， **/SUBSYSTEM： WINDOWS** 應用程式可能會檢查/使用標準控制碼進行記錄或偵測，但以圖形化使用者介面正常運作。</span><span class="sxs-lookup"><span data-stu-id="53a7c-139">Some applications operate outside the boundaries of their declared subsystem; for instance, a **/SUBSYSTEM:WINDOWS** application might check/use standard handles for logging or debugging purposes but operate normally with a graphical user interface.</span></span> <span data-ttu-id="53a7c-140">這些應用程式必須在啟動時仔細探查標準控制碼的狀態，並使用 [**AttachConsole**](attachconsole.md)、 [**AllocConsole**](allocconsole.md)和 [**FreeConsole**](freeconsole.md) 來新增/移除主控台（如有需要）。</span><span class="sxs-lookup"><span data-stu-id="53a7c-140">These applications will need to carefully probe the state of standard handles on startup and make use of [**AttachConsole**](attachconsole.md), [**AllocConsole**](allocconsole.md), and [**FreeConsole**](freeconsole.md) to add/remove a console if desired.</span></span>
 
-<span data-ttu-id="e1342-136">附加至新的主控台時，除非在進程建立期間指定了 **STARTF \_ USESTDHANDLES** ，否則一律會使用主控台控制碼來取代標準控制碼。</span><span class="sxs-lookup"><span data-stu-id="e1342-136">When attaching to a new console, standard handles are always replaced with console handles unless **STARTF\_USESTDHANDLES** was specified during process creation.</span></span>
+<span data-ttu-id="53a7c-141">某些應用程式可能也會在繼承控制碼的類型上改變其行為。</span><span class="sxs-lookup"><span data-stu-id="53a7c-141">Some applications may also vary their behavior on the type of inherited handle.</span></span> <span data-ttu-id="53a7c-142">您可以使用 [**GetFileType**](https://docs.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getfiletype)來執行主控台、管道、檔案和其他專案之間的類型 Disambiguating。</span><span class="sxs-lookup"><span data-stu-id="53a7c-142">Disambiguating the type between console, pipe, file, and others can be performed with [**GetFileType**](https://docs.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getfiletype).</span></span>
 
-<span data-ttu-id="e1342-137">如果標準控制碼的現有值為 **Null**，或標準控制碼的現有值看起來像主控台 pseudohandle，控制碼就會取代為主控台控制碼。</span><span class="sxs-lookup"><span data-stu-id="e1342-137">If the existing value of the standard handle is **NULL**, or the existing value of the standard handle looks like a console pseudohandle, the handle is replaced with a console handle.</span></span>
+### <a name="attachdetach-behavior"></a><span data-ttu-id="53a7c-143">附加/卸離行為</span><span class="sxs-lookup"><span data-stu-id="53a7c-143">Attach/detach behavior</span></span>
 
-<span data-ttu-id="e1342-138">當父系同時使用 [ **建立 \_ 新的 \_ 主控台** ] 和 [ **STARTF \_ USESTDHANDLES** ] 建立主控台進程時，除非標準控制碼的現有值為 Null 或主控台 pseudohandle，否則不會取代標準控制碼。</span><span class="sxs-lookup"><span data-stu-id="e1342-138">When a parent uses both **CREATE\_NEW\_CONSOLE** and **STARTF\_USESTDHANDLES** to create a console process, standard handles will not be replaced unless the existing value of the standard handle is NULL or a console pseudohandle.</span></span>
+<span data-ttu-id="53a7c-144">附加至新的主控台時，除非在進程建立期間指定了 **STARTF \_ USESTDHANDLES** ，否則一律會使用主控台控制碼來取代標準控制碼。</span><span class="sxs-lookup"><span data-stu-id="53a7c-144">When attaching to a new console, standard handles are always replaced with console handles unless **STARTF\_USESTDHANDLES** was specified during process creation.</span></span>
 
-<a name="examples"></a><span data-ttu-id="e1342-139">範例</span><span class="sxs-lookup"><span data-stu-id="e1342-139">Examples</span></span>
---------
+<span data-ttu-id="53a7c-145">如果標準控制碼的現有值為 **Null** ，或標準控制碼的現有值看起來像主控台 pseudohandle，控制碼就會取代為主控台控制碼。</span><span class="sxs-lookup"><span data-stu-id="53a7c-145">If the existing value of the standard handle is **NULL** , or the existing value of the standard handle looks like a console pseudohandle, the handle is replaced with a console handle.</span></span>
 
-<span data-ttu-id="e1342-140">如需範例，請參閱 [讀取輸入緩衝區事件](reading-input-buffer-events.md)。</span><span class="sxs-lookup"><span data-stu-id="e1342-140">For an example, see [Reading Input Buffer Events](reading-input-buffer-events.md).</span></span>
+<span data-ttu-id="53a7c-146">當父系同時使用 [ **建立 \_ 新的 \_ 主控台** ] 和 [ **STARTF \_ USESTDHANDLES** ] 建立主控台進程時，除非標準控制碼的現有值為 **Null** 或主控台 pseudohandle，否則不會取代標準控制碼。</span><span class="sxs-lookup"><span data-stu-id="53a7c-146">When a parent uses both **CREATE\_NEW\_CONSOLE** and **STARTF\_USESTDHANDLES** to create a console process, standard handles will not be replaced unless the existing value of the standard handle is **NULL** or a console pseudohandle.</span></span>
 
-<a name="requirements"></a><span data-ttu-id="e1342-141">規格需求</span><span class="sxs-lookup"><span data-stu-id="e1342-141">Requirements</span></span>
-------------
+> [!NOTE]
+><span data-ttu-id="53a7c-147">主控台處理常式 *必須* 以填滿的標準控點作為開頭，否則系統將會自動使用適當的控制碼來填滿新的主控台。</span><span class="sxs-lookup"><span data-stu-id="53a7c-147">Console processes *must* start with the standard handles filled or they will be filled automatically with appropriate handles to a new console.</span></span> <span data-ttu-id="53a7c-148">圖形化使用者介面 (GUI) 應用程式可以在沒有標準控制碼的情況下啟動，且不會自動填入。</span><span class="sxs-lookup"><span data-stu-id="53a7c-148">Graphical user interface (GUI) applications can be started without the standard handles and they will not be automatically filled.</span></span>
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p><span data-ttu-id="e1342-142">最低支援的用戶端</span><span class="sxs-lookup"><span data-stu-id="e1342-142">Minimum supported client</span></span></p></td>
-<td><p><span data-ttu-id="e1342-143">Windows 2000 Professional [僅限桌面應用程式]</span><span class="sxs-lookup"><span data-stu-id="e1342-143">Windows 2000 Professional [desktop apps only]</span></span></p></td>
-</tr>
-<tr class="even">
-<td><p><span data-ttu-id="e1342-144">最低支援的伺服器</span><span class="sxs-lookup"><span data-stu-id="e1342-144">Minimum supported server</span></span></p></td>
-<td><p><span data-ttu-id="e1342-145">Windows 2000 伺服器 [僅限桌面應用程式]</span><span class="sxs-lookup"><span data-stu-id="e1342-145">Windows 2000 Server [desktop apps only]</span></span></p></td>
-</tr>
-<tr class="odd">
-<td><p><span data-ttu-id="e1342-146">標頭</span><span class="sxs-lookup"><span data-stu-id="e1342-146">Header</span></span></p></td>
-<td><span data-ttu-id="e1342-147">ProcessEnv .h (via Winbase，包括 Windows .h) </span><span class="sxs-lookup"><span data-stu-id="e1342-147">ProcessEnv.h (via Winbase.h, include Windows.h)</span></span></td>
-</tr>
-<tr class="even">
-<td><p><span data-ttu-id="e1342-148">程式庫</span><span class="sxs-lookup"><span data-stu-id="e1342-148">Library</span></span></p></td>
-<td><span data-ttu-id="e1342-149">Kernel32.dll .lib</span><span class="sxs-lookup"><span data-stu-id="e1342-149">Kernel32.lib</span></span></td>
-</tr>
-<tr class="odd">
-<td><p><span data-ttu-id="e1342-150">DLL</span><span class="sxs-lookup"><span data-stu-id="e1342-150">DLL</span></span></p></td>
-<td><span data-ttu-id="e1342-151">Kernel32.dll</span><span class="sxs-lookup"><span data-stu-id="e1342-151">Kernel32.dll</span></span></td>
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-</tbody>
-</table>
+## <a name="examples"></a><span data-ttu-id="53a7c-149">範例</span><span class="sxs-lookup"><span data-stu-id="53a7c-149">Examples</span></span>
 
-## <a name="span-idsee_alsospansee-also"></a><span data-ttu-id="e1342-152"><span id="see_also"></span>另請參閱</span><span class="sxs-lookup"><span data-stu-id="e1342-152"><span id="see_also"></span>See also</span></span>
+<span data-ttu-id="53a7c-150">如需範例，請參閱 [讀取輸入緩衝區事件](reading-input-buffer-events.md)。</span><span class="sxs-lookup"><span data-stu-id="53a7c-150">For an example, see [Reading Input Buffer Events](reading-input-buffer-events.md).</span></span>
 
+## <a name="requirements"></a><span data-ttu-id="53a7c-151">規格需求</span><span class="sxs-lookup"><span data-stu-id="53a7c-151">Requirements</span></span>
 
-[<span data-ttu-id="e1342-153">主控台功能</span><span class="sxs-lookup"><span data-stu-id="e1342-153">Console Functions</span></span>](console-functions.md)
+| &nbsp; | &nbsp; |
+|-|-|
+| <span data-ttu-id="53a7c-152">最低支援的用戶端</span><span class="sxs-lookup"><span data-stu-id="53a7c-152">Minimum supported client</span></span> | <span data-ttu-id="53a7c-153">僅限 Windows 2000 Professional \[ desktop 應用程式\]</span><span class="sxs-lookup"><span data-stu-id="53a7c-153">Windows 2000 Professional \[desktop apps only\]</span></span> |
+| <span data-ttu-id="53a7c-154">最低支援的伺服器</span><span class="sxs-lookup"><span data-stu-id="53a7c-154">Minimum supported server</span></span> | <span data-ttu-id="53a7c-155">僅限 Windows 2000 Server \[ desktop 應用程式\]</span><span class="sxs-lookup"><span data-stu-id="53a7c-155">Windows 2000 Server \[desktop apps only\]</span></span> |
+| <span data-ttu-id="53a7c-156">標頭</span><span class="sxs-lookup"><span data-stu-id="53a7c-156">Header</span></span> | <span data-ttu-id="53a7c-157">ProcessEnv .h (via Winbase，包括 Windows .h) </span><span class="sxs-lookup"><span data-stu-id="53a7c-157">ProcessEnv.h (via Winbase.h, include Windows.h)</span></span> |
+| <span data-ttu-id="53a7c-158">程式庫</span><span class="sxs-lookup"><span data-stu-id="53a7c-158">Library</span></span> | <span data-ttu-id="53a7c-159">Kernel32.dll .lib</span><span class="sxs-lookup"><span data-stu-id="53a7c-159">Kernel32.lib</span></span> |
+| <span data-ttu-id="53a7c-160">DLL</span><span class="sxs-lookup"><span data-stu-id="53a7c-160">DLL</span></span> | <span data-ttu-id="53a7c-161">Kernel32.dll</span><span class="sxs-lookup"><span data-stu-id="53a7c-161">Kernel32.dll</span></span> |
 
-[<span data-ttu-id="e1342-154">主控台控制碼</span><span class="sxs-lookup"><span data-stu-id="e1342-154">Console Handles</span></span>](console-handles.md)
+## <a name="see-also"></a><span data-ttu-id="53a7c-162">請參閱</span><span class="sxs-lookup"><span data-stu-id="53a7c-162">See also</span></span>
 
-[<span data-ttu-id="e1342-155">**CreateFile**</span><span class="sxs-lookup"><span data-stu-id="e1342-155">**CreateFile**</span></span>](https://msdn.microsoft.com/library/windows/desktop/aa363858)
+[<span data-ttu-id="53a7c-163">主控台功能</span><span class="sxs-lookup"><span data-stu-id="53a7c-163">Console Functions</span></span>](console-functions.md)
 
-[<span data-ttu-id="e1342-156">**GetConsoleScreenBufferInfo**</span><span class="sxs-lookup"><span data-stu-id="e1342-156">**GetConsoleScreenBufferInfo**</span></span>](getconsolescreenbufferinfo.md)
+[<span data-ttu-id="53a7c-164">主控台控制代碼</span><span class="sxs-lookup"><span data-stu-id="53a7c-164">Console Handles</span></span>](console-handles.md)
 
-[<span data-ttu-id="e1342-157">**ReadConsoleInput**</span><span class="sxs-lookup"><span data-stu-id="e1342-157">**ReadConsoleInput**</span></span>](readconsoleinput.md)
+[<span data-ttu-id="53a7c-165">**CreateFile**</span><span class="sxs-lookup"><span data-stu-id="53a7c-165">**CreateFile**</span></span>](https://msdn.microsoft.com/library/windows/desktop/aa363858)
 
-[<span data-ttu-id="e1342-158">**ReadFile**</span><span class="sxs-lookup"><span data-stu-id="e1342-158">**ReadFile**</span></span>](https://msdn.microsoft.com/library/windows/desktop/aa365467)
+[<span data-ttu-id="53a7c-166">**GetConsoleScreenBufferInfo**</span><span class="sxs-lookup"><span data-stu-id="53a7c-166">**GetConsoleScreenBufferInfo**</span></span>](getconsolescreenbufferinfo.md)
 
-[<span data-ttu-id="e1342-159">**SetStdHandle**</span><span class="sxs-lookup"><span data-stu-id="e1342-159">**SetStdHandle**</span></span>](setstdhandle.md)
+[<span data-ttu-id="53a7c-167">**ReadConsoleInput**</span><span class="sxs-lookup"><span data-stu-id="53a7c-167">**ReadConsoleInput**</span></span>](readconsoleinput.md)
 
-[<span data-ttu-id="e1342-160">**WriteConsole**</span><span class="sxs-lookup"><span data-stu-id="e1342-160">**WriteConsole**</span></span>](writeconsole.md)
+[<span data-ttu-id="53a7c-168">**ReadFile**</span><span class="sxs-lookup"><span data-stu-id="53a7c-168">**ReadFile**</span></span>](https://msdn.microsoft.com/library/windows/desktop/aa365467)
 
-[<span data-ttu-id="e1342-161">**WriteFile**</span><span class="sxs-lookup"><span data-stu-id="e1342-161">**WriteFile**</span></span>](https://msdn.microsoft.com/library/windows/desktop/aa365747)
+[<span data-ttu-id="53a7c-169">**SetStdHandle**</span><span class="sxs-lookup"><span data-stu-id="53a7c-169">**SetStdHandle**</span></span>](setstdhandle.md)
 
- 
+[<span data-ttu-id="53a7c-170">**WriteConsole**</span><span class="sxs-lookup"><span data-stu-id="53a7c-170">**WriteConsole**</span></span>](writeconsole.md)
 
- 
-
-
-
-
+[<span data-ttu-id="53a7c-171">**WriteFile**</span><span class="sxs-lookup"><span data-stu-id="53a7c-171">**WriteFile**</span></span>](https://msdn.microsoft.com/library/windows/desktop/aa365747)
