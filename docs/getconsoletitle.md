@@ -4,7 +4,7 @@ description: 抓取目前主控台視窗之標題的標題和大小。
 author: miniksa
 ms.author: miniksa
 ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 f1_keywords:
 - consoleapi2/GetConsoleTitle
 - wincon/GetConsoleTitle
@@ -38,102 +38,67 @@ api_location:
 - Kernel32Legacy.dll
 api_type:
 - DllExport
-ms.openlocfilehash: 5b8e78e65e52c3f10be14afa6a122fa12609a2eb
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: 23b52ba1d5dde40ef842297249fdd2f87cebcb12
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059119"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93037876"
 ---
 # <a name="getconsoletitle-function"></a>GetConsoleTitle 函式
 
+[!INCLUDE [not-recommended-banner](./includes/not-recommended-banner.md)]
 
 抓取目前主控台視窗的標題。
 
-<a name="syntax"></a>語法
-------
+## <a name="syntax"></a>語法
 
 ```C
 DWORD WINAPI GetConsoleTitle(
-  _Out_ LPTSTR lpConsoleTitle,
-  _In_  DWORD  nSize
+  _Out_ LPTSTR lpConsoleTitle,
+  _In_  DWORD  nSize
 );
 ```
 
-<a name="parameters"></a>參數
-----------
+## <a name="parameters"></a>參數
 
 *lpConsoleTitle* \[擴展\]  
 緩衝區的指標，此緩衝區會接收包含標題之以 null 結束的字串。 如果緩衝區太小而無法儲存標題，此函式會將標題的任意多個字元儲存為緩衝區中容納的字元，並以 null 結束字元結尾。
 
 *nSize* \[在\]  
-*LpConsoleTitle*參數所指向的緩衝區大小（以字元為單位）。
+*LpConsoleTitle* 參數所指向的緩衝區大小（以字元為單位）。
 
-<a name="return-value"></a>傳回值
-------------
+## <a name="return-value"></a>傳回值
 
 如果函式成功，則傳回值為主控台視窗標題的長度（以字元為單位）。
 
 如果函式失敗，則傳回值為零，而 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360) 會傳回錯誤碼。
 
-<a name="remarks"></a>備註
--------
+## <a name="remarks"></a>備註
 
 若要設定主控台視窗的標題，請使用 [**SetConsoleTitle**](setconsoletitle.md) 函數。 若要取出原始的標題字串，請使用 [**GetConsoleOriginalTitle**](getconsoleoriginaltitle.md) 函數。
 
-此函式會從主控台的目前字碼頁使用 Unicode 字元或8位字元。 主控台的字碼頁一開始預設為系統的 OEM 字碼頁。 若要變更控制台的字碼頁，請使用 [**SetConsoleCP**](setconsolecp.md) 或 [**SetConsoleOutputCP**](setconsoleoutputcp.md) 函式，或使用 **chcp** 或 **mode con cp select =** 命令。
+[!INCLUDE [setting-codepage-mode-remarks](./includes/setting-codepage-mode-remarks.md)]
 
-<a name="examples"></a>範例
---------
+> [!TIP]
+> 不建議使用此 API，也不會有對等的 **[虛擬終端](console-virtual-terminal-sequences.md)** 機。 這種決策刻意將 Windows 平臺與其他作業系統對齊。 使用此 API 時，透過跨平臺公用程式和傳輸（如 SSH）的應用程式遠端執行可能無法如預期般運作。
+
+## <a name="examples"></a>範例
 
 如需範例，請參閱 [**SetConsoleTitle**](setconsoletitle.md)。
 
-<a name="requirements"></a>規格需求
-------------
+## <a name="requirements"></a>規格需求
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>最低支援的用戶端</p></td>
-<td><p>Windows 2000 Professional [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="even">
-<td><p>最低支援的伺服器</p></td>
-<td><p>Windows 2000 伺服器 [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="odd">
-<td><p>標頭</p></td>
-<td>ConsoleApi2 .h (via Wincon，包括 Windows .h) </td>
-</tr>
-<tr class="even">
-<td><p>程式庫</p></td>
-<td>Kernel32.dll .lib</td>
-</tr>
-<tr class="odd">
-<td><p>DLL</p></td>
-<td>Kernel32.dll</td>
-</tr>
-<tr class="even">
-<td><p>Unicode 和 ANSI 名稱</p></td>
-<td><p><strong>GetConsoleTitleW</strong> (Unicode) 和 <strong>GetConsoleTitleA</strong> (ANSI) </p></td>
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-</tbody>
-</table>
+| &nbsp; | &nbsp; |
+|-|-|
+| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
+| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
+| 程式庫 | Kernel32.dll .lib |
+| DLL | Kernel32.dll |
+| Unicode 和 ANSI 名稱 | **GetConsoleTitleW** (Unicode) 和 **GetConsoleTitleA** (ANSI)  |
 
-## <a name="span-idsee_alsospansee-also"></a><span id="see_also"></span>另請參閱
-
+## <a name="see-also"></a>請參閱
 
 [主控台功能](console-functions.md)
 
@@ -144,11 +109,3 @@ DWORD WINAPI GetConsoleTitle(
 [**SetConsoleOutputCP**](setconsoleoutputcp.md)
 
 [**SetConsoleTitle**](setconsoletitle.md)
-
- 
-
- 
-
-
-
-

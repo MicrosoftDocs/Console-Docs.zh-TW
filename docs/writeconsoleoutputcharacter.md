@@ -4,7 +4,7 @@ description: 從指定的位置開始，將數個字元複製到主控台螢幕�
 author: miniksa
 ms.author: miniksa
 ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 f1_keywords:
 - consoleapi2/WriteConsoleOutputCharacter
 - wincon/WriteConsoleOutputCharacter
@@ -36,33 +36,32 @@ api_location:
 - API-MS-Win-DownLevel-Kernel32-l1-1-0.dll
 api_type:
 - DllExport
-ms.openlocfilehash: bc313abbcb28016968355cc405e0cc2de3d36cb0
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: 462ebfaed09a5c18fa9a075227a5568a789685bd
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059506"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93037206"
 ---
 # <a name="writeconsoleoutputcharacter-function"></a>WriteConsoleOutputCharacter 函式
 
+[!INCLUDE [not-recommended-banner](./includes/not-recommended-banner.md)]
 
 從指定的位置開始，將數個字元複製到主控台螢幕緩衝區的連續儲存格。
 
-<a name="syntax"></a>語法
-------
+## <a name="syntax"></a>語法
 
 ```C
 BOOL WINAPI WriteConsoleOutputCharacter(
-  _In_  HANDLE  hConsoleOutput,
-  _In_  LPCTSTR lpCharacter,
-  _In_  DWORD   nLength,
-  _In_  COORD   dwWriteCoord,
-  _Out_ LPDWORD lpNumberOfCharsWritten
+  _In_  HANDLE  hConsoleOutput,
+  _In_  LPCTSTR lpCharacter,
+  _In_  DWORD   nLength,
+  _In_  COORD   dwWriteCoord,
+  _Out_ LPDWORD lpNumberOfCharsWritten
 );
 ```
 
-<a name="parameters"></a>參數
-----------
+## <a name="parameters"></a>參數
 
 *hConsoleOutput* \[在\]  
 主控台螢幕緩衝區的控制碼。 控制碼必須有 **一般 \_ 寫入** 存取權限。 如需詳細資訊，請參閱 [主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
@@ -79,68 +78,35 @@ BOOL WINAPI WriteConsoleOutputCharacter(
 *lpNumberOfCharsWritten* \[擴展\]  
 變數的指標，此變數會接收實際寫入的字元數。
 
-<a name="return-value"></a>傳回值
-------------
+## <a name="return-value"></a>傳回值
 
 如果函式成功，則傳回值為非零。
 
 如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
 
-<a name="remarks"></a>備註
--------
+## <a name="remarks"></a>備註
 
 如果要寫入的字元數超出主控台螢幕緩衝區中指定之資料列的結尾，則會將字元寫入至下一個資料列。 如果要寫入的字元數超過主控台螢幕緩衝區的結尾，則字元會寫入至主控台畫面緩衝區的結尾。
 
 在寫入至的位置上的屬性值不會變更。
 
-此函式會從主控台的目前字碼頁使用 Unicode 字元或8位字元。 主控台的字碼頁一開始預設為系統的 OEM 字碼頁。 若要變更控制台的字碼頁，請使用 [**SetConsoleCP**](setconsolecp.md) 或 [**SetConsoleOutputCP**](setconsoleoutputcp.md) 函式，或使用 **chcp** 或 **mode con cp select =** 命令。
+[!INCLUDE [setting-codepage-mode-remarks](./includes/setting-codepage-mode-remarks.md)]
 
-<a name="requirements"></a>規格需求
-------------
+> [!TIP]
+> 此 API 的 **[虛擬終端](console-virtual-terminal-sequences.md)** 機等同于 **[文字格式](console-virtual-terminal-sequences.md#text-formatting)** 和資料 **[指標定位](console-virtual-terminal-sequences.md#cursor-positioning)** 順序。 將游標移至要插入的位置，套用所需的格式，並寫出要填滿的文字。 沒有任何專案會將文字發出至區域，也不會套用使用中的色彩格式。 這項決策刻意讓 Windows 平臺與其他作業系統保持一致，而個別用戶端應用程式應記住自己的繪製狀態以進行進一步的操作。
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>最低支援的用戶端</p></td>
-<td><p>Windows 2000 Professional [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="even">
-<td><p>最低支援的伺服器</p></td>
-<td><p>Windows 2000 伺服器 [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="odd">
-<td><p>標頭</p></td>
-<td>ConsoleApi2 .h (via Wincon，包括 Windows .h) </td>
-</tr>
-<tr class="even">
-<td><p>程式庫</p></td>
-<td>Kernel32.dll .lib</td>
-</tr>
-<tr class="odd">
-<td><p>DLL</p></td>
-<td>Kernel32.dll</td>
-</tr>
-<tr class="even">
-<td><p>Unicode 和 ANSI 名稱</p></td>
-<td><p><strong>WriteConsoleOutputCharacterW</strong> (Unicode) 和 <strong>WriteConsoleOutputCharacterA</strong> (ANSI) </p></td>
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-</tbody>
-</table>
+## <a name="requirements"></a>規格需求
 
-## <a name="span-idsee_alsospansee-also"></a><span id="see_also"></span>另請參閱
+| &nbsp; | &nbsp; |
+|-|-|
+| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
+| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
+| 程式庫 | Kernel32.dll .lib |
+| DLL | Kernel32.dll |
+| Unicode 和 ANSI 名稱 | **WriteConsoleOutputCharacterW** (Unicode) 和 **WriteConsoleOutputCharacterA** (ANSI)  |
 
+## <a name="see-also"></a>請參閱
 
 [主控台功能](console-functions.md)
 
@@ -161,11 +127,3 @@ BOOL WINAPI WriteConsoleOutputCharacter(
 [**WriteConsoleOutput**](writeconsoleoutput.md)
 
 [**WriteConsoleOutputAttribute**](writeconsoleoutputattribute.md)
-
- 
-
- 
-
-
-
-

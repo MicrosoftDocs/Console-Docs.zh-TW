@@ -3,15 +3,15 @@ title: 舊版主控台模式-Windows 桌面
 description: 舊版主控台模式是一種相容性工具，可協助您執行可能無法搭配 Windows 10 主控台主機運作的命令列應用程式。
 author: miniksa
 ms.author: miniksa
-ms.topic: article
+ms.topic: conceptual
 ms.prod: console
 keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api，相容性
-ms.openlocfilehash: a69e192426cc178ae98565db07c49f9ff2ce4961
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: eeddfd00ffa8c3ad9d99583b89e4b3be7959f445
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059287"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93037706"
 ---
 # <a name="legacy-console-mode"></a>舊版主控台模式
 
@@ -25,11 +25,12 @@ ms.locfileid: "89059287"
 
 您可以返回相同的屬性工作表功能表，並取消核取該方塊，然後按下，來還原此設定 `OK` 。
 
-**注意：** 這項設定會全域套用至在變更喜好設定之後啟動的所有會話。 已開啟的會話將不會變更。
+> [!NOTE]
+>這項設定會全域套用至在變更喜好設定之後啟動的所有會話。 已開啟的會話將不會變更。
 
 ## <a name="differences-between-modes"></a>模式之間的差異
 
-主控台主機小組致力於將舊版和目前的主控台模式之間的差異降至最低，以確保盡可能有許多客戶可以執行最新版本。 如果您遇到要求您使用此處未記載之舊版主控台的問題，請洽詢 [Microsoft/終端](https://github.com/microsoft/terminal/) 機 GitHub 存放庫上的小組，或透過 [意見反應中樞](https://docs.microsoft.com/windows-insider/feedback-hub/feedback-hub-app) 取得協助。
+主控台主機小組致力於將舊版和目前的主控台模式之間的差異降至最低，以確保盡可能有許多客戶可以執行最新版本。 如果您遇到要求您使用此處未記載之舊版主控台的問題，請洽詢 [microsoft/終端](https://github.com/microsoft/terminal/) 機 GitHub 存放庫上的小組，或透過 [意見反應中樞](https://docs.microsoft.com/windows-insider/feedback-hub/feedback-hub-app) 取得協助。
 
 ### <a name="16-bit-applications-on-32-bit-windows"></a>32位 Windows 上的16位應用程式
 
@@ -41,6 +42,6 @@ ms.locfileid: "89059287"
 
 ### <a name="api-differences"></a>API 差異
 
-Legacy 和 current 之間的主要已知差異在於 UTF-8 的執行。 舊版主機在使用 [字碼頁 65001](https://docs.microsoft.com/windows/win32/intl/code-pages)時，對 utf-8 的支援非常基本且通常不正確。 目前的主控台主機包含 Windows 10 的累加式改良版，以改善這項支援。 嘗試依賴從舊版主控台預測 UTF-8 的「已知不正確」解讀的應用程式，將會在支援改善時，發現自己收到不同的答案。 
+Legacy 和 current 之間的主要已知差異在於 UTF-8 的執行。 舊版主機在使用 [字碼頁 65001](https://docs.microsoft.com/windows/win32/intl/code-pages)時，對 utf-8 的支援非常基本且通常不正確。 目前的主控台主機包含 Windows 10 的累加式改良版，以改善這項支援。 嘗試依賴從舊版主控台預測 UTF-8 的「已知不正確」解讀的應用程式，將會在支援改善時，發現自己收到不同的答案。
 
-您應該向 Microsoft/終端機 GitHub 存放庫或透過[意見反應中樞](https://docs.microsoft.com/windows-insider/feedback-hub/feedback-hub-app)，向[Microsoft/終端](https://github.com/microsoft/terminal/)機 GitHub 存放庫報告其他經驗，以進行分級和可能的補救。
+您應該向 [microsoft/終端機 GitHub 存放庫](https://github.com/microsoft/terminal/) 或透過 [意見反應中樞](https://docs.microsoft.com/windows-insider/feedback-hub/feedback-hub-app) 回報 api 的其他差異，以進行分級和可能的補救。

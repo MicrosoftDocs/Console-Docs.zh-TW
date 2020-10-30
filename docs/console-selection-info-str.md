@@ -4,7 +4,7 @@ description: 請參閱 CONSOLE_SELECTION_INFO 結構的參考資訊，其中包�
 author: miniksa
 ms.author: miniksa
 ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 f1_keywords:
 - consoleapi3/CONSOLE_SELECTION_INFO
 - wincon/CONSOLE_SELECTION_INFO
@@ -25,85 +25,44 @@ topic_type:
 api_name:
 - CONSOLE_SELECTION_INFO
 api_location:
-- Wincon.h
+- WinCon.h
 api_type:
 - HeaderDef
-ms.openlocfilehash: a16fe43e7b7cc4b5890284921823aee7b79217b2
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: aaf1cfaea2a8822c142aab87f6dcf1b022b7160c
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059270"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93038366"
 ---
 # <a name="console_selection_info-structure"></a>主控台 \_ 選取 \_ 資訊結構
 
+[!INCLUDE [not-recommended-banner](./includes/not-recommended-banner.md)]
 
 包含主控台選項的資訊。
 
-<a name="syntax"></a>Syntax
-------
+## <a name="syntax"></a>語法
 
 ```C
 typedef struct _CONSOLE_SELECTION_INFO {
-  DWORD      dwFlags;
-  COORD      dwSelectionAnchor;
+  DWORD      dwFlags;
+  COORD      dwSelectionAnchor;
   SMALL_RECT srSelection;
 } CONSOLE_SELECTION_INFO, *PCONSOLE_SELECTION_INFO;
 ```
 
-<a name="members"></a>成員
--------
+## <a name="members"></a>成員
 
 **dwFlags**  
 選取指標。 這個成員可以是下列一或多個值。
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>值</th>
-<th>意義</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span id="CONSOLE_MOUSE_DOWN"></span><span id="console_mouse_down"></span>
-<strong>CONSOLE_MOUSE_DOWN</strong> 0x0008</td>
-<td><p>滑鼠已關閉</p></td>
-</tr>
-<tr class="even">
-<td><span id="CONSOLE_MOUSE_SELECTION"></span><span id="console_mouse_selection"></span>
-<strong>CONSOLE_MOUSE_SELECTION</strong> 0x0004</td>
-<td><p>使用滑鼠選取</p></td>
-</tr>
-<tr class="odd">
-<td><span id="CONSOLE_NO_SELECTION"></span><span id="console_no_selection"></span>
-<strong>CONSOLE_NO_SELECTION</strong> 0x0000</td>
-<td><p>沒有選取項目</p></td>
-</tr>
-<tr class="even">
-<td><span id="CONSOLE_SELECTION_IN_PROGRESS"></span><span id="console_selection_in_progress"></span>
-<strong>CONSOLE_SELECTION_IN_PROGRESS</strong> 0x0001</td>
-<td><p>選取範圍已開始</p></td>
-</tr>
-<tr class="odd">
-<td><span id="CONSOLE_SELECTION_NOT_EMPTY"></span><span id="console_selection_not_empty"></span>
-<strong>CONSOLE_SELECTION_NOT_EMPTY</strong> 0x0002</td>
-<td><p>選取範圍矩形不是空的</p></td>
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-</tbody>
-</table>
-
- 
+| 值 | 意義 |
+|-|-|
+| **CONSOLE_MOUSE_DOWN** 0x0008 | 滑鼠已關閉。 使用者正在使用滑鼠主動調整選取矩形。 |
+| **CONSOLE_MOUSE_SELECTION** 0x0004 | 使用滑鼠選取。 如果是 off，則使用者會 `conhost.exe` 以鍵盤選取操作標示模式。 |
+| **CONSOLE_NO_SELECTION** 0x0000 | 沒有選取專案。 |
+| **CONSOLE_SELECTION_IN_PROGRESS** 0x0001 | 選取範圍已開始。 如果選取滑鼠，通常不會發生此 `CONSOLE_SELECTION_NOT_EMPTY` 旗標。 如果選擇鍵盤，則在輸入標記模式，但使用者仍在流覽至初始位置時，就會發生這種情況。 |
+| **CONSOLE_SELECTION_NOT_EMPTY** 0x0002 | 選取範圍矩形不是空的。 *DwSelectionAnchor* 和 *srSelection* 的承載有效。  |
 
 **dwSelectionAnchor**  
 指定選取範圍錨點的 [**COORD**](coord-str.md) 結構（以字元為單位）。
@@ -111,43 +70,18 @@ typedef struct _CONSOLE_SELECTION_INFO {
 **srSelection**  
 指定選取矩形的 [**小型 \_ 矩形**](small-rect-str.md) 結構。
 
-<a name="requirements"></a>規格需求
-------------
+## <a name="requirements"></a>規格需求
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>最低支援的用戶端</p></td>
-<td><p>Windows XP [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="even">
-<td><p>最低支援的伺服器</p></td>
-<td><p>Windows Server 2003 [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="odd">
-<td><p>標頭</p></td>
-<td>ConsoleApi3 .h (via Wincon，包括 Windows .h) </td>
-</tr>
-</tbody>
-</table>
+| &nbsp; | &nbsp; |
+|-|-|
+| 最低支援的用戶端 | \[僅限 WINDOWS XP desktop 應用程式\] |
+| 最低支援的伺服器 | 僅限 Windows Server 2003 \[ desktop 應用程式\] |
+| 標頭 | ConsoleApi3 .h (via WinCon，包括 Windows .h)  |
 
-## <a name="span-idsee_alsospansee-also"></a><span id="see_also"></span>另請參閱
-
+## <a name="see-also"></a>請參閱
 
 [**COORD**](coord-str.md)
 
 [**GetConsoleSelectionInfo**](getconsoleselectioninfo.md)
 
 [**小型 \_ 矩形**](small-rect-str.md)
-
- 
-
- 
-
-
-
-

@@ -19,20 +19,18 @@ api_location:
 - KernelBase.dll
 api_type:
 - DllExport
-ms.openlocfilehash: 7d707423d7fca7c55d06bff11d6cbc904512e62b
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: f10a77781d555a76fdfcea8c8f10ae6bc1f72047
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059234"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93038296"
 ---
 # <a name="createpseudoconsole-function"></a>CreatePseudoConsole 函式
 
-
 為呼叫進程建立新的 pseudoconsole 物件。
 
-<a name="syntax"></a>語法
-------
+## <a name="syntax"></a>語法
 
 ```C
 HRESULT WINAPI CreatePseudoConsole(
@@ -44,8 +42,7 @@ HRESULT WINAPI CreatePseudoConsole(
 );
 ```
 
-<a name="parameters"></a>參數
-----------
+## <a name="parameters"></a>參數
 
 *大小* \[在\]  
 將在初始建立 pseudoconsole 時使用的視窗/緩衝區維度（以字元數為單位）。 這可以在稍後使用 [ResizePseudoConsole](resizepseudoconsole.md)進行調整。
@@ -58,48 +55,28 @@ HRESULT WINAPI CreatePseudoConsole(
 
 *dwFlags* \[在\]  
 這個值可以是下列值之一：
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>值</th>
-<th>意義</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>0</strong></td>
-<td><p>執行標準 pseudoconsole 建立。</p></td>
-</tr>
-<tr class="even">
-<td><span id="PSEUDOCONSOLE_INHERIT_CURSOR"></span><span id="pseudoconsole_inherit_cursor"></span>
-<strong>PSEUDOCONSOLE_INHERIT_CURSOR</strong> (DWORD) 1</td>
-<td><p>建立的 pseudoconsole 會話將嘗試繼承父主控台的游標位置。</p></td>
-</tr>
-</tbody>
-</table>
+
+| 值 | 意義 |
+|-|-|
+| **0** | 執行標準 pseudoconsole 建立。 |
+| **PSEUDOCONSOLE_INHERIT_CURSOR** (DWORD) 1 | 建立的 pseudoconsole 會話將嘗試繼承 paernt 主控台的游標位置。 |
 
 *phPC* \[擴展\]  
 將接收新 pseudoconsole 裝置之控制碼的位置指標。
 
-<a name="return-value"></a>傳回值
-------------
+## <a name="return-value"></a>傳回值
 
 類型： **HRESULT**
 
-如果這個方法成功，它會傳回 **S_OK**。 否則，它會傳回 **HRESULT** 錯誤碼。
+如果這個方法成功，它會傳回 **S_OK** 。 否則，它會傳回 **HRESULT** 錯誤碼。
 
-<a name="remarks"></a>備註
--------
+## <a name="remarks"></a>備註
 
 這項功能主要是由應用程式嘗試作為命令列使用者介面的終端機視窗所使用 (CUI) 應用程式。 呼叫端會負責呈現輸出資料流程上的資訊，以及收集使用者輸入並將其序列化至輸入資料流程中。
 
-編碼為 UTF-8 的輸入和輸出資料流程，包含以 [虛擬終端序列](console-virtual-terminal-sequences.md)交錯的純文字。 
+編碼為 UTF-8 的輸入和輸出資料流程，包含以 [虛擬終端序列](console-virtual-terminal-sequences.md)交錯的純文字。
 
-在輸出資料流程中，呼叫應用程式可以將 [虛擬終端機序列](console-virtual-terminal-sequences.md) 解碼為版面配置，並在顯示視窗中顯示純文字。 
+在輸出資料流程中，呼叫應用程式可以將 [虛擬終端機序列](console-virtual-terminal-sequences.md) 解碼為版面配置，並在顯示視窗中顯示純文字。
 
 在輸入資料流程中，純文字代表使用者輸入的標準鍵盤按鍵。 更複雜的作業會以編碼控制鍵和滑鼠移動來表示，作為內嵌于此資料流程中的 [虛擬終端機序列](console-virtual-terminal-sequences.md) 。
 
@@ -107,55 +84,25 @@ HRESULT WINAPI CreatePseudoConsole(
 
 如果使用 `PSEUDOCONSOLE_INHERIT_CURSOR` ，則呼叫的應用程式應該準備好在背景執行緒上以非同步方式回應資料指標狀態的要求，方法是轉送或解讀將在其上接收和回復的資料指標資訊要求 `hOutput` `hInput` 。 若未這麼做，可能會導致呼叫的應用程式在提出另一個 pseudoconsole 系統要求時停止回應。
 
-<a name="examples"></a>範例
---------
+## <a name="examples"></a>範例
 
-如需使用此函數建立 psuedoconsole 會話的完整逐步解說，請參閱建立 [Pseudoconsole 會話](creating-a-pseudoconsole-session.md)。
+如需使用此函數建立 pseudoconsole 會話的完整逐步解說，請參閱建立 [Pseudoconsole 會話](creating-a-pseudoconsole-session.md)。
 
-<a name="requirements"></a>規格需求
-------------
+## <a name="requirements"></a>規格需求
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>最低支援的用戶端</p></td>
-<td><p>Windows 10 1809 [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="even">
-<td><p>最低支援的伺服器</p></td>
-<td><p>Windows Server 2019 [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="odd">
-<td><p>標頭</p></td>
-<td>ConsoleApi .h (via Wincon，包括 Windows .h) </td>
-</tr>
-<tr class="even">
-<td><p>程式庫</p></td>
-<td>Kernel32.dll .lib</td>
-</tr>
-<tr class="odd">
-<td><p>DLL</p></td>
-<td>Kernel32.dll</td>
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-</tbody>
-</table>
+| &nbsp; | &nbsp; |
+|-|-|
+| 最低支援的用戶端 | Windows 10 2018 年10月更新 (1809 版) \[ 桌面應用程式\] |
+| 最低支援的伺服器 | 僅限 Windows Server 2019 \[ desktop 應用程式\] |
+| 標頭 | ConsoleApi .h (via WinCon，包括 Windows .h)  |
+| 程式庫 | Kernel32.dll .lib |
+| DLL | Kernel32.dll |
 
-## <a name="span-idsee_alsospansee-also"></a><span id="see_also"></span>另請參閱
-
+## <a name="see-also"></a>請參閱
 
 [Pseudoconsoles](pseudoconsoles.md)
 
-[建立 Pseudoconsole 會話](creating-a-pseudoconsole-session.md)
+[建立 Pseudoconsole 工作階段](creating-a-pseudoconsole-session.md)
 
 [**ResizePseudoConsole**](resizepseudoconsole.md)
 

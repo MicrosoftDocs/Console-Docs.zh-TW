@@ -4,7 +4,7 @@ description: 從主控台螢幕緩衝區中的矩形字元資料格區塊讀取�
 author: miniksa
 ms.author: miniksa
 ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 f1_keywords:
 - consoleapi2/ReadConsoleOutput
 - wincon/ReadConsoleOutput
@@ -36,33 +36,32 @@ api_location:
 - API-MS-Win-DownLevel-Kernel32-l1-1-0.dll
 api_type:
 - DllExport
-ms.openlocfilehash: 382ed9cd06586ab86097c6efd2f6b8ea92f03eaf
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: 0ce2a5a62ee7719d0184247c9ef3327850e12c1b
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059474"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93037756"
 ---
 # <a name="readconsoleoutput-function"></a>ReadConsoleOutput 函式
 
+[!INCLUDE [not-recommended-banner](./includes/not-recommended-banner.md)]
 
 從主控台螢幕緩衝區中的矩形字元資料格區塊讀取字元和色彩屬性資料，而函式會將資料寫入目的緩衝區中指定位置的矩形區塊。
 
-<a name="syntax"></a>語法
-------
+## <a name="syntax"></a>語法
 
 ```C
 BOOL WINAPI ReadConsoleOutput(
-  _In_    HANDLE      hConsoleOutput,
-  _Out_   PCHAR_INFO  lpBuffer,
-  _In_    COORD       dwBufferSize,
-  _In_    COORD       dwBufferCoord,
-  _Inout_ PSMALL_RECT lpReadRegion
+  _In_    HANDLE      hConsoleOutput,
+  _Out_   PCHAR_INFO  lpBuffer,
+  _In_    COORD       dwBufferSize,
+  _In_    COORD       dwBufferCoord,
+  _Inout_ PSMALL_RECT lpReadRegion
 );
 ```
 
-<a name="parameters"></a>參數
-----------
+## <a name="parameters"></a>參數
 
 *hConsoleOutput* \[在\]  
 主控台螢幕緩衝區的控制碼。 控制碼必須具有 **一般 \_ 讀取** 許可權。 如需詳細資訊，請參閱 [主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
@@ -71,87 +70,52 @@ BOOL WINAPI ReadConsoleOutput(
 目的地緩衝區的指標，此緩衝區會接收從主控台螢幕緩衝區讀取的資料。 此指標會被視為 [**CHAR \_ 資訊**](char-info-str.md) 結構之二維陣列的來源，其大小是由 *dwBufferSize* 參數所指定。
 
 *dwBufferSize* \[在\]  
-*LpBuffer*參數的大小，以字元儲存格為限。 [**COORD**](coord-str.md)結構的**X**成員是資料行的數目;**Y**成員是資料列的數目。
+*LpBuffer* 參數的大小，以字元儲存格為限。 [**COORD**](coord-str.md)結構的 **X** 成員是資料行的數目; **Y** 成員是資料列的數目。
 
 *dwBufferCoord* \[在\]  
-*LpBuffer*參數中的左上角儲存格座標，可接收從主控台螢幕緩衝區讀取的資料。 [**COORD**](coord-str.md)結構的**X**成員是資料行，而**Y**成員是資料列。
+*LpBuffer* 參數中的左上角儲存格座標，可接收從主控台螢幕緩衝區讀取的資料。 [**COORD**](coord-str.md)結構的 **X** 成員是資料行，而 **Y** 成員是資料列。
 
 *lpReadRegion* \[in、out\]  
 [**小 \_ RECT**](small-rect-str.md)結構的指標。 在輸入時，結構成員會指定要讀取函式的主控台螢幕緩衝區矩形左上角和右下角的座標。 在輸出時，結構成員會指定所使用的實際矩形。
 
-<a name="return-value"></a>傳回值
-------------
+## <a name="return-value"></a>傳回值
 
 如果函式成功，則傳回值為非零。
 
 如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
 
-<a name="remarks"></a>備註
--------
+## <a name="remarks"></a>備註
 
-**ReadConsoleOutput** 會將主控台畫面緩衝區和目的地緩衝區視為二維陣列 () 的字元資料格的資料行和資料列。 *LpReadRegion*參數所指向的矩形，可指定要從主控台螢幕緩衝區讀取之區塊的大小與位置。 相同大小的目的地矩形位於*lpBuffer*陣列中*dwBufferCoord*參數座標的左上角儲存格。 從主控台螢幕緩衝區來源矩形的儲存格讀取的資料會複製到目的地緩衝區中的對應資料格。 如果對應的資料格超出目的緩衝區矩形的界限， (其維度是由 *dwBufferSize* 參數) 指定，則不會複製資料。
+**ReadConsoleOutput** 會將主控台畫面緩衝區和目的地緩衝區視為二維陣列 () 的字元資料格的資料行和資料列。 *LpReadRegion* 參數所指向的矩形，可指定要從主控台螢幕緩衝區讀取之區塊的大小與位置。 相同大小的目的地矩形位於 *lpBuffer* 陣列中 *dwBufferCoord* 參數座標的左上角儲存格。 從主控台螢幕緩衝區來源矩形的儲存格讀取的資料會複製到目的地緩衝區中的對應資料格。 如果對應的資料格超出目的緩衝區矩形的界限， (其維度是由 *dwBufferSize* 參數) 指定，則不會複製資料。
 
 目的緩衝區中對應至不在主控台螢幕緩衝區界限內之座標的儲存格會保持不變。 換句話說，這些是沒有螢幕緩衝區資料可供讀取的儲存格。
 
 在 **ReadConsoleOutput** 傳回之前，它會將 *lpReadRegion* 參數所指向之結構的成員設定為實際的螢幕緩衝區矩形，其儲存格已複製到目的緩衝區。 這個矩形會反映來源矩形中的儲存格，在目的緩衝區中已有對應的資料格，因為 **ReadConsoleOutput** 會裁剪來源矩形的維度，以符合主控台螢幕緩衝區的界限。
 
-如果 *lpReadRegion* 所指定的矩形完全落在主控台螢幕緩衝區的界限之外，或對應的矩形完全位於目的緩衝區的界限之外，則不會複製任何資料。 在此情況下，函式會傳回 *lpReadRegion* 參數集所指向之結構的成員，讓 **右邊** 的成員小於 **左邊**，或 **底部** 的成員小於 **頂端**。 若要判斷主控台螢幕緩衝區的大小，請使用 [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md) 函數。
+如果 *lpReadRegion* 所指定的矩形完全落在主控台螢幕緩衝區的界限之外，或對應的矩形完全位於目的緩衝區的界限之外，則不會複製任何資料。 在此情況下，函式會傳回 *lpReadRegion* 參數集所指向之結構的成員，讓 **右邊** 的成員小於 **左邊** ，或 **底部** 的成員小於 **頂端** 。 若要判斷主控台螢幕緩衝區的大小，請使用 [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md) 函數。
 
-**ReadConsoleOutput**函式不會影響主控台畫面緩衝區的游標位置。 此函數不會變更控制台螢幕緩衝區的內容。
+**ReadConsoleOutput** 函式不會影響主控台畫面緩衝區的游標位置。 此函數不會變更控制台螢幕緩衝區的內容。
 
-此函式會從主控台的目前字碼頁使用 Unicode 字元或8位字元。 主控台的字碼頁一開始預設為系統的 OEM 字碼頁。 若要變更控制台的字碼頁，請使用 [**SetConsoleCP**](setconsolecp.md) 或 [**SetConsoleOutputCP**](setconsoleoutputcp.md) 函式，或使用 **chcp** 或 **mode con cp select =** 命令。
+[!INCLUDE [setting-codepage-mode-remarks](./includes/setting-codepage-mode-remarks.md)]
 
-<a name="examples"></a>範例
---------
+[!INCLUDE [no-vt-equiv-banner](./includes/no-vt-equiv-banner.md)]
+
+## <a name="examples"></a>範例
 
 如需範例，請參閱 [讀取和寫入字元和屬性的區塊](reading-and-writing-blocks-of-characters-and-attributes.md)。
 
-<a name="requirements"></a>規格需求
-------------
+## <a name="requirements"></a>規格需求
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>最低支援的用戶端</p></td>
-<td><p>Windows 2000 Professional [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="even">
-<td><p>最低支援的伺服器</p></td>
-<td><p>Windows 2000 伺服器 [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="odd">
-<td><p>標頭</p></td>
-<td>ConsoleApi2 .h (via Wincon，包括 Windows .h) </td>
-</tr>
-<tr class="even">
-<td><p>程式庫</p></td>
-<td>Kernel32.dll .lib</td>
-</tr>
-<tr class="odd">
-<td><p>DLL</p></td>
-<td>Kernel32.dll</td>
-</tr>
-<tr class="even">
-<td><p>Unicode 和 ANSI 名稱</p></td>
-<td><p><strong>ReadConsoleOutputW</strong> (Unicode) 和 <strong>ReadConsoleOutputA</strong> (ANSI) </p></td>
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-</tbody>
-</table>
+| &nbsp; | &nbsp; |
+|-|-|
+| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
+| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
+| 程式庫 | Kernel32.dll .lib |
+| DLL | Kernel32.dll |
+| Unicode 和 ANSI 名稱 | **ReadConsoleOutputW** (Unicode) 和 **ReadConsoleOutputA** (ANSI)  |
 
-## <a name="span-idsee_alsospansee-also"></a><span id="see_also"></span>另請參閱
-
+## <a name="see-also"></a>請參閱
 
 [主控台功能](console-functions.md)
 
@@ -172,11 +136,3 @@ BOOL WINAPI ReadConsoleOutput(
 [**字元 \_ 資訊**](char-info-str.md)
 
 [**COORD**](coord-str.md)
-
- 
-
- 
-
-
-
-

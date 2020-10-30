@@ -4,7 +4,7 @@ description: 抓取與呼叫進程相關聯的主控台所使用的視窗控制�
 author: miniksa
 ms.author: miniksa
 ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 f1_keywords:
 - consoleapi3/GetConsoleWindow
 - wincon/GetConsoleWindow
@@ -33,87 +33,54 @@ api_location:
 - API-MS-Win-Core-Kernel32-Legacy-L1-1-5.dll
 api_type:
 - DllExport
-ms.openlocfilehash: dd356bab4674da0cc090e42911829dee994fa8b1
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: c74fe1a29b9ba2ea721e874eb624ea2f8517094c
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059107"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93038806"
 ---
 # <a name="getconsolewindow-function"></a>GetConsoleWindow 函式
 
+[!INCLUDE [not-recommended-banner](./includes/not-recommended-banner.md)]
 
 抓取與呼叫進程相關聯的主控台所使用的視窗控制碼。
 
-<a name="syntax"></a>語法
-------
+## <a name="syntax"></a>語法
 
 ```C
 HWND WINAPI GetConsoleWindow(void);
 ```
 
-<a name="parameters"></a>參數
-----------
+## <a name="parameters"></a>參數
 
 此函式沒有參數。
 
-<a name="return-value"></a>傳回值
-------------
+## <a name="return-value"></a>傳回值
 
 傳回值是與呼叫進程相關聯的主控台所使用的視窗控制碼，如果沒有這類相關聯的主控台，則為 **Null** 。
 
-<a name="remarks"></a>備註
--------
+## <a name="remarks"></a>備註
 
-若要編譯使用此函數的應用程式，請將** \_ WIN32 \_ WINNT**定義為0x0500 或更新版本。 如需詳細資訊，請參閱 [使用 Windows 標頭](https://msdn.microsoft.com/library/windows/desktop/aa383745)。
+若要編譯使用此函數的應用程式，請將 **\_ WIN32 \_ WINNT** 定義為0x0500 或更新版本。 如需詳細資訊，請參閱 [使用 Windows 標頭](https://msdn.microsoft.com/library/windows/desktop/aa383745)。
 
-<a name="requirements"></a>規格需求
-------------
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>最低支援的用戶端</p></td>
-<td><p>Windows 2000 Professional [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="even">
-<td><p>最低支援的伺服器</p></td>
-<td><p>Windows 2000 伺服器 [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="odd">
-<td><p>標頭</p></td>
-<td>ConsoleApi3 .h (via Wincon，包括 Windows .h) </td>
-</tr>
-<tr class="even">
-<td><p>程式庫</p></td>
-<td>Kernel32.dll .lib</td>
-</tr>
-<tr class="odd">
-<td><p>DLL</p></td>
-<td>Kernel32.dll</td>
-</tr>
-<tr class="even">
-</tr>
-<tr class="odd">
-</tr>
-<tr class="even">
-</tr>
-</tbody>
+[!INCLUDE [no-vt-equiv-local-context](./includes/no-vt-equiv-local-context.md)]
+
+針對裝載在 [**pseudoconsole**](pseudoconsoles.md) 會話內的應用程式，此函式只會傳回訊息佇列用途的視窗控制碼。 相關聯的視窗不會在本機顯示，因為 _pseudoconsole_ 會將所有動作序列化至另一個終端機視窗上的顯示位置。
+
+## <a name="requirements"></a>規格需求
+
+| &nbsp; | &nbsp; |
+|-|-|
+| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
+| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 標頭 | ConsoleApi3 .h (via WinCon，包括 Windows .h)  |
+| 程式庫 | Kernel32.dll .lib |
+| DLL | Kernel32.dll |
+
 </table>
 
-## <a name="span-idsee_alsospansee-also"></a><span id="see_also"></span>另請參閱
-
+## <a name="see-also"></a>請參閱
 
 [主控台功能](console-functions.md)
-
- 
-
- 
-
-
-
-

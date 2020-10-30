@@ -3,8 +3,8 @@ title: 使用主控台
 description: 下列範例示範如何使用各種主控台功能。
 author: miniksa
 ms.author: miniksa
-ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+ms.topic: hub-page
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 MS-HAID:
 - '\_win32\_using\_the\_console'
 - base.using\_the\_console
@@ -13,15 +13,14 @@ MSHAttr:
 - PreferredSiteName:MSDN
 - PreferredLib:/library/windows/desktop
 ms.assetid: 31bbf2b1-2519-4589-8059-7757cfda105a
-ms.openlocfilehash: 1346394190133f658a59b45259e5fba20e301879
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: 490f7e0c19af7d6b52edd3189517c09d96025d8c
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059091"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93037236"
 ---
 # <a name="using-the-console"></a>使用主控台
-
 
 下列範例示範如何使用主控台功能：
 
@@ -32,11 +31,3 @@ ms.locfileid: "89059091"
 - [滾動螢幕緩衝區視窗](scrolling-a-screen-buffer-s-window.md)
 - [滾動螢幕緩衝區的內容](scrolling-a-screen-buffer-s-contents.md)
 - [註冊控制項處理常式函數](registering-a-control-handler-function.md)
-
- 
-
- 
-
-
-
-

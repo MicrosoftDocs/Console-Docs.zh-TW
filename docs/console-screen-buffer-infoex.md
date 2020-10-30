@@ -4,7 +4,7 @@ description: 請參閱有關 CONSOLE_SCREEN_BUFFER_INFOEX 結構的參考資訊�
 author: miniksa
 ms.author: miniksa
 ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 f1_keywords:
 - consoleapi2/CONSOLE_SCREEN_BUFFER_INFOEX
 - wincon/CONSOLE_SCREEN_BUFFER_INFOEX
@@ -24,40 +24,37 @@ topic_type:
 api_name:
 - CONSOLE_SCREEN_BUFFER_INFOEX
 api_location:
-- Wincon.h
+- WinCon.h
 api_type:
 - HeaderDef
-ms.openlocfilehash: 010120f2d925727e37bd72905bab4536db073371
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: baf6eeb51cbae5ce410c190852c22ae237e6a367
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059294"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93038346"
 ---
 # <a name="console_screen_buffer_infoex-structure"></a>主控台 \_ 螢幕 \_ 緩衝區 \_ INFOEX 結構
 
-
 包含有關主控台螢幕緩衝區的延伸資訊。
 
-<a name="syntax"></a>Syntax
-------
+## <a name="syntax"></a>語法
 
 ```C
 typedef struct _CONSOLE_SCREEN_BUFFER_INFOEX {
-  ULONG      cbSize;
-  COORD      dwSize;
-  COORD      dwCursorPosition;
-  WORD       wAttributes;
+  ULONG      cbSize;
+  COORD      dwSize;
+  COORD      dwCursorPosition;
+  WORD       wAttributes;
   SMALL_RECT srWindow;
-  COORD      dwMaximumWindowSize;
-  WORD       wPopupAttributes;
-  BOOL       bFullscreenSupported;
-  COLORREF   ColorTable[16];
+  COORD      dwMaximumWindowSize;
+  WORD       wPopupAttributes;
+  BOOL       bFullscreenSupported;
+  COLORREF   ColorTable[16];
 } CONSOLE_SCREEN_BUFFER_INFOEX, *PCONSOLE_SCREEN_BUFFER_INFOEX;
 ```
 
-<a name="members"></a>成員
--------
+## <a name="members"></a>成員
 
 **cbSize**  
 此結構的大小（以位元組為單位）。
@@ -69,7 +66,7 @@ typedef struct _CONSOLE_SCREEN_BUFFER_INFOEX {
 [**COORD**](coord-str.md)結構，其中包含主控台螢幕緩衝區中資料指標的資料行和資料列座標。
 
 **wAttributes**  
-[**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747)和[**WriteConsole**](writeconsole.md)函式寫入螢幕緩衝區的字元屬性，或[**ReadFile**](https://msdn.microsoft.com/library/windows/desktop/aa365467)和[**ReadConsole**](readconsole.md)函式的螢幕緩衝區。 如需詳細資訊，請參閱 [字元屬性](console-screen-buffers.md#_win32_font_attributes)。
+[**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747)和 [**WriteConsole**](writeconsole.md)函式寫入螢幕緩衝區的字元屬性，或 [**ReadFile**](https://msdn.microsoft.com/library/windows/desktop/aa365467)和 [**ReadConsole**](readconsole.md)函式的螢幕緩衝區。 如需詳細資訊，請參閱 [字元屬性](console-screen-buffers.md#character-attributes)。
 
 **srWindow**  
 [**小型 \_ 矩形**](small-rect-str.md)結構，其中包含顯示視窗左上角和右下角的主控台螢幕緩衝區座標。
@@ -81,37 +78,20 @@ typedef struct _CONSOLE_SCREEN_BUFFER_INFOEX {
 主控台快顯視窗的填滿屬性。
 
 **bFullscreenSupported**  
-如果這個成員是 TRUE，則支援全螢幕模式;否則，它不會。
+如果這個成員是 `TRUE` ，則支援全螢幕模式; 否則就不支援。 這一律 `FALSE` 適用于 Windows Vista 含 [WDDM 驅動程式模型](https://docs.microsoft.com/windows-hardware/drivers/display/introduction-to-the-windows-vista-and-later-display-driver-model) 的系統，因為它已不再提供對監視的直接 VGA 存取。
 
 **ColorTable**  
 描述主控台色彩設定的 [**COLORREF**](https://msdn.microsoft.com/library/windows/desktop/dd183449) 值陣列。
 
-<a name="requirements"></a>規格需求
-------------
+## <a name="requirements"></a>規格需求
 
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>最低支援的用戶端</p></td>
-<td><p>Windows Vista [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="even">
-<td><p>最低支援的伺服器</p></td>
-<td><p>Windows Server 2008 [僅限桌面應用程式]</p></td>
-</tr>
-<tr class="odd">
-<td><p>標頭</p></td>
-<td>ConsoleApi2 .h (via Wincon，包括 Windows .h) </td>
-</tr>
-</tbody>
-</table>
+| &nbsp; | &nbsp; |
+|-|-|
+| 最低支援的用戶端 | \[僅限 Windows Vista 桌面應用程式\] |
+| 最低支援的伺服器 | 僅限 Windows Server 2008 \[ desktop 應用程式\] |
+| 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
 
-## <a name="span-idsee_alsospansee-also"></a><span id="see_also"></span>另請參閱
-
+## <a name="see-also"></a>請參閱
 
 [**COORD**](coord-str.md)
 
@@ -120,11 +100,3 @@ typedef struct _CONSOLE_SCREEN_BUFFER_INFOEX {
 [**SetConsoleScreenBufferInfoEx**](setconsolescreenbufferinfoex.md)
 
 [**小型 \_ 矩形**](small-rect-str.md)
-
- 
-
- 
-
-
-
-

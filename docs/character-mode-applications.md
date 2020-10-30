@@ -1,10 +1,10 @@
 ---
-title: 機
+title: 字元模式應用程式
 description: 主控台會管理字元模式應用程式的輸入和輸出 (i/o)  (不會提供自己的圖形化使用者介面) 的應用程式。
 author: miniksa
 ms.author: miniksa
-ms.topic: article
-keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api
+ms.topic: conceptual
+keywords: 主控台, 字元模式應用程式, 命令列應用程式, 終端機應用程式, 主控台 api
 MS-HAID:
 - '\_win32\_character\_mode\_applications'
 - base.character\_mode\_applications
@@ -13,15 +13,14 @@ MSHAttr:
 - PreferredSiteName:MSDN
 - PreferredLib:/library/windows/desktop
 ms.assetid: ea3ea214-892c-4953-bc22-7905efbc173f
-ms.openlocfilehash: 99f351efbf6b68733b5c3e7b94cee03708d6cbef
-ms.sourcegitcommit: b75f4688e080d300b80c552d0711fdd86b9974bf
+ms.openlocfilehash: 5e1b0b2b5162360122580f3ea7a100750b96272e
+ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2020
-ms.locfileid: "89059371"
+ms.lasthandoff: 10/30/2020
+ms.locfileid: "93037346"
 ---
-# <a name="consoles"></a>機
-
+# <a name="character-mode-applications"></a>字元模式應用程式
 
 主控台會管理字元模式應用程式的輸入和輸出 (i/o)  (不會提供自己的圖形化使用者介面) 的應用程式。
 
@@ -32,11 +31,3 @@ ms.locfileid: "89059371"
 - [關於主控台](about-character-mode-applications.md)
 - [使用主控台](using-the-console.md)
 - [主控台參考](console-reference.md)
-
- 
-
- 
-
-
-
-
