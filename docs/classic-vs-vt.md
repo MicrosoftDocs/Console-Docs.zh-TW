@@ -1,21 +1,22 @@
 ---
-title: 傳統主控台 Api 與虛擬終端機序列
+title: 傳統主控台 API 與虛擬終端機順序
 description: 描述傳統 Win32 主控台 API 介面和虛擬終端機序列（有時也稱為 escape 序列）之間的對比，以撰寫命令列應用程式。
 author: miniksa
 ms.author: miniksa
 ms.topic: conceptual
 keywords: 主控台、終端機、虛擬終端機、escape 序列、vt、vt100、主控台 api
 ms.prod: console
-ms.openlocfilehash: 0fdd39cab5b8f6ca5cc1602c8e68ec7f2a2303ad
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.localizationpriority: high
+ms.openlocfilehash: 541300b50521909b22ceaccb595f1945fbfc7e6d
+ms.sourcegitcommit: 508e93bc83b4bca6ce678f88ab081d66b95d605c
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039578"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96420177"
 ---
-# <a name="classic-console-apis-versus-virtual-terminal-sequences"></a>傳統主控台 Api 與虛擬終端機序列
+# <a name="classic-console-apis-versus-virtual-terminal-sequences"></a>傳統主控台 API 與虛擬終端機順序
 
-我們的建議是將傳統 **Windows 主控台 API** 取代為 **虛擬終端機序列** 。 本文將概述兩者之間的差異，並討論建議的原因。
+我們的建議是將傳統 **Windows 主控台 API** 取代為 **虛擬終端機序列**。 本文將概述兩者之間的差異，並討論建議的原因。
 
 ## <a name="definitions"></a>定義
 
@@ -31,7 +32,7 @@ ms.locfileid: "93039578"
 
 ## <a name="cross-platform-support"></a>跨平臺支援
 
-跨平臺原生支援 **虛擬終端機序列** ，讓終端機應用程式和命令列公用程式輕鬆地在版本和作業系統的變化之間可移植，但 Windows 除外。
+跨平臺原生支援 **虛擬終端機序列**，讓終端機應用程式和命令列公用程式輕鬆地在版本和作業系統的變化之間可移植，但 Windows 除外。
 
 相較之下，windows **主控台 api** 只有在 windows 上才受到支援。 當您嘗試從某個平臺或另一個平臺移植命令列公用程式時，必須在 Windows 與虛擬終端機之間撰寫延伸的介面卡或轉譯程式庫，反之亦然。
 
@@ -55,7 +56,7 @@ ms.locfileid: "93039578"
 
 ### <a name="wrong-way-verbs"></a>Wrong-Way 動詞
 
-利用 **Windows 主控台** ，可以在輸入和輸出資料流程上，以相反的自然方向來執行某些動作。 這可讓 Windows 命令列應用程式避免管理自己的緩衝區。 它也可讓 Windows 命令列應用程式執行先進的作業，例如代表使用者模擬/插入輸入，或讀回部分寫入的歷程記錄。
+利用 **Windows 主控台**，可以在輸入和輸出資料流程上，以相反的自然方向來執行某些動作。 這可讓 Windows 命令列應用程式避免管理自己的緩衝區。 它也可讓 Windows 命令列應用程式執行先進的作業，例如代表使用者模擬/插入輸入，或讀回部分寫入的歷程記錄。
 
 雖然這可讓 Windows 應用程式在單一電腦上的特定使用者內容中運作，但是在某些情況下使用時，也會提供一種向量來跨安全性和許可權層級或網域。 這類案例包括在同一部電腦上的內容之間進行操作，或在不同的內容之間進行作業。
 
@@ -100,8 +101,8 @@ UTF-8 是幾乎所有新式平臺上的 Unicode 資料所接受的編碼方式�
 
 - 使用 [**SetConsoleCtrlHandler**](setconsolectrlhandler.md)、 [**HandlerRoutine**](handlerroutine.md)和 [**GenerateConsoleCtrlEvent**](generateconsolectrlevent.md)時，會繼續進行信號和信號處理。
 
-- 您可以使用 [**WriteConsole**](writeconsole.md) 和 [**ReadConsole**](readconsole.md)來執行與主控台裝置控制碼的通訊。 您也可以透過程式設計語言執行時間，利用：-C 執行時間 (CRT) ： [資料流程 i/o](https://docs.microsoft.com/cpp/c-runtime-library/stream-i-o) （例如 **printf** 、 **scanf** 、 **putc** 、 **getc** 或 [其他層級的 i/o 函數](https://docs.microsoft.com/cpp/c-runtime-library/input-and-output)）來利用這些程式設計語言執行時間。
-        -C + + 標準程式庫 (STL) ： [iostream](https://docs.microsoft.com/cpp/standard-library/iostream) ，例如 **cout** 和 **cin** 。
+- 您可以使用 [**WriteConsole**](writeconsole.md) 和 [**ReadConsole**](readconsole.md)來執行與主控台裝置控制碼的通訊。 您也可以透過程式設計語言執行時間，利用：-C 執行時間 (CRT) ： [資料流程 i/o](https://docs.microsoft.com/cpp/c-runtime-library/stream-i-o) （例如 **printf**、 **scanf**、 **putc**、 **getc** 或 [其他層級的 i/o 函數](https://docs.microsoft.com/cpp/c-runtime-library/input-and-output)）來利用這些程式設計語言執行時間。
+        -C + + 標準程式庫 (STL) ： [iostream](https://docs.microsoft.com/cpp/standard-library/iostream) ，例如 **cout** 和 **cin**。
         -.NET 執行時間： Console 等 [系統主控台](https://docs.microsoft.com/dotnet/api/system.console) **。**
 
 - 必須留意視窗大小變更的應用程式仍然需要使用 [**ReadConsoleInput**](readconsoleinput.md) 來接收它們交錯的金鑰事件，因為 **ReadConsole** 單獨會捨棄它們。

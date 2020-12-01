@@ -13,12 +13,13 @@ MSHAttr:
 - PreferredSiteName:MSDN
 - PreferredLib:/library/windows/desktop
 ms.assetid: f94995fc-5f5f-4fcd-969d-7e10020634c2
-ms.openlocfilehash: c3121a53f654bd2fa85fa140c2efc6d6217b7796
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.localizationpriority: high
+ms.openlocfilehash: 4c5740be3b60d54f9e7b586b41e962a4102222a0
+ms.sourcegitcommit: 508e93bc83b4bca6ce678f88ab081d66b95d605c
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039166"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96420197"
 ---
 # <a name="console-screen-buffers"></a>主控台畫面緩衝區
 
@@ -34,7 +35,7 @@ ms.locfileid: "93039166"
 - Text 屬性 (前景和背景色彩，以顯示 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) 或 [**WriteConsole**](writeconsole.md) 函式) 所要寫入的文字。
 - [視窗大小] 和 [位置] (顯示在主控台視窗) 的主控台螢幕緩衝區的矩形區域。
 - 游標位置、外觀和可見度。
-- 輸出模式 ( **啟用 \_ 處理的 \_ 輸出** ，並 **\_ \_ 在 \_ EOL \_ 輸出) 啟用包裝** 。 如需主控台輸出模式的詳細資訊，請參閱 [高階主控台模式](high-level-console-modes.md)。
+- 輸出模式 (**啟用 \_ 處理的 \_ 輸出** ，並 **\_ \_ 在 \_ EOL \_ 輸出) 啟用包裝** 。 如需主控台輸出模式的詳細資訊，請參閱 [高階主控台模式](high-level-console-modes.md)。
 
 建立螢幕緩衝區時，它會在每個位置包含空白字元。 它的資料指標是可見的，位於緩衝區的原點 (0，0) ，而視窗的位置是在緩衝區原點的左上角。 主控台螢幕緩衝區的大小、視窗大小、文字屬性，以及游標的外觀是由使用者或系統預設值所決定。 若要取得與主控台螢幕緩衝區相關聯之各種屬性的目前值，請使用 [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md)、 [**GetConsoleCursorInfo**](getconsolecursorinfo.md)和 [**GetConsoleMode**](getconsolemode.md) 函式。
 
@@ -100,4 +101,4 @@ ms.locfileid: "93039166"
 [**GetConsoleFontSize**](getconsolefontsize.md)函式會抓取指定的主控台螢幕緩衝區所使用的字型大小。
 
 > [!NOTE]
-> 不建議使用函數來尋找和操作字型資訊。 建議您以字型中立的方式操作命令列應用程式，以確保跨平臺相容性，以及與允許使用者自訂字型的主機環境相容。 如需使用者喜好設定和主機環境（包括終端機）的詳細資訊，請參閱 **[生態系統藍圖](ecosystem-roadmap.md)** 。
+> 不建議使用函數來尋找和操作字型資訊。 建議您以字型中立的方式操作命令列應用程式，以確保跨平臺相容性，以及與允許使用者自訂字型的主機環境相容。 如需使用者喜好設定和主機環境（包括終端機）的詳細資訊，請參閱 **[生態系統藍圖](ecosystem-roadmap.md)**。

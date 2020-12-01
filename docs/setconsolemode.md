@@ -29,12 +29,13 @@ api_location:
 - MinKernelBase.dll
 api_type:
 - DllExport
-ms.openlocfilehash: b382e6567d2099e2d6eacf33c8e19233f20c6400
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.localizationpriority: high
+ms.openlocfilehash: 2af598f465be6e1a33f5a8f9a2c9abe98d6ed0d2
+ms.sourcegitcommit: 508e93bc83b4bca6ce678f88ab081d66b95d605c
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039356"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96420297"
 ---
 # <a name="setconsolemode-function"></a>SetConsoleMode 函式
 
@@ -85,7 +86,7 @@ BOOL WINAPI SetConsoleMode(
 | 程式庫 | Kernel32.dll .lib |
 | DLL | Kernel32.dll |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
 [主控台功能](console-functions.md)
 

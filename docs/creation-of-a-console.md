@@ -13,12 +13,13 @@ MSHAttr:
 - PreferredSiteName:MSDN
 - PreferredLib:/library/windows/desktop
 ms.assetid: 84ec2559-cade-447e-8594-5b824d3d3e81
-ms.openlocfilehash: 78a77044452fe2287a7cea0bfe5a6542eceef337
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.localizationpriority: high
+ms.openlocfilehash: 09de42ced585e4a644fbbcc04211d5cb6037c2af
+ms.sourcegitcommit: 508e93bc83b4bca6ce678f88ab081d66b95d605c
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93038236"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96420277"
 ---
 # <a name="creation-of-a-console"></a>建立主控台
 
@@ -31,7 +32,7 @@ ms.locfileid: "93038236"
 
 一般來說，當發生需要與使用者互動的錯誤時，進程會使用 [**AllocConsole**](allocconsole.md) 來建立主控台。 例如，GUI 進程可以在發生錯誤時建立主控台，使其無法使用其一般圖形介面，或者通常不與使用者互動的主控台進程可以建立主控台來顯示錯誤。
 
-進程也可以在對 [**CreateProcess**](https://msdn.microsoft.com/library/windows/desktop/ms682425)的呼叫中指定 [ **建立 \_ 新的 \_ 主控台** ] 旗標，藉以建立主控台。 這個方法會建立可供子進程存取的新主控台，而不是父進程。 個別的主控台可讓父系和子進程與使用者互動，而不會發生衝突。 如果建立主控台進程時未指定此旗標，則這兩個處理常式會附加到相同的主控台，而且不保證正確的程式會收到所需的輸入。 應用程式可以藉由建立不繼承輸入緩衝區控制碼的子進程，或一次只啟用一個子進程來繼承輸入緩衝區控制碼，並防止父進程讀取主控台輸入，直到子系完成為止，藉此防止混淆。
+進程也可以在對 [**CreateProcess**](https://msdn.microsoft.com/library/windows/desktop/ms682425)的呼叫中指定 [**建立 \_ 新的 \_ 主控台**] 旗標，藉以建立主控台。 這個方法會建立可供子進程存取的新主控台，而不是父進程。 個別的主控台可讓父系和子進程與使用者互動，而不會發生衝突。 如果建立主控台進程時未指定此旗標，則這兩個處理常式會附加到相同的主控台，而且不保證正確的程式會收到所需的輸入。 應用程式可以藉由建立不繼承輸入緩衝區控制碼的子進程，或一次只啟用一個子進程來繼承輸入緩衝區控制碼，並防止父進程讀取主控台輸入，直到子系完成為止，藉此防止混淆。
 
 建立新的主控台會產生新的主控台視窗，以及個別的 i/o 螢幕緩衝區。 與新主控台相關聯的進程會使用 [**GetStdHandle**](getstdhandle.md) 函式來取得新主控台之輸入和螢幕緩衝區的控制碼。 這些控點可讓進程存取主控台。
 
@@ -47,7 +48,7 @@ ms.locfileid: "93038236"
 
 進程無法變更其主控台視窗在螢幕上的位置，但是下列主控台函式可用來設定或抓取 [**STARTUPINFO**](https://msdn.microsoft.com/library/windows/desktop/ms686331) 結構中指定的其他屬性。
 
-| 函式 | 描述 |
+| 函式 | 說明 |
 |-|-|
 | [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md) | 抓取視窗大小、螢幕緩衝區大小和色彩屬性。 |
 | [**SetConsoleWindowInfo**](setconsolewindowinfo.md)  | 變更控制台視窗的大小。  |

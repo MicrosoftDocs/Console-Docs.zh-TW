@@ -13,12 +13,13 @@ MSHAttr:
 - PreferredSiteName:MSDN
 - PreferredLib:/library/windows/desktop
 ms.assetid: dc723046-b3e9-418a-b386-79be411e5ac8
-ms.openlocfilehash: 29d25e83281c7c98c74ae4a0da03eea06dbf0077
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.localizationpriority: high
+ms.openlocfilehash: acc7d65e15451fc2804dc1782644c1ccbaa30e28
+ms.sourcegitcommit: 508e93bc83b4bca6ce678f88ab081d66b95d605c
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039226"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96420237"
 ---
 # <a name="console-handles"></a>主控台控制代碼
 

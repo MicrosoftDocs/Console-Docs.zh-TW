@@ -6,12 +6,13 @@ ms.author: miniksa
 ms.topic: conceptual
 keywords: 主控台、終端機、虛擬終端機、主控台主機、命令列、子系統、藍圖、生態系統
 ms.prod: console
-ms.openlocfilehash: e47b72a6f66e54b5f2904770f7c1a87e08d927e2
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.localizationpriority: high
+ms.openlocfilehash: e5d28a06789f230943d70a49e7c89642b17fdb5c
+ms.sourcegitcommit: 508e93bc83b4bca6ce678f88ab081d66b95d605c
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039587"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96420257"
 ---
 # <a name="windows-console-and-terminal-ecosystem-roadmap"></a>Windows 主控台和終端生態系統藍圖
 
@@ -34,7 +35,7 @@ Microsoft 目前的主控台/終端時代的重點，是要直接為 Windows 平
 
 ![從用戶端到裝置到終端機的命令列通訊流程圖來源至目的地](images/command-line-communication.png)
 
-### <a name="client"></a>用戶端
+### <a name="client"></a>Client
 
 用戶端是一種命令列應用程式，它會使用以文字為基礎的介面，讓使用者 (輸入命令，而不是以滑鼠為基礎的使用者介面) ，傳回結果的文字標記法。 在 Windows 上，主控台 API 會提供用戶端與裝置之間的通訊層。  (這也可以是具有裝置控制 Api) 的標準主控台控制碼。
 

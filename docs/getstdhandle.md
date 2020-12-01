@@ -30,12 +30,13 @@ api_location:
 - MinKernelBase.dll
 api_type:
 - DllExport
-ms.openlocfilehash: e1cac9a8b2636f5272c6d1ecc358eb59f33295b5
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.localizationpriority: high
+ms.openlocfilehash: 42857417cedb661014de869536b798d29c9eb884
+ms.sourcegitcommit: 508e93bc83b4bca6ce678f88ab081d66b95d605c
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93038696"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96420207"
 ---
 # <a name="getstdhandle-function"></a>GetStdHandle 函式
 
@@ -64,9 +65,9 @@ HANDLE WINAPI GetStdHandle(
 
 如果函式成功，則傳回值是指定之裝置的控制碼，或先前呼叫 [**SetStdHandle**](setstdhandle.md)所設定的重新導向控制碼。 控制碼具有 **一般 \_ 讀取** 和 **一般 \_ 寫入** 存取權限，除非應用程式已使用 **SetStdHandle** 來設定較少存取的標準控制碼。
 
-如果函式失敗，則傳回值是 **不正確 \_ 控制碼 \_ 值** 。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果函式失敗，則傳回值是 **不正確 \_ 控制碼 \_ 值**。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
 
-如果應用程式沒有相關聯的標準控制碼（例如在互動式桌面上執行的服務），而且尚未將它們重新導向，則傳回值為 **Null** 。
+如果應用程式沒有相關聯的標準控制碼（例如在互動式桌面上執行的服務），而且尚未將它們重新導向，則傳回值為 **Null**。
 
 ## <a name="remarks"></a>備註
 
@@ -84,7 +85,7 @@ HANDLE WINAPI GetStdHandle(
 
 附加至新的主控台時，除非在進程建立期間指定了 **STARTF \_ USESTDHANDLES** ，否則一律會使用主控台控制碼來取代標準控制碼。
 
-如果標準控制碼的現有值為 **Null** ，或標準控制碼的現有值看起來像主控台 pseudohandle，控制碼就會取代為主控台控制碼。
+如果標準控制碼的現有值為 **Null**，或標準控制碼的現有值看起來像主控台 pseudohandle，控制碼就會取代為主控台控制碼。
 
 當父系同時使用 [ **建立 \_ 新的 \_ 主控台** ] 和 [ **STARTF \_ USESTDHANDLES** ] 建立主控台進程時，除非標準控制碼的現有值為 **Null** 或主控台 pseudohandle，否則不會取代標準控制碼。
 
@@ -105,7 +106,7 @@ HANDLE WINAPI GetStdHandle(
 | 程式庫 | Kernel32.dll .lib |
 | DLL | Kernel32.dll |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
 [主控台功能](console-functions.md)
 

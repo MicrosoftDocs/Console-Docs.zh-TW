@@ -6,12 +6,13 @@ ms.author: miniksa
 ms.topic: conceptual
 ms.prod: console
 keywords: 主控台，字元模式應用程式，命令列應用程式，終端應用程式，主控台 api，conpty，pseudoconsole，windows pty，虛擬主控台
-ms.openlocfilehash: 17b53bc2f0afb60be1a8311de9ab54b00fbf71d6
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.localizationpriority: high
+ms.openlocfilehash: 8cd057d3e74659fdeff6c569ddb053c881af1de8
+ms.sourcegitcommit: 508e93bc83b4bca6ce678f88ab081d66b95d605c
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039106"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96420227"
 ---
 # <a name="creating-a-pseudoconsole-session"></a>建立 Pseudoconsole 會話
 
@@ -93,7 +94,7 @@ HRESULT SetUpPseudoConsole(COORD size)
 
 以雙呼叫方式使用 [**InitializeProcThreadAttributeList**](https://docs.microsoft.com/windows/desktop/api/processthreadsapi/nf-processthreadsapi-initializeprocthreadattributelist) ，以先計算保留清單所需的位元組數目、配置所要求的記憶體，然後再次呼叫，提供不透明的記憶體指標讓它設定為屬性清單。
 
-接下來，呼叫 [**UpdateProcThreadAttribute**](https://docs.microsoft.com/windows/desktop/api/processthreadsapi/nf-processthreadsapi-updateprocthreadattribute) 傳遞已初始化的屬性清單和旗標 **PROC_THREAD_ATTRIBUTE_PSEUDOCONSOLE** 、PSEUDOCONSOLE 控制碼，以及 PSEUDOCONSOLE 控制碼的大小。
+接下來，呼叫 [**UpdateProcThreadAttribute**](https://docs.microsoft.com/windows/desktop/api/processthreadsapi/nf-processthreadsapi-updateprocthreadattribute) 傳遞已初始化的屬性清單和旗標 **PROC_THREAD_ATTRIBUTE_PSEUDOCONSOLE**、PSEUDOCONSOLE 控制碼，以及 PSEUDOCONSOLE 控制碼的大小。
 
 ```C
 
