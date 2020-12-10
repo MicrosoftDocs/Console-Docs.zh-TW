@@ -1,6 +1,6 @@
 ---
 title: WriteConsole 函式
-description: 從目前的游標位置開始，將字元字串寫入至主控台畫面緩衝區。
+description: 從目前的游標位置開始，將字元字串寫入主控台螢幕緩衝區。
 author: miniksa
 ms.author: miniksa
 ms.topic: article
@@ -40,14 +40,14 @@ api_type:
 ms.localizationpriority: high
 ms.openlocfilehash: 426aa6711e46e0d5cda1eb1b7dab7b2b0b7156d6
 ms.sourcegitcommit: 508e93bc83b4bca6ce678f88ab081d66b95d605c
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/01/2020
+ms.lasthandoff: 12/04/2020
 ms.locfileid: "96420287"
 ---
 # <a name="writeconsole-function"></a>WriteConsole 函式
 
-從目前的游標位置開始，將字元字串寫入至主控台畫面緩衝區。
+從目前的游標位置開始，將字元字串寫入主控台螢幕緩衝區。
 
 ## <a name="syntax"></a>語法
 
@@ -63,56 +63,56 @@ BOOL WINAPI WriteConsole(
 
 ## <a name="parameters"></a>參數
 
-*hConsoleOutput* \[在\]  
-主控台螢幕緩衝區的控制碼。 控制碼必須有 **一般 \_ 寫入** 存取權限。 如需詳細資訊，請參閱 [主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
+*hConsoleOutput* \[in\]  
+主控台螢幕緩衝區的控點。 控點必須具有 **GENERIC\_WRITE** 存取權限。 如需詳細資訊，請參閱[主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
 
-*lpBuffer* \[在\]  
-包含要寫入主控台螢幕緩衝區之字元的緩衝區指標。 這應該是的 `char` `WriteConsoleA` 或 `wchar_t` 的陣列 `WriteConsoleW` 。
+*lpBuffer* \[in\]  
+緩衝區的指標，其中包含要寫入主控台螢幕緩衝區的字元。 這應該是 `WriteConsoleA` 的 `char` 陣列，或 `WriteConsoleW` 的 `wchar_t` 陣列。
 
-*nNumberOfCharsToWrite* \[在\]  
-要寫入的字元數。 如果指定字元數的總大小超過可用的堆積，則函式會失敗，並出現 **錯誤， \_ \_ \_ 記憶體不足**。
+*nNumberOfCharsToWrite* \[in\]  
+要寫入的字元數。 如果指定字元數的總大小超過可用的堆積，則函式會因為 **ERROR\_NOT\_ENOUGH\_MEMORY** 而失敗。
 
-*lpNumberOfCharsWritten* \[out、optional\]  
-變數的指標，此變數會接收實際寫入的字元數。
+*lpNumberOfCharsWritten* \[out, optional\]  
+變數的指標，可接收實際寫入的字元數。
 
-*lpReserved* 保護必須是 **Null**。
+*lpReserved* 已保留；必須是 **NULL**。
 
 ## <a name="return-value"></a>傳回值
 
-如果函式成功，則傳回值為非零。
+如果函式成功，則傳回非零的值。
 
-如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果此函式失敗，則傳回值為零。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
 
 ## <a name="remarks"></a>備註
 
-**WriteConsole** 函式會在目前游標位置的主控台螢幕緩衝區寫入字元。 資料指標位置會隨著寫入字元而前進。 [**SetConsoleCursorPosition**](setconsolecursorposition.md)函式會設定目前的游標位置。
+**WriteConsole** 函式會在目前游標位置將字元寫入主控台螢幕緩衝區。 游標位置會在寫入字元時前進。 [**SetConsoleCursorPosition**](setconsolecursorposition.md) 函式會設定目前的游標位置。
 
-字元是使用與主控台螢幕緩衝區相關聯的前景和背景色彩屬性來撰寫。 [**SetConsoleTextAttribute**](setconsoletextattribute.md)函式會變更這些色彩。 若要判斷目前的色彩屬性和目前的資料指標位置，請使用 [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md)。
+字元是使用與主控台螢幕緩衝區相關聯的前景和背景色彩屬性來撰寫。 [**SetConsoleTextAttribute**](setconsoletextattribute.md) 函式會變更這些色彩。 若要判斷目前的色彩屬性和目前的游標位置，請使用 [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md)。
 
-所有影響 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) 函式行為的輸入模式在 **WriteConsole** 上都有相同的效果。 若要取出和設定主控台螢幕緩衝區的輸出模式，請使用 [**GetConsoleMode**](getconsolemode.md) 和 [**SetConsoleMode**](setconsolemode.md) 函式。
+所有會影響 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) 函式行為的輸入模式，在 **WriteConsole** 上具有相同的效果。 若要擷取及設定主控台螢幕緩衝區的輸出模式，請使用 [**GetConsoleMode**](getconsolemode.md) 和 [**SetConsoleMode**](setconsolemode.md) 函式。
 
 [!INCLUDE [setting-codepage-mode-remarks](./includes/setting-codepage-mode-remarks.md)]
 
-如果搭配重新導向至檔案的標準控制碼使用， **WriteConsole** 就會失敗。 如果應用程式處理可重新導向的多語系輸出，請判斷輸出控制碼是否為主控台控制碼 (其中一種方法是呼叫 [**GetConsoleMode**](getconsolemode.md) 函式，並檢查它是否成功) 。 如果控制碼是主控台控制碼，請呼叫 **WriteConsole**。 如果控制碼不是主控台控制碼，系統就會將輸出重新導向，而您應該呼叫 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) 來執行 i/o。 請務必在 Unicode 純文字檔前面加上位元組順序標記。 如需詳細資訊，請參閱 [使用位元組順序標記](https://msdn.microsoft.com/library/windows/desktop/dd374101)。
+如果 **WriteConsole** 搭配會重新導向至檔案的標準控點使用，則會失敗。 如果應用程式處理可重新導向的多語系輸出，請判斷輸出控點是否為主控台控點 (其中一種方法是呼叫 [**GetConsoleMode**](getconsolemode.md) 函式並檢查其是否成功)。 如果控點是主控台控點，請呼叫 **WriteConsole**。 如果控點不是主控台控點，系統就會將輸出重新導向，而且您應該呼叫 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) 來執行 I/O。 請務必在 Unicode 純文字檔案前面加上位元組順序標記。 如需詳細資訊，請參閱[使用位元組順序標記](https://msdn.microsoft.com/library/windows/desktop/dd374101)。
 
-雖然應用程式可以使用 ANSI 模式的 **WriteConsole** 來撰寫 ansi 字元，但除非已啟用，否則主控台不支援「ansi escape」或「虛擬終端機」序列。 如需詳細資訊及作業系統版本適用性，請參閱 [**主控台虛擬終端機序列**](console-virtual-terminal-sequences.md) 。
+雖然應用程式可以使用 ANSI 模式的 **WriteConsole** 來寫入 ANSI 字元，但除非已啟用「ANSI 逸出」或「虛擬終端機」序列，否則主控台不提供支援。 如需詳細資訊和作業系統版本適用性，請參閱 [**主控台虛擬終端機序列**](console-virtual-terminal-sequences.md)。
 
-當虛擬終端機 escape 序列未啟用時，主控台功能可以提供對等的功能。 如需詳細資訊，請參閱 [**SetCursorPos**](https://msdn.microsoft.com/library/windows/desktop/ms648394(v=vs.85).aspx)、 [**SetConsoleTextAttribute**](setconsoletextattribute.md)和 [**GetConsoleCursorInfo**](getconsolecursorinfo.md)。
+若未啟用當虛擬終端機逸出序列，主控台函式可以提供對等的功能。 如需詳細資訊，請參閱 [**SetCursorPos**](https://msdn.microsoft.com/library/windows/desktop/ms648394(v=vs.85).aspx)、[**SetConsoleTextAttribute**](setconsoletextattribute.md) 和 [**GetConsoleCursorInfo**](getconsolecursorinfo.md)。
 
 ## <a name="requirements"></a>規格需求
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
-| 標頭 | ConsoleApi .h (via WinCon，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
+| 標頭 | ConsoleApi.h (透過 WinCon.h，包括 Windows.h) |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
-| Unicode 和 ANSI 名稱 | **WriteConsoleW** (Unicode) 和 **WriteConsoleA** (ANSI)  |
+| Unicode 與 ANSI 名稱 | **WriteConsoleW** (Unicode) 和 **WriteConsoleA** (ANSI) |
 
 ## <a name="see-also"></a>另請參閱
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)
 
 [**GetConsoleCursorInfo**](getconsolecursorinfo.md)
 

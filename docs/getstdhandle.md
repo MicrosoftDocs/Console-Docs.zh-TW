@@ -1,6 +1,6 @@
 ---
 title: GetStdHandle 函式
-description: " (標準輸入、標準輸出或標準錯誤) ，抓取指定標準裝置的控制碼。"
+description: 擷取指定標準裝置的控制代碼 (標準輸入、標準輸出或標準錯誤)。
 author: miniksa
 ms.author: miniksa
 ms.topic: article
@@ -33,14 +33,14 @@ api_type:
 ms.localizationpriority: high
 ms.openlocfilehash: 42857417cedb661014de869536b798d29c9eb884
 ms.sourcegitcommit: 508e93bc83b4bca6ce678f88ab081d66b95d605c
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/01/2020
+ms.lasthandoff: 12/04/2020
 ms.locfileid: "96420207"
 ---
 # <a name="getstdhandle-function"></a>GetStdHandle 函式
 
- (標準輸入、標準輸出或標準錯誤) ，抓取指定標準裝置的控制碼。
+擷取指定標準裝置的控制代碼 (標準輸入、標準輸出或標準錯誤)。
 
 ## <a name="syntax"></a>語法
 
@@ -52,63 +52,63 @@ HANDLE WINAPI GetStdHandle(
 
 ## <a name="parameters"></a>參數
 
-*nStdHandle* \[在\]  
-標準裝置。 這個參數可以是下列其中一個值。
+*nStdHandle* \[輸入\]  
+標準裝置。 此參數可以是下列其中一個值。
 
 | 值 | 意義 |
 |-|-|
-| **STD_INPUT_HANDLE** (DWORD) -10 | 標準輸入設備。 一開始，這是主控台輸入緩衝區 `CONIN$` 。 |
-| **STD_OUTPUT_HANDLE** (DWORD) -11 | 標準輸出裝置。 這一開始是使用中的主控台畫面緩衝區 `CONOUT$` 。 |
-| **STD_ERROR_HANDLE** (DWORD) -12 | 標準錯誤裝置。 這一開始是使用中的主控台畫面緩衝區 `CONOUT$` 。 |
+| **STD_INPUT_HANDLE** (DWORD) -10 | 標準輸入裝置。 一開始，這是主控台輸入緩衝區 `CONIN$`。 |
+| **STD_OUTPUT_HANDLE** (DWORD) -11 | 標準輸出裝置。 一開始，這是作用中的主控台畫面緩衝區 `CONOUT$`。 |
+| **STD_ERROR_HANDLE** (DWORD) -12 | 標準錯誤裝置。 一開始，這是作用中的主控台畫面緩衝區 `CONOUT$`。 |
 
 ## <a name="return-value"></a>傳回值
 
-如果函式成功，則傳回值是指定之裝置的控制碼，或先前呼叫 [**SetStdHandle**](setstdhandle.md)所設定的重新導向控制碼。 控制碼具有 **一般 \_ 讀取** 和 **一般 \_ 寫入** 存取權限，除非應用程式已使用 **SetStdHandle** 來設定較少存取的標準控制碼。
+如果函式成功，則傳回值是指定裝置的控制代碼，或是先前呼叫 [**SetStdHandle**](setstdhandle.md) 時所設定的重新導向控制代碼。 除非應用程式已使用 **SetStdHandle** 將標準控制代碼設定為具有較低存取權，否則控制代碼會具有 **GENERIC\_READ** 和 **GENERIC\_WRITE** 存取權限。
 
-如果函式失敗，則傳回值是 **不正確 \_ 控制碼 \_ 值**。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果函式失敗，則傳回值是 **INVALID\_HANDLE\_VALUE**。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
 
-如果應用程式沒有相關聯的標準控制碼（例如在互動式桌面上執行的服務），而且尚未將它們重新導向，則傳回值為 **Null**。
+如果應用程式沒有相關聯的標準控制代碼 (例如在互動式桌面上執行的服務)，而且尚未將其重新導向，則傳回值會是 **Null**。
 
 ## <a name="remarks"></a>備註
 
-**GetStdHandle** 所傳回的控制碼可供需要讀取或寫入主控台的應用程式使用。 建立主控台時，標準輸入控制碼是主控台輸入緩衝區的控制碼，而標準輸出和標準錯誤控制碼則是主控台的作用中螢幕緩衝區的控制碼。 這些控制碼可供 [**ReadFile**](https://msdn.microsoft.com/library/windows/desktop/aa365467) 和 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) 函式使用，或由任何可存取主控台輸入緩衝區或螢幕緩衝區的主控台函式使用 (例如， [**ReadConsoleInput**](readconsoleinput.md)、 [**WriteConsole**](writeconsole.md)或 [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md) 函數) 。
+**GetStdHandle** 傳回的控制代碼可供需要讀取或寫入主控台的應用程式使用。 建立主控台時，標準輸入控制代碼是主控台輸入緩衝區的控制代碼，而標準輸出和標準錯誤控制代碼則是主控台作用中畫面緩衝區的控制代碼。 這些控制代碼可由 [**ReadFile**](https://msdn.microsoft.com/library/windows/desktop/aa365467) 和 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) 函式使用，或由任何存取主控台輸入緩衝區或畫面緩衝區的主控台函式使用 (例如 [**ReadConsoleInput**](readconsoleinput.md)、[**WriteConsole**](writeconsole.md)或 [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md) 函式)。
 
-呼叫 [**SetStdHandle**](setstdhandle.md)可能會重新導向進程的標準控制碼，在這種情況下， **GetStdHandle** 會傳回重新導向的控制碼。 如果已重新導向標準控制碼，您可以在對 CreateFile 函式的 `CONIN$` 呼叫中 [**CreateFile**](https://msdn.microsoft.com/library/windows/desktop/aa363858)指定值，以取得主控台輸入緩衝區的控制碼。 同樣地，您可以指定 `CONOUT$` 值以取得主控台的作用中螢幕緩衝區的控制碼。
+對 [**SetStdHandle**](setstdhandle.md) 發出的呼叫可能會將程序的標準控制代碼重新導向，在此情況下，**GetStdHandle** 會傳回重新導向的控制代碼。 如果標準控制代碼已重新導向，您可以在呼叫 [**CreateFile**](https://msdn.microsoft.com/library/windows/desktop/aa363858) 函式時指定 `CONIN$` 值，以取得主控台輸入緩衝區的控制代碼。 同樣地，您可以指定 `CONOUT$` 值，以取得主控台作用中畫面緩衝區的控制代碼。
 
-當建立應用程式時，將傳遞給連結器的 [**/SUBSYSTEM**](https://docs.microsoft.com/cpp/build/reference/subsystem-specify-subsystem) 旗標設定，會決定如何在 main 方法的專案上設定標準處理常式。 指定 **/SUBSYSTEM：主控台** 要求作業系統在啟動時以主控台會話填滿控制碼，如果父系尚未依繼承填滿標準控制碼表格。 相反地， **/SUBSYSTEM： WINDOWS** 表示應用程式不需要主控台，而且可能不會使用標準控點。 如需有關控制碼繼承的詳細資訊，請參閱 [**STARTF \_ USESTDHANDLES**](https://docs.microsoft.com/windows/win32/api/processthreadsapi/ns-processthreadsapi-startupinfoa)的檔。
+建立應用程式時，傳遞至連結器的 [ **/SUBSYSTEM**](https://docs.microsoft.com/cpp/build/reference/subsystem-specify-subsystem) 旗標設定會決定在 main 方法進入點上的程序標準控制代碼。 指定 **/SUBSYSTEM:CONSOLE** 會要求作業系統在啟動時以主控台工作階段填滿控制代碼 (如果父系尚未透過繼承來填滿標準控制代碼資料表)。 相反地， **/SUBSYSTEM:WINDOWS** 則是表示應用程式不需要主控台，而且很可能不會使用標準控制代碼。 如需有關控制代碼繼承的詳細資訊，請參閱 [**STARTF\_USESTDHANDLES**](https://docs.microsoft.com/windows/win32/api/processthreadsapi/ns-processthreadsapi-startupinfoa) 的文件。
 
-有些應用程式會在其宣告的子系統界限之外運作;比方說， **/SUBSYSTEM： WINDOWS** 應用程式可能會檢查/使用標準控制碼進行記錄或偵測，但以圖形化使用者介面正常運作。 這些應用程式必須在啟動時仔細探查標準控制碼的狀態，並使用 [**AttachConsole**](attachconsole.md)、 [**AllocConsole**](allocconsole.md)和 [**FreeConsole**](freeconsole.md) 來新增/移除主控台（如有需要）。
+有些應用程式會在其宣告的子系統界限外運作；例如， **/SUBSYSTEM:WINDOWS** 應用程式可能會檢查/使用標準控制代碼進行記錄或偵錯，但通常會搭配圖形使用者介面運作。 這些應用程式必須在啟動時仔細探查標準控制代碼的狀態，並使用 [**AttachConsole**](attachconsole.md)、[**AllocConsole**](allocconsole.md) 和 [**FreeConsole**](freeconsole.md) 來新增/移除主控台 (如有需要)。
 
-某些應用程式可能也會在繼承控制碼的類型上改變其行為。 您可以使用 [**GetFileType**](https://docs.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getfiletype)來執行主控台、管道、檔案和其他專案之間的類型 Disambiguating。
+某些應用程式也可能會改變其在所繼承控制代碼類型上的行為。 若要釐清主控台、管道、檔案和其他類型，可以使用 [**GetFileType**](https://docs.microsoft.com/windows/win32/api/fileapi/nf-fileapi-getfiletype) 來執行。
 
-### <a name="attachdetach-behavior"></a>附加/卸離行為
+### <a name="attachdetach-behavior"></a>連結/卸離行為
 
-附加至新的主控台時，除非在進程建立期間指定了 **STARTF \_ USESTDHANDLES** ，否則一律會使用主控台控制碼來取代標準控制碼。
+連結至新的主控台時，除非已在程序建立期間指定了 **STARTF\_USESTDHANDLES**，否則一律會使用主控台控制代碼取代標準控制代碼。
 
-如果標準控制碼的現有值為 **Null**，或標準控制碼的現有值看起來像主控台 pseudohandle，控制碼就會取代為主控台控制碼。
+如果標準控制代碼的現有值為 **Null**，或標準控制代碼的現有值看起來像主控台 pseudohandle，則控制代碼會取代為主控台控制代碼。
 
-當父系同時使用 [ **建立 \_ 新的 \_ 主控台** ] 和 [ **STARTF \_ USESTDHANDLES** ] 建立主控台進程時，除非標準控制碼的現有值為 **Null** 或主控台 pseudohandle，否則不會取代標準控制碼。
+當父系同時使用 **CREATE\_NEW\_CONSOLE** 和 **STARTF\_USESTDHANDLES** 來建立主控台程序時，除非標準控制代碼的現有值為 **Null** 或主控台 pseudohandle，否則不會取代標準控制代碼。
 
 > [!NOTE]
->主控台處理常式 *必須* 以填滿的標準控點作為開頭，否則系統將會自動使用適當的控制碼來填滿新的主控台。 圖形化使用者介面 (GUI) 應用程式可以在沒有標準控制碼的情況下啟動，且不會自動填入。
+>主控台程序「必須」從填滿標準控制代碼開始，否則新的主控台會自動以適當的控制代碼填入。 圖形使用者介面 (GUI) 應用程式可以在沒有標準控制代碼的情況下啟動，而且不會自動填入。
 
 ## <a name="examples"></a>範例
 
-如需範例，請參閱 [讀取輸入緩衝區事件](reading-input-buffer-events.md)。
+如需範例，請參閱[讀取輸入緩衝區事件](reading-input-buffer-events.md)。
 
 ## <a name="requirements"></a>規格需求
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
-| 標頭 | ProcessEnv .h (via Winbase，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
+| 標頭 | ProcessEnv.h (透過 Winbase.h，包括 Windows.h) |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
 
 ## <a name="see-also"></a>另請參閱
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)
 
 [主控台控制代碼](console-handles.md)
 

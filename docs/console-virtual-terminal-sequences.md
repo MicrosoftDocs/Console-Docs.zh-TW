@@ -1,6 +1,6 @@
 ---
 title: 主控台虛擬終端機序列
-description: 虛擬終端機序列是控制字元序列，可以控制資料指標移動、色彩/字型模式，以及寫入輸出資料流程時的其他作業。
+description: 虛擬終端機序列是可在寫入至輸出資料流時控制游標移動、色彩/字型模式和其他作業的控制字元序列。
 author: miniksa
 ms.author: miniksa
 ms.topic: conceptual
@@ -10,348 +10,348 @@ MSHAttr:
 - PreferredLib:/library/windows/desktop
 ms.assetid: A5C553A5-FD84-4D16-A814-EDB3B8699B91
 ms.openlocfilehash: 45ee5518ec8ea2da840d2a4442efd9e0d4346526
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
-ms.translationtype: MT
+ms.sourcegitcommit: 508e93bc83b4bca6ce678f88ab081d66b95d605c
+ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
+ms.lasthandoff: 12/04/2020
 ms.locfileid: "93039146"
 ---
 # <a name="console-virtual-terminal-sequences"></a>主控台虛擬終端機序列
 
 
-虛擬終端機序列是控制字元序列，可以控制資料指標移動、色彩/字型模式，以及寫入輸出資料流程時的其他作業。 當設定適當的模式時，也可以在輸入資料流程上接收序列，以回應輸出資料流程查詢資訊序列或使用者輸入的編碼。
+虛擬終端機序列是可在寫入至輸出資料流時控制游標移動、色彩/字型模式和其他作業的控制字元序列。 只要設定適當模式，輸入資料流上也可以接收序列來回應輸出資料流的查詢資訊序列或作為使用者輸入的編碼。
 
-您可以使用 [**GetConsoleMode**](getconsolemode.md) 和 [**SetConsoleMode**](setconsolemode.md) 函數來設定此行為。 本檔的結尾包含啟用虛擬終端行為的建議方式範例。
+您可以使用 [**GetConsoleMode**](getconsolemode.md) 和 [**SetConsoleMode**](setconsolemode.md) 函式來設定此行為。 本文件最後會包含啟用虛擬終端機行為的建議方式範例。
 
-下列順序的行為取決於 VT100 和衍生的終端機模擬器技術，尤其是 xterm 終端機模擬器。 您可以在和 at 找到終端機序列的詳細資訊 <http://vt100.net> <http://invisible-island.net/xterm/ctlseqs/ctlseqs.html> 。
+下列序列的行為是以 VT100 和衍生的終端機模擬器技術為基礎，特別是 xterm 終端機模擬器。 如需有關終端機序列的詳細資訊，請參閱 <http://vt100.net> 和 <http://invisible-island.net/xterm/ctlseqs/ctlseqs.html>。
 
 ## <a name="span-idoutput_sequencesspanspan-idoutput_sequencesspanspan-idoutput_sequencesspanoutput-sequences"></a><span id="Output_Sequences"></span><span id="output_sequences"></span><span id="OUTPUT_SEQUENCES"></span>輸出序列
 
 
-如果使用 SetConsoleMode 函式在 \_ \_ \_ 螢幕緩衝區控制碼上設定 [**SetConsoleMode**](setconsolemode.md)了 [啟用虛擬終端處理] 旗標，則在寫入輸出資料流程時，主控台主機會攔截下列終端機序列。 請注意，「停 \_ 用分行符號自動傳回」旗標在 \_ \_ 模擬其他終端機模擬器的資料指標定位和滾動行為時，可能也很有用，因為這些字元是寫入任何資料列中的最後一個資料行。
+寫入至輸出資料流時，如果使用 [**SetConsoleMode**](setconsolemode.md) 函式在畫面緩衝區控制代碼上設定 ENABLE\_VIRTUAL\_TERMINAL\_PROCESSING 旗標，則主控台主機會攔截下列終端機序列。 請注意，針對寫入任何資料列中最後一個資料行的字元，使用 DISABLE\_NEWLINE\_AUTO\_RETURN 旗標有助於模擬其他終端機模擬器的游標定位和捲動行為。
 
-## <a name="span-idsimple_cursor_positioningspanspan-idsimple_cursor_positioningspanspan-idsimple_cursor_positioningspansimple-cursor-positioning"></a><span id="Simple_Cursor_Positioning"></span><span id="simple_cursor_positioning"></span><span id="SIMPLE_CURSOR_POSITIONING"></span>簡單的資料指標定位
-
-
-在下列所有說明中，ESC 一律是十六進位值0x1B。 終端機序列中不包含任何空格。 如需如何在實務中使用這些順序的範例，請參閱本主題結尾處的 [範例](#example) 。
-
-下表說明在 ESC 字元之後直接使用單一動作命令的簡單 escape 序列。 這些序列沒有任何參數，且會立即生效。
-
-此表格中的所有命令通常等同于呼叫 [**SetConsoleCursorPosition**](setconsolecursorposition.md) 主控台 API 來放置游標。
-
-資料指標移動會由目前的資料區系結到緩衝區。 如果沒有可用的) ， (滾動。
+## <a name="span-idsimple_cursor_positioningspanspan-idsimple_cursor_positioningspanspan-idsimple_cursor_positioningspansimple-cursor-positioning"></a><span id="Simple_Cursor_Positioning"></span><span id="simple_cursor_positioning"></span><span id="SIMPLE_CURSOR_POSITIONING"></span>簡單的游標定位
 
 
-| 順序 | 速記 | 行為 |
+在下列所有描述中，ESC 一律是十六進位值 0x1B。 終端機序列中不會包含任何空格。 如需如何在實務中使用這些序列的範例，請參閱本主題結尾處的[範例](#example)。
+
+下表描述直接在 ESC 字元之後使用單一動作命令的簡單逸出序列，並。 這些序列沒有參數，而且會立即生效。
+
+此資料表中的所有命令通常等同於呼叫 [**SetConsoleCursorPosition**](setconsolecursorposition.md) 主控台 API 來放置游標。
+
+游標移動會由目前的檢視區繫結至緩衝區中。 將不會發生捲動 (如果適用)。
+
+
+| 順序 | 速記法 | 行為 |
 |----------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| ESC A | CUU | 游標向上1 |
-| ESC B | 反芻 | 資料指標向下1 |
-| ESC C | CUF | 向前 (右) 的向前快轉資料指標1 |
-| ESC D | 幼 崽 | 將游標向左 (左) 1 |
-| ESC M | RI | 反向索引–執行 n 的反向運算 \\ 、將游標向上移動一行、維持水準位置、視需要滾動緩衝區\* |
+| ESC A | CUU | 游標向上移 1 個位置 |
+| ESC B | CUD | 游標向下移 1 個位置 |
+| ESC C | CUF | 游標向前 (右) 移 1 個位置 |
+| ESC D | CUB | 游標向後 (左) 移 1 個位置 |
+| ESC M | RI | 反向索引 – 執行 \\n 的反向作業，將游標向上移動一行並維持水準位置，可視需要捲動緩衝區\* |
 | ESC 7 | DECSC | 將游標位置儲存在記憶體中\*\* |
-| ESC 8 | DECSR | 從記憶體還原資料指標位置\*\* |
+| ESC 8 | DECSR | 從記憶體還原游標位置\*\* |
 
 
 
 > [!NOTE]
->\* 如果有設定捲軸邊界，則邊界內的 RI 只會滾動邊界的內容，並讓此區保持不變。  (請參閱滾動邊界) 
+>\* 如果有設定捲動邊界，邊界內的 RI 只會捲動邊界的內容，並讓檢視區保持不變。 (請參閱捲動邊界)
 >
->\*\*在第一次使用 save 命令之前，記憶體中不會儲存任何值。 存取儲存值的唯一方法是使用 restore 命令。
+>\*\*在第一次使用儲存命令之前，記憶體中不會儲存任何值。 存取儲存值的唯一方法是使用還原命令。
 
-## <a name="span-idcursor_positioningspanspan-idcursor_positioningspanspan-idcursor_positioningspancursor-positioning"></a><span id="Cursor_Positioning"></span><span id="cursor_positioning"></span><span id="CURSOR_POSITIONING"></span>資料指標定位
+## <a name="span-idcursor_positioningspanspan-idcursor_positioningspanspan-idcursor_positioningspancursor-positioning"></a><span id="Cursor_Positioning"></span><span id="cursor_positioning"></span><span id="CURSOR_POSITIONING"></span>游標定位
 
 
-下表包含控制順序 Introducer (CSI) 類型序列。 所有 CSI 序列都以 ESC 開頭 (0x1B) 接著 \[ (左括弧、0x5B) ，而且可能包含變數長度的參數，以指定每項作業的詳細資訊。 這會以速記 &lt; n 表示 &gt; 。 下表依功能分組，每個資料表都說明群組的運作方式。
+下表包含控制序列引導器 (Control Sequence Introducer，CSI) 類型的序列。 所有 CSI 序列都是以 ESC (0x1B) 開頭，後面接著 \[ (左括弧 (0x5B))，而且可能包含可變長度的參數來指定每項作業的詳細資訊。 這會以速記法 &lt;n&gt; 表示。 下列每個資料表都會依功能分組，並在每個資料表下方說明群組的運作方式。
 
-針對所有參數，除非另有說明，否則適用下列規則：
+除非另有註明，否則所有參數皆適用下列規則：
 
-- &lt;n &gt; 代表要移動的距離，而且是選擇性參數
-- 如果 &lt; &gt; 省略 n 或等於0，則會將它視為1
-- &lt;n &gt; 不能大於 32767 (最大短值) 
-- &lt;n &gt; 不可以是負數
+- &lt;n&gt; 代表要移動的距離，而且屬於選擇性參數
+- 如果 &lt;n&gt; 省略或等於 0，則會將其視為 1
+- &lt;n&gt; 不能大於 32,767 (最大 short 值)
+- &lt;n&gt; 不可以是負數
 
-此區段中的所有命令通常等同于呼叫 [**SetConsoleCursorPosition**](setconsolecursorposition.md) 主控台 API。
+本節中的所有命令通常等同於呼叫 [**SetConsoleCursorPosition**](setconsolecursorposition.md)主控台 API。
 
-資料指標移動會由目前的資料區系結到緩衝區。 如果沒有可用的) ， (滾動。
+游標移動會由目前的檢視區繫結至緩衝區中。 將不會發生捲動 (如果適用)。
 
 
 | 順序 | 程式碼 | 描述 | 行為 |
 |--------------------------------|-----------|-------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| ESC \[ &lt; n &gt; A | CUU | Cursor Up | 依 n 的游標 &lt;&gt; |
-| ESC \[ &lt; n &gt; B | 反芻 | 游標向下 | 向下游標向下 &lt; n&gt; |
-| ESC \[ &lt; n &gt; C | CUF | 向前資料指標 | 向前 (右) 的向前快轉資料指標 &lt; n&gt; |
-| ESC \[ &lt; n &gt; D | 幼 崽 | 游標向後 | 將游標向左 (左) &lt; n&gt; |
-| ESC \[ &lt; n &gt; E | CNL | 游標下一行 | &lt;從目前位置將游標向下移 n &gt; 行 |
-| ESC \[ &lt; n &gt; F | Cpl | 資料指標上一行 | &lt; &gt; 從目前的位置將游標向上移 n 行 |
-| ESC \[ &lt; n &gt; G | CHA | 資料指標水準絕對 | 資料指標會 &lt; &gt; 在目前的行中水準移至 n 個位置 |
-| ESC \[ &lt; n &gt; d | VPA | 垂直行位置絕對 | 游標移至 &lt; 目前資料 &gt; 行中的第 n 個位置 |
-| ESC \[ &lt; y &gt; ; &lt;x &gt; H | 杯 | 游標位置 | \*游標移至 &lt; x &gt; ; &lt;在 &gt; 視口內的 y 座標，其中 &lt; x &gt; 是 &lt; y &gt; 行的資料行 |
-| ESC \[ &lt; y &gt; ; &lt;x &gt; f | HVP | 水準垂直位置 | \*游標移至 &lt; x &gt; ; &lt;在 &gt; 視口內的 y 座標，其中 &lt; x &gt; 是 &lt; y &gt; 行的資料行 |
-| ESC \[ s | ANSISYSSC | 儲存資料指標– Ansi.sys 模擬 | \*\*如果沒有參數，會執行儲存資料指標作業，例如 DECSC |
-| ESC \[ u | ANSISYSSC | 還原資料指標– Ansi.sys 模擬 | \*\*如果沒有參數，則會執行還原資料指標作業，例如 DECRC |
+| ESC \[ &lt;n&gt; A | CUU | 游標向上移 | 游標向上移 &lt;n&gt; 個位置 |
+| ESC \[ &lt;n&gt; B | CUD | 游標向下移 | 游標向下移 &lt;n&gt; 個位置 |
+| ESC \[ &lt;n&gt; C | CUF | 游標向前移 | 游標向前 (右) 移 &lt;n&gt; 個位置 |
+| ESC \[ &lt;n&gt; D | CUB | 游標向後移 | 游標向後 (左) 移 &lt;n&gt; 個位置 |
+| ESC \[ &lt;n&gt; E | CNL | 游標移到下一行 | 游標從目前位置向下移動 &lt;n&gt; 行 |
+| ESC \[ &lt;n&gt; F | CPL | 游標移到上一行 | 游標從目前位置向上移動 &lt;n&gt; 行 |
+| ESC \[ &lt;n&gt; G | CHA | 游標水平移到絕對位置 | 游標水平移至目前這一行中的第 &lt;n&gt; 個位置 |
+| ESC \[ &lt;n&gt; d | VPA | 游標垂直移動到行的絕對位置 | 游標垂直移至目前資料行中的第 &lt;n&gt; 個位置 |
+| ESC \[ &lt;y&gt; ; &lt;x&gt; H | CUP | 游標位置 | \*游標移到檢視區中的 &lt;x&gt;; &lt;y&gt; 座標，其中 &lt;x&gt; 是 &lt;y&gt; 行的資料行 |
+| ESC \[ &lt;y&gt; ; &lt;x&gt; f | HVP | 水平垂直位置 | \*游標移到檢視區中的 &lt;x&gt;; &lt;y&gt; 座標，其中 &lt;x&gt; 是 &lt;y&gt; 行的資料行 |
+| ESC \[ s | ANSISYSSC | 儲存游標 – Ansi.sys 模擬 | \*\*在沒有參數的情況下，執行儲存游標作業 (如同 DECSC) |
+| ESC \[ u | ANSISYSSC | 還原游標 – Ansi.sys 模擬 | \*\*在沒有參數的情況下，執行還原游標作業 (如同 DECRC) |
 
 
 
 > [!NOTE]
->\*&lt;x &gt; 和 &lt; y &gt; 參數的限制與上述的 &lt; 相同 &gt; 。 如果 &lt; &gt; 省略 x 和 &lt; y，則 &gt; 會設為 1; 1。
+>\*&lt;x&gt; 和 &lt;y&gt; 參數與上述的 &lt;n&gt; 具有相同限制。 如果省略 &lt;x&gt; 和 &lt;y&gt;，則會設為 1;1。
 >
->\*\* 您可以在中找到ANSI.sys 的歷程記錄檔 <https://msdn.microsoft.com/library/cc722862.aspx> ，並且為了方便/相容性而實行。
+>\*\*您可以在 <https://msdn.microsoft.com/library/cc722862.aspx> 上找到 ANSI.sys 的歷程記錄文件，並針對便利性/相容性需求來加以實作。
 
 
 
-## <a name="span-idcursor_visibilityspanspan-idcursor_visibilityspanspan-idcursor_visibilityspancursor-visibility"></a><span id="Cursor_Visibility"></span><span id="cursor_visibility"></span><span id="CURSOR_VISIBILITY"></span>資料指標可見度
+## <a name="span-idcursor_visibilityspanspan-idcursor_visibilityspanspan-idcursor_visibilityspancursor-visibility"></a><span id="Cursor_Visibility"></span><span id="cursor_visibility"></span><span id="CURSOR_VISIBILITY"></span>游標可見度
 
 
-下列命令控制資料指標的可見度和其閃爍狀態。 DECTCEM 序列通常等同于呼叫 [**SetConsoleCursorInfo**](setconsolecursorinfo.md) 主控台 API 來切換資料指標可見度。
+下列命令會控制游標的可見度和其閃爍狀態。 DECTCEM 序列通常等同於呼叫 [**SetConsoleCursorInfo**](setconsolecursorinfo.md) 主控台 API 來切換游標可見度。
 
 
 | 順序 | 程式碼 | 描述 | 行為 |
 |---------------|---------|------------------------------|---------------------------|
-| ESC \[ ？ 12小時 | ATT160 | 文字游標啟用閃爍 | 開始游標閃爍 |
-| ESC \[ ？ 12 l | ATT160 | 文字游標停用閃爍 | 停止閃爍游標 |
-| ESC \[ ？ 25 h | DECTCEM | 文字游標啟用模式顯示 | 顯示資料指標 |
-| ESC \[ ？ 25 l | DECTCEM | 文字游標啟用模式隱藏 | 隱藏游標 |
+| ESC \[ ? 12 h | ATT160 | 文字游標啟用閃爍 | 啟動游標閃爍 |
+| ESC \[ ? 12 l | ATT160 | 文字游標停用閃爍 | 停止游標閃爍 |
+| ESC \[ ? 25 h | DECTCEM | 文字游標啟用模式顯示 | 顯示游標 |
+| ESC \[ ? 25 l | DECTCEM | 文字游標啟用模式隱藏 | 隱藏游標 |
 
 > [!TIP]
-> 啟用序列以小寫 H 字元結尾 (`h`) ，而停用序列則以小寫 L 字元結尾 (`l`) 。
+> 啟用序列的結尾是小寫 H 字元 (`h`)，而停用序列的結尾則是小寫 L 字元 (`l`)。
 
-## <a name="span-idviewport_positioningspanspan-idviewport_positioningspanspan-idviewport_positioningspanviewport-positioning"></a><span id="Viewport_Positioning"></span><span id="viewport_positioning"></span><span id="VIEWPORT_POSITIONING"></span>視口定位
+## <a name="span-idviewport_positioningspanspan-idviewport_positioningspanspan-idviewport_positioningspanviewport-positioning"></a><span id="Viewport_Positioning"></span><span id="viewport_positioning"></span><span id="VIEWPORT_POSITIONING"></span>檢視區定位
 
 
-此區段中的所有命令通常等同于呼叫 [**ScrollConsoleScreenBuffer**](scrollconsolescreenbuffer.md) 主控台 API 來移動主控台緩衝區的內容。
+本節中的所有命令通常等同於呼叫 [**ScrollConsoleScreenBuffer**](scrollconsolescreenbuffer.md) 主控台 API 來移動主控台緩衝區的內容。
 
-**注意** 命令名稱會誤導。 「滾動」指的是文字在作業期間移動的方向，而不是「表面」移動的方式。
+**注意** 命令名稱會造成誤導。 捲動 (Scroll) 是指文字在作業期間移動的方向，而不是檢視區要移動的方式。
 
 
 
 
 | 順序 | 程式碼 | 描述 | 行為 |
 |--------------------|------|-------------|------------------------------------------------------------------------------------------------------|
-| ESC \[ &lt; n &gt; S | SU | 向上捲動 | 將文字向上滾動 &lt; n &gt; 。 也稱為「下移線」，新行會從畫面底部填滿 |
-| ESC \[ &lt; n &gt; T | SD | 向下捲動 | 向下移動 &lt; n &gt; 。 也稱為「向上移動」，從畫面頂端填滿新行 |
+| ESC \[ &lt;n&gt; S | SU | 向上捲動 | 文字向上捲動 &lt;n&gt; 個位置。 也稱為「向下平移」，新行會從畫面底部填入 |
+| ESC \[ &lt;n&gt; T | SD | 向下捲動 | 向下捲動 &lt;n&gt; 個位置。 也稱為「向上平移」，新行會從畫面頂端填入 |
 
 
 
-從游標所在的那一行開始移動文字。 如果游標位於資料中心的中間資料列上，則會向上移動以移動區的下半部，並在底部插入空白行。 向下鍵會移動該資料列的上半部，並在頂端插入新行。
+文字會從游標所在的那一行開始移動。 如果游標位於檢視區的中間資料列上，則向上捲動會移動此檢視區的下半部，並在底部插入空白行。 向下捲動會移動檢視區資料列的上半部，並在頂端插入新行。
 
-另外一點要注意的是，滾動邊界也會影響向上和向下。 向上和向下鍵不會影響滾動邊界以外的任何行。
+另外，要注意的是，向上和向下捲動也會受到捲動邊界的影響。 向上和向下捲動不會影響捲動邊界以外的任何行。
 
-N 的預設值 &lt; &gt; 為1，而且可以選擇性地省略值。
+&lt;n&gt; 的預設值是 1，而且可以選擇性地省略此值。
 
 ## <a name="span-idtext_modificationspanspan-idtext_modificationspanspan-idtext_modificationspantext-modification"></a><span id="Text_Modification"></span><span id="text_modification"></span><span id="TEXT_MODIFICATION"></span>文字修改
 
 
-本節中的所有命令通常等同于呼叫 [**FillConsoleOutputCharacter**](fillconsoleoutputcharacter.md)、 [**FillConsoleOutputAttribute**](fillconsoleoutputattribute.md)和 [**ScrollConsoleScreenBuffer**](scrollconsolescreenbuffer.md) 主控台 api 來修改文字緩衝區內容。
+本節中的所有命令通常等同於呼叫 [**FillConsoleOutputCharacter**](fillconsoleoutputcharacter.md)、[**FillConsoleOutputAttribute**](fillconsoleoutputattribute.md) 和 [**ScrollConsoleScreenBuffer**](scrollconsolescreenbuffer.md) 主控台 API 來修改文字緩衝區內容。
 
 
 | 順序 | 程式碼 | 描述 | 行為 |
 |--------------------|------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| ESC \[ &lt; n&gt; @ | Ich | 插入字元 | &lt; &gt; 在目前游標位置插入 n 個空格，並將所有現有的文字移至右邊。 已移除將畫面離開右邊的文字。 |
-| ESC \[ &lt; n &gt; P | DCH | 刪除字元 | 在 &lt; &gt; 目前游標位置刪除 n 個字元，從畫面的右邊緣將空白字元移位。 |
-| ESC \[ &lt; n &gt; X | ECH | 清除字元 | &lt; &gt; 使用空白字元覆寫，以清除目前游標位置的 n 個字元。 |
-| ESC \[ &lt; n &gt; L | IL | 插入行 | 將 &lt; n &gt; 行插入緩衝區的游標位置。 游標所在的線條和其下的行，將會向下移動。 |
-| ESC \[ &lt; n &gt; M | DL | 刪除行 | &lt; &gt; 從緩衝區刪除 n 行，從資料指標所在的資料列開始。 |
+| ESC \[ &lt;n&gt; @ | ICH | 插入字元 | 在目前的游標位置上插入 &lt;n&gt; 個空格，並將所有現有的文字移至右方。 移至畫面右側的現有文字會移除。 |
+| ESC \[ &lt;n&gt; P | DCH | 刪除字元 | 刪除目前游標位置上的 &lt;n&gt; 個字元，從畫面右側邊緣移入空白字元。 |
+| ESC \[ &lt;n&gt; X | ECH | 清除字元 | 藉由以空白字元覆寫的方式，從目前的游標位置清除 &lt;n&gt; 個字元。 |
+| ESC \[ &lt;n&gt; L | IL | 插入行 | 將 &lt;n&gt; 行插入游標位置上的緩衝區。 游標所在的行和其下方的行將會向下移動。 |
+| ESC \[ &lt;n&gt; M | DL | 刪除行 | 從緩衝區中刪除 &lt;n&gt; 行，從游標所在的資料列開始。 |
 
 
 
 > [!NOTE]
->針對 IL 和 DL，只有滾動邊界中的線條 (看到滾動邊界) 會受到影響。 如果未設定邊界，則預設邊界框線為目前的區。 如果線條會在邊界下方移位，則會捨棄它們。 當刪除線條時，會在邊界底部插入空白行，而不會影響來自區外的行。
+>針對 IL 和 DL，只有捲動邊界 (請參閱捲動邊界) 中的行會受到影響。 如果未設定邊界，則預設的邊界框線為目前的檢視區。 如果行會在邊界下方移動，則會遭到捨棄。 刪除行時，邊界底部會插入空白行，而檢視區外的行則不會受到影響。
 
-針對每個序列，如果省略，則預設值為 n，預設值為 &lt; &gt; 0。
+針對每個序列，如果省略 &lt;n&gt;，則預設值為0。
 
 
 
-針對下列命令，參數 &lt; n &gt; 有3個有效值：
+在下列命令中，參數 &lt;n&gt; 具有 3 個有效值：
 
-- 0會從目前的游標位置清除 (內含) 至行/顯示器的結尾
-- 1從行/上顯示的開頭清除，直到和包含目前的游標位置
-- 2清除整行/顯示
+- 0 會從目前的游標位置 (包含該位置) 清除到行/顯示畫面的結尾
+- 1 會從行/顯示畫面的開頭清除到目前的游標位置 (包含該位置)
+- 2 清除整行/整個顯示畫面
 
 
 | 順序 | 程式碼 | 描述 | 行為 |
 |--------------------|------|------------------|----------------------------------------------------------------------------------------------|
-| ESC \[ &lt; n &gt; J | ED | 顯示中的清除 | &lt;以空白字元取代由 n 指定的目前視口/screen 中的所有文字 &gt; |
-| ESC \[ &lt; n &gt; K | 音 | 行清除 | 將行上的所有文字取代為 &lt; n &gt; 以空白字元指定的游標 |
+| ESC \[ &lt;n&gt; J | ED | 清除顯示畫面 | 以空白字元取代 &lt;n&gt; 所指定的目前檢視區/畫面中的所有文字 |
+| ESC \[ &lt;n&gt; K | EL | 清除行 | 以空白字元取代 &lt;n&gt; 所指定游標所在行上的所有文字 |
 
 
 
-## <a name="span-idtext_formattingspanspan-idtext_formattingspanspan-idtext_formattingspantext-formatting"></a><span id="Text_Formatting"></span><span id="text_formatting"></span><span id="TEXT_FORMATTING"></span>文字格式設定
+## <a name="span-idtext_formattingspanspan-idtext_formattingspanspan-idtext_formattingspantext-formatting"></a><span id="Text_Formatting"></span><span id="text_formatting"></span><span id="TEXT_FORMATTING"></span>文字格式
 
 
-本節中的所有命令通常等同于呼叫 [**SetConsoleTextAttribute**](setconsoletextattribute.md) 主控台 api，以調整所有未來寫入至主控台輸出文字緩衝區的格式。
+本節中的所有命令通常等同於呼叫 [**SetConsoleTextAttribute**](setconsoletextattribute.md) 主控台 API，用於調整未來所有主控台輸出文字緩衝區的寫入格式。
 
-此命令的特殊之處是 &lt; ， &gt; 以下 n 位置可以接受0到16個參數（以分號分隔）。
+此命令是特別的，因為下面的 &lt;n&gt; 位置可以接受 0 到 16 的參數 (以分號分隔)。
 
-如果未指定任何參數，則會將它視為與單一0參數相同。
+若未指定任何參數，則會將其視為等同於一個參數 0。
 
 
 | 順序 | 程式碼 | 描述 | 行為 |
 |--------------------|------|------------------------|-----------------------------------------------------------------|
-| ESC \[ &lt; n &gt; m | SGR | 設定圖形轉譯 | 設定螢幕和文字的格式，如 n 所指定 &lt;&gt; |
+| ESC \[ &lt;n&gt; m | SGR | 設定圖形轉譯 | 依據 &lt;n&gt; 所指定的內容設定畫面的格式和文字 |
 
 
 
-下表的值可以在 n 中用 &lt; &gt; 來代表不同的格式模式。
+下表的值可以在 &lt;n&gt; 中用來代表不同的格式化模式。
 
-格式化模式會從左至右套用。 套用競爭的格式化選項會導致最適合的選項優先。
+格式化模式會從左至右套用。 套用競爭格式化選項會使最右邊的選項具有優先權。
 
-針對指定色彩的選項，將會使用可使用 [**SetConsoleScreenBufferInfoEx**](setconsolescreenbufferinfoex.md) API 修改的主控台色彩表中定義的色彩。 如果資料表已修改為讓資料表中的「藍色」位置顯示 RGB 的紅色陰影，則 **前景藍色** 的所有呼叫都會顯示紅色色彩，直到另有變更為止。
+針對指定色彩的選項，這些色彩會依照主控台色彩表中的定義使用，您可以使用 [**SetConsoleScreenBufferInfoEx**](setconsolescreenbufferinfoex.md) API 加以修改。 如果將資料表修改為讓資料表中的「藍色」位置顯示 RGB 色度的紅色，則對 **前景藍色** 發出的所有呼叫都會顯示該紅色色彩，直到另有變更為止。
 
 
 | 值 | 描述 | 行為 |
 |-------|---------------------------|--------------------------------------------------------------------|
-| 0 | 預設 | 在修改之前，將所有屬性都傳回預設狀態 |
-| 1 | 粗體/亮色 | 將亮度/濃度旗標套用至前景色彩 |
+| 0 | 預設 | 在修改前將所有屬性都設回為預設狀態 |
+| 1 | 濃厚/明亮 | 將亮度/飽和度旗標套用至前景色彩 |
 | 4 | Underline | 加底線 |
-| 24 | 無底線 | 移除底線 |
+| 24 | 沒有底線 | 移除底線 |
 | 7 | 負 | 交換前景和背景色彩 |
-| 27 | 正面 (沒有負)  | 傳回法線的前景/背景 |
-| 30 | 前景黑色 | 將非粗體/亮黑色套用至前景 |
-| 31 | 前景紅色 | 將非粗體/亮紅色套用至前景 |
-| 32 | 前景綠色 | 將非粗體/亮綠套用至前景 |
-| 33 | 前景黃色 | 將非粗體/亮黃色套用至前景 |
-| 34 | 前景藍色 | 將非粗體/亮藍套用至前景 |
-| 35 | 前景洋紅 | 將非粗體/亮洋紅色套用至前景 |
-| 36 | 前景青色 | 將非粗體/亮青套用至前景 |
-| 37 | 前景白色 | 將非粗體/亮色套用至前景 |
-| 38 | 延伸前景 | 將擴充的色彩值套用到前景 (請參閱以下詳細資料)  |
-| 39 | 前景預設值 | 只套用預設值的前景部分 (請參閱 0)  |
-| 40 | 黑色背景 | 將非粗體/亮黑色套用至背景 |
-| 41 | 背景紅色 | 將非粗體/亮紅色套用至背景 |
-| 42 | 背景綠色 | 在背景中套用非粗體/亮綠 |
-| 43 | 背景黃色 | 將非粗體/亮黃色套用至背景 |
-| 44 | 背景藍色 | 將非粗體/亮藍套用至背景 |
-| 45 | 背景洋紅 | 將非粗體/明亮的洋紅色套用至背景 |
-| 46 | 背景青色 | 將非粗體/亮青套用至背景 |
-| 47 | 背景白色 | 將非粗體/亮色套用至背景 |
-| 48 | 背景擴充 | 將擴充的色彩值套用至背景 (請參閱以下詳細資料)  |
-| 49 | 背景預設值 | 只套用預設值的背景部分 (請參閱 0)  |
-| 90 | 亮黑色前景黑色 | 將粗體字/亮黑色套用至前景 |
-| 91 | 亮紅色前景紅色 | 將粗體/亮紅色套用至前景 |
-| 92 | 亮綠前景綠色 | 將粗體/亮綠套用至前景 |
-| 93 | 亮黃色前景 | 將粗體/亮黃色套用至前景 |
-| 94 | 亮藍色前景 | 將粗體/亮藍色套用至前景 |
-| 95 | 亮鮮前景洋紅 | 將粗體/亮洋紅色套用至前景 |
-| 96 | 明亮的前景青色 | 將粗體/亮青套用至前景 |
-| 97 | 亮亮前景白色 | 將粗體字/亮色套用至前景 |
-| 100 | 亮黑色背景 | 將粗體字/亮黑色套用至背景 |
-| 101 | 亮紅色背景紅色 | 將粗體/亮紅色套用至背景 |
-| 102 | 亮綠背景綠色 | 將粗體/亮綠套用至背景 |
-| 103 | 亮黃背景黃色 | 將粗體/亮黃色套用至背景 |
-| 104 | 明亮的背景藍色 | 將粗體/亮藍色套用至背景 |
-| 105 | 鮮鮮深的洋紅 | 將粗體字/亮紅色套用至背景 |
-| 106 | 鮮鮮色青色 | 將粗體/亮青套用至背景 |
-| 107 | 亮色背景白色 | 將粗體字/亮色套用至背景 |
+| 27 | 正面 (非負面) | 讓前景/背景回到一般狀態 |
+| 30 | 前景黑色 | 將非濃厚/明亮的黑色套用至前景 |
+| 31 | 前景紅色 | 將非濃厚/明亮的紅色套用至前景 |
+| 32 | 前景綠色 | 將非濃厚/明亮的綠色套用至前景 |
+| 33 | 前景黃色 | 將非濃厚/明亮的黃色套用至前景 |
+| 34 | 前景藍色 | 將非濃厚/明亮的藍色套用至前景 |
+| 35 | 前景洋紅色 | 將非濃厚/明亮的洋紅色套用至前景 |
+| 36 | 前景青色 | 將非濃厚/明亮的青色套用至前景 |
+| 37 | 前景白色 | 將非濃厚/明亮的白色套用至前景 |
+| 38 | 前景擴充 | 將擴充的色彩值套用至前景 (請參閱下列詳細資料) |
+| 39 | 前景預設值 | 僅套用預設的前景部分 (請參閱 0) |
+| 40 | 背景黑色 | 將非濃厚/明亮的黑色套用至背景 |
+| 41 | 背景紅色 | 將非濃厚/明亮的紅色套用至背景 |
+| 42 | 背景綠色 | 將非濃厚/明亮的綠色套用至背景 |
+| 43 | 背景黃色 | 將非濃厚/明亮的黃色套用至背景 |
+| 44 | 背景藍色 | 將非濃厚/明亮的藍色套用至背景 |
+| 45 | 背景洋紅色 | 將非濃厚/明亮的洋紅色套用至背景 |
+| 46 | 背景青色 | 將非濃厚/明亮的青色套用至背景 |
+| 47 | 背景白色 | 將非濃厚/明亮的白色套用至背景 |
+| 48 | 背景擴充 | 將擴充的色彩值套用至背景 (請參閱下列詳細資料) |
+| 49 | 背景預設值 | 僅套用預設的背景部分 (請參閱0) |
+| 90 | 明亮前景黑色 | 將濃厚/明亮的亮黑色套用至前景 |
+| 91 | 明亮前景紅色 | 將濃厚/明亮的紅色套用至前景 |
+| 92 | 明亮前景綠色 | 將濃厚/明亮的綠色套用至前景 |
+| 93 | 明亮前景黃色 | 將濃厚/明亮的黃色套用至前景 |
+| 94 | 明亮前景藍色 | 將濃厚/明亮的藍色套用至前景 |
+| 95 | 明亮前景洋紅色 | 將濃厚/明亮的洋紅色套用至前景 |
+| 96 | 明亮前景青色 | 將濃厚/明亮的青色套用至前景 |
+| 97 | 明亮前景白色 | 將濃厚/明亮的白色套用至前景 |
+| 100 | 明亮的背景黑色 | 將濃厚/明亮的黑色套用至背景 |
+| 101 | 明亮背景紅色 | 將濃厚/明亮的紅色套用至背景 |
+| 102 | 明亮背景綠色 | 將濃厚/明亮的綠色套用至背景 |
+| 103 | 明亮的背景黃色 | 將濃厚/明亮的黃色套用至背景 |
+| 104 | 明亮背景藍色 | 將濃厚/明亮的藍色套用至背景 |
+| 105 | 明亮背景洋紅色 | 將濃厚/明亮的洋紅色套用至背景 |
+| 106 | 明亮背景青色 | 將濃厚/明亮的青色套用至背景 |
+| 107 | 明亮背景白色 | 將濃厚/明亮的白色套用至背景 |
 
 
 
-### <a name="span-idextended_colorsspanspan-idextended_colorsspanspan-idextended_colorsspanextended-colors"></a><span id="Extended_Colors"></span><span id="extended_colors"></span><span id="EXTENDED_COLORS"></span>擴充色彩
+### <a name="span-idextended_colorsspanspan-idextended_colorsspanspan-idextended_colorsspanextended-colors"></a><span id="Extended_Colors"></span><span id="extended_colors"></span><span id="EXTENDED_COLORS"></span>擴充的色彩
 
-某些虛擬終端模擬器支援的色彩調色板，大於 Windows 主控台所提供的16種色彩。 針對這些擴充的色彩，Windows 主控台將會從現有的16色資料表選擇最接近的適當色彩來顯示。 不同于上述的一般 SGR 值，擴充值會根據下表，在初始指標之後取用額外的參數。
+某些虛擬終端機模擬器支援的色彩調色板多於 Windows 主控台所提供的 16 種色彩。 針對這些擴充的色彩，Windows 主控台會從現有的 16 色表格中選擇最接近的色彩來顯示。 不同於上述的一般 SGR 值，擴充的值會根據下表，在使用最初的指示器之後取用額外的參數。
 
 
-| SGR 子序列 | 描述 |
+| SGR 子序列 | 說明 |
 |--------------------------------------------|---------------------------------------------------------------------------------------------|
-| 38;二級 &lt;r &gt; ; &lt;g &gt; ; &lt;b&gt; | 將前景色彩設定為 &lt; r &gt; 、 &lt; g &gt; 、 &lt; b &gt; 參數中指定的 RGB 值\* |
-| 48;二級 &lt;r &gt; ; &lt;g &gt; ; &lt;b&gt; | 將背景色彩設定為 &lt; r &gt; 、 &lt; g &gt; 、 &lt; b &gt; 參數中指定的 RGB 值\* |
-| 38;.5 &lt;s&gt; | &lt; &gt; 在88或256色彩表中將前景色彩設定為 s 索引\* |
-| 48;.5 &lt;s&gt; | 將背景色彩設定 &lt; 為 &gt; 88 或256色彩表中的 s 索引\* |
+| 38 ; 2 ; &lt;r&gt; ; &lt;g&gt; ; &lt;b&gt; | 將前景色彩設為 &lt;r&gt;、&lt;g&gt;、&lt;b&gt; 參數中指定的 RGB 值\* |
+| 48 ; 2 ; &lt;r&gt; ; &lt;g&gt; ; &lt;b&gt; | 將背景色彩設為以 &lt;r&gt;、&lt;g&gt;、&lt;b&gt; 參數指定的 RGB 值\* |
+| 38 ; 5 ; &lt;s&gt; | 將前景色彩設為 88 或 256 色彩表中的 &lt;s&gt; 索引\* |
+| 48 ; 5 ; &lt;s&gt; | 將背景色彩設為 88 或 256 色彩表中的 &lt;s&gt; 索引\* |
 
 
 
-\*為了進行比較，內部維護的88和256色調色板是以 xterm 終端機模擬器為基礎。 目前無法修改比較/四捨五入資料表。
+\*在內部維護以進行比較的 88 和 256 色調色盤，是以 xterm 終端機模擬器為基礎。 目前無法修改比較/進位表。
 
 
-## <a name="span-idscreen_colorsspanspan-idscreen_colorsspanspan-idscreen_colorsspanscreen-colors"></a><span id="Screen_Colors"></span><span id="screen_colors"></span><span id="SCREEN_COLORS"></span>螢幕色彩
+## <a name="span-idscreen_colorsspanspan-idscreen_colorsspanspan-idscreen_colorsspanscreen-colors"></a><span id="Screen_Colors"></span><span id="screen_colors"></span><span id="SCREEN_COLORS"></span>畫面色彩
 
 
-下列命令可讓應用程式將螢幕顏色選擇區值設定為任何 RGB 值。
+下列命令可讓應用程式將畫面色彩調色盤值設定為任何 RGB 值。
 
-RGB 值應該是和之間的十六進位 `0` 值 `ff` ，並以正斜線字元分隔 (例如 `rgb:1/24/86`) 。
+RGB 值應該是 `0` 和 `ff` 之間的十六進位值，並以正斜線字元 (例如 `rgb:1/24/86`) 分隔。
 
-請注意，此順序是一種 .OSC 「作業系統命令」順序，而不是類似許多其他序列的 CSI，因此以 "x1b" 為開頭 \\ \] ，而不是 " \\ x1b \[ "。
+請注意，此序列是一個 OSC (作業系統命令) 序列，而不是類似於列出許多其他序列的 CSI，因此開頭為 "\\x1b\]"，而不是 "\\x1b\["。
 
 
 | 順序 | 描述 | 行為 |
 |--------------------------------------------------------------------|----------------------|--------------------------------------------------------------------------------------------------------------|
-| ESC \] 4; &lt;i &gt; ; rgb： &lt; r &gt;  /  &lt; g &gt;  /  &lt; b &gt; ESC | 修改螢幕色彩 | 將螢幕色彩調色板索引 &lt; i 設定 &gt; 為 &lt; r &gt; 、 &lt; g &gt; 、 &lt; b 中指定的 RGB 值&gt; |
+| ESC \] 4 ; &lt;i&gt; ; rgb : &lt;r&gt; / &lt;g&gt; / &lt;b&gt; ESC | 修改畫面色彩 | 將畫面色彩調色盤索引 &lt;i&gt; 設定為 &lt;r&gt;、&lt;g&gt;、&lt;b&gt; 中指定的 RGB 值 |
 
 
 
 ## <a name="span-idmode_changes__spanspan-idmode_changes__spanspan-idmode_changes__spanmode-changes"></a><span id="Mode_Changes__"></span><span id="mode_changes__"></span><span id="MODE_CHANGES__"></span>模式變更
 
 
-這些是控制輸入模式的序列。 有兩組不同的輸入模式，也就是資料指標索引鍵模式和鍵盤按鍵模式。 資料指標索引鍵模式控制方向鍵以及 Home 和 End 所發出的序列，而鍵盤按鍵模式則是控制 numpad 上的索引鍵所發出的序列，以及函式金鑰。
+這些是控制輸入模式的序列。 有兩組不同的輸入模式：游標按鍵模式和鍵盤按鍵模式。 游標按鍵模式會控制由方向鍵及 Home 與 End 所發出的序列，而鍵盤按鍵模式會控制主要由 Numpad 上按鍵及功能鍵所發出的序列。
 
-這些模式中的每一個都是簡單的布林值設定，也就是資料指標索引鍵模式是標準 (預設) 或應用程式，而鍵盤按鍵模式則是數位 (預設) 或應用程式。
+這些模式中的每一個都是簡單的布林值設定 – 游標按鍵模式是標準 (預設) 或應用程式，而鍵盤按鍵模式則是數字 (預設值) 或應用程式。
 
-請參閱資料指標索引鍵和 Numpad & 函式金鑰區段，以瞭解這些模式發出的順序。
+請參閱 [游標按鍵] 和 [Numpad 與功能鍵] 區段，以了解在這些模式中發出的序列。
 
 
 | 順序 | 程式碼 | 描述 | 行為 |
 |--------------|---------|--------------------------------------------------------|---------------------------------------------------------|
-| ESC = | DECKPAM | 啟用鍵台應用程式模式 | 鍵盤按鍵會發出其應用程式模式序列。 |
-| Esc &gt; | DECKPNM | 啟用數位鍵數位模式 | 鍵盤按鍵會發出其數值模式序列。 |
-| ESC \[ ？ 1 小時 | DECCKM | 啟用資料指標索引鍵應用程式模式 | 鍵盤按鍵會發出其應用程式模式序列。 |
-| ESC \[ ？ 1 l | DECCKM | 停用資料指標索引鍵應用程式模式 (使用正常模式)  | 鍵盤按鍵會發出其數值模式序列。 |
+| ESC = | DECKPAM | 啟用鍵盤應用程式模式 | 鍵盤按鍵會發出其應用程式模式序列。 |
+| ESC &gt; | DECKPNM | 啟用鍵盤數字模式 | 鍵盤按鍵會發出其數字模式序列。 |
+| ESC \[ ? 1 小時 | DECCKM | 啟用游標按鍵應用程式模式 | 鍵盤按鍵會發出其應用程式模式序列。 |
+| ESC \[ ? 1 l | DECCKM | 停用游標按鍵應用程式模式 (使用標準模式) | 鍵盤按鍵會發出其數字模式序列。 |
 
 
 
 ## <a name="span-idquery_statespanspan-idquery_statespanspan-idquery_statespanquery-state"></a><span id="Query_State"></span><span id="query_state"></span><span id="QUERY_STATE"></span>查詢狀態
 
 
-此區段中的所有命令通常等同于呼叫 Get \* 主控台 api，以取得目前主控台緩衝區狀態的狀態資訊。
+本節中的所有命令通常等同於呼叫 Get\* 主控台 API，用於取得目前主控台緩衝區狀態的狀態資訊。
 
 > [!NOTE]
->這些查詢會在輸出資料流程上辨識時，立即將回應發出至主控台輸入資料流程，同時 \_ 設定啟用虛擬 \_ 終端 \_ 處理。 「啟用 \_ 虛擬 \_ 終端機輸入」旗標不適 \_ 用於查詢命令，因為它會假設讓查詢的應用程式一律要接收回複。
+>若已設定 ENABLE\_VIRTUAL\_TERMINAL\_PROCESSING，當這些查詢在輸出資料流上完成辨識後，就會立即將其回應發出至主控台輸入資料流。 ENABLE\_VIRTUAL\_TERMINAL\_INPUT 旗標不會套用至查詢命令，因為已假設執行查詢的應用程式一律要收到回覆。
 
 
 
 
 | 順序 | 程式碼 | 描述 | 行為 |
 |------------|---------|------------------------|------------------------------------------------------------------------------------------------------------------------|
-| ESC \[ 6 n | DECXCPR | 報表資料指標位置 | 將游標位置發出為： ESC \[ &lt; r &gt; ; &lt;&gt; &lt; r = 資料指標資料 &gt; &lt; 列和 c = 資料指標資料行 &gt; 的 c r |
-| ESC \[ 0 c | 大 | 裝置屬性 | 報告終端機身分識別。 將發出 " \\ x1b \[ ？ 1; 0c"，指出「沒有選項的 VT101」。 |
+| ESC \[ 6 n | DECXCPR | 回報游標位置 | 將游標位置發出為：ESC \[ &lt;r&gt; ; &lt;c&gt; R，其中 &lt;R&gt; = 游標資料列，而 &lt;c&gt; = 游標資料行 |
+| ESC \[ 0 c | DA | 裝置屬性 | 回報終端機身分識別。 將會發出 “\\x1b\[?1;0c”，指出「沒有選項的 VT101」。 |
 
 
 
-## <a name="span-idtabsspanspan-idtabsspanspan-idtabsspantabs"></a><span id="Tabs"></span><span id="tabs"></span><span id="TABS"></span>標籤
+## <a name="span-idtabsspanspan-idtabsspanspan-idtabsspantabs"></a><span id="Tabs"></span><span id="tabs"></span><span id="TABS"></span>Tab
 
 
-雖然 windows 主控台傳統上的索引標籤只會有八個字元，但使用 \* 特定序列的 nix 應用程式可以操控定位點在主控台視窗內的位置，以優化應用程式的資料指標移動。
+雖然視窗主控台在傳統上預期 Tab 會是專屬的八個字元寬，但使用特定序列的 \*nix 應用程式可以操控主控台視窗中 Tab 停止的位置，以最佳化應用程式的游標移動。
 
-下列順序可讓應用程式設定主控台視窗內的索引標籤停用位置、移除它們，並在其間進行導覽。
+下列序列可讓應用程式設定主控台視窗中 Tab 的停止位置、將這些位置移除，以及在這些位置之間瀏覽。
 
 
 | 順序 | 程式碼 | 描述 | 行為 |
 |--------------------|------|---------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ESC H | 高溫 超導 | 水準索引標籤集合 | 在資料指標所在的目前資料行中設定制表位。 |
-| ESC \[ &lt; n &gt; I | CHT | 資料指標水準 (向前) 索引標籤 | 將資料指標前進到相同資料列中的下一個資料行 () ，並使用 tab 鍵停止。 如果沒有其他索引標籤停止，請移至資料列中的最後一個資料行。 如果資料指標位於最後一個資料行中，請移至下一個資料列的第一個資料行。 |
-| ESC \[ &lt; n &gt; Z | Cbt | 游標向後索引標籤 | 將資料指標移到相同資料列中的上一個資料行 () ，並使用 tab 鍵停止。 如果沒有其他索引標籤停止，請將游標移至第一個資料行。 如果資料指標在第一個資料行中，則不會移動資料指標。 |
-| ESC \[ 0 g | Tbc | Tab 鍵清除 (目前的資料行)  | 清除目前資料行中的定位停駐點（如果有的話）。 否則不會執行任何動作。 |
-| ESC \[ 3 g | Tbc | Tab 清除 (所有資料行)  | 清除目前設定的所有制表位。 |
+| ESC H | HTS | 水平 Tab 設定 | 在游標所在的目前資料行中設定 Tab 停止點。 |
+| ESC \[ &lt;n&gt; I | CHT | 游標水平 (向前) Tab | 使游標前進至下一個資料行 (在相同的資料列中)，並使用 Tab 停止點。 如果不再有 Tab 停止點，則移至資料列中的最後一個資料行。 如果游標在最後一個資料行中，則移至下一個資料列的第一個資料行。 |
+| ESC \[ &lt;n&gt; Z | CBT | 游標向後 Tab | 使游標移至上一個資料行 (在相同的資料列中)，並使用 Tab 停止點。 如果不再有 Tab 停止點，則將游標移至第一個資料行。 如果游標在第一個資料行中，則不移動游標。 |
+| ESC \[ 0 g | TBC | Tab 清除 (目前的資料行) | 清除目前資料行中的 Tab 停止點 (如果有的話)。 沒有的話，則不會執行任何動作。 |
+| ESC \[ 3 g | TBC | Tab 清除 (所有資料行) | 清除所有目前設定的 Tab 停止點。 |
 
 
 
-- 針對 CHT 和 CBT， &lt; n &gt; 是選擇性參數， (預設值 = 1) 指出將游標朝指定的方向前進多少次。
-- 如果沒有透過 HTS 設定的定位停駐點，CHT 和 CBT 會將視窗的第一個和最後一個資料行視為唯一的兩個索引標籤。
-- 使用 HTS 設定索引標籤停止也會使主控台以與 \\ CHT 相同的方式，在索引標籤 (0x09 ' t ' ) 字元的輸出上流覽至下一個定位停駐點。
+- 對於 CHT 和 CBT，&lt;n&gt; 是選擇性參數 (預設值 = 1)，表示要讓游標在指定的方向前進多少次。
+- 如果沒有透過 HTS 設定的 Tab 停止點，CHT 和 CBT 會將視窗的第一個和最後一個資料行視為唯一的兩個 Tab 停止點。
+- 使用 HTS 設定 Tab 停止點也會讓主控台瀏覽至 TAB (0x09, ‘\\t’) 字元輸出上的下一個 Tab 停止點，其方式與 CHT 相同。
 
 ## <a name="span-iddesignate_character_setspanspan-iddesignate_character_setspanspan-iddesignate_character_setspandesignate-character-set"></a><span id="Designate_Character_Set"></span><span id="designate_character_set"></span><span id="DESIGNATE_CHARACTER_SET"></span>指定字元集
 
 
-下列順序可讓程式變更現用字元集對應。 這可讓程式發出7位 ASCII 字元，但會在終端機畫面本身將它們顯示為其他圖像。 目前，只有兩個支援的字元集是 ASCII (預設) 和 DEC 特殊圖形字元集。 請參閱 <http://vt100.net/docs/vt220-rm/table2-4.html> ，以取得 DEC 特殊圖形字元集所表示的所有字元清單。
+下列序列可讓程式變更作用中字元集的對應。 這可讓程式發出 7 位元的 ASCII 字元，但會在終端機畫面本身將其顯示為其他字符。 目前唯一支援的兩個字元集是 ASCII (預設值) 和 DEC 特殊圖形字元集。 如需 DEC 特殊圖形字元集所代表的所有字元清單，請參閱 <http://vt100.net/docs/vt220-rm/table2-4.html>。
 
 
 | 順序 | 描述 | 行為 |
 |----------|--------------------------------------------|-------------------------------|
-| ESC ( 0 | 指定字元集– DEC 線條繪圖 | 啟用 DEC 折線圖繪製模式 |
-| ESC ( B | 指定字元集– US ASCII | 啟用 ASCII 模式 (預設值)  |
+| ESC ( 0 | 指定字元集 – DEC 線條繪圖 | 啟用 DEC 線條繪圖模式 |
+| ESC ( B | 指定字元集 – US ASCII | 啟用 ASCII 模式 (預設值) |
 
 
 
-值得注意的是，DEC 線條繪圖模式用於在主控台應用程式中繪製框線。 下表顯示哪些 ASCII 字元對應到哪些線條繪圖字元。
+值得注意的是，DEC 線條繪圖模式會用來在主控台應用程式中繪製框線。 下表顯示 ASCII 字元與線條繪圖字元的對應。
 
 
 | Hex | ASCII | DEC 線條繪圖 |
@@ -371,130 +371,130 @@ RGB 值應該是和之間的十六進位 `0` 值 `ff` ，並以正斜線字元�
 
 
 
-## <a name="span-idscrolling_marginsspanspan-idscrolling_marginsspanspan-idscrolling_marginsspanscrolling-margins"></a><span id="Scrolling_Margins"></span><span id="scrolling_margins"></span><span id="SCROLLING_MARGINS"></span>滾動邊界
+## <a name="span-idscrolling_marginsspanspan-idscrolling_marginsspanspan-idscrolling_marginsspanscrolling-margins"></a><span id="Scrolling_Margins"></span><span id="scrolling_margins"></span><span id="SCROLLING_MARGINS"></span>捲動邊界
 
 
-下列順序可讓程式設定受滾動作業影響之畫面的「捲動區域」。 這是在螢幕以其他方式（例如，在 ' \\ n ' 或 RI）上滾動時所調整的資料列子集。 這些邊界也會影響插入行 (IL) 和刪除行 (DL) 所修改的資料列，DL、向上快移 (SU) 並向下 SD (。
+下列序列可讓程式設定受到捲動作業影響的畫面「捲動區域」。 這是資料列的子集，會在畫面以其他方式捲動 (例如 ‘\\n’ 或 RI) 時進行調整。 這些邊界也會影響插入行 (IL) 和刪除行 (DL) 及向上捲動 (SU) 和向下捲動 (SD) 所修改的資料列。
 
-當填滿畫面的其餘部分，例如在應用程式底部有標題列或狀態列時，滾動邊界特別適用于螢幕的一部分，而不會滾動。
+如果畫面有個部分不會在畫面其餘部分填滿時捲動，例如應用程式頂端有標題列或底部有狀態列，則特別適用捲動邊界。
 
-針對 DECSTBM，有兩個選擇性參數 &lt; t &gt; 和 &lt; b &gt; ，用來指定代表捲軸區域頂端和底部行（含）的資料列。 如果省略參數，則 &lt; &gt; 預設值為1， &lt; b &gt; 預設為目前的視口高度。
+DECSTBM 有兩個選擇性參數：&lt;t&gt; 和 &lt;b&gt;，可用來指定代表捲動區域頂端和底部幾行的資料列 (含)。 如果省略參數，&lt;t&gt; 會預設為1，而 &lt;b&gt; 會預設為目前檢視區的高度。
 
-滾動邊界是每個緩衝區，因此重要的是，替代緩衝區和主要緩衝區會維護個別的滾動邊界設定 (因此，替代緩衝區中的全螢幕應用程式將不會損害主要緩衝區的邊界) 。
+捲動邊界是為每個緩衝區設定的，所以很重要的是，替代緩衝區和主要緩衝區會維持不同的捲動邊界設定 (因此，替代緩衝區中的全畫面應用程式不會妨礙到主要緩衝區的邊界)。
 
 
 | 順序 | 程式碼 | 描述 | 行為 |
 |--------------------------------|---------|----------------------|------------------------------------------------|
-| ESC \[ &lt; t &gt; ; &lt;b &gt; r | DECSTBM | 設定捲動區域 | 設定區的 VT 滾動邊界。 |
+| ESC \[ &lt;t&gt; ; &lt;b&gt; r | DECSTBM | 設定捲動區域 | 設定檢視區的 VT 捲動邊界。 |
 
 
 
 ## <a name="span-idwindow_titlespanspan-idwindow_titlespanspan-idwindow_titlespanwindow-title"></a><span id="Window_Title"></span><span id="window_title"></span><span id="WINDOW_TITLE"></span>視窗標題
 
 
-下列命令可讓應用程式將主控台視窗的標題設定為指定的 &lt; 字串 &gt; 參數。 字串必須小於255個字元才能接受。 這相當於使用指定的字串來呼叫 SetConsoleTitle。
+下列命令可讓應用程式將主控台視窗的標題設定為指定的 &lt;字串&gt; 參數。 字串必須小於 255 個字元才能被接受。 這相當於以指定字串呼叫 SetConsoleTitle。
 
-請注意，這些順序是「作業系統命令」順序，而不是類似許多其他序列的 CSI，因此其開頭為 " \\ x1b \] "，而不是 " \\ x1b \[ "。
+請注意，這些序列是 OSC (作業系統命令) 序列，而不是類似於列出許多其他序列的 CSI，因此開頭為 "\\x1b\]"，而不是 "\\x1b\["。
 
 
 | 順序 | 描述 | 行為 |
 |-------------------------------|---------------------------|----------------------------------------------------|
-| ESC \] 0; &lt;字串 &gt; below | 設定圖示和視窗標題 | 將主控台視窗的標題設定為 &lt; 字串 &gt; 。 |
-| ESC \] 2; &lt;字串 &gt; below | 設定視窗標題 | 將主控台視窗的標題設定為 &lt; 字串 &gt; 。 |
+| ESC \] 0 ; &lt;字串&gt; BEL | 設定圖示和視窗標題 | 將主控台視窗的標題設定為 &lt;字串&gt;。 |
+| ESC \] 2 ; &lt;字串&gt; BEL | 設定 Window 標題 | 將主控台視窗的標題設定為 &lt;字串&gt;。 |
 
 
 
-此處的終止字元是 "鐘" 字元，' \\ x07 '
+此處的終止字元是 “Bell” 字元：‘\\x07’
 
-## <a name="span-idalternate_screen_buffer__spanspan-idalternate_screen_buffer__spanspan-idalternate_screen_buffer__spanalternate-screen-buffer"></a><span id="Alternate_Screen_Buffer__"></span><span id="alternate_screen_buffer__"></span><span id="ALTERNATE_SCREEN_BUFFER__"></span>替代螢幕緩衝區
+## <a name="span-idalternate_screen_buffer__spanspan-idalternate_screen_buffer__spanspan-idalternate_screen_buffer__spanalternate-screen-buffer"></a><span id="Alternate_Screen_Buffer__"></span><span id="alternate_screen_buffer__"></span><span id="ALTERNATE_SCREEN_BUFFER__"></span>替代畫面緩衝區
 
 
-\*Nix 樣式應用程式通常會利用替代的螢幕緩衝區，讓他們可以修改緩衝區的整個內容，而不會影響啟動它們的應用程式。 替代緩衝區完全是視窗的維度，不含任何回卷區域。
+\*Nix 樣式應用程式通常會使用替代畫面緩衝區，讓其可修改緩衝區的完整內容，而不會影響到將其啟動的應用程式。 替代緩衝區完全是視窗的維度，沒有任何回捲區域。
 
-如需此行為的範例，請考慮從 bash 啟動 vim 的時機。 Vim 會使用整個畫面來編輯檔案，然後返回 bash 將原始緩衝區保持不變。
+如需此行為的範例，請考慮從 bash 啟動 Vim 的時機。 Vim 會使用整個畫面來編輯檔案，然後返回 bash 會讓原始緩衝區保持不變。
 
 
 | 順序 | 描述 | 行為 |
 |--------------------|-----------------------------|--------------------------------------------|
-| ESC \[ ？ 1 0 4 9 h | 使用替代螢幕緩衝區 | 切換至新的替代螢幕緩衝區。 |
-| ESC \[ ？ 1 0 4 9 l | 使用主畫面緩衝區 | 切換至主要緩衝區。 |
+| ESC \[ ? 1 0 4 9 h | 使用替代畫面緩衝區 | 切換至新的替代畫面緩衝區。 |
+| ESC \[ ? 1 0 4 9 l | 使用主要畫面緩衝區 | 切換至主要緩衝區。 |
 
 
 
 ## <a name="span-idwindow_widthspanspan-idwindow_widthspanspan-idwindow_widthspanwindow-width"></a><span id="Window_Width"></span><span id="window_width"></span><span id="WINDOW_WIDTH"></span>視窗寬度
 
 
-下列順序可以用來控制主控台視窗的寬度。 它們大致上等同于呼叫 SetConsoleScreenBufferInfoEx 主控台 API 來設定視窗寬度。
+您可以使用下列序列來控制主控台視窗的寬度。 這些序列大致等同於呼叫 SetConsoleScreenBufferInfoEx 主控台 API 來設定視窗寬度。
 
 
 | 順序 | 程式碼 | 描述 | 行為 |
 |--------------|---------|------------------------------|---------------------------------------------|
-| ESC \[ ？ 3小時 | DECCOLM | 將資料行數目設定為132 | 將主控台寬度設定為132的資料行寬。 |
-| ESC \[ ？ 3 l | DECCOLM | 將資料行數目設定為80 | 將主控台寬度設定為80的資料行寬。 |
+| ESC \[ ? 3 h | DECCOLM | 將資料行數目設定為 132 | 將主控台寬度設定為 132 個資料行寬。 |
+| ESC \[ ? 3 l | DECCOLM | 將資料行數目設定為 80 | 將主控台寬度設定為 80 個資料行寬。 |
 
 
 
 ## <a name="span-idsoft_resetspanspan-idsoft_resetspanspan-idsoft_resetspansoft-reset"></a><span id="Soft_Reset"></span><span id="soft_reset"></span><span id="SOFT_RESET"></span>軟重設
 
 
-您可以使用下列順序，將某些屬性重設為預設值。下列屬性會重設為下列預設值 (也列出了控制這些屬性的順序) ：
+您可以使用下列序列將某些屬性重設為預設值。下列屬性會重設為下列預設值 (也會列出控制這些屬性的序列)：
 
-- 資料指標可見度：可見的 (DECTEM) 
-- 數位鍵台：數位模式 (DECNKM) 
-- 資料指標索引鍵模式：標準模式 (DECCKM) 
-- 上邊界和下邊界： Top = 1、下 = 主控台高度 (DECSTBM) 
-- 字元集：美國 ASCII
-- 圖形轉譯：預設/關閉 (SGR) 
-- 儲存資料指標狀態： Home position (0，0)  (DECSC) 
+- 游標可見度：可見 (DECTEM)
+- 數字鍵盤：數字模式 (DECNKM)
+- 游標按鍵模式：標準模式 (DECCKM)
+- 頂端和底部邊界：頂端 = 1、底端 = 主控台高度 (DECSTBM)
+- 字元集：US ASCII
+- 圖形轉譯：預設/關閉 (SGR)
+- 儲存游標狀態：首頁位置 (0,0) (DECSC)
 
 
 | 順序 | 程式碼 | 描述 | 行為 |
 |------------|--------|-------------|----------------------------------------------------|
-| ESC \[ ！ p | DECSTR | 軟重設 | 將某些終端機設定重設為預設值。 |
+| ESC \[ ! p | DECSTR | 軟重設 | 將特定的終端機設定重設為預設值。 |
 
 
 
 ## <a name="span-idinput_sequencesspanspan-idinput_sequencesspanspan-idinput_sequencesspaninput-sequences"></a><span id="Input_Sequences"></span><span id="input_sequences"></span><span id="INPUT_SEQUENCES"></span>輸入序列
 
 
-如果 \_ \_ \_ 使用 SetConsoleMode 旗標在輸入緩衝區控制碼上設定啟用虛擬終端機輸入旗標，則在輸入資料流程上的主控台主機會發出下列終端機序列。
+如果使用 SetConsoleMode 旗標在輸入緩衝區控制代碼上設定 ENABLE\_VIRTUAL\_TERMINAL\_INPUT 旗標，則主控台主機會在輸入資料流上發出下列終端機序列。
 
-有兩種內部模式，可控制要針對指定的輸入索引鍵、資料指標索引鍵模式和鍵盤按鍵模式發出哪些順序。 這些會在 [模式變更] 區段中描述。
+有兩種內部模式可控制針對指定輸入鍵發出的序列：游標按鍵模式和鍵盤按鍵模式。 這會在 [模式變更] 區段中加以說明。
 
-### <a name="span-idcursor_keys__spanspan-idcursor_keys__spanspan-idcursor_keys__spancursor-keys"></a><span id="Cursor_Keys__"></span><span id="cursor_keys__"></span><span id="CURSOR_KEYS__"></span>資料指標索引鍵
+### <a name="span-idcursor_keys__spanspan-idcursor_keys__spanspan-idcursor_keys__spancursor-keys"></a><span id="Cursor_Keys__"></span><span id="cursor_keys__"></span><span id="CURSOR_KEYS__"></span>游標按鍵
 
 
-| 答案 | 標準模式 | 應用程式模式 |
+| 答案 | 正常模式 | 應用程式模式 |
 |-------------|-------------|------------------|
 | 向上箭號 | ESC \[ A | ESC O A |
 | 向下箭號 | ESC \[ B | ESC O B |
 | 向右鍵 | ESC \[ C | ESC O C |
 | 向左鍵 | ESC \[ D | ESC O D |
-| 首頁 | ESC \[ H | ESC O H |
+| 家庭 | ESC \[ H | ESC O H |
 | 結束 | ESC \[ F | ESC O F |
 
 
 
-此外，如果按下任何鍵的 Ctrl 鍵，則會改為發出下列順序，而不論資料指標索引鍵模式為何：
+此外，如果按下 Ctrl 鍵和這其中任何一個鍵，則會改為發出下列序列 (不論游標按鍵模式為何)：
 
 
 | 答案 | 任何模式 |
 |--------------------|----------------|
-| Ctrl + 向上鍵 | ESC \[ 1; 5 A |
-| Ctrl + 向下鍵 | ESC \[ 1; 5 B |
-| Ctrl + 向右鍵 | ESC \[ 1; 5 C |
-| Ctrl + 向左鍵 | ESC \[ 1; 5 D |
+| Ctrl + 向上鍵 | ESC \[ 1 ; 5 A |
+| Ctrl + 向下鍵 | ESC \[ 1 ; 5 B |
+| Ctrl + 向右鍵 | ESC \[ 1 ; 5 C |
+| Ctrl + 向左鍵 | ESC \[ 1 ; 5 D |
 
 
 
-### <a name="span-idnumpad___function_keys__spanspan-idnumpad___function_keys__spanspan-idnumpad___function_keys__spannumpad--function-keys"></a><span id="Numpad___Function_Keys__"></span><span id="numpad___function_keys__"></span><span id="NUMPAD___FUNCTION_KEYS__"></span>Numpad & 功能金鑰
+### <a name="span-idnumpad___function_keys__spanspan-idnumpad___function_keys__spanspan-idnumpad___function_keys__spannumpad--function-keys"></a><span id="Numpad___Function_Keys__"></span><span id="numpad___function_keys__"></span><span id="NUMPAD___FUNCTION_KEYS__"></span>Numpad 與功能鍵
 
 
 | 答案 | 順序 |
 |-----------|--------------|
-| 退格鍵 | 0x7f (DEL)  |
-| 暫停 | 0x1a (子)  |
-| 逸出 | 0x1b (ESC)  |
+| 退格鍵 | 0x7f (DEL) |
+| 暫停 | 0x1a (SUB) |
+| 逸出 | 0x1b (ESC) |
 | 插入 | ESC \[ 2 ~ |
 | 刪除 | ESC \[ 3 ~ |
 | Page Up | ESC \[ 5 ~ |
@@ -514,34 +514,34 @@ RGB 值應該是和之間的十六進位 `0` 值 `ff` ，並以正斜線字元�
 
 
 
-### <a name="span-idmodifiers__spanspan-idmodifiers__spanspan-idmodifiers__spanmodifiers"></a><span id="Modifiers__"></span><span id="modifiers__"></span><span id="MODIFIERS__"></span>修飾 符
+### <a name="span-idmodifiers__spanspan-idmodifiers__spanspan-idmodifiers__spanmodifiers"></a><span id="Modifiers__"></span><span id="modifiers__"></span><span id="MODIFIERS__"></span>輔助按鍵
 
-Alt 的處理方式是在序列前面加上 escape： ESC &lt; c， &gt; 其中 &lt; c &gt; 是作業系統傳遞的字元。 Alt + Ctrl 的處理方式相同，不同之處在于作業系統會將 c 鍵預先移位 &lt; &gt; 到適當的控制字元，以轉送至應用程式。
+Alt 的處理方式是在序列前方加上 escape：ESC &lt;c&gt;，其中 &lt;c&gt; 是作業系統所傳遞的字元。 Alt+Ctrl 的處理方式相同，不同之處在於作業系統會將 &lt;c&gt; 鍵預先轉移至適當的控制字元，以轉送至應用程式。
 
-Ctrl 通常會與系統所收到的完全一樣傳遞。 這通常是將單一字元向下移動到控制字元保留空間 (0x0-0x1f) 。 例如，Ctrl + @ (0x40) 變成 NUL (0x00) 、Ctrl + \[ (0x5b) 會變成 ESC (0x1b) 等等。系統會根據下表，特別處理一些 Ctrl 鍵組合：
+傳遞的 Ctrl 通常會與從系統中收到的完全相同。 這通常是移到控制字元保留空間 (0x0-0x1f) 中的單一字元。 例如，Ctrl+@ (0x40) 變成 NUL (0x00)，Ctrl+\[ (0x5b) 變成 ESC (0x1b) 等等。有幾個 Ctrl 鍵組合會根據下表來特別處理：
 
 
 | 答案 | 順序 |
 |--------------------|----------------|
-| Ctrl + 空格鍵 | 0x00 (NUL)  |
-| Ctrl + 向上鍵 | ESC \[ 1; 5 A |
-| Ctrl + 向下鍵 | ESC \[ 1; 5 B |
-| Ctrl + 向右鍵 | ESC \[ 1; 5 C |
-| Ctrl + 向左鍵 | ESC \[ 1; 5 D |
+| Ctrl + 空格鍵 | 0x00 (NUL) |
+| Ctrl + 向上鍵 | ESC \[ 1 ; 5 A |
+| Ctrl + 向下鍵 | ESC \[ 1 ; 5 B |
+| Ctrl + 向右鍵 | ESC \[ 1 ; 5 C |
+| Ctrl + 向左鍵 | ESC \[ 1 ; 5 D |
 
 
 
 > [!NOTE]
->左 <kbd>Ctrl</kbd> + 右 <kbd>Alt</kbd> 會視為 AltGr。 當兩者同時出現時，它們將會被移除，而系統所呈現字元的 Unicode 值將會傳遞至目標。 系統會根據目前的系統輸入設定，預先轉譯 AltGr 值。
+>左側 <kbd>Ctrl</kbd> + 右側 <kbd>Alt</kbd> 會視為 AltGr。 兩者同時出現時，則會將這兩者移除，並將系統所呈現的字元 Unicode 值傳遞到目標。 系統會根據目前的系統輸入設定，預先轉譯 AltGr 值。
 
 
 
-## <a name="span-idsamplesspanspan-idsamplesspanspan-idsamplesspansamples"></a><span id="Samples"></span><span id="samples"></span><span id="SAMPLES"></span>樣品
+## <a name="span-idsamplesspanspan-idsamplesspanspan-idsamplesspansamples"></a><span id="Samples"></span><span id="samples"></span><span id="SAMPLES"></span>範例
 
 
 ### <a name="span-idexamplespanspan-idexamplespanexample-of-sgr-terminal-sequences"></a><span id="example"></span><span id="EXAMPLE"></span>SGR 終端機序列的範例
 
-下列程式碼提供數個文字格式的範例。
+下列程式碼提供幾個文字格式化的範例。
 
 ```C
 #include <stdio.h>
@@ -584,7 +584,7 @@ int main()
 ```
 
 > [!NOTE]
->在上述範例中，字串 ' `\x1b[31m` ' 是以 n 到31的方式執行 **ESC \[ &lt; n &gt; m** &lt; &gt; 。
+>在上述範例中，字串 '`\x1b[31m`' 是 **ESC \[ &lt;n&gt; m** 的實作，&lt;n&gt; 為 31。
 
 
 
@@ -594,11 +594,11 @@ int main()
 
 ### <a name="span-idexample_of_enabling_virtual_terminal_processingspanspan-idexample_of_enabling_virtual_terminal_processingspanspan-idexample_of_enabling_virtual_terminal_processingspanexample-of-enabling-virtual-terminal-processing"></a><span id="Example_of_Enabling_Virtual_Terminal_Processing"></span><span id="example_of_enabling_virtual_terminal_processing"></span><span id="EXAMPLE_OF_ENABLING_VIRTUAL_TERMINAL_PROCESSING"></span>啟用虛擬終端處理的範例
 
-下列程式碼提供針對應用程式啟用虛擬終端處理的建議方式範例。 範例的目的是要示範：
+下列程式碼提供為應用程式啟用虛擬終端處理的建議方式範例。 範例的目的是要示範：
 
-1. 在使用 SetConsoleMode 設定之前，應該一律先透過 GetConsoleMode 抓取現有的模式並進行分析。
+1. 現有模式應一律透過 GetConsoleMode 取得，並在使用 SetConsoleMode 設定之前進行分析。
 
-2. 檢查 SetConsoleMode 是否傳回 `0` ，以及 GetLastError 傳回狀態 \_ 無效 \_ 的參數是否為目前的機制，以判斷何時在下層系統上執行。 \_ \_ 使用位欄位中其中一個較新的主控台模式旗標來接收狀態無效參數的應用程式應該會正常地降低行為，並再試一次。
+2. 檢查 SetConsoleMode 是否傳回 `0` 及 GetLastError 是否傳回 STATUS\_INVALID\_PARAMETER 是目前在下層系統上執行時所要判斷的機制。 應用程式若收到 STATUS\_INVALID\_PARAMETER 且在位元欄位中有一個較新的主控台模式旗標，則應以適當方式降低行為層級，然後再試一次。
 
 ```C
 #include <stdio.h>
@@ -657,11 +657,11 @@ int main()
 }
 ```
 
-### <a name="span-idexample_of_select_anniversary_update_featuresspanspan-idexample_of_select_anniversary_update_featuresspanspan-idexample_of_select_anniversary_update_featuresspanexample-of-select-anniversary-update-features"></a><span id="Example_of_Select_Anniversary_Update_Features"></span><span id="example_of_select_anniversary_update_features"></span><span id="EXAMPLE_OF_SELECT_ANNIVERSARY_UPDATE_FEATURES"></span>選取周年更新功能的範例
+### <a name="span-idexample_of_select_anniversary_update_featuresspanspan-idexample_of_select_anniversary_update_featuresspanspan-idexample_of_select_anniversary_update_featuresspanexample-of-select-anniversary-update-features"></a><span id="Example_of_Select_Anniversary_Update_Features"></span><span id="example_of_select_anniversary_update_features"></span><span id="EXAMPLE_OF_SELECT_ANNIVERSARY_UPDATE_FEATURES"></span>選取年度更新功能的範例
 
-下列範例是以更健全的程式碼範例使用各種不同的 escape 序列來管理緩衝區，並強調 Windows 10 的周年更新中新增的功能。
+下列範例是使用各種逸出序列來操作緩衝區且更健全的程式碼範例，並且會強調 Windows 10 年度更新版中新增的功能。
 
-此範例會使用替代的螢幕緩衝區、操作索引標籤停止、設定滾動邊界，以及變更字元集。
+此範例會使用替代畫面緩衝區、操控 Tab 停止點、設定捲動邊界及變更字元集。
 
 ```C
 //

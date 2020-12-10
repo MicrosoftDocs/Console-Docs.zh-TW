@@ -1,6 +1,6 @@
 ---
 title: AllocConsole 函式
-description: 請參閱 AllocConsole 函式的參考資訊，此函式會為呼叫進程配置新的主控台。
+description: 請參閱 AllocConsole 函式的參考資訊，此函式會為呼叫程序配置新的主控台。
 author: miniksa
 ms.author: miniksa
 ms.topic: article
@@ -32,14 +32,14 @@ api_type:
 ms.localizationpriority: high
 ms.openlocfilehash: c63c9a176c0d8ca2ef4342f7bee1b427eae00014
 ms.sourcegitcommit: 508e93bc83b4bca6ce678f88ab081d66b95d605c
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/01/2020
+ms.lasthandoff: 12/04/2020
 ms.locfileid: "96420167"
 ---
 # <a name="allocconsole-function"></a>AllocConsole 函式
 
-配置呼叫進程的新主控台。
+為呼叫程序配置新的主控台。
 
 ## <a name="syntax"></a>語法
 
@@ -53,35 +53,35 @@ BOOL WINAPI AllocConsole(void);
 
 ## <a name="return-value"></a>傳回值
 
-如果函式成功，則傳回值為非零。
+如果函式成功，則傳回非零的值。
 
-如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果此函式失敗，則傳回值為零。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
 
 ## <a name="remarks"></a>備註
 
-進程只能與一個主控台相關聯，因此，如果呼叫的進程已經有主控台， **AllocConsole** 函式就會失敗。 進程可以使用 [**FreeConsole**](freeconsole.md) 函式，從其目前的主控台卸離本身，然後呼叫 **AllocConsole** 來建立新的主控台或 [**AttachConsole**](attachconsole.md) ，以附加至另一個主控台。
+一個程序只能與一個主控台相關聯，因此，如果呼叫程序已經有主控台，**AllocConsole** 函式就會失敗。 程序可以使用 [**FreeConsole**](freeconsole.md) 函式將其本身從目前的主控台卸離，然後呼叫 **AllocConsole** 來建立新的主控台，或呼叫 [**AttachConsole**](attachconsole.md) 來連結至另一個主控台。
 
-如果呼叫進程建立子進程，則子系會繼承新的主控台。
+如果呼叫程序建立了子程序，則子程序會繼承新的主控台。
 
-**AllocConsole** 會初始化新主控台的標準輸入、標準輸出和標準錯誤控制碼。 標準輸入控制碼是主控台輸入緩衝區的控制碼，而標準輸出和標準錯誤控制碼則是主控台螢幕緩衝區的控制碼。 若要取出這些控制碼，請使用 [**GetStdHandle**](getstdhandle.md) 函數。
+**AllocConsole** 會初始化新主控台的標準輸入、標準輸出和標準錯誤控制代碼。 標準輸入控制代碼是主控台輸入緩衝區的控制代碼，而標準輸出和標準錯誤控制代碼則是主控台畫面緩衝區的控制代碼。 若要取得這些控制代碼，請使用 [**GetStdHandle**](getstdhandle.md) 函式。
 
-這項功能主要是由圖形化使用者介面 (GUI) 應用程式用來建立主控台視窗。 GUI 應用程式會在沒有主控台的情況下初始化。 主控台應用程式會使用主控台來初始化，除非它們建立為卸離的進程 (藉由使用卸 **離的 \_ 進程** 旗標) 來呼叫 [**CreateProcess**](https://msdn.microsoft.com/library/windows/desktop/ms682425)函數。
+此函式的主要用途是讓圖形使用者介面 (GUI) 應用程式用來建立主控台視窗。 GUI 應用程式會在沒有主控台的情況下進行初始化。 除非是建立為卸離的程序 (呼叫 [**CreateProcess**](https://msdn.microsoft.com/library/windows/desktop/ms682425) 函式搭配 **DETACHED\_PROCESS** 旗標)，否則主控台應用程式會使用主控台進行初始化。
 
 ## <a name="requirements"></a>規格需求
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
-| 標頭 | ConsoleApi .h (via WinCon，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
+| 標頭 | ConsoleApi.h (透過 WinCon.h，包括 Windows.h) |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
 
 ## <a name="see-also"></a>另請參閱
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)
 
-[機](consoles.md)
+[主控台](consoles.md)
 
 [**AttachConsole**](attachconsole.md)
 

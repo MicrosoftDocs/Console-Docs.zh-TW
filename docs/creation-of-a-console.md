@@ -1,6 +1,6 @@
 ---
 title: 建立主控台
-description: 系統會在啟動主控台進程時建立新的主控台，其進入點是主要函式的字元模式進程。
+description: 系統會在啟動主控台程序 (其進入點為主要函式的字元模式程序) 時，建立新的主控台。
 author: miniksa
 ms.author: miniksa
 ms.topic: conceptual
@@ -16,47 +16,47 @@ ms.assetid: 84ec2559-cade-447e-8594-5b824d3d3e81
 ms.localizationpriority: high
 ms.openlocfilehash: 09de42ced585e4a644fbbcc04211d5cb6037c2af
 ms.sourcegitcommit: 508e93bc83b4bca6ce678f88ab081d66b95d605c
-ms.translationtype: MT
+ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/01/2020
+ms.lasthandoff: 12/04/2020
 ms.locfileid: "96420277"
 ---
 # <a name="creation-of-a-console"></a>建立主控台
 
-系統會在啟動 *主控台進程* 時建立新的主控台，其進入點是 **主要** 函式的字元模式進程。 例如，當系統啟動命令處理器時，系統會建立新的主控台 `cmd.exe` 。 當命令處理器啟動新的主控台進程時，使用者可以指定系統是否為新的進程建立新的主控台，或是否要繼承命令處理器的主控台。
+系統會在啟動主控台程序 (其進入點為 **主要** 函式的字元模式程序) 時，建立新的主控台。 例如，系統會在啟動命令處理器 `cmd.exe` 時，建立新的主控台。 當命令處理器啟動新的主控台程序時，使用者可以指定系統是否要為新的程序建立新的主控台，或其是否要繼承命令處理器的主控台。
 
-處理常式可以使用下列其中一種方法來建立主控台：
+程序可以使用下列其中一種方法來建立主控台：
 
--  (GUI) 或主控台進程的圖形化使用者介面可以搭配使用 [**CreateProcess**](https://msdn.microsoft.com/library/windows/desktop/ms682425) 函式與 **建立 \_ 新的 \_ 主控台** ，以使用新的主控台建立主控台進程。  (根據預設，主控台進程會繼承其父代的主控台，而且不保證會由其預定的進程接收輸入。 ) 
-- 目前未連接到主控台的 GUI 或主控台進程，可以使用 [**AllocConsole**](allocconsole.md) 函式來建立新的主控台。  (GUI 進程在建立時不會附加至主控台。 主控台進程如果是使用具有卸 **離 \_ 進程** 的 [**CreateProcess**](https://msdn.microsoft.com/library/windows/desktop/ms682425)來建立，則不會連接到主控台。 ) 
+- 圖形使用者介面 (GUI) 或主控台程序可以使用 [**CreateProcess**](https://msdn.microsoft.com/library/windows/desktop/ms682425) 函式搭配 **CREATE\_NEW\_CONSOLE**，以新的主控台建立主控台程序。 (根據預設，主控台程序會繼承其父系的主控台，而且不保證輸入會由其所預期的程序所接收。)
+- 目前未連結至主控台的 GUI 或主控台程序可以使用 [**AllocConsole**](allocconsole.md) 函式來建立新的主控台。 (GUI 程序不會在建立時連結至主控台。 使用 [**CreateProcess**](https://msdn.microsoft.com/library/windows/desktop/ms682425) 搭配 **DETACHED\_PROCESS** 建立的主控台程序不會連結至主控台。)
 
-一般來說，當發生需要與使用者互動的錯誤時，進程會使用 [**AllocConsole**](allocconsole.md) 來建立主控台。 例如，GUI 進程可以在發生錯誤時建立主控台，使其無法使用其一般圖形介面，或者通常不與使用者互動的主控台進程可以建立主控台來顯示錯誤。
+一般而言，若在需要與使用者互動時發生錯誤，程序會使用 [**AllocConsole**](allocconsole.md) 來建立主控台。 例如，GUI 程序可以在發生錯誤而無法使用一般圖形介面時建立主控台，或通常不會與使用者互動的主控台程序可以建立主控台來顯示錯誤。
 
-進程也可以在對 [**CreateProcess**](https://msdn.microsoft.com/library/windows/desktop/ms682425)的呼叫中指定 [**建立 \_ 新的 \_ 主控台**] 旗標，藉以建立主控台。 這個方法會建立可供子進程存取的新主控台，而不是父進程。 個別的主控台可讓父系和子進程與使用者互動，而不會發生衝突。 如果建立主控台進程時未指定此旗標，則這兩個處理常式會附加到相同的主控台，而且不保證正確的程式會收到所需的輸入。 應用程式可以藉由建立不繼承輸入緩衝區控制碼的子進程，或一次只啟用一個子進程來繼承輸入緩衝區控制碼，並防止父進程讀取主控台輸入，直到子系完成為止，藉此防止混淆。
+程序也可以在 [**CreateProcess**](https://msdn.microsoft.com/library/windows/desktop/ms682425) 的呼叫中指定 **CREATE\_NEW\_CONSOLE** 旗標來建立主控台。 此方法會建立子程序可存取但父程序無法存取的新主控台。 個別的主控台可讓父程序和子程序同時與使用者互動，而不會發生衝突。 如果建立主控台程序時未指定此旗標，則兩個程序都會連結至相同的主控台，而且不保證輸入會由正確的程序收到。 應用程式若要避免混淆，可以建立不會繼承輸入緩衝區控制代碼的子程序，或一次只啟用一個子程序來繼承輸入緩衝區控制代碼，並避免父程序在子程序完成之前讀取主控台輸入。
 
-建立新的主控台會產生新的主控台視窗，以及個別的 i/o 螢幕緩衝區。 與新主控台相關聯的進程會使用 [**GetStdHandle**](getstdhandle.md) 函式來取得新主控台之輸入和螢幕緩衝區的控制碼。 這些控點可讓進程存取主控台。
+建立新的主控台會產生新的主控台視窗，以及個別的 I/O 畫面緩衝區。 與新主控台相關聯的程序會使用 [**GetStdHandle**](getstdhandle.md) 函式來取得新主控台輸入和畫面緩衝區的控制代碼。 這些控制代碼可讓程序存取主控台。
 
-當處理常式使用 [**CreateProcess**](https://msdn.microsoft.com/library/windows/desktop/ms682425)時，它可以指定 [**STARTUPINFO**](https://msdn.microsoft.com/library/windows/desktop/ms686331) 結構，其成員可控制第一個新主控台的特性 (如果為子進程建立的任何) 。 如果指定了 **建立 \_ 新的 \_ 主控台** 旗標，則在對 **CreateProcess** 的呼叫中指定的 **STARTUPINFO** 結構會影響主控台所建立的。 如果子進程後續使用 [**AllocConsole**](allocconsole.md)，它也會影響建立的主控台。 您可以指定下列主控台特性：
+程序可以在使用 [**CreateProcess**](https://msdn.microsoft.com/library/windows/desktop/ms682425) 時指定 [**STARTUPINFO**](https://msdn.microsoft.com/library/windows/desktop/ms686331) 結構，針對為子程序建立的第一個新主控台 (如果有的話)，該結構的成員會控制其特性。 如果指定 **CREATE\_NEW\_CONSOLE** 旗標，在 **CreateProcess** 的呼叫中指定的 **STARTUPINFO** 結構會影響建立的主控台。 如果子程序後續使用 [**AllocConsole**](allocconsole.md)，其也會影響所建立的主控台。 您可以指定下列主控台特性：
 
-- 新主控台視窗的大小（以字元儲存格為限）
-- 新主控台視窗的位置，以螢幕圖元座標表示
-- 新主控台的螢幕緩衝區大小，以字元儲存格為限
-- 新主控台螢幕緩衝區的文字和背景色彩屬性
-- 新主控台視窗之標題列的顯示名稱
+- 新主控台視窗的大小 (以字元資料格表示)
+- 新主控台視窗的位置 (以畫面像素座標表示)
+- 新主控台畫面緩衝區的大小 (以字元資料格表示)
+- 新主控台畫面緩衝區的文字和背景色彩屬性
+- 新主控台視窗標題列的顯示名稱
 
-如果未指定 [**STARTUPINFO**](https://msdn.microsoft.com/library/windows/desktop/ms686331) 值，系統會使用預設值。 子進程可以使用 [**GetStartupInfo**](https://msdn.microsoft.com/library/windows/desktop/ms683230) 函數來判斷其 **STARTUPINFO** 結構中的值。
+如果未指定 [**STARTUPINFO**](https://msdn.microsoft.com/library/windows/desktop/ms686331) 值，系統會使用預設值。 子程序可以使用 [**GetStartupInfo**](https://msdn.microsoft.com/library/windows/desktop/ms683230) 函式來判斷其 **STARTUPINFO** 結構中的值。
 
-進程無法變更其主控台視窗在螢幕上的位置，但是下列主控台函式可用來設定或抓取 [**STARTUPINFO**](https://msdn.microsoft.com/library/windows/desktop/ms686331) 結構中指定的其他屬性。
+程序無法變更其主控台視窗在畫面上的位置，但是您可以使用下列主控台函式來設定或擷取 [**STARTUPINFO**](https://msdn.microsoft.com/library/windows/desktop/ms686331) 結構中指定的其他屬性。
 
 | 函式 | 說明 |
 |-|-|
-| [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md) | 抓取視窗大小、螢幕緩衝區大小和色彩屬性。 |
+| [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md) | 擷取視窗大小、畫面緩衝區大小和色彩屬性。 |
 | [**SetConsoleWindowInfo**](setconsolewindowinfo.md)  | 變更控制台視窗的大小。  |
-| [**SetConsoleScreenBufferSize**](setconsolescreenbuffersize.md) | 變更控制台螢幕緩衝區的大小。 |
+| [**SetConsoleScreenBufferSize**](setconsolescreenbuffersize.md) | 變更主控台畫面緩衝區的大小。 |
 | [**SetConsoleTextAttribute**](setconsoletextattribute.md) | 設定色彩屬性。  |
 | [**SetConsoleTitle**](setconsoletitle.md)  | 設定主控台視窗標題。 |
-| [**GetConsoleTitle**](getconsoletitle.md)  | 抓取主控台視窗標題。  |
+| [**GetConsoleTitle**](getconsoletitle.md)  | 擷取主控台視窗標題。  |
 
-進程可以使用 [**FreeConsole**](freeconsole.md) 函式，從繼承的主控台或 [**AllocConsole**](allocconsole.md)所建立的主控台卸離本身。
+程序可以使用 [**FreeConsole**](freeconsole.md) 函式，將自己從繼承的主控台或由 [**AllocConsole**](allocconsole.md) 所建立的主控台卸離。
 
-使用 [**AttachConsole**](attachconsole.md) 函式將本身附加至另一個現有的主控台會話，然後使用 [**FreeConsole**](freeconsole.md) 從它自己的 (會話中斷連結，或如果沒有附加的會話) 。
+程序使用 [**FreeConsole**](freeconsole.md) 從自己的工作階段卸離後 (或者，如果沒有任何連結的工作階段)，可以使用 [**AttachConsole**](attachconsole.md) 函式將本身連結至另一個現有的主控台工作階段。
