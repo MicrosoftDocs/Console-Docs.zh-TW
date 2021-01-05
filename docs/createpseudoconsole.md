@@ -19,12 +19,12 @@ api_location:
 - KernelBase.dll
 api_type:
 - DllExport
-ms.openlocfilehash: f10a77781d555a76fdfcea8c8f10ae6bc1f72047
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: b015f224684a53a8bb654f04b1797ac1af794fc3
+ms.sourcegitcommit: f16996b9c7deead9bcfa44954be93a6ba087abcb
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93038296"
+ms.lasthandoff: 12/16/2020
+ms.locfileid: "97601475"
 ---
 # <a name="createpseudoconsole-function"></a>CreatePseudoConsole 函式
 
@@ -59,7 +59,7 @@ HRESULT WINAPI CreatePseudoConsole(
 | 值 | 意義 |
 |-|-|
 | **0** | 執行標準 pseudoconsole 建立。 |
-| **PSEUDOCONSOLE_INHERIT_CURSOR** (DWORD) 1 | 建立的 pseudoconsole 會話將嘗試繼承 paernt 主控台的游標位置。 |
+| **PSEUDOCONSOLE_INHERIT_CURSOR** (DWORD) 1 | 建立的 pseudoconsole 會話將嘗試繼承父主控台的游標位置。 |
 
 *phPC* \[擴展\]  
 將接收新 pseudoconsole 裝置之控制碼的位置指標。
@@ -68,7 +68,7 @@ HRESULT WINAPI CreatePseudoConsole(
 
 類型： **HRESULT**
 
-如果這個方法成功，它會傳回 **S_OK** 。 否則，它會傳回 **HRESULT** 錯誤碼。
+如果這個方法成功，它會傳回 **S_OK**。 否則，它會傳回 **HRESULT** 錯誤碼。
 
 ## <a name="remarks"></a>備註
 
@@ -94,11 +94,11 @@ HRESULT WINAPI CreatePseudoConsole(
 |-|-|
 | 最低支援的用戶端 | Windows 10 2018 年10月更新 (1809 版) \[ 桌面應用程式\] |
 | 最低支援的伺服器 | 僅限 Windows Server 2019 \[ desktop 應用程式\] |
-| 標頭 | ConsoleApi .h (via WinCon，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 標頭 | ConsoleApi.h (透過 WinCon.h，包括 Windows.h) |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
 [Pseudoconsoles](pseudoconsoles.md)
 
