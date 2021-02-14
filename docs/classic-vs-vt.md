@@ -7,12 +7,12 @@ ms.topic: conceptual
 keywords: 主控台, 終端機, 虛擬終端機, 逸出序列, vt, vt100, 主控台 api
 ms.prod: console
 ms.localizationpriority: high
-ms.openlocfilehash: 541300b50521909b22ceaccb595f1945fbfc7e6d
-ms.sourcegitcommit: 508e93bc83b4bca6ce678f88ab081d66b95d605c
-ms.translationtype: HT
+ms.openlocfilehash: 2af1b2e2760df42dc60a991dad1afacf27831ec5
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/04/2020
-ms.locfileid: "96420177"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100357808"
 ---
 # <a name="classic-console-apis-versus-virtual-terminal-sequences"></a>傳統主控台 API 與虛擬終端機順序
 
@@ -81,7 +81,7 @@ UTF-8 是幾乎所有新式平台上 Unicode 資料接受的編碼，因為其�
 透過 [**SetConsoleOutputCP**](setconsoleoutputcp.md) 和 [**SetConsoleCP**](setconsolecp.md) 方法將字碼頁設定為 `65001` 或 `CP_UTF8` 之後，即可透過主控台 API 的 _A_ 變體，對主控台控點利用主控台中的 UTF-8 支援。 只有在電腦尚未在 [控制台] 的 [地區] 區段中針對非 Unicode 應用程式的設定選擇 [使用 Unicode UTF-8 作為全球語言支援] 時，才需要預先設定字碼頁。
 
 >[!NOTE]
-> 從現在開始，透過 [**WriteConsole**](writeconsole.md) 和 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) 方法在標準輸出資料流上完全支援 UTF-8。 輸入資料流的支援會隨著輸入模式而有所不同，並且會隨著時間繼續改善。 值得注意的是，輸入上的預設 **[「修正」](high-level-console-modes.md)** 模式尚未完全支援 UTF-8。 在 GitHub 上的 [**microsoft/terminal#7777**](https://github.com/microsoft/terminal/issues/7777) 可找到此工作的目前狀態。 因應措施是使用可以演算法方式轉譯的 UTF-16，透過 [**ReadConsoleW**](readconsole.md) 或 [**ReadConsoleInputW**](readconsoleinput.md) 來讀取輸入，直到解決懸而未決的問題為止。
+> 從現在開始，透過 [**WriteConsole**](writeconsole.md) 和 [**WriteFile**](/windows/win32/api/fileapi/nf-fileapi-writefile) 方法在標準輸出資料流上完全支援 UTF-8。 輸入資料流的支援會隨著輸入模式而有所不同，並且會隨著時間繼續改善。 值得注意的是，輸入上的預設 **[「修正」](high-level-console-modes.md)** 模式尚未完全支援 UTF-8。 在 GitHub 上的 [**microsoft/terminal#7777**](https://github.com/microsoft/terminal/issues/7777) 可找到此工作的目前狀態。 因應措施是使用可以演算法方式轉譯的 UTF-16，透過 [**ReadConsoleW**](readconsole.md) 或 [**ReadConsoleInputW**](readconsoleinput.md) 來讀取輸入，直到解決懸而未決的問題為止。
 
 ## <a name="recommendations"></a>建議
 
@@ -101,9 +101,9 @@ UTF-8 是幾乎所有新式平台上 Unicode 資料接受的編碼，因為其�
 
 - [**SetConsoleCtrlHandler**](setconsolectrlhandler.md)、[**HandlerRoutine**](handlerroutine.md) 和 [**GenerateConsoleCtrlEvent**](generateconsolectrlevent.md) 會繼續進行訊號和訊號處理。
 
-- 可以透過 [**WriteConsole**](writeconsole.md) 和 [**ReadConsole**](readconsole.md) 進行與主控台裝置控點的通訊。 也可透過以下形式的程式設計語言執行階段來進行：- C 執行階段 (CRT)：**printf**、**scanf**、**putc**、**getc** 之類的[資料流 I/O](https://docs.microsoft.com/cpp/c-runtime-library/stream-i-o)，或[其他層級的 I/O 函式](https://docs.microsoft.com/cpp/c-runtime-library/input-and-output)。
-        - C++ 標準程式庫 (STL)：[iostream](https://docs.microsoft.com/cpp/standard-library/iostream)，例如 **cout** 和 **cin**。
-        - .NET 執行階段：[System.Console](https://docs.microsoft.com/dotnet/api/system.console)，例如 **Console.WriteLine**。
+- 可以透過 [**WriteConsole**](writeconsole.md) 和 [**ReadConsole**](readconsole.md) 進行與主控台裝置控點的通訊。 也可透過以下形式的程式設計語言執行階段來進行：- C 執行階段 (CRT)：**printf**、**scanf**、**putc**、**getc** 之類的 [資料流 I/O](/cpp/c-runtime-library/stream-i-o)，或 [其他層級的 I/O 函式](/cpp/c-runtime-library/input-and-output)。
+        - C++ 標準程式庫 (STL)：[iostream](/cpp/standard-library/iostream)，例如 **cout** 和 **cin**。
+        - .NET 執行階段：[System.Console](/dotnet/api/system.console)，例如 **Console.WriteLine**。
 
 - 必須留意視窗大小變更的應用程式，仍然需要使用 [**ReadConsoleInput**](readconsoleinput.md) 來接收與重要事件交錯的變更，因為 **ReadConsole** 會獨自捨棄這些變更。
 

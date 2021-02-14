@@ -30,12 +30,12 @@ api_location:
 api_type:
 - DllExport
 ms.localizationpriority: high
-ms.openlocfilehash: 208eebc92b718fed9856a48dfaf5cbebdaddc1e1
-ms.sourcegitcommit: 508e93bc83b4bca6ce678f88ab081d66b95d605c
-ms.translationtype: HT
+ms.openlocfilehash: 03e7166f84be2f760a4ffea385225390bdb3ffa1
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/04/2020
-ms.locfileid: "96420267"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100357708"
 ---
 # <a name="setconsolectrlhandler-function"></a>SetConsoleCtrlHandler 函式
 
@@ -66,13 +66,13 @@ BOOL WINAPI SetConsoleCtrlHandler(
 
 如果函式成功，則傳回非零的值。
 
-如果此函式失敗，則傳回值為零。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果此函式失敗，則傳回值為零。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror)。
 
 ## <a name="remarks"></a>備註
 
-針對 [**WM\_QUERYENDSESSION**](https://msdn.microsoft.com/library/windows/desktop/aa376890) 使用訊息幫浦為圖形應用程式提供的通知，此函式會為主控台應用程式和服務提供類似的通知。 您也可以從圖形應用程式中使用此函式，但不保證其會在 **WM\_QUERYENDSESSION** 的通知之前抵達。
+針對 [**WM\_QUERYENDSESSION**](/windows/win32/shutdown/wm-queryendsession) 使用訊息幫浦為圖形應用程式提供的通知，此函式會為主控台應用程式和服務提供類似的通知。 您也可以從圖形應用程式中使用此函式，但不保證其會在 **WM\_QUERYENDSESSION** 的通知之前抵達。
 
-每個主控台程序都會自備應用程式定義的 [**HandlerRoutine**](handlerroutine.md)清單，可處理 <kbd>CTRL</kbd>+<kbd>C</kbd> 和 <kbd>CTRL</kbd>+<kbd>BREAK</kbd> 函式。 當使用者關閉主控台、登出或關閉系統時，處理常式函式也會處理系統所產生的訊號。 一開始，每個程序的處理常式清單只會包含預設的處理常式函式，該函式會呼叫 [**ExitProcess**](https://msdn.microsoft.com/library/windows/desktop/ms682658) 函式。 主控台程序會藉由呼叫 **SetConsoleCtrlHandler** 函式來新增或移除其他處理常式函式，而這不會影響其他程序的處理常式函式清單。 主控台程序會在收到任何控制訊號時，依據「最後註冊的先呼叫」原則來呼叫其處理常式函式，直到其中一個處理常式傳回 `TRUE` 為止。 如果沒有任何處理常式傳回 `TRUE`，則會呼叫預設的處理常式。
+每個主控台程序都會自備應用程式定義的 [**HandlerRoutine**](handlerroutine.md)清單，可處理 <kbd>CTRL</kbd>+<kbd>C</kbd> 和 <kbd>CTRL</kbd>+<kbd>BREAK</kbd> 函式。 當使用者關閉主控台、登出或關閉系統時，處理常式函式也會處理系統所產生的訊號。 一開始，每個程序的處理常式清單只會包含預設的處理常式函式，該函式會呼叫 [**ExitProcess**](/windows/win32/api/processthreadsapi/nf-processthreadsapi-exitprocess) 函式。 主控台程序會藉由呼叫 **SetConsoleCtrlHandler** 函式來新增或移除其他處理常式函式，而這不會影響其他程序的處理常式函式清單。 主控台程序會在收到任何控制訊號時，依據「最後註冊的先呼叫」原則來呼叫其處理常式函式，直到其中一個處理常式傳回 `TRUE` 為止。 如果沒有任何處理常式傳回 `TRUE`，則會呼叫預設的處理常式。
 
 對於主控台程序，<kbd>CTRL</kbd>+<kbd>C</kbd> 和 <kbd>CTRL</kbd>+<kbd>BREAK</kbd> 按鍵組合通常會被視為訊號 (**CTRL\_C\_EVENT** 和 **CTRL\_BREAK\_EVENT**)。 當具有鍵盤焦點的主控台視窗收到 <kbd>CTRL</kbd>+<kbd>C</kbd> 或 <kbd>CTRL</kbd>+<kbd>BREAK</kbd> 時，訊號通常會傳遞至所有共用該主控台的程序。
 
@@ -88,9 +88,9 @@ BOOL WINAPI SetConsoleCtrlHandler(
 
 **Windows 7、Windows 8、Windows 8.1 和 Windows 10：**
 
-如果主控台應用程式載入 gdi32.dll 或 user32.dll 程式庫，則發生 **CTRL\_LOGOFF\_EVENT** 和 **CTRL\_SHUTDOWN\_EVENT** 事件時，就不會呼叫您在呼叫 **SetConsoleCtrlHandler** 時指定的 [**HandlerRoutine**](handlerroutine.md) 函式。 作業系統會將載入 gdi32.dll 或 user32.dll 的程序辨識為 Windows 應用程式，而非主控台應用程式。 如果主控台應用程式不會直接呼叫 gdi32.dll 或 user32.dll 中的函式，也會發生這種行為，但呼叫 [Shell 函式](https://msdn.microsoft.com/library/windows/desktop/bb776426)之類的函式反而會呼叫 gdi32.dll 或 user32.dll 中的函式。
+如果主控台應用程式載入 gdi32.dll 或 user32.dll 程式庫，則發生 **CTRL\_LOGOFF\_EVENT** 和 **CTRL\_SHUTDOWN\_EVENT** 事件時，就不會呼叫您在呼叫 **SetConsoleCtrlHandler** 時指定的 [**HandlerRoutine**](handlerroutine.md) 函式。 作業系統會將載入 gdi32.dll 或 user32.dll 的程序辨識為 Windows 應用程式，而非主控台應用程式。 如果主控台應用程式不會直接呼叫 gdi32.dll 或 user32.dll 中的函式，也會發生這種行為，但呼叫 [Shell 函式](/previous-versions/windows/desktop/legacy/bb776426(v=vs.85))之類的函式反而會呼叫 gdi32.dll 或 user32.dll 中的函式。
 
-若要在因為這些情況造成使用者登出或關閉裝置時接收事件，請在您的主控台應用程式中建立隱藏視窗，然後處理已隱藏視窗接收的 [**WM\_QUERYENDSESSION**](https://msdn.microsoft.com/library/windows/desktop/aa376890) 和 [**WM\_ENDSESSION**](https://msdn.microsoft.com/library/windows/desktop/aa376889) 視窗訊息。 您可以藉由呼叫 [**CreateWindowEx**](https://msdn.microsoft.com/library/windows/desktop/ms632680) 方法，並將 *dwExStyle* 參數設定為 0，來建立隱藏視窗。
+若要在因為這些情況造成使用者登出或關閉裝置時接收事件，請在您的主控台應用程式中建立隱藏視窗，然後處理已隱藏視窗接收的 [**WM\_QUERYENDSESSION**](/windows/win32/shutdown/wm-queryendsession) 和 [**WM\_ENDSESSION**](/windows/win32/shutdown/wm-endsession) 視窗訊息。 您可以藉由呼叫 [**CreateWindowEx**](/windows/win32/api/winuser/nf-winuser-createwindowexa) 方法，並將 *dwExStyle* 參數設定為 0，來建立隱藏視窗。
 
 ## <a name="examples"></a>範例
 
@@ -113,7 +113,7 @@ BOOL WINAPI SetConsoleCtrlHandler(
 
 [主控台函式](console-functions.md)
 
-[**ExitProcess**](https://msdn.microsoft.com/library/windows/desktop/ms682658)
+[**ExitProcess**](/windows/win32/api/processthreadsapi/nf-processthreadsapi-exitprocess)
 
 [**GenerateConsoleCtrlEvent**](generateconsolectrlevent.md)
 

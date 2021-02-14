@@ -27,12 +27,12 @@ api_location:
 - API-MS-Win-DownLevel-Kernel32-l1-1-0.dll
 api_type:
 - DllExport
-ms.openlocfilehash: 4a83c91a60a26d8e962efdf10b127e97beb70a7f
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: 677df94d6397c1515ad96757788c9a044b6ed87e
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039346"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100358648"
 ---
 # <a name="setconsolescreenbufferinfoex-function"></a>SetConsoleScreenBufferInfoEx 函式
 
@@ -51,22 +51,22 @@ BOOL WINAPI SetConsoleScreenBufferInfoEx(
 
 ## <a name="parameters"></a>參數
 
-*hConsoleOutput* \[在\]  
-主控台螢幕緩衝區的控制碼。 控制碼必須有 **一般 \_ 寫入** 存取權限。 如需詳細資訊，請參閱 [主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
+*hConsoleOutput* \[in\]  
+主控台螢幕緩衝區的控點。 控點必須具有 **GENERIC\_WRITE** 存取權限。 如需詳細資訊，請參閱[主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
 
 *lpConsoleScreenBufferInfoEx* \[在\]  
 [**主控台 \_ 螢幕 \_ 緩衝區 \_ INFOEX**](console-screen-buffer-infoex.md)結構，其中包含主控台螢幕緩衝區資訊。
 
 ## <a name="return-value"></a>傳回值
 
-如果函式成功，則傳回值為非零。
+如果函式成功，則傳回非零的值。
 
-如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果此函式失敗，則傳回值為零。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror)。
 
 ## <a name="remarks"></a>備註
 
 > [!TIP]
-> 此 API 具有對等的部分 **[虛擬終端](console-virtual-terminal-sequences.md)** 機。 資料 **[指標定位緩衝區](console-virtual-terminal-sequences.md#cursor-positioning)** 和 **[文字屬性](console-virtual-terminal-sequences.md#text-formatting)** 具有特定的順序對應。 Color 資料表無法設定，但是 **[擴充色彩](console-virtual-terminal-sequences.md#extended-colors)** 的可用範圍，通常是透過主控台函式所提供的 **[功能](console-functions.md)** 。 Popup 屬性沒有對等專案，因為快顯功能表是 **虛擬終端** 機世界中命令列用戶端應用程式的責任。 最後，視窗和全螢幕狀態的大小會被視為 **虛擬終端** 機世界中使用者所擁有的許可權，而且沒有對等的順序。
+> 此 API 具有對等的部分 **[虛擬終端](console-virtual-terminal-sequences.md)** 機。 資料 **[指標定位緩衝區](console-virtual-terminal-sequences.md#cursor-positioning)** 和 **[文字屬性](console-virtual-terminal-sequences.md#text-formatting)** 具有特定的順序對應。 Color 資料表無法設定，但是 **[擴充色彩](console-virtual-terminal-sequences.md#extended-colors)** 的可用範圍，通常是透過主控台函式所提供的 **[功能](console-functions.md)**。 Popup 屬性沒有對等專案，因為快顯功能表是 **虛擬終端** 機世界中命令列用戶端應用程式的責任。 最後，視窗和全螢幕狀態的大小會被視為 **虛擬終端** 機世界中使用者所擁有的許可權，而且沒有對等的順序。
 
 ## <a name="requirements"></a>規格需求
 
@@ -75,12 +75,12 @@ BOOL WINAPI SetConsoleScreenBufferInfoEx(
 | 最低支援的用戶端 | \[僅限 Windows Vista 桌面應用程式\] |
 | 最低支援的伺服器 | 僅限 Windows Server 2008 \[ desktop 應用程式\] |
 | 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)
 
 [**主控台 \_ 螢幕 \_ 緩衝區 \_ INFOEX**](console-screen-buffer-infoex.md)
 

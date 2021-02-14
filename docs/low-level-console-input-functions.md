@@ -13,12 +13,12 @@ MSHAttr:
 - PreferredSiteName:MSDN
 - PreferredLib:/library/windows/desktop
 ms.assetid: 41488614-ca7c-4207-b706-f7776423c7ba
-ms.openlocfilehash: c214a90147fae2fbf876746078ce0301af15b7ad
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: fc2969cb266479a0acdde890f4ad3710ca8d7e42
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93038546"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100357818"
 ---
 # <a name="low-level-console-input-functions"></a>Low-Level 主控台輸入函式
 
@@ -46,4 +46,4 @@ ms.locfileid: "93038546"
 | [**WriteConsoleInput**](writeconsoleinput.md) | 將輸入記錄放入緩衝區中任何暫止記錄後方的輸入緩衝區。 視需要，輸入緩衝區會動態成長，以保存所寫入的記錄數目。 若要使用此函式，指定的輸入緩衝區控制碼必須有一般 \_ 寫入存取權限。 |
 | [**FlushConsoleInputBuffer**](flushconsoleinputbuffer.md) | 捨棄輸入緩衝區中的所有未讀取事件。 若要使用此函式，指定的輸入緩衝區控制碼必須有一般 \_ 寫入存取權限。 |
 
-應用程式進程的執行緒可以執行等候作業，等候輸入緩衝區中有可用的輸入。 若要起始等候作業，請在對任何 [等候](https://msdn.microsoft.com/library/windows/desktop/ms687069)函式的呼叫中指定輸入緩衝區的控制碼。 當一個或多個物件的狀態為已發出信號時，這些函式可能會傳回。 當輸入緩衝區中有未讀取的記錄時，主控台輸入控制碼的狀態就會變成發出信號。 當輸入緩衝區變成空白時，狀態會重設為非信號。 如果沒有可用的輸入，呼叫執行緒會進入有效率的等候狀態，而在等候等候作業的條件時，耗用非常少的處理器時間。
+應用程式進程的執行緒可以執行等候作業，等候輸入緩衝區中有可用的輸入。 若要起始等候作業，請在對任何 [等候](/windows/win32/sync/wait-functions)函式的呼叫中指定輸入緩衝區的控制碼。 當一個或多個物件的狀態為已發出信號時，這些函式可能會傳回。 當輸入緩衝區中有未讀取的記錄時，主控台輸入控制碼的狀態就會變成發出信號。 當輸入緩衝區變成空白時，狀態會重設為非信號。 如果沒有可用的輸入，呼叫執行緒會進入有效率的等候狀態，而在等候等候作業的條件時，耗用非常少的處理器時間。

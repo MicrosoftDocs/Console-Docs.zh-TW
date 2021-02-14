@@ -13,12 +13,12 @@ MSHAttr:
 - PreferredSiteName:MSDN
 - PreferredLib:/library/windows/desktop
 ms.assetid: c8404e78-9807-4bed-bc12-25377fa96151
-ms.openlocfilehash: 1582b6232461469e10048ed8711c766a6821264f
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: 4c55a40f43827deeacfd1302d507732ec9bcc248
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93037596"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100358658"
 ---
 # <a name="scrolling-the-screen-buffer"></a>滾動螢幕緩衝區
 
@@ -32,14 +32,14 @@ ms.locfileid: "93037596"
 
   ![螢幕緩衝區視窗移動大型緩衝區內容](images/cscon-01.png)
 
-- 當使用 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) 函式來寫入換行的螢幕緩衝區時，如果已啟用行尾 (EOL) 輸出模式，則視窗矩形會自動移動，因此一律會顯示游標。
+- 當使用 [**WriteFile**](/windows/win32/api/fileapi/nf-fileapi-writefile) 函式來寫入換行的螢幕緩衝區時，如果已啟用行尾 (EOL) 輸出模式，則視窗矩形會自動移動，因此一律會顯示游標。
 - 當 [**SetConsoleCursorPosition**](setconsolecursorposition.md) 函式指定的新資料指標位置超出目前視窗矩形的界限時，視窗矩形會自動移動以顯示游標。
 - 當使用者變更控制台視窗的大小，或使用視窗的捲軸時，可以變更現用螢幕緩衝區的視窗矩形。 這項變更不會回報為輸入緩衝區中的視窗大小事件。
 
 在上述每一種情況下，視窗矩形會切換為顯示主控台螢幕緩衝區的不同部分，但是主控台畫面緩衝區的內容會保留在相同的位置。 下列情況可能會導致主控台畫面緩衝區的內容轉移：
 
 - 呼叫 [**ScrollConsoleScreenBuffer**](scrollconsolescreenbuffer.md) 函式時，會從螢幕緩衝區的某個部分將矩形區塊複製到另一個部分。
-- 當您使用 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) 寫入到已啟用 wrap 輸出模式的螢幕緩衝區時，主控台畫面緩衝區的內容會在遇到主控台畫面緩衝區的結尾時自動滾動。 這項滾動會捨棄主控台畫面緩衝區的頂端列。
+- 當您使用 [**WriteFile**](/windows/win32/api/fileapi/nf-fileapi-writefile) 寫入到已啟用 wrap 輸出模式的螢幕緩衝區時，主控台畫面緩衝區的內容會在遇到主控台畫面緩衝區的結尾時自動滾動。 這項滾動會捨棄主控台畫面緩衝區的頂端列。
 
 [**ScrollConsoleScreenBuffer**](scrollconsolescreenbuffer.md) 指定移動的主控台螢幕緩衝區矩形，以及要複製矩形的新左上座標。 此函式可將主控台螢幕緩衝區的一部分或整個內容滾動。
 

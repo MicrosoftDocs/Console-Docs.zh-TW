@@ -25,12 +25,12 @@ api_location:
 - WinCon.h
 api_type:
 - HeaderDef
-ms.openlocfilehash: 93121864c8754b281b92051a5e4a174b2d5956a3
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: f9cbe94fff616a93d835f47b618a28bb9f521891
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93037096"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100358488"
 ---
 # <a name="small_rect-structure"></a>SMALL \_ RECT 結構
 
@@ -58,7 +58,7 @@ typedef struct _SMALL_RECT {
 **對**  
 矩形右下角的 x 座標。
 
-**底端**  
+**下層**  
 矩形右下角的 y 座標。
 
 ## <a name="remarks"></a>備註
@@ -73,12 +73,12 @@ typedef struct _SMALL_RECT {
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
 | 標頭 | WinConTypes .h (via WinCon，包括 Windows .h)  |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
-[**矩形**](https://msdn.microsoft.com/library/windows/desktop/dd162897)
+[**矩形**](/previous-versions//dd162897(v=vs.85))
 
-[**RECTL**](https://msdn.microsoft.com/library/windows/desktop/dd162907)
+[**RECTL**](/previous-versions//dd162907(v=vs.85))

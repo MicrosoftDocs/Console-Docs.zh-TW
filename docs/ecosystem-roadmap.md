@@ -7,12 +7,12 @@ ms.topic: conceptual
 keywords: 主控台, 終端機, 虛擬終端機, 主控台主機, 命令列, 子系統, 藍圖, 生態系統
 ms.prod: console
 ms.localizationpriority: high
-ms.openlocfilehash: e5d28a06789f230943d70a49e7c89642b17fdb5c
-ms.sourcegitcommit: 508e93bc83b4bca6ce678f88ab081d66b95d605c
-ms.translationtype: HT
+ms.openlocfilehash: 3db266b761d4a8ee1fd8ec24d640bb277ab76edb
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/04/2020
-ms.locfileid: "96420257"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100357898"
 ---
 # <a name="windows-console-and-terminal-ecosystem-roadmap"></a>Windows 主控台和終端生態系統藍圖
 
@@ -23,7 +23,7 @@ ms.locfileid: "96420257"
 
 - 產品、功能和策略的歷程記錄和未來藍圖，都是建置平台的一部分，也是專為此平台打造的。
 
-Microsoft 目前的主控台/終端機時代重點是，在 Windows 平台上直接為開發人員帶來一流的終端機體驗，以及[淘汰](classic-vs-vt.md)傳統 Windows 主控台 API，並以利用 [pseudoconsole](pseudoconsoles.md)的[虛擬終端機序列](console-virtual-terminal-sequences.md)進行取代。 **[Windows 終端機](/terminal/get-started)** 會展示轉換為一流體驗、從開發人員社群邀請[開放原始碼共同作業](https://github.com/microsoft/terminal)、支援用戶端命令列和終端機主控應用程式的完整混合和比對，以及整合 Windows 生態系統與所有其他平台。
+Microsoft 目前的主控台/終端機時代重點是，在 Windows 平台上直接為開發人員帶來一流的終端機體驗，以及[淘汰](classic-vs-vt.md)傳統 Windows 主控台 API，並以利用 [pseudoconsole](pseudoconsoles.md)的[虛擬終端機序列](console-virtual-terminal-sequences.md)進行取代。 **[Windows 終端機](/terminal/get-started)** 會展示轉換為一流體驗、從開發人員社群邀請 [開放原始碼共同作業](https://github.com/microsoft/terminal)、支援用戶端命令列和終端機主控應用程式的完整混合和比對，以及整合 Windows 生態系統與所有其他平台。
 
 ## <a name="definitions"></a>定義
 
@@ -55,7 +55,7 @@ Microsoft 目前的主控台/終端機時代重點是，在 Windows 平台上直
 
 追加功能：將扮演多個角色的應用程式鏈結到其中一個端點，即可執行進一步連線。 例如，SSH 工作階段有兩個角色：這是在某個裝置上執行之命令列應用程式的 **終端機**，但是會將所有收到的資訊轉送給另一個裝置上的 **用戶端** 角色。 此鏈結可以會在不同裝置和內容之間無限期地發生，以提供廣泛的案例彈性。
 
-在非 Windows 平台上，**伺服器** 和 **終端機** 角色都是單一單位，因為 API 集與[虛擬終端機序列](console-virtual-terminal-sequences.md)之間不需要轉譯相容性層。
+在非 Windows 平台上，**伺服器** 和 **終端機** 角色都是單一單位，因為 API 集與 [虛擬終端機序列](console-virtual-terminal-sequences.md)之間不需要轉譯相容性層。
 
 ## <a name="microsoft-products"></a>Microsoft 產品
 
@@ -78,11 +78,11 @@ Windows 終端機是適用於 Windows 的旗艦型文字模式使用者介面。
 
 ### <a name="initial-implementation"></a>初始實作
 
-**\[1989-1990 年代]** 初始主控台主機系統已實作為 Windows 作業系統中 DOS 環境的模擬。 其程式碼會與[命令提示字元](https://docs.microsoft.com/windows-server/administration/windows-commands/cmd)(`cmd.exe`) 糾結在一起並協同合作，這是該 DOS 環境的表示法。 主控台主機系統程式碼會與命令提示字元解譯器/shell 一起分擔責任和權限。 其也會提供服務的基底層級，讓其他命令列公用程式以類似 CMD 的方式執行服務。
+**\[1989-1990 年代]** 初始主控台主機系統已實作為 Windows 作業系統中 DOS 環境的模擬。 其程式碼會與[命令提示字元](/windows-server/administration/windows-commands/cmd)(`cmd.exe`) 糾結在一起並協同合作，這是該 DOS 環境的表示法。 主控台主機系統程式碼會與命令提示字元解譯器/shell 一起分擔責任和權限。 其也會提供服務的基底層級，讓其他命令列公用程式以類似 CMD 的方式執行服務。
 
 ### <a name="dbcs-for-cjk"></a>適用於 CJK 的 DBCS
 
-**\[1997-1999\]** 這段時間，引進了 [DBCS](https://docs.microsoft.com/windows/win32/intl/double-byte-character-sets) 支援 (「雙位元組字元集」) 來支援 CJK (中文、日文和韓文) 市場。 此種努力導致在主控台內許多寫入和讀取方法的分歧，以提供「西方」版本來處理單一位元組字元，以及「東方」版本的替代表示法，其中需要兩個位元組來代表龐大的字元陣列。 此分歧包括將主控台環境中儲存格的呈現展開為 1 或 2 個儲存格，其中 1 個儲存格是窄的 (高度大於寬度)，2 個儲存格則是寬的、全形，或者是可在其銘寫典型中文、日文和韓文表意文字的方形。
+**\[1997-1999\]** 這段時間，引進了 [DBCS](/windows/win32/intl/double-byte-character-sets) 支援 (「雙位元組字元集」) 來支援 CJK (中文、日文和韓文) 市場。 此種努力導致在主控台內許多寫入和讀取方法的分歧，以提供「西方」版本來處理單一位元組字元，以及「東方」版本的替代表示法，其中需要兩個位元組來代表龐大的字元陣列。 此分歧包括將主控台環境中儲存格的呈現展開為 1 或 2 個儲存格，其中 1 個儲存格是窄的 (高度大於寬度)，2 個儲存格則是寬的、全形，或者是可在其銘寫典型中文、日文和韓文表意文字的方形。
 
 ### <a name="securityisolation"></a>安全性/隔離
 
@@ -94,7 +94,7 @@ Windows 終端機是適用於 Windows 的旗艦型文字模式使用者介面。
 
 ### <a name="virtual-terminal-client"></a>虛擬終端機用戶端
 
-**\[2015-2017\]** 隨著 [Windows 子系統 Linux 版](https://docs.microsoft.com/windows/wsl/)的到來，Microsoft 致力於改善 [Windows 上的 Docker](https://docs.microsoft.com/dotnet/architecture/microservices/container-docker-introduction/docker-defined) 體驗，並採用 [OpenSSH](https://docs.microsoft.com/windows-server/administration/openssh/openssh_overview) 作為首要命令列遠端執行技術，而主控台主機引進了[虛擬終端機序列](console-virtual-terminal-sequences.md)的初始實作。 這可讓現有主控台充當終端機，直接連結到其各自環境中的 Linux 原生應用程式，將圖形化和文字屬性轉譯至顯示器，並以適當的方言傳回使用者輸入。
+**\[2015-2017\]** 隨著 [Windows 子系統 Linux 版](/windows/wsl/)的到來，Microsoft 致力於改善 [Windows 上的 Docker](/dotnet/architecture/microservices/container-docker-introduction/docker-defined) 體驗，並採用 [OpenSSH](/windows-server/administration/openssh/openssh_overview) 作為首要命令列遠端執行技術，而主控台主機引進了 [虛擬終端機序列](console-virtual-terminal-sequences.md)的初始實作。 這可讓現有主控台充當終端機，直接連結到其各自環境中的 Linux 原生應用程式，將圖形化和文字屬性轉譯至顯示器，並以適當的方言傳回使用者輸入。
 
 ### <a name="virtual-terminal-server"></a>虛擬終端機伺服器
 
@@ -116,7 +116,7 @@ Windows 終端機是適用於 Windows 的旗艦型文字模式使用者介面。
 
 ### <a name="client-support-library"></a>用戶端支援程式庫
 
-**\[未來\]** 有了用戶端的[虛擬終端機序列](console-virtual-terminal-sequences.md)支援和文件，強烈鼓勵 Windows 命令列公用程式開發人員先透過傳統 Windows API 使用虛擬終端機序列，以獲得整合生態系統與所有平台的優點。 不過，遺漏了一個重要的部分，那就是其他平台都有一系列廣泛的用戶端協助程式程式庫，可供處理 [readline](https://tiswww.case.edu/php/chet/readline/rltop.html) 之類的輸入和 [ncurses](https://invisible-island.net/ncurses/ncurses.html) 之類的圖形化顯示。 這個特定的未來藍圖元素代表探索生態系統所提供的內容，以及如何透過傳統主控台 API，加速在 Windows 命令列應用程式中採用虛擬終端機序列。
+**\[未來\]** 有了用戶端的 [虛擬終端機序列](console-virtual-terminal-sequences.md)支援和文件，強烈鼓勵 Windows 命令列公用程式開發人員先透過傳統 Windows API 使用虛擬終端機序列，以獲得整合生態系統與所有平台的優點。 不過，遺漏了一個重要的部分，那就是其他平台都有一系列廣泛的用戶端協助程式程式庫，可供處理 [readline](https://tiswww.case.edu/php/chet/readline/rltop.html) 之類的輸入和 [ncurses](https://invisible-island.net/ncurses/ncurses.html) 之類的圖形化顯示。 這個特定的未來藍圖元素代表探索生態系統所提供的內容，以及如何透過傳統主控台 API，加速在 Windows 命令列應用程式中採用虛擬終端機序列。
 
 ### <a name="sequence-passthrough"></a>序列傳遞
 

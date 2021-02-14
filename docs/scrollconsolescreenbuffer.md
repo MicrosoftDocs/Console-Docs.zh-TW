@@ -32,12 +32,12 @@ api_location:
 - API-MS-Win-DownLevel-Kernel32-l1-1-0.dll
 api_type:
 - DllExport
-ms.openlocfilehash: 4ebe6efa246d627add041a5ef188fbb81294fb61
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: 1bf009a91063c12ad14604349d68ca0de1d8eaa1
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039456"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100358668"
 ---
 # <a name="scrollconsolescreenbuffer-function"></a>ScrollConsoleScreenBuffer 函式
 
@@ -59,14 +59,14 @@ BOOL WINAPI ScrollConsoleScreenBuffer(
 
 ## <a name="parameters"></a>參數
 
-*hConsoleOutput* \[在\]  
-主控台螢幕緩衝區的控制碼。 控制碼必須具有 **一般 \_ 讀取** 許可權。 如需詳細資訊，請參閱 [主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
+*hConsoleOutput* \[in\]  
+主控台螢幕緩衝區的控點。 控制代碼必須具有 **GENERIC\_READ** 存取權限。 如需詳細資訊，請參閱[主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
 
 *lpScrollRectangle* \[在\]  
 [**小型 \_ 矩形**](small-rect-str.md)結構的指標，其成員指定要移動之主控台螢幕緩衝區矩形的左上角和右下角座標。
 
 *lpClipRectangle* \[在中，選擇性\]  
-[**小型 \_ 矩形**](small-rect-str.md)結構的指標，其成員會指定受捲軸影響的主控台螢幕緩衝區矩形左上角和右下角的座標。 此指標可以是 **Null** 。
+[**小型 \_ 矩形**](small-rect-str.md)結構的指標，其成員會指定受捲軸影響的主控台螢幕緩衝區矩形左上角和右下角的座標。 此指標可以是 **Null**。
 
 *dwDestinationOrigin* \[在\]  
 [**COORD**](coord-str.md)結構，指定 *lpScrollRectangle* 內容新位置的左上角（以字元為單位）。
@@ -76,9 +76,9 @@ BOOL WINAPI ScrollConsoleScreenBuffer(
 
 ## <a name="return-value"></a>傳回值
 
-如果函式成功，則傳回值為非零。
+如果函式成功，則傳回非零的值。
 
-如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果此函式失敗，則傳回值為零。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror)。
 
 ## <a name="remarks"></a>備註
 
@@ -86,7 +86,7 @@ BOOL WINAPI ScrollConsoleScreenBuffer(
 
 裁剪矩形適用于在 *lpScrollRectangle* 矩形和目標矩形中所做的變更。 例如，如果裁剪矩形未包含已由 *lpFill* 內容填滿的區域，則該區域的原始內容會保持不變。
 
-如果捲軸或目的地區域延伸超過主控台螢幕緩衝區的維度，則會將其裁剪。 例如，如果 *lpScrollRectangle* 是 (0、0) 和 (19、19) 和 *dwDestinationOrigin* 為 (10，15) 的區域，則目標矩形是 (10、15) 和 (29、34) 所包含的區域。 但是，如果主控台畫面緩衝區的寬度為50個字元，且高達30個字元，則會將目標矩形裁剪成 (10、15) 和 (29，29) 。 如果參數指定 [**小型的 \_ RECT**](small-rect-str.md)結構，則根據 *lpClipRectangle* ，也會裁剪主控台螢幕緩衝區的變更。 如果裁剪矩形指定為 (0、0) 和 (49、19) ，則只會進行在主控台螢幕緩衝區的該區域中發生的變更。
+如果捲軸或目的地區域延伸超過主控台螢幕緩衝區的維度，則會將其裁剪。 例如，如果 *lpScrollRectangle* 是 (0、0) 和 (19、19) 和 *dwDestinationOrigin* 為 (10，15) 的區域，則目標矩形是 (10、15) 和 (29、34) 所包含的區域。 但是，如果主控台畫面緩衝區的寬度為50個字元，且高達30個字元，則會將目標矩形裁剪成 (10、15) 和 (29，29) 。 如果參數指定 [**小型的 \_ RECT**](small-rect-str.md)結構，則根據 *lpClipRectangle*，也會裁剪主控台螢幕緩衝區的變更。 如果裁剪矩形指定為 (0、0) 和 (49、19) ，則只會進行在主控台螢幕緩衝區的該區域中發生的變更。
 
 [!INCLUDE [setting-codepage-mode-remarks](./includes/setting-codepage-mode-remarks.md)]
 
@@ -101,18 +101,18 @@ BOOL WINAPI ScrollConsoleScreenBuffer(
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
 | 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
-| Unicode 和 ANSI 名稱 | **ScrollConsoleScreenBufferW** (Unicode) 和 **ScrollConsoleScreenBufferA** (ANSI)  |
+| Unicode 與 ANSI 名稱 | **ScrollConsoleScreenBufferW** (Unicode) 和 **ScrollConsoleScreenBufferA** (ANSI)  |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
 [**字元 \_ 資訊**](char-info-str.md)
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)
 
 [**COORD**](coord-str.md)
 

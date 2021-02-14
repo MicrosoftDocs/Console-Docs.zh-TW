@@ -13,12 +13,12 @@ MSHAttr:
 - PreferredSiteName:MSDN
 - PreferredLib:/library/windows/desktop
 ms.assetid: 0226cd94-86d0-452b-80e6-e0fed8af0a62
-ms.openlocfilehash: 13ad97a30459ba3abd0ed197352e69e6e8b45d47
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: a520c1688bf9e682e5c6696738f5b81d30679d7b
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93037066"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100358478"
 ---
 # <a name="using-the-high-level-input-and-output-functions"></a>使用 High-Level 的輸入和輸出函數
 
@@ -26,7 +26,7 @@ ms.locfileid: "93037066"
 
 下列範例會使用主控台 i/o 的高階主控台 i/o 功能。 如需高層級主控台 i/o 函式的詳細資訊，請參閱 [高階主控台 i/o](high-level-console-i-o.md)。
 
-此範例假設最初針對 [**ReadFile**](https://msdn.microsoft.com/library/windows/desktop/aa365467) 和 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) 函式的第一次呼叫，預設 i/o 模式會生效。 然後，輸入模式會變更為針對 **ReadFile** 和 **WriteFile** 的第二次呼叫，開啟離線輸入模式和回應輸入模式。 [**SetConsoleTextAttribute**](setconsoletextattribute.md)函式可用來設定將顯示後續書寫文字的色彩。 在結束之前，程式會還原原始的主控台輸入模式和色彩屬性。
+此範例假設最初針對 [**ReadFile**](/windows/win32/api/fileapi/nf-fileapi-readfile) 和 [**WriteFile**](/windows/win32/api/fileapi/nf-fileapi-writefile) 函式的第一次呼叫，預設 i/o 模式會生效。 然後，輸入模式會變更為針對 **ReadFile** 和 **WriteFile** 的第二次呼叫，開啟離線輸入模式和回應輸入模式。 [**SetConsoleTextAttribute**](setconsoletextattribute.md)函式可用來設定將顯示後續書寫文字的色彩。 在結束之前，程式會還原原始的主控台輸入模式和色彩屬性。
 
 `NewLine`當行輸入模式停用時，就會使用範例的函式。 它會藉由將游標位置移至下一個資料列的第一個資料格，來處理換行。 如果資料指標已在主控台螢幕緩衝區的最後一個資料列中，主控台畫面緩衝區的內容會在一行中向上滾動。
 

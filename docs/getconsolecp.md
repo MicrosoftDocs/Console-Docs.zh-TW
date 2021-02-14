@@ -29,12 +29,12 @@ api_location:
 - MinKernelBase.dll
 api_type:
 - DllExport
-ms.openlocfilehash: 75570acba7d8572d1bd3f132ac379598d82ec73f
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: fd581c1f11f457054257e1e36e55b726f48b34fb
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93038016"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100358458"
 ---
 # <a name="getconsolecp-function"></a>GetConsoleCP 函式
 
@@ -52,13 +52,13 @@ UINT WINAPI GetConsoleCP(void);
 
 ## <a name="return-value"></a>傳回值
 
-傳回值是可識別字碼頁的程式碼。 如需識別碼的清單，請參閱 [字碼頁識別碼](https://msdn.microsoft.com/library/windows/desktop/dd317756)。
+傳回值是可識別字碼頁的程式碼。 如需識別碼的清單，請參閱 [字碼頁識別碼](/windows/win32/intl/code-page-identifiers)。
 
-如果傳回值為零，則函數會失敗。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果傳回值為零，則函數會失敗。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror)。
 
 ## <a name="remarks"></a>備註
 
-字碼頁會將256字元碼對應至個別字元。 不同的字碼頁包含不同的特殊字元，一般而言是針對語言或語言群組進行自訂。 若要取得字碼頁的詳細資訊（包括其名稱），請參閱 [**GetCPInfoEx**](https://msdn.microsoft.com/library/windows/desktop/dd318081) 函數。
+字碼頁會將256字元碼對應至個別字元。 不同的字碼頁包含不同的特殊字元，一般而言是針對語言或語言群組進行自訂。 若要取得字碼頁的詳細資訊（包括其名稱），請參閱 [**GetCPInfoEx**](/windows/win32/api/winnls/nf-winnls-getcpinfoexa) 函數。
 
 若要設定主控台的輸入字碼頁，請使用 [**SetConsoleCP**](setconsolecp.md) 函數。 若要設定及查詢主控台的輸出字碼頁，請使用 [**SetConsoleOutputCP**](setconsoleoutputcp.md) 和 [**GetConsoleOutputCP**](getconsoleoutputcp.md) 函數。
 
@@ -66,17 +66,17 @@ UINT WINAPI GetConsoleCP(void);
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
-| 標頭 | ConsoleApi .h (via WinCon，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
+| 標頭 | ConsoleApi.h (透過 WinCon.h，包括 Windows.h) |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
 [主控台字碼頁](console-code-pages.md)
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)
 
 [**GetConsoleOutputCP**](getconsoleoutputcp.md)
 

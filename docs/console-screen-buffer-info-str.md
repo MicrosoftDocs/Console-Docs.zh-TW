@@ -28,12 +28,12 @@ api_location:
 - WinCon.h
 api_type:
 - HeaderDef
-ms.openlocfilehash: 8b3a739a9f66e25687b60a3450c9381822c16e53
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: 31ef1cf8e78029be48d5217cbc82f84663d627b5
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039176"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100358118"
 ---
 # <a name="console_screen_buffer_info-structure"></a>主控台 \_ 螢幕 \_ 緩衝區 \_ 資訊結構
 
@@ -60,7 +60,7 @@ typedef struct _CONSOLE_SCREEN_BUFFER_INFO {
 [**COORD**](coord-str.md)結構，其中包含主控台螢幕緩衝區中資料指標的資料行和資料列座標。
 
 **wAttributes**  
-[**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747)和 [**WriteConsole**](writeconsole.md)函式寫入螢幕緩衝區的字元屬性，或 [**ReadFile**](https://msdn.microsoft.com/library/windows/desktop/aa365467)和 [**ReadConsole**](readconsole.md)函式的螢幕緩衝區。 如需詳細資訊，請參閱 [字元屬性](console-screen-buffers.md#character-attributes)。
+[**WriteFile**](/windows/win32/api/fileapi/nf-fileapi-writefile)和 [**WriteConsole**](writeconsole.md)函式寫入螢幕緩衝區的字元屬性，或 [**ReadFile**](/windows/win32/api/fileapi/nf-fileapi-readfile)和 [**ReadConsole**](readconsole.md)函式的螢幕緩衝區。 如需詳細資訊，請參閱 [字元屬性](console-screen-buffers.md#character-attributes)。
 
 **srWindow**  
 [**小型 \_ 矩形**](small-rect-str.md)結構，其中包含顯示視窗左上角和右下角的主控台螢幕緩衝區座標。
@@ -76,11 +76,11 @@ typedef struct _CONSOLE_SCREEN_BUFFER_INFO {
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
 | 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
 [**COORD**](coord-str.md)
 
@@ -88,10 +88,10 @@ typedef struct _CONSOLE_SCREEN_BUFFER_INFO {
 
 [**ReadConsole**](readconsole.md)
 
-[**ReadFile**](https://msdn.microsoft.com/library/windows/desktop/aa365467)
+[**ReadFile**](/windows/win32/api/fileapi/nf-fileapi-readfile)
 
 [**小型 \_ 矩形**](small-rect-str.md)
 
 [**WriteConsole**](writeconsole.md)
 
-[**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747)
+[**WriteFile**](/windows/win32/api/fileapi/nf-fileapi-writefile)

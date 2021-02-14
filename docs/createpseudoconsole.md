@@ -19,12 +19,12 @@ api_location:
 - KernelBase.dll
 api_type:
 - DllExport
-ms.openlocfilehash: b015f224684a53a8bb654f04b1797ac1af794fc3
-ms.sourcegitcommit: f16996b9c7deead9bcfa44954be93a6ba087abcb
+ms.openlocfilehash: 91958b23348895f7454c9228e3c730d231dc4f0b
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/16/2020
-ms.locfileid: "97601475"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100357938"
 ---
 # <a name="createpseudoconsole-function"></a>CreatePseudoConsole 函式
 
@@ -48,10 +48,10 @@ HRESULT WINAPI CreatePseudoConsole(
 將在初始建立 pseudoconsole 時使用的視窗/緩衝區維度（以字元數為單位）。 這可以在稍後使用 [ResizePseudoConsole](resizepseudoconsole.md)進行調整。
 
 *hInput* \[在\]  
-表示使用者輸入至裝置之資料流程的開啟控制碼。 這目前僅限於 [同步](https://docs.microsoft.com/windows/desktop/Sync/synchronization-and-overlapped-input-and-output) i/o。
+表示使用者輸入至裝置之資料流程的開啟控制碼。 這目前僅限於 [同步](/windows/desktop/Sync/synchronization-and-overlapped-input-and-output) i/o。
 
 *hOutput* \[在\]  
-代表裝置應用程式輸出的資料流程的開啟控制碼。 這目前僅限於 [同步](https://docs.microsoft.com/windows/desktop/Sync/synchronization-and-overlapped-input-and-output) i/o。
+代表裝置應用程式輸出的資料流程的開啟控制碼。 這目前僅限於 [同步](/windows/desktop/Sync/synchronization-and-overlapped-input-and-output) i/o。
 
 *dwFlags* \[在\]  
 這個值可以是下列值之一：

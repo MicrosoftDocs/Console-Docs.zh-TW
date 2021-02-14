@@ -13,18 +13,18 @@ MSHAttr:
 - PreferredSiteName:MSDN
 - PreferredLib:/library/windows/desktop
 ms.assetid: 6e536658-8a27-478e-82ee-d1e11f351301
-ms.openlocfilehash: 9b210e07fd2531b2f58130f4b96ad31a374923f4
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: d5d3604d3d4f2738af01ae1bc051c10af6249c62
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039206"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100358108"
 ---
 # <a name="console-input-buffer"></a>主控台輸入緩衝區
 
 每個主控台都有一個輸入緩衝區，其中包含輸入事件記錄的佇列。 當主控台的視窗具有鍵盤焦點時，主控台會將每個輸入事件格式化 (例如單一按鍵、移動滑鼠，或是按下滑鼠按鍵，) 為它放在主控台輸入緩衝區中的輸入記錄。
 
-應用程式可以使用 [高階主控台 i/o](high-level-console-input-and-output-functions.md)函式來間接存取主控台的輸入緩衝區，或直接使用 [低層級的主控台輸入功能](low-level-console-input-functions.md)來存取。 高層級輸入函式會篩選和處理輸入緩衝區中的資料，只傳回輸入字元的資料流程。 低層級的輸入函數可讓應用程式直接從主控台的輸入緩衝區讀取輸入記錄，或將輸入記錄放入輸入緩衝區。 若要開啟主控台輸入緩衝區的控制碼，請在 [**CreateFile**](https://msdn.microsoft.com/library/windows/desktop/aa363858)函數的呼叫中指定 **CONIN $** 值。
+應用程式可以使用 [高階主控台 i/o](high-level-console-input-and-output-functions.md)函式來間接存取主控台的輸入緩衝區，或直接使用 [低層級的主控台輸入功能](low-level-console-input-functions.md)來存取。 高層級輸入函式會篩選和處理輸入緩衝區中的資料，只傳回輸入字元的資料流程。 低層級的輸入函數可讓應用程式直接從主控台的輸入緩衝區讀取輸入記錄，或將輸入記錄放入輸入緩衝區。 若要開啟主控台輸入緩衝區的控制碼，請在 [**CreateFile**](/windows/win32/api/fileapi/nf-fileapi-createfilea)函數的呼叫中指定 **CONIN $** 值。
 
 輸入記錄是一種結構，其中包含 (鍵盤、滑鼠、視窗調整大小、焦點或功能表) 事件時所發生之事件種類的相關資訊，以及事件的特定詳細資料。 [**輸入 \_ 記錄**](input-record-str.md)結構中的 **「事件種類」成員會** 指出記錄中包含哪一種類型的事件。
 
@@ -34,7 +34,7 @@ ms.locfileid: "93039206"
 
 當按下或放開任何按鍵時，就會產生鍵盤事件;這包括控制項索引鍵。 不過，當按下並放開時，ALT 鍵對系統具有特殊意義，而不會與另一個字元合併，且不會傳遞至應用程式。 此外，如果輸入控制碼處於處理模式，則不會傳遞 CTRL + C 按鍵組合。
 
-如果輸入事件是按鍵， [**輸入 \_ 記錄**](input-record-str.md)中的 **事件** 成員就是包含下列資訊的 [**關鍵 \_ 事件 \_ 記錄**](key-event-record-str.md)結構：
+如果輸入事件是按鍵，[**輸入 \_ 記錄**](input-record-str.md)中的 **事件** 成員就是包含下列資訊的 [**關鍵 \_ 事件 \_ 記錄**](key-event-record-str.md)結構：
 
 - 指出是否已按下或放開按鍵的布林值。
 - 當索引鍵被關閉時，可以大於1的重複計數。
@@ -51,7 +51,7 @@ ms.locfileid: "93039206"
 - 主控台視窗具有鍵盤焦點。
 - 滑鼠指標位於主控台視窗的框線內。
 
-如果輸入事件是滑鼠事件， [**輸入 \_ 記錄**](input-record-str.md)中的 **事件** 成員就是包含下列資訊的 [**滑鼠 \_ 事件 \_ 記錄**](mouse-event-record-str.md)結構：
+如果輸入事件是滑鼠事件，[**輸入 \_ 記錄**](input-record-str.md)中的 **事件** 成員就是包含下列資訊的 [**滑鼠 \_ 事件 \_ 記錄**](mouse-event-record-str.md)結構：
 
 - 滑鼠指標在主控台螢幕緩衝區座標系統中的字元儲存格資料列和資料行的座標。
 - 旗標變數，指出滑鼠按鍵的狀態。

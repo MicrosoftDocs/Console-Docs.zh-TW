@@ -28,12 +28,12 @@ api_location:
 - API-MS-Win-DownLevel-Kernel32-l1-1-0.dll
 api_type:
 - DllExport
-ms.openlocfilehash: c93fbf4b619b522a95af2b03a49d60ff6f880e7d
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: 48671b9c54e61733c2936ac1f112e2d499f31a1a
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039366"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100357668"
 ---
 # <a name="setconsolecursorposition-function"></a>SetConsoleCursorPosition 函式
 
@@ -52,21 +52,21 @@ BOOL WINAPI SetConsoleCursorPosition(
 
 ## <a name="parameters"></a>參數
 
-*hConsoleOutput* \[在\]  
-主控台螢幕緩衝區的控制碼。 控制碼必須具有 **一般 \_ 讀取** 許可權。 如需詳細資訊，請參閱 [主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
+*hConsoleOutput* \[in\]  
+主控台螢幕緩衝區的控點。 控制代碼必須具有 **GENERIC\_READ** 存取權限。 如需詳細資訊，請參閱[主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
 
 *dwCursorPosition* \[在\]  
 指定新資料指標位置的 [**COORD**](coord-str.md) 結構（以字元為單位）。 座標是螢幕緩衝區字元資料格的資料行和資料列。 座標必須在主控台畫面緩衝區的界限內。
 
 ## <a name="return-value"></a>傳回值
 
-如果函式成功，則傳回值為非零。
+如果函式成功，則傳回非零的值。
 
-如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果此函式失敗，則傳回值為零。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror)。
 
 ## <a name="remarks"></a>備註
 
-資料指標位置會決定 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) 或 [**WriteConsole**](writeconsole.md) 函數所寫入的字元，或由 [**ReadFile**](https://msdn.microsoft.com/library/windows/desktop/aa365467) 或 [**ReadConsole**](readconsole.md) 函式所回應的位置。 若要判斷資料指標目前的位置，請使用 [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md) 函數。
+資料指標位置會決定 [**WriteFile**](/windows/win32/api/fileapi/nf-fileapi-writefile) 或 [**WriteConsole**](writeconsole.md) 函數所寫入的字元，或由 [**ReadFile**](/windows/win32/api/fileapi/nf-fileapi-readfile) 或 [**ReadConsole**](readconsole.md) 函式所回應的位置。 若要判斷資料指標目前的位置，請使用 [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md) 函數。
 
 如果新的資料指標位置不在主控台畫面緩衝區視窗的界限內，則視窗來源會變更，使游標變成可見。
 
@@ -81,15 +81,15 @@ BOOL WINAPI SetConsoleCursorPosition(
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
 | 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)
 
 [主控台畫面緩衝區](console-screen-buffers.md)
 
@@ -99,10 +99,10 @@ BOOL WINAPI SetConsoleCursorPosition(
 
 [**ReadConsole**](readconsole.md)
 
-[**ReadFile**](https://msdn.microsoft.com/library/windows/desktop/aa365467)
+[**ReadFile**](/windows/win32/api/fileapi/nf-fileapi-readfile)
 
 [**SetConsoleCursorInfo**](setconsolecursorinfo.md)
 
 [**WriteConsole**](writeconsole.md)
 
-[**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747)
+[**WriteFile**](/windows/win32/api/fileapi/nf-fileapi-writefile)

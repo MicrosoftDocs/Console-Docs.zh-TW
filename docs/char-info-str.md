@@ -28,14 +28,14 @@ api_location:
 - WinCon.h
 api_type:
 - HeaderDef
-ms.openlocfilehash: b07938d6ac58744533711c91a04b1a0188f7daf6
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: a16fb23d148f75480437211204a0fd7c1f161bfe
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93037376"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100357848"
 ---
-# <a name="char_info-structure"></a>CHAR \_ 資訊結構
+# `CHAR\_INFO structure`
 
 [!INCLUDE [not-recommended-banner](./includes/not-recommended-banner.md)]
 
@@ -55,7 +55,7 @@ typedef struct _CHAR_INFO {
 
 ## <a name="members"></a>成員
 
-**字元**  
+**Char**  
 下列成員的聯集。
 
 **UnicodeChar**  
@@ -72,18 +72,18 @@ typedef struct _CHAR_INFO {
 | **FOREGROUND_BLUE**`0x0001` | 文字色彩包含藍色。 |
 | **FOREGROUND_GREEN**`0x0002` | 文字色彩包含綠色。 |
 | **FOREGROUND_RED**`0x0004` | 文字色彩包含紅色。 |
-| **FOREGROUND_INTENSITY**`0x0008` | 文字色彩為更。 |
+| **FOREGROUND_INTENSITY**`0x0008` | 加深文字色彩。 |
 | **BACKGROUND_BLUE**`0x0010` | 背景色彩包含藍色。 |
 | **BACKGROUND_GREEN**`0x0020` | 背景色彩包含綠色。 |
 | **BACKGROUND_RED**`0x0040` | 背景色彩包含紅色。 |
-| **BACKGROUND_INTENSITY**`0x0080` | 背景色彩為更。 |
+| **BACKGROUND_INTENSITY**`0x0080` | 加深背景色彩。 |
 | **COMMON_LVB_LEADING_BYTE**`0x0100` | 前置位元組。 |
 | **COMMON_LVB_TRAILING_BYTE**`0x0200` | 尾端位元組。 |
-| **COMMON_LVB_GRID_HORIZONTAL**`0x0400` | 上水準。 |
-| **COMMON_LVB_GRID_LVERTICAL**`0x0800` | 左方垂直。 |
-| **COMMON_LVB_GRID_RVERTICAL**`0x1000` | 右垂直。 |
+| **COMMON_LVB_GRID_HORIZONTAL**`0x0400` | 水平置頂。 |
+| **COMMON_LVB_GRID_LVERTICAL**`0x0800` | 垂直靠左。 |
+| **COMMON_LVB_GRID_RVERTICAL**`0x1000` | 垂直靠右。 |
 | **COMMON_LVB_REVERSE_VIDEO**`0x4000` | 反向前景和背景屬性。 |
-| **COMMON_LVB_UNDERSCORE**`0x8000` | 強調。 |
+| **COMMON_LVB_UNDERSCORE**`0x8000` | 底線。 |
 
 ## <a name="examples"></a>範例
 
@@ -93,11 +93,11 @@ typedef struct _CHAR_INFO {
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
 | 標頭 | WinCon (包含) 的 Windows。h |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
 [**ReadConsoleOutput**](readconsoleoutput.md)
 

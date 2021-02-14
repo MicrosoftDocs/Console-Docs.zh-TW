@@ -27,12 +27,12 @@ api_location:
 - WinCon.h
 api_type:
 - HeaderDef
-ms.openlocfilehash: ef89d1bf47a4153d44140d3f9f4845bb7496680e
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: 3ab4424be99ba9eceda54db1ebf7c7e13560f722
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039256"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100358148"
 ---
 # <a name="console_font_infoex-structure"></a>主控台 \_ 字型 \_ INFOEX 結構
 
@@ -65,7 +65,7 @@ typedef struct _CONSOLE_FONT_INFOEX {
 [**COORD**](coord-str.md)結構，其中包含字型中每個字元的寬度和高度（以邏輯單位表示）。 **X** 成員包含寬度，而 **Y** 成員包含高度。
 
 **FontFamily**  
-字型音調和系列。 如需此成員可能值的詳細資訊，請參閱 [**TEXTMETRIC**](https://msdn.microsoft.com/library/windows/desktop/dd145132)結構之 **tmPitchAndFamily** 成員的描述。
+字型音調和系列。 如需此成員可能值的詳細資訊，請參閱 [**TEXTMETRIC**](/windows/win32/api/wingdi/ns-wingdi-textmetrica)結構之 **tmPitchAndFamily** 成員的描述。
 
 **FontWeight**  
 字型粗細。 權數的範圍可以從100到1000，以100的倍數為限。 例如，標準權數為400，而700為粗體。
@@ -85,6 +85,6 @@ typedef struct _CONSOLE_FONT_INFOEX {
 | 最低支援的伺服器 | 僅限 Windows Server 2008 \[ desktop 應用程式\] |
 | 標頭 | WinCon (包含) 的 Windows。h |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
 [**GetCurrentConsoleFontEx**](getcurrentconsolefontex.md)

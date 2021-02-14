@@ -28,12 +28,12 @@ api_location:
 - API-MS-Win-DownLevel-Kernel32-l1-1-0.dll
 api_type:
 - DllExport
-ms.openlocfilehash: f64e39b7b68e24e6c2aa7e9704c285bbbbc234f0
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: bf140d9f6721196caa5f62a064ed434554067d62
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039506"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100358689"
 ---
 # <a name="readconsoleoutputattribute-function"></a>ReadConsoleOutputAttribute 函式
 
@@ -55,8 +55,8 @@ BOOL WINAPI ReadConsoleOutputAttribute(
 
 ## <a name="parameters"></a>參數
 
-*hConsoleOutput* \[在\]  
-主控台螢幕緩衝區的控制碼。 控制碼必須具有 **一般 \_ 讀取** 許可權。 如需詳細資訊，請參閱 [主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
+*hConsoleOutput* \[in\]  
+主控台螢幕緩衝區的控點。 控制代碼必須具有 **GENERIC\_READ** 存取權限。 如需詳細資訊，請參閱[主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
 
 *lpAttribute* \[擴展\]  
 緩衝區的指標，此緩衝區會接收主控台螢幕緩衝區所使用的屬性。
@@ -74,9 +74,9 @@ BOOL WINAPI ReadConsoleOutputAttribute(
 
 ## <a name="return-value"></a>傳回值
 
-如果函式成功，則傳回值為非零。
+如果函式成功，則傳回非零的值。
 
-如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果此函式失敗，則傳回值為零。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror)。
 
 ## <a name="remarks"></a>備註
 
@@ -88,15 +88,15 @@ BOOL WINAPI ReadConsoleOutputAttribute(
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
 | 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)
 
 [**COORD**](coord-str.md)
 

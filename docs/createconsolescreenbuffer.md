@@ -28,12 +28,12 @@ api_location:
 - API-MS-Win-DownLevel-Kernel32-l1-1-0.dll
 api_type:
 - DllExport
-ms.openlocfilehash: 0b8f5b33233f49167c67a47f33e5a95b8864f7bd
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: 0e7e4606e561454a2037650cc8d1f3b685ff2d5d
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039128"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100357958"
 ---
 # <a name="createconsolescreenbuffer-function"></a>CreateConsoleScreenBuffer 函式
 
@@ -67,19 +67,19 @@ HANDLE WINAPI CreateConsoleScreenBuffer(
 | **FILE_SHARE_WRITE** 0x00000002 | 您可以在主控台螢幕緩衝區上執行其他開啟的作業，以進行寫入存取。 |
 
 *lpSecurityAttributes* \[在中，選擇性\]  
-[**安全性 \_ 屬性**](https://msdn.microsoft.com/library/windows/desktop/aa379560)結構的指標，可判斷是否可由子進程繼承傳回的控制碼。 如果 *lpSecurityAttributes* 為 **Null** ，則無法繼承控制碼。 結構的 **lpSecurityDescriptor** 成員會指定新主控台螢幕緩衝區的安全描述項。 如果 *lpSecurityAttributes* 為 **Null** ，則主控台螢幕緩衝區會取得預設安全描述項。 主控台螢幕緩衝區之預設安全描述項中的 Acl 來自于建立者的主要或模擬權杖。
+[**安全性 \_ 屬性**](/previous-versions/windows/desktop/legacy/aa379560(v=vs.85))結構的指標，可判斷是否可由子進程繼承傳回的控制碼。 如果 *lpSecurityAttributes* 為 **Null**，則無法繼承控制碼。 結構的 **lpSecurityDescriptor** 成員會指定新主控台螢幕緩衝區的安全描述項。 如果 *lpSecurityAttributes* 為 **Null**，則主控台螢幕緩衝區會取得預設安全描述項。 主控台螢幕緩衝區之預設安全描述項中的 Acl 來自于建立者的主要或模擬權杖。
 
 *dwFlags* \[在\]  
-要建立的主控台螢幕緩衝區類型。 唯一支援的螢幕緩衝區類型是 **主控台 \_ TEXTMODE \_ 緩衝區** 。
+要建立的主控台螢幕緩衝區類型。 唯一支援的螢幕緩衝區類型是 **主控台 \_ TEXTMODE \_ 緩衝區**。
 
 *lpScreenBufferData*  
-保護應為 **Null** 。
+保護應為 **Null**。
 
 ## <a name="return-value"></a>傳回值
 
 如果函式成功，則傳回值是新主控台螢幕緩衝區的控制碼。
 
-如果函式失敗，則傳回值是 **不正確 \_ 控制碼 \_ 值** 。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果函式失敗，則傳回值是 **INVALID\_HANDLE\_VALUE**。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror)。
 
 ## <a name="remarks"></a>備註
 
@@ -95,9 +95,9 @@ HANDLE WINAPI CreateConsoleScreenBuffer(
 
 呼叫進程可以在任何需要控制主控台螢幕緩衝區的函式中使用傳回的控制碼，但受限於 *dwDesiredAccess* 參數所指定的存取限制。
 
-呼叫進程可使用 [**DuplicateHandle**](https://msdn.microsoft.com/library/windows/desktop/ms724251) 函式來建立重複的螢幕緩衝區控制碼，此控制碼具有與原始控制碼不同的存取或可繼承。 不過， **DuplicateHandle** 無法用來建立對不同進程 (有效的重複項，但透過繼承) 除外。
+呼叫進程可使用 [**DuplicateHandle**](/windows/win32/api/handleapi/nf-handleapi-duplicatehandle) 函式來建立重複的螢幕緩衝區控制碼，此控制碼具有與原始控制碼不同的存取或可繼承。 不過， **DuplicateHandle** 無法用來建立對不同進程 (有效的重複項，但透過繼承) 除外。
 
-若要關閉主控台畫面緩衝區控制碼，請使用 [**CloseHandle**](https://msdn.microsoft.com/library/windows/desktop/ms724211) 函數。
+若要關閉主控台畫面緩衝區控制碼，請使用 [**CloseHandle**](/windows/win32/api/handleapi/nf-handleapi-closehandle) 函數。
 
 [!INCLUDE [no-vt-equiv-alt-buf](./includes/no-vt-equiv-alt-buf.md)]
 
@@ -109,25 +109,25 @@ HANDLE WINAPI CreateConsoleScreenBuffer(
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
 | 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)
 
 [主控台畫面緩衝區](console-screen-buffers.md)
 
-[**CloseHandle**](https://msdn.microsoft.com/library/windows/desktop/ms724211)
+[**CloseHandle**](/windows/win32/api/handleapi/nf-handleapi-closehandle)
 
-[**DuplicateHandle**](https://msdn.microsoft.com/library/windows/desktop/ms724251)
+[**DuplicateHandle**](/windows/win32/api/handleapi/nf-handleapi-duplicatehandle)
 
 [**GetConsoleScreenBufferInfo**](getconsolescreenbufferinfo.md)
 
-[**安全性 \_ 屬性**](https://msdn.microsoft.com/library/windows/desktop/aa379560)
+[**安全性 \_ 屬性**](/previous-versions/windows/desktop/legacy/aa379560(v=vs.85))
 
 [**SetConsoleActiveScreenBuffer**](setconsoleactivescreenbuffer.md)
 

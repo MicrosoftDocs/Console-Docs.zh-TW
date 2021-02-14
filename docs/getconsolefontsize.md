@@ -25,12 +25,12 @@ api_location:
 - Kernel32.dll
 api_type:
 - DllExport
-ms.openlocfilehash: 39a27f2bd2c4578296ee5699503ce86487060db3
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: 96086720ee2c4ae787d2b52eee5439d54f081b8e
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93038896"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100358338"
 ---
 # <a name="getconsolefontsize-function"></a>GetConsoleFontSize 函式
 
@@ -49,8 +49,8 @@ COORD WINAPI GetConsoleFontSize(
 
 ## <a name="parameters"></a>參數
 
-*hConsoleOutput* \[在\]  
-主控台螢幕緩衝區的控制碼。 控制碼必須具有 **一般 \_ 讀取** 許可權。 如需詳細資訊，請參閱 [主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
+*hConsoleOutput* \[in\]  
+主控台螢幕緩衝區的控點。 控制代碼必須具有 **GENERIC\_READ** 存取權限。 如需詳細資訊，請參閱[主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
 
 *nFont* \[在\]  
 要取出其大小的字型索引。 藉由呼叫 [**GetCurrentConsoleFont**](getcurrentconsolefont.md) 函數來取得此索引。
@@ -59,11 +59,11 @@ COORD WINAPI GetConsoleFontSize(
 
 如果函式成功，則傳回值是 [**COORD**](coord-str.md) 結構，其中包含字型中每個字元的寬度和高度（以邏輯單位表示）。 **X** 成員包含寬度，而 **Y** 成員包含高度。
 
-如果函式失敗，則寬度和高度為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果函式失敗，則寬度和高度為零。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror)。
 
 ## <a name="remarks"></a>備註
 
-若要編譯使用此函數的應用程式，請將 **\_ WIN32 \_ WINNT** 定義為0x0500 或更新版本。 如需詳細資訊，請參閱 [使用 Windows 標頭](https://msdn.microsoft.com/library/windows/desktop/aa383745)。
+若要編譯使用此函數的應用程式，請將 **\_ WIN32 \_ WINNT** 定義為0x0500 或更新版本。 如需詳細資訊，請參閱 [使用 Windows 標頭](/windows/win32/winprog/using-the-windows-headers)。
 
 [!INCLUDE [no-vt-equiv-user-priv](./includes/no-vt-equiv-user-priv.md)]
 
@@ -74,12 +74,12 @@ COORD WINAPI GetConsoleFontSize(
 | 最低支援的用戶端 | \[僅限 WINDOWS XP desktop 應用程式\] |
 | 最低支援的伺服器 | 僅限 Windows Server 2003 \[ desktop 應用程式\] |
 | 標頭 | ConsoleApi3 .h (via WinCon，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)
 
 [主控台畫面緩衝區](console-screen-buffers.md)
 

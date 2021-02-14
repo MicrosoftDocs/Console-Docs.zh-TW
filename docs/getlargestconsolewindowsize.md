@@ -28,12 +28,12 @@ api_location:
 - API-MS-Win-DownLevel-Kernel32-l1-1-0.dll
 api_type:
 - DllExport
-ms.openlocfilehash: ddaa4716886fccaaa87e86362719020eb2408765
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: 3fe4ddf83f25f1951defed52eaf8fea18e1ff2dc
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93037836"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100358868"
 ---
 # <a name="getlargestconsolewindowsize-function"></a>GetLargestConsoleWindowSize 函式
 
@@ -51,14 +51,14 @@ COORD WINAPI GetLargestConsoleWindowSize(
 
 ## <a name="parameters"></a>參數
 
-*hConsoleOutput* \[在\]  
-主控台螢幕緩衝區的控制碼。
+*hConsoleOutput* \[in\]  
+主控台螢幕緩衝區的控點。
 
 ## <a name="return-value"></a>傳回值
 
-如果函式成功，則傳回值是 [**COORD**](coord-str.md)結構，可指定在最大可能的主控台視窗中， ( **Y** 成員) 的字元資料格資料行數目 ( **X** 成員) 和資料列。 否則，結構的成員為零。
+如果函式成功，則傳回值是 [**COORD**](coord-str.md)結構，可指定在最大可能的主控台視窗中， (**Y** 成員) 的字元資料格資料行數目 (**X** 成員) 和資料列。 否則，結構的成員為零。
 
-若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror)。
 
 ## <a name="remarks"></a>備註
 
@@ -70,15 +70,15 @@ COORD WINAPI GetLargestConsoleWindowSize(
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
 | 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)
 
 [**COORD**](coord-str.md)
 

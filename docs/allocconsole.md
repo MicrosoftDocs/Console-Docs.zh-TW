@@ -30,12 +30,12 @@ api_location:
 api_type:
 - DllExport
 ms.localizationpriority: high
-ms.openlocfilehash: c63c9a176c0d8ca2ef4342f7bee1b427eae00014
-ms.sourcegitcommit: 508e93bc83b4bca6ce678f88ab081d66b95d605c
-ms.translationtype: HT
+ms.openlocfilehash: 3b48570424a4c60a56094f5c41934f9946f67203
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/04/2020
-ms.locfileid: "96420167"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100357858"
 ---
 # <a name="allocconsole-function"></a>AllocConsole 函式
 
@@ -55,7 +55,7 @@ BOOL WINAPI AllocConsole(void);
 
 如果函式成功，則傳回非零的值。
 
-如果此函式失敗，則傳回值為零。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果此函式失敗，則傳回值為零。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror)。
 
 ## <a name="remarks"></a>備註
 
@@ -65,7 +65,7 @@ BOOL WINAPI AllocConsole(void);
 
 **AllocConsole** 會初始化新主控台的標準輸入、標準輸出和標準錯誤控制代碼。 標準輸入控制代碼是主控台輸入緩衝區的控制代碼，而標準輸出和標準錯誤控制代碼則是主控台畫面緩衝區的控制代碼。 若要取得這些控制代碼，請使用 [**GetStdHandle**](getstdhandle.md) 函式。
 
-此函式的主要用途是讓圖形使用者介面 (GUI) 應用程式用來建立主控台視窗。 GUI 應用程式會在沒有主控台的情況下進行初始化。 除非是建立為卸離的程序 (呼叫 [**CreateProcess**](https://msdn.microsoft.com/library/windows/desktop/ms682425) 函式搭配 **DETACHED\_PROCESS** 旗標)，否則主控台應用程式會使用主控台進行初始化。
+此函式的主要用途是讓圖形使用者介面 (GUI) 應用程式用來建立主控台視窗。 GUI 應用程式會在沒有主控台的情況下進行初始化。 除非是建立為卸離的程序 (呼叫 [**CreateProcess**](/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa) 函式搭配 **DETACHED\_PROCESS** 旗標)，否則主控台應用程式會使用主控台進行初始化。
 
 ## <a name="requirements"></a>規格需求
 
@@ -85,7 +85,7 @@ BOOL WINAPI AllocConsole(void);
 
 [**AttachConsole**](attachconsole.md)
 
-[**CreateProcess**](https://msdn.microsoft.com/library/windows/desktop/ms682425)
+[**CreateProcess**](/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa)
 
 [**FreeConsole**](freeconsole.md)
 

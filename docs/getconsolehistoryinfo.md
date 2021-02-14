@@ -24,12 +24,12 @@ api_location:
 - Kernel32.dll
 api_type:
 - DllExport
-ms.openlocfilehash: 8335b7e23ffec0e894221f97f2c01be5b081d31f
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: a26dbeb2a873bd780f91c240bf2658cde11b45ec
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93038026"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100359018"
 ---
 # <a name="getconsolehistoryinfo-function"></a>GetConsoleHistoryInfo 函式
 
@@ -54,11 +54,11 @@ BOOL WINAPI GetConsoleHistoryInfo(
 
 如果函式成功，則傳回值為非零。
 
-如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果此函式失敗，則傳回值為零。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror)。
 
 ## <a name="remarks"></a>備註
 
-如果呼叫進程不是主控台進程，此函式會失敗，並將最後一個錯誤設定為 **\_ \_ 拒絕存取錯誤** 。
+如果呼叫進程不是主控台進程，此函式會失敗，並將最後一個錯誤設定為 **\_ \_ 拒絕存取錯誤**。
 
 [!INCLUDE [no-vt-equiv-shell-banner](./includes/no-vt-equiv-shell-banner.md)]
 
@@ -69,12 +69,12 @@ BOOL WINAPI GetConsoleHistoryInfo(
 | 最低支援的用戶端 | \[僅限 Windows Vista 桌面應用程式\] |
 | 最低支援的伺服器 | 僅限 Windows Server 2008 \[ desktop 應用程式\] |
 | 標頭 | ConsoleApi3 .h (via WinCon，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)
 
 [**主控台歷程 \_ 記錄 \_ 資訊**](console-history-info.md)
 

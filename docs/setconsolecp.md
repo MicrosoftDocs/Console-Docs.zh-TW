@@ -28,12 +28,12 @@ api_location:
 - API-MS-Win-DownLevel-Kernel32-l1-1-0.dll
 api_type:
 - DllExport
-ms.openlocfilehash: 644f4d925b31da94f42a465d4bce21bb2dc2ecf9
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: 040a97360f455fec2ebd043de21e390959f1db0a
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039406"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100357718"
 ---
 # <a name="setconsolecp-function"></a>SetConsoleCP 函式
 
@@ -54,21 +54,21 @@ BOOL WINAPI SetConsoleCP(
 
 ## <a name="return-value"></a>傳回值
 
-如果函式成功，則傳回值為非零。
+如果函式成功，則傳回非零的值。
 
-如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果此函式失敗，則傳回值為零。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror)。
 
 ## <a name="remarks"></a>備註
 
 字碼頁會將256字元碼對應至個別字元。 不同的字碼頁包含不同的特殊字元，一般而言是針對語言或語言群組進行自訂。
 
-若要尋找作業系統所安裝或支援的字碼頁，請使用 [**EnumSystemCodePages**](https://msdn.microsoft.com/library/windows/desktop/dd317825) 函數。 本機電腦上可用的字碼頁識別碼也會儲存在登錄的下列機碼底下：
+若要尋找作業系統所安裝或支援的字碼頁，請使用 [**EnumSystemCodePages**](/windows/win32/api/winnls/nf-winnls-enumsystemcodepagesa) 函數。 本機電腦上可用的字碼頁識別碼也會儲存在登錄的下列機碼底下：
 
 `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Nls\CodePage`
 
-不過，最好使用 [**EnumSystemCodePages**](https://msdn.microsoft.com/library/windows/desktop/dd317825) 來列舉字碼頁，因為不同版本的 Windows 中的登錄可能不同。
+不過，最好使用 [**EnumSystemCodePages**](/windows/win32/api/winnls/nf-winnls-enumsystemcodepagesa) 來列舉字碼頁，因為不同版本的 Windows 中的登錄可能不同。
 
-若要判斷特定字碼頁是否有效，請使用 [**IsValidCodePage**](https://msdn.microsoft.com/library/windows/desktop/dd318674) 函數。 若要取得字碼頁的詳細資訊（包括其名稱），請使用 [**GetCPInfoEx**](https://msdn.microsoft.com/library/windows/desktop/dd318081) 函數。 如需可用字碼頁識別碼的清單，請參閱 [字碼頁識別碼](https://msdn.microsoft.com/library/windows/desktop/dd317756)。
+若要判斷特定字碼頁是否有效，請使用 [**IsValidCodePage**](/windows/win32/api/winnls/nf-winnls-isvalidcodepage) 函數。 若要取得字碼頁的詳細資訊（包括其名稱），請使用 [**GetCPInfoEx**](/windows/win32/api/winnls/nf-winnls-getcpinfoexa) 函數。 如需可用字碼頁識別碼的清單，請參閱 [字碼頁識別碼](/windows/win32/intl/code-page-identifiers)。
 
 若要判斷主控台的目前輸入字碼頁，請使用 [**GetConsoleCP**](getconsolecp.md) 函數。 若要設定和取出主控台的輸出字碼頁，請使用 [**SetConsoleOutputCP**](setconsoleoutputcp.md) 和 [**GetConsoleOutputCP**](getconsoleoutputcp.md) 函式。
 
@@ -76,17 +76,17 @@ BOOL WINAPI SetConsoleCP(
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
 | 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
 [主控台字碼頁](console-code-pages.md)
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)
 
 [**GetConsoleCP**](getconsolecp.md)
 

@@ -28,12 +28,12 @@ api_location:
 - WinCon.h
 api_type:
 - HeaderDef
-ms.openlocfilehash: 0a2ba8ecf8b07a83db54642c2399bb93d99b7aa2
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: bcc58b90e71b848e3b6e4b0bf5ba162323830529
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039526"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100357798"
 ---
 # <a name="key_event_record-structure"></a>關鍵 \_ 事件 \_ 記錄結構
 
@@ -58,13 +58,13 @@ typedef struct _KEY_EVENT_RECORD {
 ## <a name="members"></a>成員
 
 **bKeyDown**  
-如果按下索引鍵，此成員為 **TRUE** 。 否則，此成員為 **FALSE** () 釋放金鑰。
+如果按下索引鍵，此成員為 **TRUE**。 否則，此成員為 **FALSE** () 釋放金鑰。
 
 **wRepeatCount**  
 重複計數，表示正在關閉金鑰。 例如，當索引鍵被保留時，您可能會得到五個事件，這個成員等於1、一個這個成員等於5的事件，或是這個成員大於或等於1的多個事件。
 
 **wVirtualKeyCode**  
-以裝置無關的方式識別指定索引鍵的 [虛擬機器碼程式碼](https://msdn.microsoft.com/library/windows/desktop/dd375731(v=vs.85).aspx) 。
+以裝置無關的方式識別指定索引鍵的 [虛擬機器碼程式碼](/windows/win32/inputdev/virtual-key-codes) 。
 
 **wVirtualScanCode**  
 指定按鍵的虛擬掃描碼，代表鍵盤硬體所產生的裝置相依值。
@@ -97,21 +97,21 @@ typedef struct _KEY_EVENT_RECORD {
 
 適用于 IBM® 101-和102鍵鍵盤的增強金鑰包括： INS、DEL、HOME、END、PAGE UP、PAGE DOWN 和方向鍵（在叢集中的叢集中）;然後將 (/) ，然後在鍵盤上輸入按鍵。
 
-當按下或放開任何按鍵時，就會產生鍵盤輸入事件，包括控制按鍵。 不過，在未結合另一個字元的情況下，按下並放開 ALT 鍵時，對系統具有特殊意義，且不會傳遞至應用程式。 此外，如果輸入控制碼處於處理模式，則不會傳遞 CTRL + C 按鍵組合 ( **啟用已 \_ 處理的 \_ 輸入** ) 。
+當按下或放開任何按鍵時，就會產生鍵盤輸入事件，包括控制按鍵。 不過，在未結合另一個字元的情況下，按下並放開 ALT 鍵時，對系統具有特殊意義，且不會傳遞至應用程式。 此外，如果輸入控制碼處於處理模式，則不會傳遞 CTRL + C 按鍵組合 (**啟用已 \_ 處理的 \_ 輸入**) 。
 
 ## <a name="examples"></a>範例
 
-如需範例，請參閱 [讀取輸入緩衝區事件](reading-input-buffer-events.md)。
+如需範例，請參閱[讀取輸入緩衝區事件](reading-input-buffer-events.md)。
 
 ## <a name="requirements"></a>規格需求
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
 | 標頭 | WinConTypes .h (via WinCon，包括 Windows .h)  |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
 [**PeekConsoleInput**](peekconsoleinput.md)
 

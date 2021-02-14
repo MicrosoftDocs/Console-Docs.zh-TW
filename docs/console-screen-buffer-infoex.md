@@ -27,12 +27,12 @@ api_location:
 - WinCon.h
 api_type:
 - HeaderDef
-ms.openlocfilehash: baf6eeb51cbae5ce410c190852c22ae237e6a367
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: 1e4e30601655190bc6f597bbd33dd99f14f8d488
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93038346"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100358079"
 ---
 # <a name="console_screen_buffer_infoex-structure"></a>主控台 \_ 螢幕 \_ 緩衝區 \_ INFOEX 結構
 
@@ -66,7 +66,7 @@ typedef struct _CONSOLE_SCREEN_BUFFER_INFOEX {
 [**COORD**](coord-str.md)結構，其中包含主控台螢幕緩衝區中資料指標的資料行和資料列座標。
 
 **wAttributes**  
-[**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747)和 [**WriteConsole**](writeconsole.md)函式寫入螢幕緩衝區的字元屬性，或 [**ReadFile**](https://msdn.microsoft.com/library/windows/desktop/aa365467)和 [**ReadConsole**](readconsole.md)函式的螢幕緩衝區。 如需詳細資訊，請參閱 [字元屬性](console-screen-buffers.md#character-attributes)。
+[**WriteFile**](/windows/win32/api/fileapi/nf-fileapi-writefile)和 [**WriteConsole**](writeconsole.md)函式寫入螢幕緩衝區的字元屬性，或 [**ReadFile**](/windows/win32/api/fileapi/nf-fileapi-readfile)和 [**ReadConsole**](readconsole.md)函式的螢幕緩衝區。 如需詳細資訊，請參閱 [字元屬性](console-screen-buffers.md#character-attributes)。
 
 **srWindow**  
 [**小型 \_ 矩形**](small-rect-str.md)結構，其中包含顯示視窗左上角和右下角的主控台螢幕緩衝區座標。
@@ -78,10 +78,10 @@ typedef struct _CONSOLE_SCREEN_BUFFER_INFOEX {
 主控台快顯視窗的填滿屬性。
 
 **bFullscreenSupported**  
-如果這個成員是 `TRUE` ，則支援全螢幕模式; 否則就不支援。 這一律 `FALSE` 適用于 Windows Vista 含 [WDDM 驅動程式模型](https://docs.microsoft.com/windows-hardware/drivers/display/introduction-to-the-windows-vista-and-later-display-driver-model) 的系統，因為它已不再提供對監視的直接 VGA 存取。
+如果這個成員是 `TRUE` ，則支援全螢幕模式; 否則就不支援。 這一律 `FALSE` 適用于 Windows Vista 含 [WDDM 驅動程式模型](/windows-hardware/drivers/display/introduction-to-the-windows-vista-and-later-display-driver-model) 的系統，因為它已不再提供對監視的直接 VGA 存取。
 
 **ColorTable**  
-描述主控台色彩設定的 [**COLORREF**](https://msdn.microsoft.com/library/windows/desktop/dd183449) 值陣列。
+描述主控台色彩設定的 [**COLORREF**](/windows/win32/gdi/colorref) 值陣列。
 
 ## <a name="requirements"></a>規格需求
 
@@ -91,7 +91,7 @@ typedef struct _CONSOLE_SCREEN_BUFFER_INFOEX {
 | 最低支援的伺服器 | 僅限 Windows Server 2008 \[ desktop 應用程式\] |
 | 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
 [**COORD**](coord-str.md)
 

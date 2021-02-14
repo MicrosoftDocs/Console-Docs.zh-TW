@@ -13,12 +13,12 @@ MSHAttr:
 - PreferredSiteName:MSDN
 - PreferredLib:/library/windows/desktop
 ms.assetid: 98d56bb1-83d2-40aa-adac-fc2e8beab337
-ms.openlocfilehash: 931e882306c1aaff521b7b78c2b99cf1a5479da1
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: 0ab9152c2be3f7487f43aee2a0a5c19766a433be
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039246"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100358248"
 ---
 # <a name="console-code-pages"></a>主控台字碼頁
 
@@ -28,7 +28,7 @@ ms.locfileid: "93039246"
 
 本機電腦上可用的字碼頁識別碼會儲存在登錄中的下列機碼底下： `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Nls\CodePage`
 
-如需使用登錄功能來判斷可用字碼頁的詳細資訊，請 [**參閱登錄**](https://msdn.microsoft.com/library/windows/desktop/ms724871)。
+如需使用登錄功能來判斷可用字碼頁的詳細資訊，請 [**參閱登錄**](/windows/win32/sysinfo/registry)。
 
 > [!TIP]
-> 建議所有新的和更新的命令列應用程式，以避免字碼頁並使用 **[Unicode](https://docs.microsoft.com/windows/win32/intl/unicode)** 。 UTF-16 格式化的文字可以傳送至 *W* 系列的主控台 api。 使用 [**SetConsoleCP**](setconsolecp.md)和 [**SetConsoleOutputCP**](setconsoleoutputcp.md)函式確定字碼頁第一次設定為 **[65001 (CP_UTF8)](https://docs.microsoft.com/windows/win32/intl/code-page-identifiers)** 之後，可以將 Utf-8 格式化的文字傳送至 *一* 系列的主控台 api。
+> 建議所有新的和更新的命令列應用程式，以避免字碼頁並使用 **[Unicode](/windows/win32/intl/unicode)**。 UTF-16 格式化的文字可以傳送至 *W* 系列的主控台 api。 使用 [**SetConsoleCP**](setconsolecp.md)和 [**SetConsoleOutputCP**](setconsoleoutputcp.md)函式確定字碼頁第一次設定為 **[65001 (CP_UTF8)](/windows/win32/intl/code-page-identifiers)** 之後，可以將 Utf-8 格式化的文字傳送至 *一* 系列的主控台 api。

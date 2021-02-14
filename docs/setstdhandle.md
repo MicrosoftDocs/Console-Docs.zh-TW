@@ -30,12 +30,12 @@ api_location:
 - MinKernelBase.dll
 api_type:
 - DllExport
-ms.openlocfilehash: 36531872df90239e2b909c80fb75ad3011280c78
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: 317acd84289e5138e1a947251e745077ba581083
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039296"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100358508"
 ---
 # <a name="setstdhandle-function"></a>SetStdHandle 函式
 
@@ -52,48 +52,48 @@ BOOL WINAPI SetStdHandle(
 
 ## <a name="parameters"></a>參數
 
-*nStdHandle* \[在\]  
-要設定控制碼的標準裝置。 這個參數可以是下列其中一個值。
+*nStdHandle* \[輸入\]  
+要設定控制碼的標準裝置。 此參數可以是下列其中一個值。
 
 | 值 | 意義 |
 |-|-|
-| **STD_INPUT_HANDLE** (DWORD) -10 | 標準輸入設備。 一開始，這是主控台輸入緩衝區 `CONIN$` 。 |
-| **STD_OUTPUT_HANDLE** (DWORD) -11 | 標準輸出裝置。 這一開始是使用中的主控台畫面緩衝區 `CONOUT$` 。 |
-| **STD_ERROR_HANDLE** (DWORD) -12 | 標準錯誤裝置。 這一開始是使用中的主控台畫面緩衝區 `CONOUT$` 。 |
+| **STD_INPUT_HANDLE** (DWORD) -10 | 標準輸入裝置。 一開始，這是主控台輸入緩衝區 `CONIN$`。 |
+| **STD_OUTPUT_HANDLE** (DWORD) -11 | 標準輸出裝置。 一開始，這是作用中的主控台畫面緩衝區 `CONOUT$`。 |
+| **STD_ERROR_HANDLE** (DWORD) -12 | 標準錯誤裝置。 一開始，這是作用中的主控台畫面緩衝區 `CONOUT$`。 |
 
 *hHandle* \[在\]  
 標準裝置的控制碼。
 
 ## <a name="return-value"></a>傳回值
 
-如果函式成功，則傳回值為非零。
+如果函式成功，則傳回非零的值。
 
-如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果此函式失敗，則傳回值為零。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror)。
 
 ## <a name="remarks"></a>備註
 
-對 **SetStdHandle** 的呼叫可能會重新導向進程的標準控制碼，在這種情況下， [**GetStdHandle**](getstdhandle.md) 會傳回重新導向的控制碼。 如果已重新導向標準控制碼，您可以在 [**CreateFile**](https://msdn.microsoft.com/library/windows/desktop/aa363858) 函式的呼叫中指定 CONIN $ 值，以取得主控台輸入緩衝區的控制碼。 同樣地，您可以指定 CONOUT $ 值，以取得主控台的作用中螢幕緩衝區的控制碼。
+對 **SetStdHandle** 的呼叫可能會重新導向進程的標準控制碼，在這種情況下， [**GetStdHandle**](getstdhandle.md) 會傳回重新導向的控制碼。 如果已重新導向標準控制碼，您可以在 [**CreateFile**](/windows/win32/api/fileapi/nf-fileapi-createfilea) 函式的呼叫中指定 CONIN $ 值，以取得主控台輸入緩衝區的控制碼。 同樣地，您可以指定 CONOUT $ 值，以取得主控台的作用中螢幕緩衝區的控制碼。
 
 ## <a name="examples"></a>範例
 
-如需範例，請參閱 [使用重新導向的輸入和輸出建立子進程](https://msdn.microsoft.com/library/windows/desktop/ms682499)。
+如需範例，請參閱 [使用重新導向的輸入和輸出建立子進程](/windows/win32/procthread/creating-a-child-process-with-redirected-input-and-output)。
 
 ## <a name="requirements"></a>規格需求
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
-| 標頭 | ProcessEnv .h (via Winbase，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
+| 標頭 | ProcessEnv.h (透過 Winbase.h，包括 Windows.h) |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)
 
 [主控台控制代碼](console-handles.md)
 
-[**CreateFile**](https://msdn.microsoft.com/library/windows/desktop/aa363858)
+[**CreateFile**](/windows/win32/api/fileapi/nf-fileapi-createfilea)
 
 [**GetStdHandle**](getstdhandle.md)

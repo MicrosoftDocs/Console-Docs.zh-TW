@@ -36,12 +36,12 @@ api_location:
 - API-MS-Win-DownLevel-Kernel32-l1-1-0.dll
 api_type:
 - DllExport
-ms.openlocfilehash: dc2c7930ab76587edc9ae1991d4493c858b0ec30
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: e4b9cdae52da2e23ff93e1904c4cb24ebac62831
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039286"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100357778"
 ---
 # <a name="writeconsoleinput-function"></a>WriteConsoleInput 函式
 
@@ -63,9 +63,9 @@ BOOL WINAPI WriteConsoleInput(
 ## <a name="parameters"></a>參數
 
 *hConsoleInput* \[在\]  
-主控台輸入緩衝區的控制碼。 控制碼必須有 **一般 \_ 寫入** 存取權限。 如需詳細資訊，請參閱 [主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
+主控台輸入緩衝區的控制碼。 控點必須具有 **GENERIC\_WRITE** 存取權限。 如需詳細資訊，請參閱[主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
 
-*lpBuffer* \[在\]  
+*lpBuffer* \[in\]  
 [**輸入 \_ 記錄**](input-record-str.md)結構陣列的指標，其中包含要寫入至輸入緩衝區的資料。
 
 *nLength* \[在\]  
@@ -76,9 +76,9 @@ BOOL WINAPI WriteConsoleInput(
 
 ## <a name="return-value"></a>傳回值
 
-如果函式成功，則傳回值為非零。
+如果函式成功，則傳回非零的值。
 
-如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果此函式失敗，則傳回值為零。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror)。
 
 ## <a name="remarks"></a>備註
 
@@ -93,22 +93,22 @@ BOOL WINAPI WriteConsoleInput(
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
 | 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
-| Unicode 和 ANSI 名稱 | **WriteConsoleInputW** (Unicode) 和 **WriteConsoleInputA** (ANSI)  |
+| Unicode 與 ANSI 名稱 | **WriteConsoleInputW** (Unicode) 和 **WriteConsoleInputA** (ANSI)  |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)
 
 [**輸入 \_ 記錄**](input-record-str.md)
 
 [低層級主控台輸入函式](low-level-console-input-functions.md)
 
-[**MapVirtualKey**](https://msdn.microsoft.com/library/windows/desktop/ms646306)
+[**MapVirtualKey**](/windows/win32/api/winuser/nf-winuser-mapvirtualkeya)
 
 [**PeekConsoleInput**](peekconsoleinput.md)
 
@@ -118,4 +118,4 @@ BOOL WINAPI WriteConsoleInput(
 
 [**SetConsoleOutputCP**](setconsoleoutputcp.md)
 
-[**VkKeyScan**](https://msdn.microsoft.com/library/windows/desktop/ms646329)
+[**VkKeyScan**](/windows/win32/api/winuser/nf-winuser-vkkeyscana)

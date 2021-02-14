@@ -36,12 +36,12 @@ api_location:
 - API-MS-Win-DownLevel-Kernel32-l1-1-0.dll
 api_type:
 - DllExport
-ms.openlocfilehash: 462ebfaed09a5c18fa9a075227a5568a789685bd
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: 87d6e8768f55135536b1c0f752cc8f7827c643f1
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93037206"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100359038"
 ---
 # <a name="writeconsoleoutputcharacter-function"></a>WriteConsoleOutputCharacter 函式
 
@@ -63,8 +63,8 @@ BOOL WINAPI WriteConsoleOutputCharacter(
 
 ## <a name="parameters"></a>參數
 
-*hConsoleOutput* \[在\]  
-主控台螢幕緩衝區的控制碼。 控制碼必須有 **一般 \_ 寫入** 存取權限。 如需詳細資訊，請參閱 [主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
+*hConsoleOutput* \[in\]  
+主控台螢幕緩衝區的控點。 控點必須具有 **GENERIC\_WRITE** 存取權限。 如需詳細資訊，請參閱[主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
 
 *lpCharacter* \[在\]  
 要寫入主控台螢幕緩衝區的字元。
@@ -76,13 +76,13 @@ BOOL WINAPI WriteConsoleOutputCharacter(
 [**COORD**](coord-str.md)結構，指定要在其中寫入字元的主控台螢幕緩衝區中第一個資料格的字元座標。
 
 *lpNumberOfCharsWritten* \[擴展\]  
-變數的指標，此變數會接收實際寫入的字元數。
+變數的指標，可接收實際寫入的字元數。
 
 ## <a name="return-value"></a>傳回值
 
-如果函式成功，則傳回值為非零。
+如果函式成功，則傳回非零的值。
 
-如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果此函式失敗，則傳回值為零。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror)。
 
 ## <a name="remarks"></a>備註
 
@@ -99,16 +99,16 @@ BOOL WINAPI WriteConsoleOutputCharacter(
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
 | 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
-| Unicode 和 ANSI 名稱 | **WriteConsoleOutputCharacterW** (Unicode) 和 **WriteConsoleOutputCharacterA** (ANSI)  |
+| Unicode 與 ANSI 名稱 | **WriteConsoleOutputCharacterW** (Unicode) 和 **WriteConsoleOutputCharacterA** (ANSI)  |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)
 
 [**COORD**](coord-str.md)
 

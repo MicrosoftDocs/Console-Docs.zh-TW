@@ -36,12 +36,12 @@ api_location:
 - API-MS-Win-DownLevel-Kernel32-l1-1-0.dll
 api_type:
 - DllExport
-ms.openlocfilehash: 8860a1feab39bc83f28a867fa9acc491cc00e4b7
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: 95efbcc261943a2986fe6fbb1f3d54aaae1b2d2b
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93038186"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100357508"
 ---
 # <a name="fillconsoleoutputcharacter-function"></a>FillConsoleOutputCharacter 函式
 
@@ -63,8 +63,8 @@ BOOL WINAPI FillConsoleOutputCharacter(
 
 ## <a name="parameters"></a>參數
 
-*hConsoleOutput* \[在\]  
-主控台螢幕緩衝區的控制碼。 控制碼必須有 **一般 \_ 寫入** 存取權限。 如需詳細資訊，請參閱 [主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
+*hConsoleOutput* \[in\]  
+主控台螢幕緩衝區的控點。 控點必須具有 **GENERIC\_WRITE** 存取權限。 如需詳細資訊，請參閱[主控台緩衝區安全性和存取權限](console-buffer-security-and-access-rights.md)。
 
 *cCharacter* \[在\]  
 要寫入主控台螢幕緩衝區的字元。
@@ -80,9 +80,9 @@ BOOL WINAPI FillConsoleOutputCharacter(
 
 ## <a name="return-value"></a>傳回值
 
-如果函式成功，則傳回值為非零。
+如果函式成功，則傳回非零的值。
 
-如果此函式失敗，則傳回值為零。 若要取得延伸錯誤資訊，請呼叫 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360)。
+如果此函式失敗，則傳回值為零。 若要取得擴充的錯誤資訊，請呼叫 [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror)。
 
 ## <a name="remarks"></a>備註
 
@@ -93,22 +93,22 @@ BOOL WINAPI FillConsoleOutputCharacter(
 [!INCLUDE [setting-codepage-mode-remarks](./includes/setting-codepage-mode-remarks.md)]
 
 > [!TIP]
-> 不建議使用此 API，也不會有對等的特定 **[虛擬終端](console-virtual-terminal-sequences.md)** 機。 不支援在可見視窗外填滿區域，而且會保留給終端機的歷程記錄空間。 使用新文字或色彩填滿可見區域的動作是透過 **[移動游標](console-virtual-terminal-sequences.md#cursor-positioning)** 、 **[設定新屬性](console-virtual-terminal-sequences.md#text-formatting)** ，然後撰寫該區域所需的文字，並在填滿填滿的長度時重複字元。 您可以接著撰寫所需的文字來填滿矩形區域，以需要額外的資料指標移動。 用戶端應用程式應該將自己的記憶體保留在畫面上，而且無法查詢遠端狀態。 如需詳細資訊，請參閱 **[傳統主控台與虛擬終端](classic-vs-vt.md)** 檔。
+> 不建議使用此 API，也不會有對等的特定 **[虛擬終端](console-virtual-terminal-sequences.md)** 機。 不支援在可見視窗外填滿區域，而且會保留給終端機的歷程記錄空間。 使用新文字或色彩填滿可見區域的動作是透過 **[移動游標](console-virtual-terminal-sequences.md#cursor-positioning)**、 **[設定新屬性](console-virtual-terminal-sequences.md#text-formatting)**，然後撰寫該區域所需的文字，並在填滿填滿的長度時重複字元。 您可以接著撰寫所需的文字來填滿矩形區域，以需要額外的資料指標移動。 用戶端應用程式應該將自己的記憶體保留在畫面上，而且無法查詢遠端狀態。 如需詳細資訊，請參閱 **[傳統主控台與虛擬終端](classic-vs-vt.md)** 檔。
 
 ## <a name="requirements"></a>規格需求
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
 | 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
-| Unicode 和 ANSI 名稱 | **FillConsoleOutputCharacterW** (Unicode) 和 **FillConsoleOutputCharacterA** (ANSI)  |
+| Unicode 與 ANSI 名稱 | **FillConsoleOutputCharacterW** (Unicode) 和 **FillConsoleOutputCharacterA** (ANSI)  |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)
 
 [**COORD**](coord-str.md)
 

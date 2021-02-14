@@ -33,12 +33,12 @@ api_location:
 - API-MS-Win-Core-Kernel32-Legacy-L1-1-5.dll
 api_type:
 - DllExport
-ms.openlocfilehash: c74fe1a29b9ba2ea721e874eb624ea2f8517094c
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: ead8c4216fd0d1beb2a5fa6a6acfe3f4ce20df6f
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93038806"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100358888"
 ---
 # <a name="getconsolewindow-function"></a>GetConsoleWindow 函式
 
@@ -62,7 +62,7 @@ HWND WINAPI GetConsoleWindow(void);
 
 ## <a name="remarks"></a>備註
 
-若要編譯使用此函數的應用程式，請將 **\_ WIN32 \_ WINNT** 定義為0x0500 或更新版本。 如需詳細資訊，請參閱 [使用 Windows 標頭](https://msdn.microsoft.com/library/windows/desktop/aa383745)。
+若要編譯使用此函數的應用程式，請將 **\_ WIN32 \_ WINNT** 定義為0x0500 或更新版本。 如需詳細資訊，請參閱 [使用 Windows 標頭](/windows/win32/winprog/using-the-windows-headers)。
 
 
 [!INCLUDE [no-vt-equiv-local-context](./includes/no-vt-equiv-local-context.md)]
@@ -73,14 +73,14 @@ HWND WINAPI GetConsoleWindow(void);
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
 | 標頭 | ConsoleApi3 .h (via WinCon，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
 
 </table>
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)

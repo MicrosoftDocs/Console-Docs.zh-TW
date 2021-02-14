@@ -14,25 +14,25 @@ MSHAttr:
 - PreferredLib:/library/windows/desktop
 ms.assetid: f94995fc-5f5f-4fcd-969d-7e10020634c2
 ms.localizationpriority: high
-ms.openlocfilehash: 4c5740be3b60d54f9e7b586b41e962a4102222a0
-ms.sourcegitcommit: 508e93bc83b4bca6ce678f88ab081d66b95d605c
-ms.translationtype: HT
+ms.openlocfilehash: 7d617b48676c0e4272d11dea3c1bd990f4334d11
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/04/2020
-ms.locfileid: "96420197"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100358087"
 ---
 # <a name="console-screen-buffers"></a>主控台畫面緩衝區
 
 「畫面緩衝區」是在主控台視窗輸出中字元和色彩資料的二維陣列。 主控台可以有多個畫面緩衝區。 「作用中的畫面緩衝區」是顯示在畫面上的緩衝區。
 
-系統會在每次建立新的主控台時建立畫面緩衝區。 若要對主控台的作用中畫面緩衝區開啟控制代碼，請在對 [**CreateFile**](https://msdn.microsoft.com/library/windows/desktop/aa363858) 函式的呼叫中，指定 **CONOUT$** 值。 程序可以使用 [**CreateConsoleScreenBuffer**](createconsolescreenbuffer.md) 函式，為其主控台建立額外的畫面緩衝區。 若要讓新的畫面緩衝區開始作用，則必須在呼叫 [**SetConsoleActiveScreenBuffer**](setconsoleactivescreenbuffer.md) 函式時指定其控制代碼。 不過，無論畫面緩衝區是否在作用中，您都可以加以存取以進行讀取和寫入。
+系統會在每次建立新的主控台時建立畫面緩衝區。 若要對主控台的作用中畫面緩衝區開啟控制代碼，請在對 [**CreateFile**](/windows/win32/api/fileapi/nf-fileapi-createfilea) 函式的呼叫中，指定 **CONOUT$** 值。 程序可以使用 [**CreateConsoleScreenBuffer**](createconsolescreenbuffer.md) 函式，為其主控台建立額外的畫面緩衝區。 若要讓新的畫面緩衝區開始作用，則必須在呼叫 [**SetConsoleActiveScreenBuffer**](setconsoleactivescreenbuffer.md) 函式時指定其控制代碼。 不過，無論畫面緩衝區是否在作用中，您都可以加以存取以進行讀取和寫入。
 
 每個畫面緩衝區本身都有字元資訊記錄的二維陣列。 每個字元的資料會以 [**CHAR\_INFO**](char-info-str.md) 結構儲存，該結構可指定 Unicode 或 ANSI 字元，以及該字元顯示的前景和背景色彩。
 
 您可以針對每個畫面緩衝區，個別設定與畫面緩衝區相關聯的一些屬性。 這表示變更作用中的畫面緩衝區對主控台視窗外觀可能會有很大的影響。 與畫面緩衝區相關聯的屬性包括：
 
 - 畫面緩衝區大小 (字元資料列和資料行數目)。
-- 文字屬性 (顯示 [**WriteFile**](https://msdn.microsoft.com/library/windows/desktop/aa365747) 或 [**WriteConsole**](writeconsole.md) 函式所寫入文字的前景和背景色彩)。
+- 文字屬性 (顯示 [**WriteFile**](/windows/win32/api/fileapi/nf-fileapi-writefile) 或 [**WriteConsole**](writeconsole.md) 函式所寫入文字的前景和背景色彩)。
 - 視窗大小和位置 (在主控台視窗中顯示主控台畫面緩衝區的矩形區域)。
 - 游標位置、外觀和可見度。
 - 輸出模式 (**ENABLE\_PROCESSED\_OUTPUT** 和 **ENABLE\_WRAP\_AT\_EOL\_OUTPUT**)。 如需有關主控台輸出模式的詳細資訊，請參閱[高階主控台模式](high-level-console-modes.md)。
@@ -77,7 +77,7 @@ ms.locfileid: "96420197"
 | **COMMON\_LVB\_REVERSE\_VIDEO** | 反轉前景和背景屬性。 |
 | **COMMON\_LVB\_UNDERSCORE** | 底線。 |
 
-前景屬性會指定文字色彩。 背景屬性會指定用來填滿資料格背景的色彩。 其他屬性會與 [DBCS](https://msdn.microsoft.com/library/windows/desktop/dd317794) 搭配使用。
+前景屬性會指定文字色彩。 背景屬性會指定用來填滿資料格背景的色彩。 其他屬性會與 [DBCS](/windows/win32/intl/double-byte-character-sets) 搭配使用。
 
 應用程式可以結合前景和背景常數來達到不同的色彩。 例如，下列組合會在藍色背景上產生明亮的青色文字。
 

@@ -38,12 +38,12 @@ api_location:
 - Kernel32Legacy.dll
 api_type:
 - DllExport
-ms.openlocfilehash: 23b52ba1d5dde40ef842297249fdd2f87cebcb12
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: 6a4c4634316442ac2b03602b6c931b05385d77df
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93037876"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100358328"
 ---
 # <a name="getconsoletitle-function"></a>GetConsoleTitle 函式
 
@@ -72,7 +72,7 @@ DWORD WINAPI GetConsoleTitle(
 
 如果函式成功，則傳回值為主控台視窗標題的長度（以字元為單位）。
 
-如果函式失敗，則傳回值為零，而 [**GetLastError**](https://msdn.microsoft.com/library/windows/desktop/ms679360) 會傳回錯誤碼。
+如果函式失敗，則傳回值為零，而 [**GetLastError**](/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror) 會傳回錯誤碼。
 
 ## <a name="remarks"></a>備註
 
@@ -91,16 +91,16 @@ DWORD WINAPI GetConsoleTitle(
 
 | &nbsp; | &nbsp; |
 |-|-|
-| 最低支援的用戶端 | 僅限 Windows 2000 Professional \[ desktop 應用程式\] |
-| 最低支援的伺服器 | 僅限 Windows 2000 Server \[ desktop 應用程式\] |
+| 最低支援的用戶端 | Windows 2000 Professional \[僅限傳統型應用程式\] |
+| 最低支援的伺服器 | Windows 2000 Server \[僅限傳統型應用程式\] |
 | 標頭 | ConsoleApi2 .h (via WinCon，包括 Windows .h)  |
-| 程式庫 | Kernel32.dll .lib |
+| 程式庫 | Kernel32.lib |
 | DLL | Kernel32.dll |
-| Unicode 和 ANSI 名稱 | **GetConsoleTitleW** (Unicode) 和 **GetConsoleTitleA** (ANSI)  |
+| Unicode 與 ANSI 名稱 | **GetConsoleTitleW** (Unicode) 和 **GetConsoleTitleA** (ANSI)  |
 
-## <a name="see-also"></a>請參閱
+## <a name="see-also"></a>另請參閱
 
-[主控台功能](console-functions.md)
+[主控台函式](console-functions.md)
 
 [**GetConsoleOriginalTitle**](getconsoleoriginaltitle.md)
 
