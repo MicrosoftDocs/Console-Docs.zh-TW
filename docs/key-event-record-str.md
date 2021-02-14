@@ -28,18 +28,18 @@ api_location:
 - WinCon.h
 api_type:
 - HeaderDef
-ms.openlocfilehash: 0a2ba8ecf8b07a83db54642c2399bb93d99b7aa2
-ms.sourcegitcommit: 463975e71920908a6bff9a6a7291ddf3736652d5
+ms.openlocfilehash: bcc58b90e71b848e3b6e4b0bf5ba162323830529
+ms.sourcegitcommit: 281eb1469f77ae4fb4c67806898e14eac440522a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2020
-ms.locfileid: "93039526"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100357798"
 ---
-# <a name="key_event_record-structure"></a><span data-ttu-id="a6cc3-104">關鍵 \_ 事件 \_ 記錄結構</span><span class="sxs-lookup"><span data-stu-id="a6cc3-104">KEY\_EVENT\_RECORD structure</span></span>
+# <a name="key_event_record-structure"></a><span data-ttu-id="bbbe2-104">關鍵 \_ 事件 \_ 記錄結構</span><span class="sxs-lookup"><span data-stu-id="bbbe2-104">KEY\_EVENT\_RECORD structure</span></span>
 
-<span data-ttu-id="a6cc3-105">描述主控台 [**輸入 \_ 記錄**](input-record-str.md) 結構中的鍵盤輸入事件。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-105">Describes a keyboard input event in a console [**INPUT\_RECORD**](input-record-str.md) structure.</span></span>
+<span data-ttu-id="bbbe2-105">描述主控台 [**輸入 \_ 記錄**](input-record-str.md) 結構中的鍵盤輸入事件。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-105">Describes a keyboard input event in a console [**INPUT\_RECORD**](input-record-str.md) structure.</span></span>
 
-## <a name="syntax"></a><span data-ttu-id="a6cc3-106">語法</span><span class="sxs-lookup"><span data-stu-id="a6cc3-106">Syntax</span></span>
+## <a name="syntax"></a><span data-ttu-id="bbbe2-106">語法</span><span class="sxs-lookup"><span data-stu-id="bbbe2-106">Syntax</span></span>
 
 ```C
 typedef struct _KEY_EVENT_RECORD {
@@ -55,68 +55,68 @@ typedef struct _KEY_EVENT_RECORD {
 } KEY_EVENT_RECORD;
 ```
 
-## <a name="members"></a><span data-ttu-id="a6cc3-107">成員</span><span class="sxs-lookup"><span data-stu-id="a6cc3-107">Members</span></span>
+## <a name="members"></a><span data-ttu-id="bbbe2-107">成員</span><span class="sxs-lookup"><span data-stu-id="bbbe2-107">Members</span></span>
 
-<span data-ttu-id="a6cc3-108">**bKeyDown**</span><span class="sxs-lookup"><span data-stu-id="a6cc3-108">**bKeyDown**</span></span>  
-<span data-ttu-id="a6cc3-109">如果按下索引鍵，此成員為 **TRUE** 。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-109">If the key is pressed, this member is **TRUE** .</span></span> <span data-ttu-id="a6cc3-110">否則，此成員為 **FALSE** () 釋放金鑰。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-110">Otherwise, this member is **FALSE** (the key is released).</span></span>
+<span data-ttu-id="bbbe2-108">**bKeyDown**</span><span class="sxs-lookup"><span data-stu-id="bbbe2-108">**bKeyDown**</span></span>  
+<span data-ttu-id="bbbe2-109">如果按下索引鍵，此成員為 **TRUE**。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-109">If the key is pressed, this member is **TRUE**.</span></span> <span data-ttu-id="bbbe2-110">否則，此成員為 **FALSE** () 釋放金鑰。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-110">Otherwise, this member is **FALSE** (the key is released).</span></span>
 
-<span data-ttu-id="a6cc3-111">**wRepeatCount**</span><span class="sxs-lookup"><span data-stu-id="a6cc3-111">**wRepeatCount**</span></span>  
-<span data-ttu-id="a6cc3-112">重複計數，表示正在關閉金鑰。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-112">The repeat count, which indicates that a key is being held down.</span></span> <span data-ttu-id="a6cc3-113">例如，當索引鍵被保留時，您可能會得到五個事件，這個成員等於1、一個這個成員等於5的事件，或是這個成員大於或等於1的多個事件。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-113">For example, when a key is held down, you might get five events with this member equal to 1, one event with this member equal to 5, or multiple events with this member greater than or equal to 1.</span></span>
+<span data-ttu-id="bbbe2-111">**wRepeatCount**</span><span class="sxs-lookup"><span data-stu-id="bbbe2-111">**wRepeatCount**</span></span>  
+<span data-ttu-id="bbbe2-112">重複計數，表示正在關閉金鑰。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-112">The repeat count, which indicates that a key is being held down.</span></span> <span data-ttu-id="bbbe2-113">例如，當索引鍵被保留時，您可能會得到五個事件，這個成員等於1、一個這個成員等於5的事件，或是這個成員大於或等於1的多個事件。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-113">For example, when a key is held down, you might get five events with this member equal to 1, one event with this member equal to 5, or multiple events with this member greater than or equal to 1.</span></span>
 
-<span data-ttu-id="a6cc3-114">**wVirtualKeyCode**</span><span class="sxs-lookup"><span data-stu-id="a6cc3-114">**wVirtualKeyCode**</span></span>  
-<span data-ttu-id="a6cc3-115">以裝置無關的方式識別指定索引鍵的 [虛擬機器碼程式碼](https://msdn.microsoft.com/library/windows/desktop/dd375731(v=vs.85).aspx) 。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-115">A [virtual-key code](https://msdn.microsoft.com/library/windows/desktop/dd375731(v=vs.85).aspx) that identifies the given key in a device-independent manner.</span></span>
+<span data-ttu-id="bbbe2-114">**wVirtualKeyCode**</span><span class="sxs-lookup"><span data-stu-id="bbbe2-114">**wVirtualKeyCode**</span></span>  
+<span data-ttu-id="bbbe2-115">以裝置無關的方式識別指定索引鍵的 [虛擬機器碼程式碼](/windows/win32/inputdev/virtual-key-codes) 。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-115">A [virtual-key code](/windows/win32/inputdev/virtual-key-codes) that identifies the given key in a device-independent manner.</span></span>
 
-<span data-ttu-id="a6cc3-116">**wVirtualScanCode**</span><span class="sxs-lookup"><span data-stu-id="a6cc3-116">**wVirtualScanCode**</span></span>  
-<span data-ttu-id="a6cc3-117">指定按鍵的虛擬掃描碼，代表鍵盤硬體所產生的裝置相依值。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-117">The virtual scan code of the given key that represents the device-dependent value generated by the keyboard hardware.</span></span>
+<span data-ttu-id="bbbe2-116">**wVirtualScanCode**</span><span class="sxs-lookup"><span data-stu-id="bbbe2-116">**wVirtualScanCode**</span></span>  
+<span data-ttu-id="bbbe2-117">指定按鍵的虛擬掃描碼，代表鍵盤硬體所產生的裝置相依值。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-117">The virtual scan code of the given key that represents the device-dependent value generated by the keyboard hardware.</span></span>
 
-<span data-ttu-id="a6cc3-118">**uChar**</span><span class="sxs-lookup"><span data-stu-id="a6cc3-118">**uChar**</span></span>  
-<span data-ttu-id="a6cc3-119">下列成員的聯集。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-119">A union of the following members.</span></span>
+<span data-ttu-id="bbbe2-118">**uChar**</span><span class="sxs-lookup"><span data-stu-id="bbbe2-118">**uChar**</span></span>  
+<span data-ttu-id="bbbe2-119">下列成員的聯集。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-119">A union of the following members.</span></span>
 
-<span data-ttu-id="a6cc3-120">**UnicodeChar**</span><span class="sxs-lookup"><span data-stu-id="a6cc3-120">**UnicodeChar**</span></span>  
-<span data-ttu-id="a6cc3-121">已翻譯的 Unicode 字元。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-121">Translated Unicode character.</span></span>
+<span data-ttu-id="bbbe2-120">**UnicodeChar**</span><span class="sxs-lookup"><span data-stu-id="bbbe2-120">**UnicodeChar**</span></span>  
+<span data-ttu-id="bbbe2-121">已翻譯的 Unicode 字元。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-121">Translated Unicode character.</span></span>
 
-<span data-ttu-id="a6cc3-122">**AsciiChar**</span><span class="sxs-lookup"><span data-stu-id="a6cc3-122">**AsciiChar**</span></span>  
-<span data-ttu-id="a6cc3-123">轉譯的 ASCII 字元。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-123">Translated ASCII character.</span></span>
+<span data-ttu-id="bbbe2-122">**AsciiChar**</span><span class="sxs-lookup"><span data-stu-id="bbbe2-122">**AsciiChar**</span></span>  
+<span data-ttu-id="bbbe2-123">轉譯的 ASCII 字元。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-123">Translated ASCII character.</span></span>
 
-<span data-ttu-id="a6cc3-124">**dwControlKeyState**</span><span class="sxs-lookup"><span data-stu-id="a6cc3-124">**dwControlKeyState**</span></span>  
-<span data-ttu-id="a6cc3-125">控制項索引鍵的狀態。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-125">The state of the control keys.</span></span> <span data-ttu-id="a6cc3-126">這個成員可以是下列一或多個值。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-126">This member can be one or more of the following values.</span></span>
+<span data-ttu-id="bbbe2-124">**dwControlKeyState**</span><span class="sxs-lookup"><span data-stu-id="bbbe2-124">**dwControlKeyState**</span></span>  
+<span data-ttu-id="bbbe2-125">控制項索引鍵的狀態。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-125">The state of the control keys.</span></span> <span data-ttu-id="bbbe2-126">這個成員可以是下列一或多個值。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-126">This member can be one or more of the following values.</span></span>
 
-| <span data-ttu-id="a6cc3-127">值</span><span class="sxs-lookup"><span data-stu-id="a6cc3-127">Value</span></span> | <span data-ttu-id="a6cc3-128">意義</span><span class="sxs-lookup"><span data-stu-id="a6cc3-128">Meaning</span></span> |
+| <span data-ttu-id="bbbe2-127">值</span><span class="sxs-lookup"><span data-stu-id="bbbe2-127">Value</span></span> | <span data-ttu-id="bbbe2-128">意義</span><span class="sxs-lookup"><span data-stu-id="bbbe2-128">Meaning</span></span> |
 |-|-|
-| <span data-ttu-id="a6cc3-129">**CAPSLOCK_ON** 0x0080</span><span class="sxs-lookup"><span data-stu-id="a6cc3-129">**CAPSLOCK_ON** 0x0080</span></span> | <span data-ttu-id="a6cc3-130">CAPS LOCK 燈開啟。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-130">The CAPS LOCK light is on.</span></span> |
-| <span data-ttu-id="a6cc3-131">**ENHANCED_KEY** 0x0100</span><span class="sxs-lookup"><span data-stu-id="a6cc3-131">**ENHANCED_KEY** 0x0100</span></span> | <span data-ttu-id="a6cc3-132">金鑰已增強。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-132">The key is enhanced.</span></span> <span data-ttu-id="a6cc3-133">請參閱 [備註](key-event-record-str.md#remarks)。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-133">See [remarks](key-event-record-str.md#remarks).</span></span> |
-| <span data-ttu-id="a6cc3-134">**LEFT_ALT_PRESSED** 0x0002</span><span class="sxs-lookup"><span data-stu-id="a6cc3-134">**LEFT_ALT_PRESSED** 0x0002</span></span> | <span data-ttu-id="a6cc3-135">左 ALT 鍵已按下。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-135">The left ALT key is pressed.</span></span> |
-| <span data-ttu-id="a6cc3-136">**LEFT_CTRL_PRESSED** 0x0008</span><span class="sxs-lookup"><span data-stu-id="a6cc3-136">**LEFT_CTRL_PRESSED** 0x0008</span></span> | <span data-ttu-id="a6cc3-137">按下 CTRL 鍵。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-137">The left CTRL key is pressed.</span></span> |
-| <span data-ttu-id="a6cc3-138">**NUMLOCK_ON** 0x0020</span><span class="sxs-lookup"><span data-stu-id="a6cc3-138">**NUMLOCK_ON** 0x0020</span></span> | <span data-ttu-id="a6cc3-139">NUM LOCK 燈開啟。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-139">The NUM LOCK light is on.</span></span> |
-| <span data-ttu-id="a6cc3-140">**RIGHT_ALT_PRESSED** 0x0001</span><span class="sxs-lookup"><span data-stu-id="a6cc3-140">**RIGHT_ALT_PRESSED** 0x0001</span></span> | <span data-ttu-id="a6cc3-141">按下右邊的 ALT 鍵。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-141">The right ALT key is pressed.</span></span> |
-| <span data-ttu-id="a6cc3-142">**RIGHT_CTRL_PRESSED** 0x0004</span><span class="sxs-lookup"><span data-stu-id="a6cc3-142">**RIGHT_CTRL_PRESSED** 0x0004</span></span> | <span data-ttu-id="a6cc3-143">按下 CTRL 鍵。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-143">The right CTRL key is pressed.</span></span> |
-| <span data-ttu-id="a6cc3-144">**SCROLLLOCK_ON** 0x0040</span><span class="sxs-lookup"><span data-stu-id="a6cc3-144">**SCROLLLOCK_ON** 0x0040</span></span> | <span data-ttu-id="a6cc3-145">捲軸鎖定燈開啟。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-145">The SCROLL LOCK light is on.</span></span> |
-| <span data-ttu-id="a6cc3-146">**SHIFT_PRESSED** 0x0010</span><span class="sxs-lookup"><span data-stu-id="a6cc3-146">**SHIFT_PRESSED** 0x0010</span></span> | <span data-ttu-id="a6cc3-147">按下 SHIFT 鍵。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-147">The SHIFT key is pressed.</span></span> |
+| <span data-ttu-id="bbbe2-129">**CAPSLOCK_ON** 0x0080</span><span class="sxs-lookup"><span data-stu-id="bbbe2-129">**CAPSLOCK_ON** 0x0080</span></span> | <span data-ttu-id="bbbe2-130">CAPS LOCK 燈開啟。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-130">The CAPS LOCK light is on.</span></span> |
+| <span data-ttu-id="bbbe2-131">**ENHANCED_KEY** 0x0100</span><span class="sxs-lookup"><span data-stu-id="bbbe2-131">**ENHANCED_KEY** 0x0100</span></span> | <span data-ttu-id="bbbe2-132">金鑰已增強。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-132">The key is enhanced.</span></span> <span data-ttu-id="bbbe2-133">請參閱 [備註](key-event-record-str.md#remarks)。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-133">See [remarks](key-event-record-str.md#remarks).</span></span> |
+| <span data-ttu-id="bbbe2-134">**LEFT_ALT_PRESSED** 0x0002</span><span class="sxs-lookup"><span data-stu-id="bbbe2-134">**LEFT_ALT_PRESSED** 0x0002</span></span> | <span data-ttu-id="bbbe2-135">左 ALT 鍵已按下。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-135">The left ALT key is pressed.</span></span> |
+| <span data-ttu-id="bbbe2-136">**LEFT_CTRL_PRESSED** 0x0008</span><span class="sxs-lookup"><span data-stu-id="bbbe2-136">**LEFT_CTRL_PRESSED** 0x0008</span></span> | <span data-ttu-id="bbbe2-137">按下 CTRL 鍵。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-137">The left CTRL key is pressed.</span></span> |
+| <span data-ttu-id="bbbe2-138">**NUMLOCK_ON** 0x0020</span><span class="sxs-lookup"><span data-stu-id="bbbe2-138">**NUMLOCK_ON** 0x0020</span></span> | <span data-ttu-id="bbbe2-139">NUM LOCK 燈開啟。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-139">The NUM LOCK light is on.</span></span> |
+| <span data-ttu-id="bbbe2-140">**RIGHT_ALT_PRESSED** 0x0001</span><span class="sxs-lookup"><span data-stu-id="bbbe2-140">**RIGHT_ALT_PRESSED** 0x0001</span></span> | <span data-ttu-id="bbbe2-141">按下右邊的 ALT 鍵。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-141">The right ALT key is pressed.</span></span> |
+| <span data-ttu-id="bbbe2-142">**RIGHT_CTRL_PRESSED** 0x0004</span><span class="sxs-lookup"><span data-stu-id="bbbe2-142">**RIGHT_CTRL_PRESSED** 0x0004</span></span> | <span data-ttu-id="bbbe2-143">按下 CTRL 鍵。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-143">The right CTRL key is pressed.</span></span> |
+| <span data-ttu-id="bbbe2-144">**SCROLLLOCK_ON** 0x0040</span><span class="sxs-lookup"><span data-stu-id="bbbe2-144">**SCROLLLOCK_ON** 0x0040</span></span> | <span data-ttu-id="bbbe2-145">捲軸鎖定燈開啟。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-145">The SCROLL LOCK light is on.</span></span> |
+| <span data-ttu-id="bbbe2-146">**SHIFT_PRESSED** 0x0010</span><span class="sxs-lookup"><span data-stu-id="bbbe2-146">**SHIFT_PRESSED** 0x0010</span></span> | <span data-ttu-id="bbbe2-147">按下 SHIFT 鍵。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-147">The SHIFT key is pressed.</span></span> |
 
-## <a name="remarks"></a><span data-ttu-id="a6cc3-148">備註</span><span class="sxs-lookup"><span data-stu-id="a6cc3-148">Remarks</span></span>
+## <a name="remarks"></a><span data-ttu-id="bbbe2-148">備註</span><span class="sxs-lookup"><span data-stu-id="bbbe2-148">Remarks</span></span>
 
-<span data-ttu-id="a6cc3-149">適用于 IBM® 101-和102鍵鍵盤的增強金鑰包括： INS、DEL、HOME、END、PAGE UP、PAGE DOWN 和方向鍵（在叢集中的叢集中）;然後將 (/) ，然後在鍵盤上輸入按鍵。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-149">Enhanced keys for the IBM® 101- and 102-key keyboards are the INS, DEL, HOME, END, PAGE UP, PAGE DOWN, and direction keys in the clusters to the left of the keypad; and the divide (/) and ENTER keys in the keypad.</span></span>
+<span data-ttu-id="bbbe2-149">適用于 IBM® 101-和102鍵鍵盤的增強金鑰包括： INS、DEL、HOME、END、PAGE UP、PAGE DOWN 和方向鍵（在叢集中的叢集中）;然後將 (/) ，然後在鍵盤上輸入按鍵。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-149">Enhanced keys for the IBM® 101- and 102-key keyboards are the INS, DEL, HOME, END, PAGE UP, PAGE DOWN, and direction keys in the clusters to the left of the keypad; and the divide (/) and ENTER keys in the keypad.</span></span>
 
-<span data-ttu-id="a6cc3-150">當按下或放開任何按鍵時，就會產生鍵盤輸入事件，包括控制按鍵。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-150">Keyboard input events are generated when any key, including control keys, is pressed or released.</span></span> <span data-ttu-id="a6cc3-151">不過，在未結合另一個字元的情況下，按下並放開 ALT 鍵時，對系統具有特殊意義，且不會傳遞至應用程式。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-151">However, the ALT key when pressed and released without combining with another character, has special meaning to the system and is not passed through to the application.</span></span> <span data-ttu-id="a6cc3-152">此外，如果輸入控制碼處於處理模式，則不會傳遞 CTRL + C 按鍵組合 ( **啟用已 \_ 處理的 \_ 輸入** ) 。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-152">Also, the CTRL+C key combination is not passed through if the input handle is in processed mode ( **ENABLE\_PROCESSED\_INPUT** ).</span></span>
+<span data-ttu-id="bbbe2-150">當按下或放開任何按鍵時，就會產生鍵盤輸入事件，包括控制按鍵。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-150">Keyboard input events are generated when any key, including control keys, is pressed or released.</span></span> <span data-ttu-id="bbbe2-151">不過，在未結合另一個字元的情況下，按下並放開 ALT 鍵時，對系統具有特殊意義，且不會傳遞至應用程式。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-151">However, the ALT key when pressed and released without combining with another character, has special meaning to the system and is not passed through to the application.</span></span> <span data-ttu-id="bbbe2-152">此外，如果輸入控制碼處於處理模式，則不會傳遞 CTRL + C 按鍵組合 (**啟用已 \_ 處理的 \_ 輸入**) 。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-152">Also, the CTRL+C key combination is not passed through if the input handle is in processed mode (**ENABLE\_PROCESSED\_INPUT**).</span></span>
 
-## <a name="examples"></a><span data-ttu-id="a6cc3-153">範例</span><span class="sxs-lookup"><span data-stu-id="a6cc3-153">Examples</span></span>
+## <a name="examples"></a><span data-ttu-id="bbbe2-153">範例</span><span class="sxs-lookup"><span data-stu-id="bbbe2-153">Examples</span></span>
 
-<span data-ttu-id="a6cc3-154">如需範例，請參閱 [讀取輸入緩衝區事件](reading-input-buffer-events.md)。</span><span class="sxs-lookup"><span data-stu-id="a6cc3-154">For an example, see [Reading Input Buffer Events](reading-input-buffer-events.md).</span></span>
+<span data-ttu-id="bbbe2-154">如需範例，請參閱[讀取輸入緩衝區事件](reading-input-buffer-events.md)。</span><span class="sxs-lookup"><span data-stu-id="bbbe2-154">For an example, see [Reading Input Buffer Events](reading-input-buffer-events.md).</span></span>
 
-## <a name="requirements"></a><span data-ttu-id="a6cc3-155">規格需求</span><span class="sxs-lookup"><span data-stu-id="a6cc3-155">Requirements</span></span>
+## <a name="requirements"></a><span data-ttu-id="bbbe2-155">規格需求</span><span class="sxs-lookup"><span data-stu-id="bbbe2-155">Requirements</span></span>
 
 | &nbsp; | &nbsp; |
 |-|-|
-| <span data-ttu-id="a6cc3-156">最低支援的用戶端</span><span class="sxs-lookup"><span data-stu-id="a6cc3-156">Minimum supported client</span></span> | <span data-ttu-id="a6cc3-157">僅限 Windows 2000 Professional \[ desktop 應用程式\]</span><span class="sxs-lookup"><span data-stu-id="a6cc3-157">Windows 2000 Professional \[desktop apps only\]</span></span> |
-| <span data-ttu-id="a6cc3-158">最低支援的伺服器</span><span class="sxs-lookup"><span data-stu-id="a6cc3-158">Minimum supported server</span></span> | <span data-ttu-id="a6cc3-159">僅限 Windows 2000 Server \[ desktop 應用程式\]</span><span class="sxs-lookup"><span data-stu-id="a6cc3-159">Windows 2000 Server \[desktop apps only\]</span></span> |
-| <span data-ttu-id="a6cc3-160">標頭</span><span class="sxs-lookup"><span data-stu-id="a6cc3-160">Header</span></span> | <span data-ttu-id="a6cc3-161">WinConTypes .h (via WinCon，包括 Windows .h) </span><span class="sxs-lookup"><span data-stu-id="a6cc3-161">WinConTypes.h (via WinCon.h, include Windows.h)</span></span> |
+| <span data-ttu-id="bbbe2-156">最低支援的用戶端</span><span class="sxs-lookup"><span data-stu-id="bbbe2-156">Minimum supported client</span></span> | <span data-ttu-id="bbbe2-157">Windows 2000 Professional \[僅限傳統型應用程式\]</span><span class="sxs-lookup"><span data-stu-id="bbbe2-157">Windows 2000 Professional \[desktop apps only\]</span></span> |
+| <span data-ttu-id="bbbe2-158">最低支援的伺服器</span><span class="sxs-lookup"><span data-stu-id="bbbe2-158">Minimum supported server</span></span> | <span data-ttu-id="bbbe2-159">Windows 2000 Server \[僅限傳統型應用程式\]</span><span class="sxs-lookup"><span data-stu-id="bbbe2-159">Windows 2000 Server \[desktop apps only\]</span></span> |
+| <span data-ttu-id="bbbe2-160">標頭</span><span class="sxs-lookup"><span data-stu-id="bbbe2-160">Header</span></span> | <span data-ttu-id="bbbe2-161">WinConTypes .h (via WinCon，包括 Windows .h) </span><span class="sxs-lookup"><span data-stu-id="bbbe2-161">WinConTypes.h (via WinCon.h, include Windows.h)</span></span> |
 
-## <a name="see-also"></a><span data-ttu-id="a6cc3-162">請參閱</span><span class="sxs-lookup"><span data-stu-id="a6cc3-162">See also</span></span>
+## <a name="see-also"></a><span data-ttu-id="bbbe2-162">另請參閱</span><span class="sxs-lookup"><span data-stu-id="bbbe2-162">See also</span></span>
 
-[<span data-ttu-id="a6cc3-163">**PeekConsoleInput**</span><span class="sxs-lookup"><span data-stu-id="a6cc3-163">**PeekConsoleInput**</span></span>](peekconsoleinput.md)
+[<span data-ttu-id="bbbe2-163">**PeekConsoleInput**</span><span class="sxs-lookup"><span data-stu-id="bbbe2-163">**PeekConsoleInput**</span></span>](peekconsoleinput.md)
 
-[<span data-ttu-id="a6cc3-164">**ReadConsoleInput**</span><span class="sxs-lookup"><span data-stu-id="a6cc3-164">**ReadConsoleInput**</span></span>](readconsoleinput.md)
+[<span data-ttu-id="bbbe2-164">**ReadConsoleInput**</span><span class="sxs-lookup"><span data-stu-id="bbbe2-164">**ReadConsoleInput**</span></span>](readconsoleinput.md)
 
-[<span data-ttu-id="a6cc3-165">**WriteConsoleInput**</span><span class="sxs-lookup"><span data-stu-id="a6cc3-165">**WriteConsoleInput**</span></span>](writeconsoleinput.md)
+[<span data-ttu-id="bbbe2-165">**WriteConsoleInput**</span><span class="sxs-lookup"><span data-stu-id="bbbe2-165">**WriteConsoleInput**</span></span>](writeconsoleinput.md)
 
-[<span data-ttu-id="a6cc3-166">**輸入 \_ 記錄**</span><span class="sxs-lookup"><span data-stu-id="a6cc3-166">**INPUT\_RECORD**</span></span>](input-record-str.md)
+[<span data-ttu-id="bbbe2-166">**輸入 \_ 記錄**</span><span class="sxs-lookup"><span data-stu-id="bbbe2-166">**INPUT\_RECORD**</span></span>](input-record-str.md)
